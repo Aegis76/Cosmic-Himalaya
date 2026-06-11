@@ -1,0 +1,87 @@
+/* ============================================================
+   COSMIC HIMALAYA — FOOTER  (site-wide, drop-in replacement)
+   Styles your existing markup:
+     .footer-social .fs-left .fs-icon
+     footer .footer-section .footer-grid .footer-col .cc-row
+     .footer-bottom
+   Works with inline-SVG icons OR your old PNGs (auto-inverted).
+   ============================================================ */
+
+:root {
+  --ft-ink: #0b1622;
+  --ft-ink-2: #0f1d2f;
+  --ft-gold: #c6a662;
+  --ft-line: rgba(255, 255, 255, 0.12);
+  --ft-muted: rgba(255, 255, 255, 0.6);
+}
+
+/* ── social strip ── */
+.footer-social {
+  background: var(--ft-ink-2);
+  border-top: 1px solid var(--ft-line);
+  padding: 26px clamp(20px, 5vw, 72px);
+}
+.fs-left {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.fs-left > span {
+  font-family: "Playfair Display", serif; font-style: italic;
+  font-size: clamp(16px, 2vw, 20px); color: #fff; margin-right: auto;
+}
+.fs-icon {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: rgba(255, 255, 255, 0.7); text-decoration: none;
+  transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+}
+.fs-icon svg { width: 17px; height: 17px; fill: currentColor; }
+.fs-icon img { width: 17px; height: 17px; filter: brightness(0) invert(1); opacity: 0.7; }
+.fs-icon:hover { background: var(--ft-gold); border-color: var(--ft-gold); color: var(--ft-ink); transform: translateY(-3px); }
+.fs-icon:hover img { filter: none; opacity: 1; }
+
+/* ── main footer ── */
+footer { background: var(--ft-ink); color: var(--ft-muted); }
+.footer-section {
+  max-width: 1280px; margin: 0 auto;
+  padding: clamp(56px, 8vw, 80px) clamp(20px, 5vw, 72px) 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.3fr 1.3fr;
+  gap: clamp(28px, 4vw, 48px);
+}
+.footer-col h6 {
+  color: #fff; font-size: 12px; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.footer-col h6::after {
+  content: ""; display: block; width: 28px; height: 2px;
+  background: var(--ft-gold); margin-top: 10px;
+}
+.footer-col a {
+  display: block; font-size: 14px; line-height: 2;
+  color: var(--ft-muted); text-decoration: none; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--ft-gold); }
+.footer-col .cc-row { font-size: 14px; line-height: 1.9; color: var(--ft-muted); margin-bottom: 4px; }
+
+.footer-bottom {
+  max-width: 1280px; margin: clamp(40px, 5vw, 56px) auto 0;
+  padding: 24px clamp(20px, 5vw, 72px);
+  border-top: 1px solid var(--ft-line);
+  text-align: center; font-size: 13px;
+  letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 560px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+  .footer-col h6::after { margin-left: auto; margin-right: auto; }
+  .fs-left { justify-content: center; }
+  .fs-left > span { margin-right: 0; width: 100%; text-align: center; }
+}

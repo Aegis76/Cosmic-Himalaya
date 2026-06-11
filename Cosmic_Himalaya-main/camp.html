@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summer Camps | COSMIC HIMALAYA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="navbar.css" rel="stylesheet" />
+    <link href="footer.css" rel="stylesheet" />
+    <link href="camp.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+  <nav>
+      <a href="index.html" class="nav-brand">
+        <strong>COSMIC HIMALAYA</strong>
+        <span>Authentic Himalayan Journeys</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="trek.html" class="nb">Treks</a></li>
+        <li><a href="camp.html" class="nb">Camps</a></li>
+        <li><a href="b2b.html" class="nb">B2B</a></li>
+        <li><a href="store.html" class="nb">Store</a></li>
+        <li><a href="about.html" class="nb">About</a></li>
+        <li><a href="contact.html" class="nb">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-search-wrap">
+          <input type="text" placeholder="Search..." id="navSearch" />
+          <span class="ns-ico">🔍</span>
+        </div>
+        <div class="nav-cart" onclick="toggleCart()">
+          🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
+        </div>
+        <button class="menu">☰</button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="nav-right">
+        <div class="mobile-search-wrap">
+          <input type="text" placeholder="Search treks..." onkeypress="handleMobileSearch(event)" />
+          <span>🔍</span>
+        </div>
+        <ul class="mobile-nav-links">
+          <li><a href="trek.html">Treks</a></li>
+          <li><a href="camp.html">Camps</a></li>
+          <li><a href="b2b.html">B2B</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+
+    <div class="page" id="page-camp">
+      <div class="camp-hero-slider">
+        <div class="camp-hero-slide active">
+          <img
+            src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=1200&q=80"
+            alt="Camp1"
+          />
+        </div>
+        <div class="camp-hero-slide">
+          <img
+            src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=80"
+            alt="Camp2"
+          />
+        </div>
+        <div class="camp-hero-slide">
+          <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80"
+            alt="Camp3"
+          />
+        </div>
+        <div class="camp-overlay-text">
+          <div
+            style="
+              font-size: clamp(14px, 2.5vw, 22px);
+              font-weight: 700;
+              color: rgba(255, 255, 255, 0.8);
+              letter-spacing: 4px;
+              text-transform: uppercase;
+              margin-bottom: 8px;
+            "
+          >
+            🏕️ Cosmic Himalaya Presents
+          </div>
+          <div class="camp-big-title">
+            <span class="c-summit">SUMMIT</span><br />SCHOLARS
+          </div>
+          <div class="camp-sub-title">Himalayan Summer</div>
+          <div class="camp-big-camp">CAMP</div>
+        </div>
+        <div class="camp-slide-dots" id="campDots">
+          <button class="camp-dot active"></button
+          ><button class="camp-dot"></button><button class="camp-dot"></button>
+        </div>
+        <button
+          class="camp-dl-btn"
+          onclick="showToast('📄 Downloading brochure...')"
+        >
+          📄 Download Brochure
+        </button>
+      </div>
+
+      <!-- Contact Bar -->
+      <div class="camp-contact-bar">
+        <div class="ccb-q">Have a question?</div>
+        <div class="ccb-right">
+          <div class="ccb-contact">
+            <span class="ico">📞</span>+91 96902 40820
+          </div>
+          <div class="ccb-contact">
+            <span class="ico">✉</span>info@cosmichimalaya.com
+          </div>
+        </div>
+      </div>
+
+      <!-- Camp Info -->
+      <section class="camp-section">
+        <h2>Camp at a Glance</h2>
+        <div class="camp-underline"></div>
+        <div class="camp-info-grid">
+          <div class="ci-card reveal">
+            <span class="ci-ico">📅</span>
+            <div class="ci-label">Season Dates</div>
+            <div class="ci-val">May 15 – July 30, 2026</div>
+          </div>
+          <div class="ci-card reveal">
+            <span class="ci-ico">🧒</span>
+            <div class="ci-label">Age Groups</div>
+            <div class="ci-val">Kids · Youth · Adults</div>
+          </div>
+          <div class="ci-card reveal">
+            <span class="ci-ico">📍</span>
+            <div class="ci-label">Locations</div>
+            <div class="ci-val">Shimla · Manali · Mussoorie</div>
+          </div>
+          <div class="ci-card reveal">
+            <span class="ci-ico">🏕</span>
+            <div class="ci-label">Duration</div>
+            <div class="ci-val">5 / 7 / 10 Days</div>
+          </div>
+          <div class="ci-card reveal">
+            <span class="ci-ico">👥</span>
+            <div class="ci-label">Batch Size</div>
+            <div class="ci-val">Max 20 per batch</div>
+          </div>
+          <div class="ci-card reveal">
+            <span class="ci-ico">🎓</span>
+            <div class="ci-label">Certified Guides</div>
+            <div class="ci-val">WFR &amp; NIM-certified</div>
+          </div>
+        </div>
+
+        <h2>Our Camp Programs</h2>
+        <div class="camp-underline"></div>
+        <div class="camp-prog-grid">
+          <div class="cp-card reveal" id="kids-camp">
+            <div class="cp-img">
+              <img
+                src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=700&q=80"
+                alt="Kids"
+              />
+              <div class="cp-tag">🧒 KIDS CAMP</div>
+            </div>
+            <div class="cp-body">
+              <h3>Junior Mountaineer Camp</h3>
+              <div class="cp-dets">
+                <div class="cp-det">📅 5 Days</div>
+                <div class="cp-det">🧒 Age: 8–14</div>
+                <div class="cp-det">📍 Shimla</div>
+              </div>
+              <p class="cp-desc">
+                A safe, fun and educational camp for young adventurers. Nature
+                walks, rock climbing, team challenges, campfire storytelling and
+                wildlife education.
+              </p>
+              <div class="cp-foot">
+                <div class="cp-price">₹12,500 <span>/ child</span></div>
+                <button class="cp-enroll" onclick="enrollProgram('kids')">
+                  Enroll Now
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="cp-card reveal" id="youth-camp">
+            <div class="cp-img">
+              <img
+                src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=700&q=80"
+                alt="Youth"
+              />
+              <div class="cp-tag">🧑 YOUTH CAMP</div>
+            </div>
+            <div class="cp-body">
+              <h3>Peak Challenger Camp</h3>
+              <div class="cp-dets">
+                <div class="cp-det">📅 7 Days</div>
+                <div class="cp-det">🧑 Age: 15–21</div>
+                <div class="cp-det">📍 Manali</div>
+              </div>
+              <p class="cp-desc">
+                Push your limits with trekking, rappelling, river crossing, and
+                leadership workshops. Build confidence and resilience in the
+                Himalayas.
+              </p>
+              <div class="cp-foot">
+                <div class="cp-price">₹18,000 <span>/ person</span></div>
+                <button class="cp-enroll" onclick="enrollProgram('youth')">
+                  Enroll Now
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="cp-card reveal" id="adult-camp">
+            <div class="cp-img">
+              <img
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80"
+                alt="Adult"
+              />
+              <div class="cp-tag">🧗 ADULT RETREAT</div>
+            </div>
+            <div class="cp-body">
+              <h3>Summit Seeker Retreat</h3>
+              <div class="cp-dets">
+                <div class="cp-det">📅 10 Days</div>
+                <div class="cp-det">🧗 Age: 22+</div>
+                <div class="cp-det">📍 Mussoorie</div>
+              </div>
+              <p class="cp-desc">
+                Advanced trekking, wilderness survival, sunrise yoga,
+                photography workshops, and a summit attempt. Truly
+                life-changing.
+              </p>
+              <div class="cp-foot">
+                <div class="cp-price">₹28,000 <span>/ person</span></div>
+                <button class="cp-enroll" onclick="enrollProgram('adult')">
+                  Enroll Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Schedule -->
+      <section class="camp-section" style="background: var(--light)">
+        <h2>A Day at the Camp</h2>
+        <div class="camp-underline"></div>
+        <div class="sched-grid">
+          <div class="sched-card reveal">
+            <div class="sched-time">5:30 AM</div>
+            <h4>Morning Assembly &amp; Yoga</h4>
+            <p>
+              Sun salutations, breathing exercises, and motivational group
+              circle overlooking the mountains.
+            </p>
+          </div>
+          <div class="sched-card reveal">
+            <div class="sched-time">7:00 AM</div>
+            <h4>Breakfast &amp; Briefing</h4>
+            <p>
+              Nutritious high-energy breakfast followed by the day's activity
+              briefing from the lead instructor.
+            </p>
+          </div>
+          <div class="sched-card reveal">
+            <div class="sched-time">8:30 AM</div>
+            <h4>Main Trek / Activity</h4>
+            <p>
+              Primary activity — trekking, rock climbing, river crossing, or
+              nature exploration.
+            </p>
+          </div>
+          <div class="sched-card reveal">
+            <div class="sched-time">1:00 PM</div>
+            <h4>Lunch Break</h4>
+            <p>
+              Freshly cooked lunch at a scenic campsite. Rest, journaling, and
+              free exploration time.
+            </p>
+          </div>
+          <div class="sched-card reveal">
+            <div class="sched-time">3:00 PM</div>
+            <h4>Skill Workshop</h4>
+            <p>
+              Navigation, survival skills, first aid basics, photography, or
+              leadership activities.
+            </p>
+          </div>
+          <div class="sched-card reveal">
+            <div class="sched-time">6:00 PM</div>
+            <h4>Campfire &amp; Stargazing</h4>
+            <p>
+              Stories around the campfire, stargazing, and a gratitude circle to
+              close the day.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="camp-testi">
+        <h2>What Campers Say</h2>
+        <div class="cu"></div>
+        <div class="ct-grid">
+          <div class="ct-card reveal">
+            <div class="ct-stars">★★★★★</div>
+            <p class="ct-text">
+              "My 12-year-old came back a completely different person — more
+              confident, more independent. The instructors were amazing. Already
+              booking next year!"
+            </p>
+            <div class="ct-auth">
+              <div class="ct-av">👩</div>
+              <div>
+                <div class="ct-name">Priya Sharma</div>
+                <div class="ct-loc">Parent — Delhi</div>
+              </div>
+            </div>
+          </div>
+          <div class="ct-card reveal">
+            <div class="ct-stars">★★★★★</div>
+            <p class="ct-text">
+              "The 10-day adult retreat was truly life-changing. The guides were
+              incredibly knowledgeable and the entire experience was organized
+              to perfection."
+            </p>
+            <div class="ct-auth">
+              <div class="ct-av">👨</div>
+              <div>
+                <div class="ct-name">Rohit Verma</div>
+                <div class="ct-loc">IT Professional — Bangalore</div>
+              </div>
+            </div>
+          </div>
+          <div class="ct-card reveal">
+            <div class="ct-stars">★★★★★</div>
+            <p class="ct-text">
+              "The Peak Challenger camp pushed me beyond what I thought I was
+              capable of. Made lifelong friends and conquered my fear of
+              heights. Best summer ever!"
+            </p>
+            <div class="ct-auth">
+              <div class="ct-av">🧑</div>
+              <div>
+                <div class="ct-name">Arjun Singh</div>
+                <div class="ct-loc">Student — Mumbai</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Register -->
+      <section class="camp-cta-section" id="enroll">
+        <h2>Ready to <em>Begin the Journey?</em></h2>
+        <p>
+          Seats are limited to 20 per batch. Register your interest now and our
+          team will reach out with batch details.
+        </p>
+        <form
+          id="enrollForm"
+          class="cta-form"
+          action="https://formspree.io/f/mrejpjla"
+          method="POST"
+        >
+          <input
+            type="text"
+            id="regName"
+            name="name"
+            placeholder="Your Full Name"
+            required
+          />
+          <input
+            type="email"
+            id="regEmail"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
+          <select id="regProgram" name="program" required>
+            <option value="" disabled selected>Select Program</option>
+            <option value="kids">Junior Mountaineer Camp (Kids)</option>
+            <option value="youth">Peak Challenger Camp (Youth)</option>
+            <option value="adult">Summit Seeker Retreat (Adult)</option>
+          </select>
+          <button type="submit" id="regBtn">Register Interest</button>
+        </form>
+
+        <div
+          id="thankYouMsg"
+          style="display: none; text-align: center; padding: 20px"
+        >
+          <h2 style="color: #4caf50">✅ Thank You!</h2>
+          <p>
+            Your interest has been registered. Our team will reach out to you
+            with batch details soon.
+          </p>
+          <button
+            onclick="location.reload()"
+            style="
+              margin-top: 20px;
+              padding: 10px 20px;
+              background: #333;
+              color: #fff;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          >
+            Send Another
+          </button>
+        </div>
+      </section>
+
+    <div class="footer-social">
+      <div class="fs-left">
+        <span>Follow us</span>
+        <a href="#" class="fs-icon" aria-label="Instagram">
+          <img src="Social_Icons/instagram.png" alt="Instagram" />
+        </a>
+        <a href="#" class="fs-icon" aria-label="YouTube">
+          <img src="Social_Icons/youtube.png" alt="YouTube" />
+        </a>
+        
+        <a href="#" class="fs-icon" aria-label="LinkedIn">
+          <img src="Social_Icons/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="#" class="fs-icon" aria-label="Facebook">
+          <img src="Social_Icons/facebook.png" alt="Facebook" />
+        </a>
+      </div>
+    </div>
+    <footer>
+        <div class="footer-section">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <h6>Navigation</h6>
+              <a href="index.html">Home</a>
+              <a href="trek.html">Treks</a>
+              <a href="camp.html">Summer Camp</a>
+              <a href="store.html">Store</a>
+              <a href="contact.html">Contact</a>
+              <a href="index.html#faq">FAQs</a>
+            </div>
+            <div class="footer-col">
+              <h6>Legal</h6>
+              <a href="disclaimer.html">Disclaimer</a>
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="terms.html">Terms & Conditions</a>
+            </div>
+            <div class="footer-col">
+              <h6>Our Base</h6>
+              <div class="cc-row">📍 Kathmandu, Nepal</div>
+              <div class="cc-row">🏔 Serving Everest, Annapurna & Kailash Regions</div>
+              <div class="cc-row">🕒 Mon–Sun | 08:00 AM – 06:00 PM (NPT)</div>
+            </div>
+            <div class="footer-col">
+              <h6>Contact info</h6>
+              <div class="cc-row">✉ info@cosmichimalaya.com</div>
+              <div class="cc-row">📞 +977 9862468835 (Dilip)</div>
+              <div class="cc-row">📞 +91 85276 61108 (Chandrashekhar Sharma)</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2026 COSMIC HIMALAYA Adventures. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script src="config.js"></script>
+    <script src="img-utils.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

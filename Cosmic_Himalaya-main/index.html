@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COSMIC HIMALAYA | Safest & Trusted Adventure Provider</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="navbar.css" rel="stylesheet" />
+    <link href="footer.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <strong>COSMIC HIMALAYA</strong>
+        <span>Authentic Himalayan Journeys</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="trek.html" class="nb">Treks</a></li>
+        <li><a href="camp.html" class="nb">Camps</a></li>
+        <li><a href="b2b.html" class="nb">B2B</a></li>
+        <li><a href="store.html" class="nb">Store</a></li>
+        <li><a href="about.html" class="nb">About</a></li>
+        <li><a href="contact.html" class="nb">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-search-wrap">
+          <input type="text" placeholder="Search..." id="navSearch" />
+          <span class="ns-ico">🔍</span>
+        </div>
+        <div class="nav-cart" onclick="toggleCart()">
+          🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
+        </div>
+        <button class="menu">☰</button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="nav-right">
+        <div class="mobile-search-wrap">
+          <input type="text" placeholder="Search treks..." onkeypress="handleMobileSearch(event)" />
+          <span>🔍</span>
+        </div>
+        <ul class="mobile-nav-links">
+          <li><a href="trek.html">Treks</a></li>
+          <li><a href="camp.html">Camps</a></li>
+          <li><a href="b2b.html">B2B</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="page active" id="page-home">
+      <!-- STATIC HERO SECTION -->
+      <section class="hero">
+  <!-- LCP element: stays for mobile + first paint on desktop. Swap to ./images/FrontendPage.webp -->
+  <img
+    class="hero-media hero-img"
+    src="https://images.pexels.com/videos/29788350/abc-trekking-mountains-in-background-nepal-nepal-tourism-29788350.jpeg?auto=compress&cs=tinysrgb&w=1920"
+    alt="Annapurna mountain range, Nepal"
+    fetchpriority="high"
+  />
+ 
+  <!-- Desktop-only video. preload="none" + JS below = phones never download it.
+       Drop in your compressed loop and uncomment the <source> lines. -->
+  <video
+    class="hero-media hero-video is-ready"
+    autoplay muted loop playsinline preload="auto"
+    poster="https://images.pexels.com/videos/29788350/abc-trekking-mountains-in-background-nepal-nepal-tourism-29788350.jpeg?auto=compress&cs=tinysrgb&w=1920"
+  >
+    <!-- ⚠ TEST CLIP ONLY (public sample, proves the code works).
+         REPLACE with your self-hosted file: ./videos/hero.mp4
+         (download from Pexels, compress, drop in a /videos folder). -->
+    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+  </video>
+ 
+  <div class="hero-scrim"></div>
+ 
+  <h2 class="bg-word">EVEREST</h2>
+ 
+  <div class="hero-content">
+    <div class="eyebrow reveal-up d1">Authentic Himalayan Journeys</div>
+    <h1 class="hero-title reveal-up d2">Cosmic <span class="accent">Himalaya</span></h1>
+    <p class="hero-sub reveal-up d3">
+      Walk ancient Sherpa trails through the Khumbu, beneath towering peaks,
+      to the base of the world's highest mountain — guided by those born to it.
+    </p>
+    <button
+      class="hero-cta reveal-up d4"
+      onclick="document.getElementById('popular-treks') && document.getElementById('popular-treks').scrollIntoView({ behavior: 'smooth' })"
+    >
+      Explore the Journeys <span class="arrow">→</span>
+    </button>
+  </div>
+</section>
+
+
+    <!-- TREK CARDS -->
+<section class="treks-section" id="popular-treks">
+  <h2>Plan Your Next Adventure</h2>
+  <div class="treks-slider-wrap">
+    <div class="treks-slider" id="treksSlider">
+ 
+      <div class="trek-card reveal" onclick="window.location.href='view-trek.html?trek=ebc'">
+        <div class="tk-img">
+          <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp?updatedAt=1778251429169" alt="EBC" />
+          <div class="tk-loc">📍 Khumbu</div>
+        </div>
+        <div class="tk-body">
+          <div class="tk-title">Everest Base Camp Trek</div>
+          <div class="tk-meta"><span>DURATION: <strong>14 DAYS</strong></span><span>GRADE: <strong>DIFFICULT</strong></span></div>
+          <button class="tk-btn">View Trek Details</button>
+        </div>
+      </div>
+ 
+      <div class="trek-card reveal" onclick="window.location.href='view-trek.html?trek=abc'">
+        <div class="tk-img">
+          <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%202.webp?updatedAt=1778251431202" alt="ABC" />
+          <div class="tk-loc">📍 Annapurna</div>
+        </div>
+        <div class="tk-body">
+          <div class="tk-title">Annapurna Base Camp Trek</div>
+          <div class="tk-meta"><span>DURATION: <strong>10 DAYS</strong></span><span>GRADE: <strong>MODERATE</strong></span></div>
+          <button class="tk-btn">View Trek Details</button>
+        </div>
+      </div>
+ 
+      <div class="trek-card reveal" onclick="window.location.href='view-trek.html?trek=kailash'">
+        <div class="tk-img">
+          <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%201.jpg?updatedAt=1778251430891" alt="Kailash" />
+          <div class="tk-loc">📍 Tibet</div>
+        </div>
+        <div class="tk-body">
+          <div class="tk-title">Kailash Mansarovar Yatra</div>
+          <div class="tk-meta"><span>DURATION: <strong>14 DAYS</strong></span><span>GRADE: <strong>DIFFICULT</strong></span></div>
+          <button class="tk-btn">View Trek Details</button>
+        </div>
+      </div>
+ 
+      <div class="trek-card reveal" onclick="window.location.href='view-trek.html?trek=kailashHeli'">
+        <div class="tk-img">
+          <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%203.webp?updatedAt=1778251439189" alt="Kailash Heli" />
+          <div class="tk-loc">📍 Lucknow</div>
+        </div>
+        <div class="tk-body">
+          <div class="tk-title">Kailash Yatra (Lucknow Heli)</div>
+          <div class="tk-meta"><span>DURATION: <strong>11 DAYS</strong></span><span>GRADE: <strong>CHALLENGING</strong></span></div>
+          <button class="tk-btn">View Trek Details</button>
+        </div>
+      </div>
+ 
+      <div class="trek-card reveal" onclick="window.location.href='view-trek.html?trek=ebc13'">
+        <div class="tk-img">
+          <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg?updatedAt=1778251440473" alt="EBC 13" />
+          <div class="tk-loc">📍 Kathmandu</div>
+        </div>
+        <div class="tk-body">
+          <div class="tk-title">EBC Trek (Kathmandu to Kathmandu)</div>
+          <div class="tk-meta"><span>DURATION: <strong>13 DAYS</strong></span><span>GRADE: <strong>CHALLENGING</strong></span></div>
+          <button class="tk-btn">View Trek Details</button>
+        </div>
+      </div>
+ 
+      <div class="trek-card reveal" onclick="window.location.href='view-trek.html?trek=uppermustang'">
+        <div class="tk-img">
+          <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp?updatedAt=1778251432323" alt="Upper Mustang" />
+          <div class="tk-loc">📍 Mustang</div>
+        </div>
+        <div class="tk-body">
+          <div class="tk-title">Upper Mustang Trek</div>
+          <div class="tk-meta"><span>DURATION: <strong>14 DAYS</strong></span><span>GRADE: <strong>MODERATE</strong></span></div>
+          <button class="tk-btn">View Trek Details</button>
+        </div>
+      </div>
+ 
+    
+ 
+    </div>
+  </div>
+</section>
+
+      <!-- STATS BAR -->
+      <div class="stat-container">
+        <div class="stats-bar reveal">
+          <div class="stat-item highlighted">
+            <div class="stat-num">5,000+</div>
+            <div class="stat-label">Happy Trekkers</div>
+            <div class="stat-sub">Across 4+ destinations</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Treks</div>
+            <div class="stat-sub">Multiple regions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Awards</div>
+            <div class="stat-sub">Industry recognition</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">16+</div>
+            <div class="stat-label">Years</div>
+            <div class="stat-sub">Of safe adventures</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">1,238+</div>
+            <div class="stat-label">Heal Himalaya</div>
+            <div class="stat-sub">Cleanup drives conducted</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMAGE GALLERY -->
+      <section class="gallery">
+        <h2>Images form mountain </h2>
+        <div class="gallery-grid">
+          <div class="g-item large">
+            <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg?updatedAt=1778251441175" loading="lazy" />
+          </div>
+          <div class="g-item">
+            <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg?updatedAt=1778251440473" loading="lazy" />
+          </div>
+          <div class="g-item">
+            <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%203.gif?updatedAt=1778251438653" loading="lazy" />
+          </div>
+          <div class="g-item wide">
+            <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%203.jpg?updatedAt=1778251437628" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST SECTION -->
+      <section class="trust-section" id="about">
+        <div class="trust-tabs-container">
+          <div class="trust-tabs">
+            <button class="tr-tab active" onclick="setTrustTab('video', this)">
+              ▶ Video Reviews
+            </button>
+            <button class="tr-tab" onclick="setTrustTab('awards', this)">
+              🏆 Awards
+            </button>
+            <button class="tr-tab" onclick="setTrustTab('trusted', this)">
+              🛡 Trusted By
+            </button>
+            <button class="tr-tab" onclick="setTrustTab('reviews', this)">
+              ⭐ Google Reviews
+            </button>
+          </div>
+        </div>
+        <div class="trust-panel" id="tp-reviews">
+          <div class="reviews-row">
+            <div class="google-score">
+              <div class="gs-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_logo_color_2015.svg" alt="Google" class="gs-logo-img">
+                <span>Reviews</span>
+              </div>
+              <div class="gs-num">4.9</div>
+              <div class="gs-stars">★★★★★</div>
+              <div class="gs-count">10,704+ Genuine Reviews</div>
+              <a href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID" target="_blank" class="gs-write-btn">
+                Write a Review
+              </a>
+            </div>
+            <div class="rev-container">
+              <div class="rev-cards">
+                <div class="rev-card">
+                  <div class="rc-top">
+                    <div class="rc-user">
+                      <div class="rc-av" style="background: #4285F4;">D</div>
+                      <div>
+                        <div class="rc-name">Dipendra Kumar</div>
+                        <div class="rc-date">2 days ago</div>
+                      </div>
+                    </div>
+                    <div class="rc-verify">✅ Verified</div>
+                  </div>
+                  <div class="rc-stars">★★★★★</div>
+                  <p class="rc-text">
+                    "Naag Tibba weekend trek was an amazing experience!
+                    Everything was very well managed, and a big shoutout to our
+                    trek leaders for being incredibly supportive."
+                  </p>
+                </div>
+                <div class="rev-card">
+                  <div class="rc-top">
+                    <div class="rc-user">
+                      <div class="rc-av" style="background: #34A853;">M</div>
+                      <div>
+                        <div class="rc-name">Mustafa Shahid</div>
+                        <div class="rc-date">1 week ago</div>
+                      </div>
+                    </div>
+                    <div class="rc-verify">✅ Verified</div>
+                  </div>
+                  <div class="rc-stars">★★★★★</div>
+                  <p class="rc-text">
+                    "I have completed four treks with Cosmic Himalaya. Each experience has
+                    been exceptional — the guides are knowledgeable and safety
+                    is always first priority."
+                  </p>
+                </div>
+                <div class="rev-card">
+                  <div class="rc-top">
+                    <div class="rc-user">
+                      <div class="rc-av" style="background: #FBBC05;">J</div>
+                      <div>
+                        <div class="rc-name">Jaideep Koppikar</div>
+                        <div class="rc-date">2 weeks ago</div>
+                      </div>
+                    </div>
+                    <div class="rc-verify">✅ Verified</div>
+                  </div>
+                  <div class="rc-stars">★★★★★</div>
+                  <p class="rc-text">
+                    "Having gone with Cosmic Himalaya, you can't help but reach out to experience
+                    more adventures with them! Highly recommended for anyone looking for authentic trails."
+                  </p>
+                </div>
+                <div class="rev-card">
+                  <div class="rc-top">
+                    <div class="rc-user">
+                      <div class="rc-av" style="background: #EA4335;">P</div>
+                      <div>
+                        <div class="rc-name">Priyanka Rao</div>
+                        <div class="rc-date">1 month ago</div>
+                      </div>
+                    </div>
+                    <div class="rc-verify">✅ Verified</div>
+                  </div>
+                  <div class="rc-stars">★★★★★</div>
+                  <p class="rc-text">
+                    "Cosmic Himalaya stands out for their professionalism. The pre-trek briefing was thorough and the gear provided was top-notch. Can't wait for my next expedition!"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="trust-panel" id="tp-awards">
+          <div class="awards-grid">
+            <div class="award-item">
+              <div class="award-icon">🏆</div>
+              <div class="award-info">
+                <h4>Safest Adventure Provider</h4>
+                <div class="award-year">2025 • National Adventure Federation</div>
+                <p>Recognized for maintaining 100% safety record across all high-altitude expeditions.</p>
+              </div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">🌱</div>
+              <div class="award-info">
+                <h4>Sustainable Tourism Award</h4>
+                <div class="award-year">2024 • Eco-Travel India</div>
+                <p>Awarded for our 'Heal Himalayaya' initiative and zero-waste trekking protocols.</p>
+              </div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">⭐</div>
+              <div class="award-info">
+                <h4>Best Trekking Company</h4>
+                <div class="award-year">2023 • Travel Leisure Magazine</div>
+                <p>Voted as the #1 trekking operator in the Himalayas by travelers and experts.</p>
+              </div>
+            </div>
+            <div class="award-item">
+              <div class="award-icon">🛡️</div>
+              <div class="award-info">
+                <h4>Excellence in Training</h4>
+                <div class="award-year">2022 • IMF Recognized</div>
+                <p>Acknowledged for our world-class guide training and emergency response systems.</p>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <div class="trust-panel" id="tp-trusted">
+          <div class="trust-panel-content">
+            <div class="tpc-icon">🛡</div>
+            <div class="tpc-title">A Legacy of Trust</div>
+            <p class="tpc-text">
+              From solo adventurers to corporate groups and international students —
+              <strong>500,000+ trekkers</strong> have trusted Cosmic Himalaya to guide them
+              safely through the majestic Himalayas over the last 16 years.
+            </p>
+          </div>
+        </div>
+        <div class="trust-panel active" id="tp-video">
+          <div class="video-grid">
+            <div
+              class="vid-card"
+              onclick="playVideo('0XbCoPtpMh0')"
+            >
+              <img
+                src="https://img.youtube.com/vi/0XbCoPtpMh0/hqdefault.jpg"
+                alt="Everest Base Camp Review"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Everest Base Camp</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="vid-card"
+              onclick="playVideo('rcE0dfTez-I')"
+            >
+              <img
+                src="https://img.youtube.com/vi/rcE0dfTez-I/hqdefault.jpg"
+                alt="Kailash Mansarovar Yatra"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Kailash Yatra Story</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="vid-card"
+              onclick="playVideo('dNuzZeRBX5Y')"
+            >
+              <img
+                src="https://img.youtube.com/vi/dNuzZeRBX5Y/hqdefault.jpg"
+                alt="Annapurna Base Camp Trek"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Annapurna Adventure</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="vid-card"
+              onclick="playVideo('teQQWA2CmsA')"
+            >
+              <img
+                src="https://img.youtube.com/vi/teQQWA2CmsA/hqdefault.jpg"
+                alt="Upper Mustang Trek"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Upper Mustang Trek</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRAVELER STORIES -->
+      <section class="stories-section">        <p style="font-weight: 700; color: var(--navy); margin-bottom: 4px; text-align: center;">What Our Travelers Say</p>
+        <p style="text-align: center;">Real experiences from trekkers who explored the Himalayas with us.</p>
+        <div class="blog-underline"></div>
+        
+        <div class="stories-grid">
+          <!-- Story 1 -->
+          <div class="story-card reveal">
+            <p class="story-text">
+              “Trekking to Everest Base Camp with Cosmic Himalaya was life-changing. The guides were professional, caring, and deeply knowledgeable about the mountains and local culture.”
+            </p>
+            <div class="story-author">
+              <div class="rc-av">A</div>
+              <div class="story-author-info">
+                <div class="rc-name">Ananya Sharma</div>
+                <div class="rc-trek">Everest Base Camp Trek</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Story 2 -->
+          <div class="story-card reveal">
+            <p class="story-text">
+              “Annapurna Base Camp exceeded all expectations. Every detail was thoughtfully planned, and the journey felt authentic and safe. Highly recommended for first-time trekkers.”
+            </p>
+            <div class="story-author">
+              <div class="rc-av">R</div>
+              <div class="story-author-info">
+                <div class="rc-name">Rahul Mehta</div>
+                <div class="rc-trek">Annapurna Base Camp Trek</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Story 3 -->
+          <div class="story-card reveal">
+            <p class="story-text">
+              “The Kailash Mansarovar Yatra was spiritually powerful and beautifully organized. The team supported us at every step, making a demanding journey deeply meaningful.”
+            </p>
+            <div class="story-author">
+              <div class="rc-av">S</div>
+              <div class="story-author-info">
+                <div class="rc-name">Sonal Jain</div>
+                <div class="rc-trek">Kailash Mansarovar Yatra</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section" id="faq">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <div class="faq-underline"></div>
+
+        <!-- FAQ Tabs -->
+        <div class="faq-tabs">
+          <button
+            class="faq-tab active"
+            onclick="switchFaqTab('beginner', this)"
+          >
+            <div class="ft-icon">🎓</div>
+            <div class="ft-label">Beginner Guide</div>
+          </button>
+          <button class="faq-tab" onclick="switchFaqTab('booking', this)">
+            <div class="ft-icon">📋</div>
+            <div class="ft-label">Booking Guide</div>
+          </button>
+          <button class="faq-tab" onclick="switchFaqTab('family', this)">
+            <div class="ft-icon">👨‍👩‍👧</div>
+            <div class="ft-label">Family Trek</div>
+          </button>
+          <button class="faq-tab" onclick="switchFaqTab('rent', this)">
+            <div class="ft-icon">🎒</div>
+            <div class="ft-label">Rent</div>
+          </button>
+          <button class="faq-tab" onclick="switchFaqTab('women', this)">
+            <div class="ft-icon">🚺</div>
+            <div class="ft-label">Women Trekker</div>
+          </button>
+        </div>
+
+        <div class="faq-list">
+          <!-- Beginner Guide -->
+          <div class="faq-group active" id="faq-beginner">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                How to choose the right trek? <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Choose based on your fitness level, available time, and
+                experience. Beginners should start with Easy or Easy-Moderate
+                treks like Kedarkantha or Ali Bedni Bugyal.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Is trekking safe for beginners? <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Yes! Many of our treks are perfect for beginners. Our certified
+                guides ensure your safety and provide all necessary support
+                throughout the journey.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                How should I prepare physically? <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Start with regular cardio exercises (running, cycling, swimming)
+                and strength training 4-6 weeks before your trek. Increasing
+                your stamina and leg strength will make the experience much more
+                enjoyable.
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Guide -->
+          <div class="faq-group" id="faq-booking">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                What is the booking and cancellation policy?
+                <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                You can book online through our website. Our cancellation policy
+                varies depending on how close to the trek date you cancel.
+                Please refer to our Terms & Conditions for full details.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Do I need travel insurance? <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Yes, we strongly recommend travel insurance that covers
+                high-altitude trekking and emergency evacuation. It provides
+                peace of mind and financial protection.
+              </div>
+            </div>
+          </div>
+
+          <!-- Family Trek -->
+          <div class="faq-group" id="faq-family">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Are your treks suitable for families and kids?
+                <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Absolutely! We have specially curated family-friendly treks that
+                are safe and enjoyable for children as young as 8 years old.
+                These treks have manageable distances and beautiful campsites.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                What special care do you provide for children?
+                <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Our guides are trained to handle children's needs, and we ensure
+                child-friendly meals and a relaxed pace. We also conduct
+                educational activities about nature and wildlife during the
+                trek.
+              </div>
+            </div>
+          </div>
+
+          <!-- Women Trekker -->
+          <div class="faq-group" id="faq-women">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Is it safe for solo women to trek with Cosmic Himalaya?
+                <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Safety is our top priority. We have a strict zero-tolerance
+                policy for harassment. Our staff is vetted, and we often have
+                female trek leads or coordinators. Solo women often join our
+                fixed groups and feel very safe.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                What are the toilet and menstrual hygiene facilities?
+                <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                We provide private dry toilet tents at all campsites. For
+                menstrual hygiene, we advise carrying zip-lock bags for
+                disposal. Our female staff can provide additional support and
+                guidance if needed.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Do you provide separate tents for women?
+                <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Yes! We provide separate tent accommodations for women on all
+                our treks, ensuring privacy and comfort. If you're trekking
+                solo, you'll share a tent with another female trekker.
+              </div>
+            </div>
+          </div>
+
+          <!-- Rent & Gear -->
+          <div class="faq-group" id="faq-rent">
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                What essential gear do I need? <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Essential gear includes sturdy trekking boots, a 40-50L
+                backpack, warm layers (down jacket, thermals), waterproof outer
+                layers, and a good quality sleeping bag.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFaq(this)">
+                Can I rent trekking gear from you? <span class="arr">▾</span>
+              </button>
+              <div class="faq-a">
+                Yes! We provide high-quality trekking gear on rent, including
+                down jackets, trekking poles, gaiters, and backpacks. You can
+                book these in advance or at the base camp for most treks.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+   
+<div class="footer-social">
+  <div class="fs-left">
+    <span>Follow the journey</span>
+    <a href="#" class="fs-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.2 8.8 2.2 12 2.2m0 1.98c-3.15 0-3.52.01-4.76.07-1.15.05-1.77.24-2.18.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.41-.35 1.03-.4 2.18-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.22.55.47.94.88 1.35.41.41.8.66 1.35.88.41.16 1.03.35 2.18.4 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.41.35-1.03.4-2.18.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.18-.4-1.24-.06-1.61-.07-4.76-.07zm0 3.37a4.45 4.45 0 1 0 0 8.9 4.45 4.45 0 0 0 0-8.9zm0 7.34a2.89 2.89 0 1 1 0-5.78 2.89 2.89 0 0 1 0 5.78zm5.66-7.53a1.04 1.04 0 1 1-2.08 0 1.04 1.04 0 0 1 2.08 0z"/></svg></a>
+    <a href="#" class="fs-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.52A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.57V8.43L15.82 12 9.6 15.57z"/></svg></a>
+    <a href="#" class="fs-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    <a href="#" class="fs-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
+    <a href="#" class="fs-icon" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M.06 24l1.68-6.13A11.83 11.83 0 0 1 .15 11.9C.15 5.33 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.76 11.76 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.06 24zM6.6 20.15c1.68 1 3.28 1.6 5.4 1.6 5.45 0 9.9-4.43 9.9-9.88 0-5.46-4.43-9.9-9.89-9.9C6.55 1.97 2.12 6.4 2.12 11.86c0 2.23.65 3.9 1.75 5.65l-1 3.63 3.73-.99zM17.6 14.7c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.14.3-.35.45-.53.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-section">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h6>Navigation</h6>
+        <a href="index.html">Home</a>
+        <a href="trek.html">Treks</a>
+        <a href="camp.html">Summer Camp</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html#faq">FAQs</a>
+      </div>
+      <div class="footer-col">
+        <h6>Legal</h6>
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+      <div class="footer-col">
+        <h6>Our Base</h6>
+        <div class="cc-row">📍 Kathmandu, Nepal</div>
+        <div class="cc-row">🏔 Serving Everest, Annapurna &amp; Kailash</div>
+        <div class="cc-row">🕒 Mon–Sun · 08:00 AM – 06:00 PM (NPT)</div>
+      </div>
+      <div class="footer-col">
+        <h6>Contact</h6>
+        <div class="cc-row">✉ info@cosmichimalaya.com</div>
+        <div class="cc-row">📞 +977 9862468835 (Dilip)</div>
+        <div class="cc-row">📞 +91 85276 61108 (Chandrashekhar)</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 COSMIC HIMALAYA Adventures. All rights reserved.</div>
+</footer>
+
+    <!-- Toast & LB -->
+    <div id="toast" class="toast"><span id="toastMsg"></span></div>
+    <div id="lb" class="lb" onclick="this.classList.remove('open')">
+      <img id="lbImg" />
+    </div>
+
+    <script src="navbar.js"></script>
+<script src="config.js"></script>
+<script src="img-utils.js"></script>
+<script src="treks-data.js"></script>
+<script src="trek-logic.js"></script>
+<script src="script.js"></script>
+
+  </body>
+</html>

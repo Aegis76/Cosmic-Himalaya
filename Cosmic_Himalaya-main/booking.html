@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Checkout | COSMIC HIMALAYA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="navbar.css" rel="stylesheet" />
+    <link href="footer.css" rel="stylesheet" />
+    <link href="page.css" rel="stylesheet" />
+    <link href="booking.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <link href="responsive.css" rel="stylesheet" />
+  </head>
+
+  <body class="page-booking">
+    <!-- NAVBAR -->
+    <nav>
+      <a href="index.html" class="nav-brand">
+        <strong>COSMIC HIMALAYA</strong>
+        <span>Authentic Himalayan Journeys</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="trek.html" class="nb">Treks</a></li>
+        <li><a href="camp.html" class="nb">Camps</a></li>
+        <li><a href="b2b.html" class="nb">B2B</a></li>
+        <li><a href="store.html" class="nb">Store</a></li>
+        <li><a href="about.html" class="nb">About</a></li>
+        <li><a href="contact.html" class="nb">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-search-wrap">
+          <input type="text" placeholder="Search..." id="navSearch" />
+          <span class="ns-ico">🔍</span>
+        </div>
+        <div class="nav-cart" onclick="toggleCart()">
+          🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
+        </div>
+        <button class="menu">☰</button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="nav-right">
+        <div class="mobile-search-wrap">
+          <input type="text" placeholder="Search treks..." onkeypress="handleMobileSearch(event)" />
+          <span>🔍</span>
+        </div>
+        <ul class="mobile-nav-links">
+          <li><a href="trek.html">Treks</a></li>
+          <li><a href="camp.html">Camps</a></li>
+          <li><a href="b2b.html">B2B</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="booking-container">
+      <div class="booking-grid">
+        <!-- Left: Form -->
+        <section class="booking-main">
+          <h2>Trekker Information</h2>
+          <form id="bookingForm" class="p-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  id="bkName"
+                  required
+                  placeholder="John Doe"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  id="bkEmail"
+                  required
+                  placeholder="john@example.com"
+                />
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input
+                  type="tel"
+                  id="bkPhone"
+                  required
+                  placeholder="+977 9862468835"
+                />
+              </div>
+            </div>
+            <div id="rentalFields" style="display: none">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Pickup Date</label>
+                  <input type="date" id="bkPickupDate" />
+                </div>
+                <div class="form-group">
+                  <label>Rental Duration (Days)</label>
+                  <input
+                    type="number"
+                    id="bkDuration"
+                    min="1"
+                    value="1"
+                    oninput="updateRentalPrice()"
+                  />
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="confirm-btn">CONFIRM BOOKING</button>
+          </form>
+        </section>
+
+        <!-- Right: Summary -->
+        <aside class="booking-sidebar">
+          <div class="td-booking-card">
+            <h3>Order Summary</h3>
+            <div id="bkSummary">
+              <p class="summary-loading">Loading details...</p>
+            </div>
+            <div class="td-line"></div>
+            <div class="td-total-row">
+              <div class="td-total-label">Total Amount</div>
+              <div class="td-total-val" id="bkTotalFinal">₹0</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div class="footer-social">
+      <div class="fs-left">
+        <span>Follow us</span>
+        <a href="#" class="fs-icon" aria-label="Instagram">
+          <img src="Social_Icons/instagram.png" alt="Instagram" />
+        </a>
+        <a href="#" class="fs-icon" aria-label="YouTube">
+          <img src="Social_Icons/youtube.png" alt="YouTube" />
+        </a>
+        
+          <a href="#" class="fs-icon" aria-label="LinkedIn">
+          <img src="Social_Icons/linkedin.png" alt="LinkedIn" />
+        </a>
+        <a href="#" class="fs-icon" aria-label="Facebook">
+          <img src="Social_Icons/facebook.png" alt="Facebook" />
+        </a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-section">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h6>Navigation</h6>
+            <a href="index.html">Home</a>
+            <a href="trek.html">Treks</a>
+            <a href="camp.html">Summer Camp</a>
+            <a href="store.html">Store</a>
+            <a href="index.html#faq">FAQs</a>
+          </div>
+          <div class="footer-col">
+            <h6>Legal</h6>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+          </div>
+          <div class="footer-col">
+            <h6>Our Base</h6>
+            <div class="cc-row">📍 Kathmandu, Nepal</div>
+            <div class="cc-row">🏔 Serving Everest, Annapurna & Kailash Regions</div>
+            <div class="cc-row">🕒 Mon–Sun | 08:00 AM – 06:00 PM (NPT)</div>
+          </div>
+          <div class="footer-col">
+            <h6>Contact info</h6>
+            <div class="cc-row">✉ info@cosmichimalaya.com</div>
+            <div class="cc-row">📞 +977 9862468835 (Dilip)</div>
+            <div class="cc-row">📞 +91 85276 61108 (Chandrashekhar Sharma)</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 COSMIC HIMALAYA Adventures. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Toast & LB -->
+    <div id="toast" class="toast"><span id="toastMsg"></span></div>
+    <div id="lb" class="lb" onclick="this.classList.remove('open')">
+      <img id="lbImg" />
+    </div>
+<script src="navbar.js"></script>
+    <script src="config.js"></script>
+    <script src="img-utils.js"></script>
+    <script src="treks-data.js"></script>
+    <script src="script.js"></script>
+    <script src="booking-logic.js"></script>
+  </body>
+</html>
