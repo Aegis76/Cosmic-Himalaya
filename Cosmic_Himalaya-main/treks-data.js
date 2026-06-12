@@ -1,7 +1,7 @@
 const TREKS = {
   ebc: {
     title: "Everest Base Camp Trek",
-    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg?updatedAt=1778251441175",
+    img: "images/Everest-1920.jpeg",
     region: "Khumbu Region, Nepal",
     diff: "Moderate to Difficult",
     season: "Mar–May & Sep–Nov",
