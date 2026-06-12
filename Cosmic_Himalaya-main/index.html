@@ -64,7 +64,7 @@
   <!-- LCP element: stays for mobile + first paint on desktop. Swap to ./images/FrontendPage.webp -->
   <img
     class="hero-media hero-img"
-    src="https://images.pexels.com/videos/29788350/abc-trekking-mountains-in-background-nepal-nepal-tourism-29788350.jpeg?auto=compress&cs=tinysrgb&w=1920"
+    src="images/HeroImg.jpeg"
     alt="Annapurna mountain range, Nepal"
     fetchpriority="high"
   />
@@ -74,7 +74,7 @@
   <video
     class="hero-media hero-video is-ready"
     autoplay muted loop playsinline preload="auto"
-    poster="https://images.pexels.com/videos/29788350/abc-trekking-mountains-in-background-nepal-nepal-tourism-29788350.jpeg?auto=compress&cs=tinysrgb&w=1920"
+    poster="images/HeroImg.jpeg"
   >
     <!-- ⚠ TEST CLIP ONLY (public sample, proves the code works).
          REPLACE with your self-hosted file: ./videos/hero.mp4
@@ -83,8 +83,6 @@
   </video>
  
   <div class="hero-scrim"></div>
- 
-  <h2 class="bg-word">EVEREST</h2>
  
   <div class="hero-content">
     <div class="eyebrow reveal-up d1">Authentic Himalayan Journeys</div>
@@ -391,24 +389,70 @@
             </p>
           </div>
         </div>
-  <div class="video-grid">
-  <div class="vid-card">
-    <video autoplay muted loop playsinline src="20250528_073016.mp4"></video>
-    <h4>Everest Base Camp</h4>
-  </div>
-  <div class="vid-card">
-    <video autoplay muted loop playsinline src="20231031_130918.mp4"></video>
-    <h4>Mount Kailash</h4>
-  </div>
-  <div class="vid-card">
-    <video autoplay muted loop playsinline src="20231103_093421.mp4"></video>
-    <h4>Lake Mansarovar</h4>
-  </div>
-  <div class="vid-card">
-    <video autoplay muted loop playsinline src="WhatsApp Video 2026-06-11 at 22.30.49.mp4"></video>
-    <h4>Annapurna Base Camp</h4>
-  </div>
-</div>
+        <div class="trust-panel active" id="tp-video">
+          <div class="video-grid">
+            <div
+              class="vid-card"
+              onclick="playVideo('0XbCoPtpMh0')"
+            >
+              <img
+                src="https://img.youtube.com/vi/0XbCoPtpMh0/hqdefault.jpg"
+                alt="Everest Base Camp Review"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Everest Base Camp</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="vid-card"
+              onclick="playVideo('rcE0dfTez-I')"
+            >
+              <img
+                src="https://img.youtube.com/vi/rcE0dfTez-I/hqdefault.jpg"
+                alt="Kailash Mansarovar Yatra"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Kailash Yatra Story</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="vid-card"
+              onclick="playVideo('dNuzZeRBX5Y')"
+            >
+              <img
+                src="https://img.youtube.com/vi/dNuzZeRBX5Y/hqdefault.jpg"
+                alt="Annapurna Base Camp Trek"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Annapurna Adventure</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="vid-card"
+              onclick="playVideo('teQQWA2CmsA')"
+            >
+              <img
+                src="https://img.youtube.com/vi/teQQWA2CmsA/hqdefault.jpg"
+                alt="Upper Mustang Trek"
+              />
+              <div class="vid-overlay">
+                <div class="play-btn">▶</div>
+                <div class="vid-info">
+                  <div class="vid-title">Upper Mustang Trek</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- TRAVELER STORIES -->
