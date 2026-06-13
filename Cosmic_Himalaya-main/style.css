@@ -129,9 +129,9 @@ body {
     color: #fff;
   }
  
-  /* Shift only the logo downward – merged with final values */
+  /* Shift only the logo downward – merged final values */
   .hero-logo {
-    transform: translateY(185px);  /* pushed down 185px on desktop */
+    transform: translateY(180px);
     transition: transform 0.3s ease;
   }
  
