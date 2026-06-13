@@ -129,9 +129,9 @@ body {
     color: #fff;
   }
  
-  /* Shift only the logo downward - updated to 220px desktop, 160px mobile */
+  /* Shift only the logo downward */
   .hero-logo {
-    transform: translateY(220px);
+    transform: translateY(190px);  /* pushed down 190px on desktop */
     transition: transform 0.3s ease;
   }
  
@@ -221,7 +221,7 @@ body {
     .bg-word { top: 9%; }
     /* Smaller shift on mobile */
     .hero-logo {
-      transform: translateY(160px);
+      transform: translateY(130px);
     }
   }
  
