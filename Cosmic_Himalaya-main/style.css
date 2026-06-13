@@ -131,7 +131,7 @@ body {
  
   /* Shift only the logo downward – merged with final values */
   .hero-logo {
-    transform: translateY(195px);  /* pushed down 195px on desktop */
+    transform: translateY(185px);  /* pushed down 185px on desktop */
     transition: transform 0.3s ease;
   }
  
