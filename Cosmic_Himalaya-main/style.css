@@ -129,9 +129,9 @@ body {
     color: #fff;
   }
  
-  /* Shift only the logo downward */
+  /* Shift only the logo downward – merged with final values */
   .hero-logo {
-    transform: translateY(190px);  /* pushed down 190px on desktop */
+    transform: translateY(195px);  /* pushed down 195px on desktop */
     transition: transform 0.3s ease;
   }
  
@@ -219,7 +219,7 @@ body {
   @media (max-width: 768px) {
     .hero-content { left: 22px; right: 22px; max-width: none; }
     .bg-word { top: 9%; }
-    /* Smaller shift on mobile */
+    /* Smaller shift on mobile – merged final value */
     .hero-logo {
       transform: translateY(130px);
     }
