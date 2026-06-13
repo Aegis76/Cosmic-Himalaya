@@ -131,7 +131,7 @@ body {
  
   /* Shift only the logo downward – white version */
   .hero-logo {
-    transform: translateY(180px);
+    transform: translateY(170px);
     transition: transform 0.3s ease;
     filter: brightness(0) invert(1);
   }
