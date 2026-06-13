@@ -63,68 +63,6 @@ itinerary: [
     reviews: [{ name: "Anish", loc: "Delhi", e: "👨", r: 5, date: "Oct 2025", text: "Incredible experience! The views from Kala Patthar are unmatched." }],
     faqs: [{ q: "How difficult is it?", a: "It is rated as moderate to difficult, suitable for fit trekkers with prior high-altitude experience." }]
   },
-  ebc13: {
-    title: "EBC Trek (Kathmandu to Kathmandu)",
-    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%201.webp?updatedAt=1778251436935",
-    region: "Kathmandu, Nepal",
-    diff: "Challenging",
-    season: "Mar–May & Sep–Nov",
-    dur: "13 Days",
-    alt: "5,545 m",
-    dist: "101 km",
-    startEnd: "Kathmandu",
-    price: 52000,
-    priceOld: "₹60,000",
-    dates: ["Mar 10, 2026", "Apr 05, 2026", "May 01, 2026", "Sep 15, 2026", "Oct 10, 2026"],
-    about: "Embark on the ultimate Himalayan adventure to the base of the world's highest mountain. Experience breathtaking landscapes, Sherpa culture, and the iconic Everest Base Camp. This 13-day itinerary is designed for a more efficient journey starting and ending in Kathmandu.",
-    bestTime: "Spring (March to May) offers blooming rhododendrons, while Autumn (September to November) provides the clearest skies.",
-    highlights: ["🏔 Reach EBC at 5,364m", "🌅 Summit Kala Patthar (5,545m)", "🛕 Visit Tengboche Monastery", "🤝 Experience Sherpa Culture", "✈ Scenic Lukla Flight"],
-itinerary: [
-      { day: 1, title: "Arrival in Kathmandu", sub: "1,345m", points: ["Hotel/Guest House in Thamel", "Meet your guide and prepare for the trek"] },
-      { day: 2, title: "Kathmandu to Lukla – Phakding", sub: "2,610m", points: ["Fly to Lukla, trek for 2.5 hours", "Overnight at Tea House"] },
-      { day: 3, title: "Phakding to Namche Bazaar", sub: "3,446m", points: ["6-hour trek through pine forests", "Overnight stay at Tea House"] },
-      { day: 4, title: "Acclimatization Day at Namche Bazaar", sub: "3,446m", points: ["Hike to Everest View Hotel", "Return to Namche Bazaar for overnight"] },
-      { day: 5, title: "Namche Bazaar to Tengboche", sub: "3,867m", points: ["5-hour trek to Tengboche Monastery", "Overnight stay at Tea House"] },
-      { day: 6, title: "Tengboche to Dingboche", sub: "4,300m", points: ["5-hour trek through alpine terrain", "Overnight stay at Tea House"] },
-      { day: 7, title: "Acclimatization Day at Dingboche", sub: "4,300m", points: ["Short hike to Nagarjun Hill", "Overnight stay at the same hotel"] },
-      { day: 8, title: "Dingboche to Lobuche", sub: "4,910m", points: ["5-hour trek passing climber memorials", "Overnight stay at Tea House"] },
-      { day: 9, title: "Lobuche to EBC – Gorakshep", sub: "5,360m", points: ["7-hour trek to Everest Base Camp", "Return to Gorakshep for overnight"] },
-      { day: 10, title: "Gorak Shep to Kala Patthar – Pheriche", sub: "5,545m", points: ["Early morning hike to Kala Patthar", "Descend to Pheriche and stay overnight"] },
-      { day: 11, title: "Pheriche to Namche Bazaar", sub: "3,441m", points: ["6-hour trek descending to Namche Bazaar", "Overnight stay at Tea House"] },
-      { day: 12, title: "Namche Bazaar to Lukla", sub: "2,610m", points: ["5-8 hour trek back to Lukla", "Celebrate your achievement"] },
-      { day: 13, title: "Flight from Lukla to Kathmandu", sub: "1,345m", points: ["35-minute scenic flight back", "Overnight stay at a hotel in Kathmandu"] },
-      { day: 14, title: "Departure from Nepal", sub: "Departure", points: ["Airport taxis arranged upon request", "Safe travels"] }
-    ],
-includes: [
-    "Accommodation on Bed and Breakfast",
-    "Transfer to and from Zanzibar Airport"
-  ],
-  excludes: [
-    "Visa",
-    "Insurance Visa",
-    "International and domestic flights",
-    "Other meals that are not listed",
-    "Other add on activities that can be arranged at an extra cost",
-    "Swimming Gears",
-    "Tips",
-    "Holiday seasons but it can be arranged at an extra costs"
-  ],
-    carry: ["Ankle Support Boots", "Padded Jacket", "Waterproof Gloves", "Trekking Poles"],
-    photos: [
-      "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%201.webp",
-      "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
-    ],
-    videos: ["0XbCoPtpMh0"],
-    articles: [
-      { title: "Kathmandu to EBC: 13-Day Strategy", date: "10 Mar 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%201.webp" },
-      { title: "Physical Preparation for EBC", date: "15 Mar 2026", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop" },
-      { title: "Tea House Experience in Khumbu", date: "20 Mar 2026", img: "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop" }
-    ],
-    reviews: [{ name: "Dipendra", loc: "India", e: "🧑", r: 5, date: "Apr 2025", text: "Very well managed and the guides were incredibly supportive." }],
-    faqs: [{ q: "What is the highest point?", a: "The highest point is Kala Patthar at 5,545 meters." }]
-  },
   abc: {
     title: "Annapurna Base Camp Trek",
     img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp?updatedAt=1778251432853",
