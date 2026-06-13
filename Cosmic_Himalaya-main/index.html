@@ -59,46 +59,39 @@
     </nav>
 
     <div class="page active" id="page-home">
-      <!-- STATIC HERO SECTION -->
+      <!-- STATIC HERO SECTION WITH LOGO -->
       <section class="hero">
-  <!-- LCP element: stays for mobile + first paint on desktop. Swap to ./images/FrontendPage.webp -->
-  <img
-    class="hero-media hero-img"
-    src="images/HeroImg.jpeg"
-    alt="Annapurna mountain range, Nepal"
-    fetchpriority="high"
-  />
- 
-  <!-- Desktop-only video. preload="none" + JS below = phones never download it.
-       Drop in your compressed loop and uncomment the <source> lines. -->
-  <video
-    class="hero-media hero-video is-ready"
-    autoplay muted loop playsinline preload="auto"
-    poster="images/HeroImg.jpeg"
-  >
-    <!-- ⚠ TEST CLIP ONLY (public sample, proves the code works).
-         REPLACE with your self-hosted file: ./videos/hero.mp4
-         (download from Pexels, compress, drop in a /videos folder). -->
-    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-  </video>
- 
-  <div class="hero-scrim"></div>
- 
-  <div class="hero-content">
-    <div class="eyebrow reveal-up d1">Authentic Himalayan Journeys</div>
-    <h1 class="hero-title reveal-up d2">Cosmic <span class="accent">Himalaya</span></h1>
-    <p class="hero-sub reveal-up d3">
-      Walk ancient Sherpa trails through the Khumbu, beneath towering peaks,
-      to the base of the world's highest mountain — guided by those born to it.
-    </p>
-    <button
-      class="hero-cta reveal-up d4"
-      onclick="document.getElementById('popular-treks') && document.getElementById('popular-treks').scrollIntoView({ behavior: 'smooth' })"
-    >
-      Explore the Journeys <span class="arrow">→</span>
-    </button>
-  </div>
-</section>
+        <img
+          class="hero-media hero-img"
+          src="images/HeroImg.jpeg"
+          alt="Annapurna mountain range, Nepal"
+          fetchpriority="high"
+        />
+        <video
+          class="hero-media hero-video is-ready"
+          autoplay muted loop playsinline preload="auto"
+          poster="images/HeroImg.jpeg"
+        >
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-scrim"></div>
+        <div class="hero-content">
+          <!-- Logo added here -->
+          <img src="images/logoImage.png" alt="Cosmic Himalaya Logo" class="hero-logo" />
+          <div class="eyebrow reveal-up d1">Authentic Himalayan Journeys</div>
+          <h1 class="hero-title reveal-up d2">Cosmic <span class="accent">Himalaya</span></h1>
+          <p class="hero-sub reveal-up d3">
+            Walk ancient Sherpa trails through the Khumbu, beneath towering peaks,
+            to the base of the world's highest mountain — guided by those born to it.
+          </p>
+          <button
+            class="hero-cta reveal-up d4"
+            onclick="document.getElementById('popular-treks') && document.getElementById('popular-treks').scrollIntoView({ behavior: 'smooth' })"
+          >
+            Explore the Journeys <span class="arrow">→</span>
+          </button>
+        </div>
+      </section>
 
 
     <!-- TREK CARDS -->
