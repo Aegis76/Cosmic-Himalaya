@@ -131,7 +131,7 @@ body {
  
   /* Shift only the logo downward */
   .hero-logo {
-    transform: translateY(30px);  /* adjust value as needed (20px, 40px, etc.) */
+    transform: translateY(80px);  /* pushed down 80px on desktop */
     transition: transform 0.3s ease;
   }
  
@@ -219,6 +219,10 @@ body {
   @media (max-width: 768px) {
     .hero-content { left: 22px; right: 22px; max-width: none; }
     .bg-word { top: 9%; }
+    /* Smaller shift on mobile */
+    .hero-logo {
+      transform: translateY(40px);
+    }
   }
  
   /* accessibility: kill motion for those who ask */
