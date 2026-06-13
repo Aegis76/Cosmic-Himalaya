@@ -129,10 +129,11 @@ body {
     color: #fff;
   }
  
-  /* Shift only the logo downward – merged final values */
+  /* Shift only the logo downward – white version */
   .hero-logo {
     transform: translateY(180px);
     transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
   }
  
   .eyebrow {
@@ -219,9 +220,10 @@ body {
   @media (max-width: 768px) {
     .hero-content { left: 22px; right: 22px; max-width: none; }
     .bg-word { top: 9%; }
-    /* Smaller shift on mobile – merged final value */
+    /* Smaller shift on mobile – white logo */
     .hero-logo {
       transform: translateY(130px);
+      filter: brightness(0) invert(1);
     }
   }
  
