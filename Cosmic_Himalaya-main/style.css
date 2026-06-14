@@ -129,9 +129,9 @@ body {
     color: #fff;
   }
  
-  /* Shift only the logo downward – white version, desktop 162px */
+  /* Shift only the logo downward – white version, desktop 155px */
   .hero-logo {
-    transform: translateY(162px);
+    transform: translateY(155px);
     transition: transform 0.3s ease;
     filter: brightness(0) invert(1);
   }
@@ -220,9 +220,9 @@ body {
   @media (max-width: 768px) {
     .hero-content { left: 22px; right: 22px; max-width: none; }
     .bg-word { top: 9%; }
-    /* Smaller shift on mobile – white logo, unchanged */
+    /* Smaller shift on mobile – white logo, 100px */
     .hero-logo {
-      transform: translateY(130px);
+      transform: translateY(100px);
       filter: brightness(0) invert(1);
     }
   }
