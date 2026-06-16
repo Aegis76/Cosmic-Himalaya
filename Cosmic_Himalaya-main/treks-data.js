@@ -340,3 +340,11 @@ includes: [
     faqs: [{ q: "What is the best time for KGL?", a: "The best time is from July to early September." }]
   }
 };
+
+
+
+
+
+
+
+
