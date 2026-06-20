@@ -131,7 +131,7 @@ body {
  
   /* HERO LOGO — merged with size constraints */
   .hero-logo {
-    transform: translateY(190px);
+    transform: translateY(110px);
     transition: transform 0.3s ease;
     filter: brightness(0) invert(1);
     max-width: 120px;
@@ -226,7 +226,7 @@ body {
     .bg-word { top: 9%; }
     /* HERO LOGO — mobile size + keep existing transform & filter */
     .hero-logo {
-      transform: translateY(140px);
+      transform: translateY(60px);
       filter: brightness(0) invert(1);
       max-width: 90px;
       margin-left: auto;
