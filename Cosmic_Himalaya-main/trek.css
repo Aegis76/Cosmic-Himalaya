@@ -452,6 +452,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .td-breadcrumbs a {
   color: rgba(255, 255, 255, 0.85);
@@ -732,6 +733,7 @@
   border: 1.5px solid var(--border);
   border-radius: var(--r-sm);
   font-family: inherit;
+  font-size: 16px; /* 16px prevents iOS zoom-on-focus */
   outline: none;
   background: var(--white);
   transition: border-color 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft);
@@ -750,24 +752,32 @@
 .td-counter {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   background: var(--light);
-  padding: 5px 15px;
+  padding: 5px 10px;
   border-radius: 999px;
 }
 .td-counter button {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
+  border-radius: 50%;
   font-size: 20px;
   font-weight: 700;
   color: var(--navy);
   cursor: pointer;
   line-height: 1;
-  transition: color 0.2s var(--ease-soft), transform 0.15s var(--ease);
+  transition: color 0.2s var(--ease-soft), background 0.2s var(--ease-soft),
+    transform 0.15s var(--ease);
 }
 .td-counter button:hover {
   color: var(--gold);
-  transform: scale(1.18);
+  background: rgba(198, 166, 98, 0.12);
+  transform: scale(1.12);
 }
 
 .td-total-row {
@@ -829,25 +839,44 @@
 }
 
 /* =====================================================================
-   RESPONSIVE
+   RESPONSIVE  —  tablet
    ===================================================================== */
 
 @media (max-width: 1024px) {
   .td-main-layout {
     grid-template-columns: 1fr;
     gap: 30px;
+    margin: 44px auto;
   }
   .td-booking-card {
     position: static;
     margin-top: 30px;
   }
+  .trek-details-hero {
+    height: 460px;
+    padding: 50px 40px;
+  }
 }
 
+/* =====================================================================
+   RESPONSIVE  —  large phone / small tablet
+   ===================================================================== */
+
 @media (max-width: 768px) {
+  .all-treks-hero {
+    height: 360px;
+    padding: 0 16px;
+  }
+
   .trek-details-hero {
     height: 400px;
     padding: 40px 20px;
   }
+
+  .td-main-layout {
+    margin: 36px auto;
+  }
+
   .td-info-strip {
     flex-wrap: wrap;
     gap: 15px;
@@ -869,6 +898,7 @@
   .qi-val {
     font-size: 13px;
   }
+
   .td-tabs {
     gap: 20px;
     overflow-x: auto;
@@ -894,6 +924,7 @@
   .td-t:last-child {
     padding-right: 40px;
   }
+
   .td-highlights-grid {
     grid-template-columns: 1fr;
   }
@@ -912,6 +943,10 @@
     gap: 12px;
   }
 }
+
+/* =====================================================================
+   RESPONSIVE  —  phones
+   ===================================================================== */
 
 @media (max-width: 600px) {
   .trek-filter-bar {
@@ -935,6 +970,7 @@
   .grid-layout {
     gap: 15px;
     grid-template-columns: 1fr;
+    padding: 12px;
   }
   .no-results-msg {
     padding: 50px 20px;
@@ -945,6 +981,86 @@
   }
   .no-results-msg h3 {
     font-size: 22px;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE  —  small phones (≤480px)
+   ===================================================================== */
+
+@media (max-width: 480px) {
+  .all-treks-hero {
+    height: 300px;
+  }
+  .at-hero-content h1 {
+    font-size: 30px;
+  }
+  .at-hero-content p {
+    font-size: 15px;
+  }
+
+  .trek-details-hero {
+    height: 340px;
+    padding: 28px 16px;
+  }
+  .td-title-row h1 {
+    font-size: 26px;
+  }
+  .td-breadcrumbs {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  /* info strip: two compact columns, pulled in tighter */
+  .td-info-strip {
+    gap: 12px;
+    padding: 14px;
+    margin-top: -24px;
+    width: calc(100% - 28px);
+    margin-left: 14px;
+    margin-right: 14px;
+    border-radius: var(--r-md);
+  }
+  .td-qi {
+    width: calc(50% - 6px);
+    justify-content: flex-start;
+  }
+  .qi-ico {
+    font-size: 18px;
+  }
+
+  .td-main-layout {
+    margin: 26px auto;
+    padding: 0 14px;
+    gap: 26px;
+  }
+
+  /* keep tab strip flush to the screen edge without overflowing */
+  .td-tabs {
+    gap: 16px;
+    padding: 14px 14px 0;
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+
+  .td-booking-card {
+    padding: 20px;
+    border-radius: var(--r-md);
+  }
+  .td-price-now {
+    font-size: 26px;
+  }
+  .td-book-btn {
+    padding: 15px;
+    font-size: 15px;
+  }
+
+  .tk-img {
+    height: 190px;
+  }
+  .ftab {
+    padding: 9px 16px;
+    font-size: 12.5px;
   }
 }
 
@@ -988,6 +1104,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  gap: 12px;
 }
 
 .td-panel .faq-a {
