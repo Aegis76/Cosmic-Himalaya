@@ -1,5 +1,29 @@
+/* =====================================================================
+   TREK PAGES — All-Treks grid + Trek-Details
+   Refined pass: same class names + CSS variables, elevated execution.
+   Helper tokens below are local to this file (safe to merge with :root).
+   ===================================================================== */
+
+:root {
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --shadow-sm: 0 2px 4px rgba(30, 58, 138, 0.04),
+    0 8px 20px rgba(30, 58, 138, 0.06);
+  --shadow-md: 0 6px 12px rgba(30, 58, 138, 0.07),
+    0 18px 40px rgba(30, 58, 138, 0.1);
+  --shadow-lg: 0 10px 20px rgba(30, 58, 138, 0.08),
+    0 28px 56px rgba(30, 58, 138, 0.14);
+}
+
+/* =====================================================================
+   ALL-TREKS HERO
+   ===================================================================== */
+
 .all-treks-hero {
-  height: 450px;
+  height: 460px;
   position: relative;
   display: flex;
   align-items: center;
@@ -8,6 +32,20 @@
   background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800&q=80");
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+}
+
+.all-treks-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      120% 90% at 50% 0%,
+      rgba(30, 58, 138, 0.15) 0%,
+      rgba(30, 58, 138, 0.55) 55%,
+      rgba(15, 31, 70, 0.82) 100%
+    );
+  z-index: 1;
 }
 
 .at-hero-content {
@@ -15,14 +53,28 @@
   z-index: 10;
   max-width: 800px;
   padding: 0 20px;
+  animation: atRise 0.9s var(--ease) both;
+}
+
+@keyframes atRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .at-hero-content h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(36px, 6vw, 64px);
+  font-size: clamp(38px, 6vw, 66px);
   color: var(--white);
-  margin-bottom: 15px;
-  line-height: 1.2;
+  margin-bottom: 18px;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
 }
 
 .at-hero-content h1 em {
@@ -31,17 +83,22 @@
 }
 
 .at-hero-content p {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   font-size: clamp(16px, 2vw, 20px);
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 500;
   max-width: 600px;
   margin: 0 auto;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
 }
+
+/* =====================================================================
+   FILTER BAR + SEARCH
+   ===================================================================== */
 
 .trek-filter-bar {
   background: var(--light);
-  padding: 30px 60px;
+  padding: 26px clamp(20px, 5vw, 60px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -50,14 +107,16 @@
   align-items: center;
   gap: 10px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  scrollbar-width: none;
 }
 .filter-row::-webkit-scrollbar {
   display: none;
 }
+
 .filter-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: var(--navy);
   color: var(--white);
@@ -66,31 +125,39 @@
   justify-content: center;
   font-size: 16px;
   flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.25);
 }
+
 .ftab {
-  padding: 10px 18px;
-  border-radius: 30px;
+  padding: 10px 20px;
+  border-radius: 999px;
   border: 1.5px solid var(--border);
   background: transparent;
   font-size: 13px;
   font-weight: 600;
   color: var(--text);
   white-space: nowrap;
-  transition: all 0.2s;
+  transition: color 0.25s var(--ease-soft), border-color 0.25s var(--ease-soft),
+    background 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft),
+    transform 0.2s var(--ease);
   width: auto;
+  cursor: pointer;
 }
 .ftab:hover {
   border-color: var(--gold);
+  transform: translateY(-1px);
 }
 .ftab.active {
   background: var(--gold);
   border-color: var(--gold);
   color: var(--navy);
   font-weight: 700;
+  box-shadow: 0 6px 18px rgba(198, 166, 98, 0.35);
 }
+
 .ftab-more {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1.5px solid var(--border);
   background: transparent;
@@ -100,6 +167,12 @@
   color: var(--navy);
   font-size: 14px;
   flex-shrink: 0;
+  transition: border-color 0.25s var(--ease-soft), color 0.25s var(--ease-soft);
+  cursor: pointer;
+}
+.ftab-more:hover {
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
 .filter-search-wrap {
@@ -111,29 +184,36 @@
 
 .fs-ico {
   position: absolute;
-  left: 15px;
+  left: 16px;
   color: var(--muted);
   font-size: 16px;
   pointer-events: none;
   z-index: 5;
+  transition: color 0.25s var(--ease-soft);
 }
 
 .trek-search-input {
   flex: 1;
   width: 100%;
-  padding: 14px 20px 14px 45px;
+  padding: 15px 20px 15px 46px;
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--r-md);
   outline: none;
   font-family: "Inter", sans-serif;
   font-size: 16px;
-  transition: all 0.3s ease;
-  background: white;
+  transition: border-color 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
+  background: var(--white);
 }
-
+.trek-search-input::placeholder {
+  color: var(--muted);
+}
 .trek-search-input:focus {
   border-color: var(--gold);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 4px rgba(198, 166, 98, 0.14),
+    0 8px 22px rgba(30, 58, 138, 0.06);
+}
+.filter-search-wrap:focus-within .fs-ico {
+  color: var(--gold);
 }
 
 .search-row {
@@ -141,8 +221,12 @@
   margin-bottom: 5px;
 }
 
+/* =====================================================================
+   TREK GRID + CARDS
+   ===================================================================== */
+
 .treks-grid-section {
-  padding: 60px;
+  padding: clamp(30px, 5vw, 60px);
 }
 
 .grid-layout {
@@ -151,24 +235,30 @@
   gap: 30px;
   padding: 20px;
 }
+
 .trek-card {
-  flex: 0 0 calc(25% - 15px);
-  border-radius: 12px;
+  border-radius: var(--r-md);
   overflow: hidden;
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--border);
   background: var(--white);
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
+    border-color 0.4s var(--ease);
   cursor: pointer;
 }
 .trek-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(198, 166, 98, 0.4);
 }
+
+/* Card lives in the grid; grid owns the sizing */
+.grid-layout .trek-card {
+  width: 100%;
+}
+
 .tk-img {
-  height: 200px;
+  height: 210px;
   position: relative;
   overflow: hidden;
 }
@@ -176,33 +266,57 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s;
+  transition: transform 0.7s var(--ease);
+}
+.tk-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 50, 0.28) 0%,
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
 }
 .trek-card:hover .tk-img img {
-  transform: scale(1.06);
+  transform: scale(1.07);
 }
+.trek-card:hover .tk-img::after {
+  opacity: 1;
+}
+
 .tk-loc {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(30, 58, 138, 0.88);
+  bottom: 12px;
+  right: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.92),
+    rgba(20, 40, 100, 0.92)
+  );
   color: var(--white);
   font-size: 11px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 20px;
+  padding: 5px 12px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   gap: 4px;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
+
 .tk-body {
-  padding: 16px 16px 18px;
+  padding: 18px 18px 20px;
 }
 .tk-title {
   font-size: 16px;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   line-height: 1.3;
 }
 .tk-meta span {
@@ -212,117 +326,81 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 .tk-meta span strong {
   color: var(--text);
 }
-.tk-btn {
-  width: 100%;
-  margin-top: 14px;
-  padding: 10px;
-  border: 1.5px solid var(--navy);
-  color: var(--navy);
-  background: transparent;
-  font-size: 13px;
-  font-weight: 700;
-  border-radius: 7px;
-  transition: all 0.2s;
-}
-.tk-btn:hover {
-  background: var(--navy);
-  color: var(--gold);
-}
-.tk-img img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
 
 .tk-price {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 14px;
   color: var(--navy);
 }
-
 .tk-price strong {
   color: var(--teal);
   font-size: 16px;
 }
 
-/* Ensure Trek Cards from the slider work in a grid */
-.grid-layout .trek-card {
-  flex: none; /* Override slider flex settings */
+.tk-btn {
+  position: relative;
   width: 100%;
+  margin-top: 16px;
+  padding: 11px;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--r-sm);
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  transition: color 0.3s var(--ease-soft);
+  cursor: pointer;
+  z-index: 0;
+}
+.tk-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--navy);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+  z-index: -1;
+}
+.tk-btn:hover {
+  color: var(--gold);
+}
+.tk-btn:hover::before {
+  transform: scaleX(1);
 }
 
-/* Media Query for smaller screens */
-@media (max-width: 600px) {
-  .trek-filter-bar {
-    padding: 20px 15px;
-  }
-
-  .search-row {
-    margin-bottom: 12px;
-  }
-
-  .trek-search-input {
-    font-size: 16px;
-    padding: 12px 15px 12px 40px;
-    border-radius: 10px;
-  }
-
-  .fs-ico {
-    left: 12px;
-    font-size: 14px;
-  }
-
-  .treks-grid-section {
-    padding: 20px 10px;
-  }
-
-  .grid-layout {
-    gap: 15px;
-    grid-template-columns: 1fr; /* Stack cards vertically on phones */
-  }
-}
-
-/* Fixing the search and filter bar for mobile */
-.trek-filter-bar {
-  padding: 20px;
-}
-
-.filter-row {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding-bottom: 10px;
-}
+/* =====================================================================
+   NO RESULTS
+   ===================================================================== */
 
 .no-results-msg {
   text-align: center;
   padding: 80px 20px;
   background: var(--white);
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
   margin: 40px auto;
   max-width: 500px;
 }
-
 .no-res-ico {
   font-size: 64px;
   margin-bottom: 20px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
-
 .no-results-msg h3 {
   font-family: "Playfair Display", serif;
   font-size: 28px;
   color: var(--navy);
   margin-bottom: 12px;
 }
-
 .no-results-msg p {
   color: var(--muted);
   font-size: 16px;
@@ -330,20 +408,12 @@
   margin-bottom: 25px;
 }
 
-@media (max-width: 600px) {
-  .no-results-msg {
-    padding: 50px 20px;
-    margin: 20px 10px;
-  }
-  .no-res-ico {
-    font-size: 48px;
-  }
-  .no-results-msg h3 {
-    font-size: 22px;
-  }
-}
+/* =====================================================================
+   TREK DETAILS — HERO
+   ===================================================================== */
+
 .trek-details-hero {
-  height: 500px;
+  height: 520px;
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -356,7 +426,12 @@
 .td-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(30, 58, 138, 0.9) 20%, transparent 80%);
+  background: linear-gradient(
+    to top,
+    rgba(15, 31, 70, 0.94) 12%,
+    rgba(30, 58, 138, 0.5) 48%,
+    transparent 82%
+  );
 }
 
 .td-hero-content {
@@ -365,6 +440,7 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  animation: atRise 0.9s var(--ease) both;
 }
 
 .td-breadcrumbs {
@@ -377,19 +453,16 @@
   align-items: center;
   gap: 8px;
 }
-
 .td-breadcrumbs a {
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft);
   border-bottom: 1px solid transparent;
 }
-
 .td-breadcrumbs a:hover {
   color: var(--gold);
   border-bottom-color: var(--gold);
 }
-
 .td-breadcrumbs span {
   color: var(--gold3);
   font-weight: 700;
@@ -397,14 +470,21 @@
 
 .td-title-row h1 {
   font-family: "Playfair Display", serif;
-  font-size: 48px;
+  font-size: clamp(32px, 5vw, 52px);
   margin-bottom: 8px;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
+
+/* =====================================================================
+   TREK DETAILS — INFO STRIP
+   ===================================================================== */
 
 .td-info-strip {
   background: var(--white);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--r-lg);
   padding: 30px;
   display: flex;
   justify-content: space-around;
@@ -414,7 +494,7 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid rgba(0,0,0,0.03);
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .td-qi {
@@ -423,17 +503,19 @@
   gap: 15px;
   padding: 0 15px;
   border-right: 1px solid var(--border);
+  transition: transform 0.3s var(--ease);
 }
-
 .td-qi:last-child {
   border-right: none;
+}
+.td-qi:hover {
+  transform: translateY(-3px);
 }
 
 .qi-ico {
   font-size: 28px;
-  filter: drop-shadow(0 2px 5px rgba(59, 130, 246, 0.3));
+  filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.32));
 }
-
 .qi-label {
   font-size: 10px;
   text-transform: uppercase;
@@ -442,12 +524,15 @@
   letter-spacing: 1.2px;
   margin-bottom: 2px;
 }
-
 .qi-val {
   font-size: 16px;
   font-weight: 800;
   color: var(--navy);
 }
+
+/* =====================================================================
+   TREK DETAILS — MAIN LAYOUT
+   ===================================================================== */
 
 .td-main-layout {
   max-width: 1200px;
@@ -478,28 +563,38 @@
 }
 
 .td-t {
+  position: relative;
   padding: 15px 0;
   font-size: 15px;
   font-weight: 700;
   color: var(--muted);
-  border-bottom: 4px solid transparent;
   background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: color 0.3s var(--ease-soft);
   letter-spacing: 0.5px;
 }
-
+.td-t::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 4px;
+  width: 100%;
+  background: var(--gold);
+  border-radius: 4px 4px 0 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
 .td-t.active {
   color: var(--navy);
-  border-bottom-color: var(--gold);
 }
-
+.td-t.active::after {
+  transform: scaleX(1);
+}
 .td-t:hover:not(.active) {
   color: var(--navy);
-  border-bottom-color: var(--border);
 }
 
 .td-panel {
@@ -507,9 +602,19 @@
   width: 100%;
   overflow-x: hidden;
 }
-
 .td-panel.active {
   display: block;
+  animation: panelFade 0.45s var(--ease) both;
+}
+@keyframes panelFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .td-section-title {
@@ -525,14 +630,14 @@
 
 .td-text {
   font-size: clamp(14px, 3.5vw, 16px);
-  line-height: 1.8;
+  line-height: 1.85;
   color: var(--text);
   margin-bottom: 24px;
   text-align: justify;
   hyphens: auto;
 }
 
-/* Highlights Grid */
+/* Highlights */
 .td-highlights-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -547,23 +652,21 @@
   gap: 14px;
   background: var(--light);
   padding: 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.02);
-  transition: transform 0.2s;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+    background 0.3s var(--ease);
 }
-
 .tdh-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   background: var(--white);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-sm);
 }
-
 .tdh-ico {
   font-size: 20px;
   flex-shrink: 0;
   margin-top: 2px;
 }
-
 .tdh-txt {
   font-size: clamp(13px, 3.2vw, 15px);
   font-weight: 600;
@@ -571,15 +674,18 @@
   line-height: 1.5;
 }
 
-/* Booking Card */
+/* =====================================================================
+   TREK DETAILS — BOOKING CARD
+   ===================================================================== */
+
 .td-booking-card {
   position: sticky;
   top: 100px;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border-radius: var(--r-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-md);
 }
 
 .td-price-box {
@@ -587,45 +693,52 @@
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
 }
-
 .td-price-old {
   font-size: 14px;
   color: var(--muted);
   text-decoration: line-through;
 }
-
 .td-price-now {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
-  color: var(--navy);
+  letter-spacing: -0.5px;
+  background: linear-gradient(120deg, var(--navy), var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
 .td-price-now span {
   font-size: 14px;
   font-weight: 500;
   color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
 }
 
 .td-form-group {
   margin-bottom: 16px;
 }
-
 .td-form-group label {
   display: block;
   font-size: 12px;
   font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-bottom: 6px;
 }
-
 .td-select {
   width: 100%;
   padding: 12px;
   border: 1.5px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   font-family: inherit;
   outline: none;
+  background: var(--white);
+  transition: border-color 0.25s var(--ease-soft), box-shadow 0.25s var(--ease-soft);
+}
+.td-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(198, 166, 98, 0.14);
 }
 
 .td-count-row {
@@ -634,22 +747,27 @@
   justify-content: space-between;
   margin-top: 10px;
 }
-
 .td-counter {
   display: flex;
   align-items: center;
   gap: 15px;
   background: var(--light);
   padding: 5px 15px;
-  border-radius: 30px;
+  border-radius: 999px;
 }
-
 .td-counter button {
   background: none;
   border: none;
   font-size: 20px;
   font-weight: 700;
   color: var(--navy);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s var(--ease-soft), transform 0.15s var(--ease);
+}
+.td-counter button:hover {
+  color: var(--gold);
+  transform: scale(1.18);
 }
 
 .td-total-row {
@@ -660,12 +778,10 @@
   padding-top: 15px;
   border-top: 1px dashed var(--border);
 }
-
 .td-total-label {
   font-weight: 700;
   color: var(--navy);
 }
-
 .td-total-val {
   font-size: 20px;
   font-weight: 900;
@@ -673,21 +789,48 @@
 }
 
 .td-book-btn {
+  position: relative;
   width: 100%;
-  background: var(--navy);
+  background: linear-gradient(120deg, var(--navy), var(--teal));
   color: var(--gold);
   border: none;
   padding: 16px;
-  border-radius: 8px;
+  border-radius: var(--r-sm);
   font-size: 16px;
   font-weight: 800;
-  transition: all 0.2s;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.3s var(--ease);
+  box-shadow: 0 10px 24px rgba(30, 58, 138, 0.22);
+}
+.td-book-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s var(--ease);
+}
+.td-book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(30, 58, 138, 0.3);
+}
+.td-book-btn:hover::before {
+  left: 130%;
 }
 
-.td-book-btn:hover {
-  background: var(--teal);
-  transform: translateY(-2px);
-}
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
 
 @media (max-width: 1024px) {
   .td-main-layout {
@@ -705,9 +848,6 @@
     height: 400px;
     padding: 40px 20px;
   }
-  .td-title-row h1 {
-    font-size: 32px;
-  }
   .td-info-strip {
     flex-wrap: wrap;
     gap: 15px;
@@ -721,6 +861,7 @@
     width: calc(50% - 10px);
     gap: 8px;
     padding: 0;
+    border-right: none;
   }
   .qi-ico {
     font-size: 20px;
@@ -751,42 +892,65 @@
     padding: 12px 5px;
   }
   .td-t:last-child {
-    padding-right: 40px; /* Safety for iPhone scrolling */
+    padding-right: 40px;
   }
   .td-highlights-grid {
     grid-template-columns: 1fr;
   }
-  
   .td-section-title {
     font-size: 20px;
     margin-bottom: 15px;
   }
-  
   .td-text {
     font-size: 15px;
     line-height: 1.7;
     margin-bottom: 20px;
     text-align: left;
   }
-  
   .tdh-item {
     padding: 14px;
     gap: 12px;
   }
 }
 
-/* FAQ & Panel content safety */
-.td-panel {
-  overflow-x: hidden;
-  width: 100%;
-  display: none;
+@media (max-width: 600px) {
+  .trek-filter-bar {
+    padding: 20px 15px;
+  }
+  .search-row {
+    margin-bottom: 12px;
+  }
+  .trek-search-input {
+    font-size: 16px;
+    padding: 12px 15px 12px 42px;
+    border-radius: var(--r-sm);
+  }
+  .fs-ico {
+    left: 13px;
+    font-size: 14px;
+  }
+  .treks-grid-section {
+    padding: 20px 10px;
+  }
+  .grid-layout {
+    gap: 15px;
+    grid-template-columns: 1fr;
+  }
+  .no-results-msg {
+    padding: 50px 20px;
+    margin: 20px 10px;
+  }
+  .no-res-ico {
+    font-size: 48px;
+  }
+  .no-results-msg h3 {
+    font-size: 22px;
+  }
 }
 
-.td-panel.active {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
+/* =====================================================================
+   TREK DETAILS — FAQ PANELS
+   ===================================================================== */
 
 .td-panel .faq-list {
   max-width: 100% !important;
@@ -795,11 +959,20 @@
 }
 
 .td-panel .faq-item {
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   background: var(--white);
   border: 1px solid var(--border);
   margin-bottom: 12px;
   display: block !important;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
+}
+.td-panel .faq-item:hover {
+  border-color: rgba(198, 166, 98, 0.45);
+  box-shadow: var(--shadow-sm);
+}
+.td-panel .faq-item.open {
+  border-color: rgba(198, 166, 98, 0.5);
 }
 
 .td-panel .faq-q {
@@ -814,14 +987,15 @@
   text-align: left;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .td-panel .faq-a {
   padding: 0 18px;
   font-size: 14px;
   line-height: 1.6;
+  color: var(--text);
 }
-
 .td-panel .faq-item.open .faq-a {
   padding: 0 18px 18px;
 }
@@ -837,5 +1011,19 @@
   }
   .td-panel .faq-item.open .faq-a {
     padding: 0 15px 15px;
+  }
+}
+
+/* =====================================================================
+   MOTION SAFETY
+   ===================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
