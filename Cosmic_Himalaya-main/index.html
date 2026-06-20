@@ -699,5 +699,428 @@
 <script src="trek-logic.js"></script>
 <script src="script.js"></script>
 
+    <!-- =====================================================================
+         TREK ADVISOR CHATBOT  (reads the TREKS object loaded above)
+         ===================================================================== -->
+
+    <div id="tb-launcher" aria-label="Open Trek Advisor" role="button" tabindex="0">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+
+    <div id="tb-panel" aria-live="polite">
+      <div id="tb-head">
+        <div class="tb-head-info">
+          <div class="tb-avatar">⛰</div>
+          <div>
+            <div class="tb-title">Trek Advisor</div>
+            <div class="tb-status">Online · usually replies instantly</div>
+          </div>
+        </div>
+        <button id="tb-close" aria-label="Close">×</button>
+      </div>
+      <div id="tb-msgs"></div>
+      <div id="tb-chips"></div>
+      <div id="tb-input-row">
+        <input id="tb-input" type="text" placeholder="Ask about any trek…" autocomplete="off" />
+        <button id="tb-send" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <style>
+      #tb-launcher {
+        position: fixed; right: 22px; bottom: 22px; z-index: 9998;
+        width: 60px; height: 60px; border-radius: 50%;
+        background: linear-gradient(135deg, #1e3a8a, #16294f);
+        color: #fff; display: flex; align-items: center; justify-content: center;
+        cursor: pointer; box-shadow: 0 8px 26px rgba(22, 41, 79, 0.4);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      #tb-launcher:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(22, 41, 79, 0.5); }
+      #tb-launcher::after {
+        content: ""; position: absolute; top: 6px; right: 6px;
+        width: 12px; height: 12px; border-radius: 50%;
+        background: #c6a662; border: 2px solid #fff;
+      }
+
+      #tb-panel {
+        position: fixed; right: 22px; bottom: 96px; z-index: 9999;
+        width: 380px; max-width: calc(100vw - 32px); height: 560px; max-height: calc(100vh - 130px);
+        background: #fff; border-radius: 20px; overflow: hidden;
+        display: none; flex-direction: column;
+        box-shadow: 0 24px 60px rgba(22, 41, 79, 0.28);
+        font-family: "Inter", system-ui, sans-serif;
+        animation: tbUp 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #tb-panel.open { display: flex; }
+      @keyframes tbUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+      #tb-head {
+        background: linear-gradient(135deg, #1e3a8a, #16294f);
+        color: #fff; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;
+      }
+      .tb-head-info { display: flex; align-items: center; gap: 12px; }
+      .tb-avatar {
+        width: 40px; height: 40px; border-radius: 50%;
+        background: rgba(198, 166, 98, 0.22); border: 1.5px solid #c6a662;
+        display: flex; align-items: center; justify-content: center; font-size: 20px;
+      }
+      .tb-title { font-weight: 700; font-size: 16px; }
+      .tb-status { font-size: 11px; color: #c6a662; }
+      #tb-close { background: none; border: none; color: #fff; font-size: 26px; line-height: 1; cursor: pointer; opacity: 0.8; }
+      #tb-close:hover { opacity: 1; }
+
+      #tb-msgs { flex: 1; overflow-y: auto; padding: 18px; background: #f6f7fb; display: flex; flex-direction: column; gap: 12px; }
+      .tb-msg { max-width: 84%; padding: 11px 14px; border-radius: 14px; font-size: 14px; line-height: 1.55; }
+      .tb-bot { align-self: flex-start; background: #fff; color: #233; border: 1px solid #e7e9f0; border-bottom-left-radius: 4px; }
+      .tb-user { align-self: flex-end; background: linear-gradient(135deg, #1e3a8a, #16294f); color: #fff; border-bottom-right-radius: 4px; }
+      .tb-msg strong { color: inherit; }
+      .tb-bot strong { color: #16294f; }
+      .tb-msg .tb-mini { display: block; margin-top: 6px; font-size: 12.5px; color: #5a6473; }
+      .tb-wa-btn {
+        display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+        background: #25d366; color: #fff; text-decoration: none;
+        padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+      }
+
+      #tb-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 14px 10px; background: #f6f7fb; }
+      .tb-chip {
+        background: #fff; border: 1.5px solid #d8dce6; color: #1e3a8a;
+        padding: 8px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+        cursor: pointer; transition: all 0.2s ease;
+      }
+      .tb-chip:hover { border-color: #c6a662; background: #fffaf0; }
+
+      #tb-input-row { display: flex; gap: 8px; padding: 12px 14px; border-top: 1px solid #eceef3; background: #fff; }
+      #tb-input { flex: 1; border: 1.5px solid #d8dce6; border-radius: 999px; padding: 11px 16px; font-size: 15px; outline: none; font-family: inherit; }
+      #tb-input:focus { border-color: #c6a662; }
+      #tb-send {
+        width: 44px; height: 44px; flex-shrink: 0; border: none; border-radius: 50%;
+        background: linear-gradient(135deg, #1e3a8a, #16294f); color: #fff; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+      }
+      #tb-send:hover { background: #16294f; }
+
+      .tb-typing { display: inline-flex; gap: 4px; }
+      .tb-typing span { width: 7px; height: 7px; background: #b9c0cf; border-radius: 50%; animation: tbBlink 1.2s infinite; }
+      .tb-typing span:nth-child(2) { animation-delay: 0.2s; }
+      .tb-typing span:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes tbBlink { 0%, 60%, 100% { opacity: 0.3; } 30% { opacity: 1; } }
+
+      @media (max-width: 480px) {
+        #tb-panel { right: 12px; left: 12px; width: auto; bottom: 86px; height: 70vh; }
+        #tb-launcher { right: 16px; bottom: 16px; }
+      }
+    </style>
+
+    <script>
+    (function () {
+      // ====== CONFIG ======
+      var WHATSAPP = "919528309087"; // Cosmic Himalaya WhatsApp (from footer)
+
+      // Embedded trek knowledge so the bot ALWAYS has data, even if
+      // treks-data.js doesn't expose a global. Live TREKS is used if readable.
+      var EMBEDDED_TREKS = {
+        ebc: {
+          title: "Everest Base Camp Trek", region: "Khumbu Region, Nepal",
+          diff: "Moderate to Difficult", season: "Mar–May & Sep–Nov",
+          dur: "14 Days", alt: "5,364 m", startEnd: "Lukla",
+          dates: ["Mar 15, 2026", "Apr 10, 2026", "May 5, 2026", "Sep 20, 2026", "Oct 15, 2026"],
+          bestTime: "Spring (March to May) and Autumn (late September to November) offer the best mountain visibility.",
+          highlights: ["🏔 Base of Mt. Everest", "🗺 Khumbu Glacier", "🛕 Sherpa Culture", "🌅 Kala Patthar", "✈ Lukla flight"],
+          includes: ["Teahouse accommodation (B&B)", "Airport transfers", "Guide & porters", "Permits"],
+          excludes: ["Visa", "Insurance", "International & domestic flights", "Meals not listed", "Tips"],
+          carry: ["ID & Passport", "Medical Certificate", "Trekking Boots", "Down Jacket", "Sunscreen", "Trekking Poles"]
+        },
+        abc: {
+          title: "Annapurna Base Camp Trek", region: "Annapurna Region, Nepal",
+          diff: "Moderate", season: "Available Year-Round",
+          dur: "10 Days", alt: "4,130 m", startEnd: "Pokhara",
+          dates: ["Apr 05, 2026", "May 15, 2026", "Oct 10, 2026"],
+          bestTime: "Spring (March to May) and Autumn (September to November) are peak, but it's accessible year-round.",
+          highlights: ["🏔 Annapurna Sanctuary", "🌸 Rhododendron Forests", "🛁 Jhinu Hot Springs", "🏘 Gurung Culture", "📸 Fishtail Views"],
+          includes: ["TIMS & ACAP Permits", "Teahouse Stay", "Guide", "Porters", "Transportation"],
+          excludes: ["Soft Drinks", "Laundry", "Wifi", "Personal Equipment"],
+          carry: ["Comfortable Shoes", "Daypack", "Towel", "Warm Jacket", "Raincoat"]
+        },
+        kailash: {
+          title: "Kailash Mansarovar Yatra", region: "Nepal–Tibet Route",
+          diff: "Difficult", season: "May – September",
+          dur: "14 Days", alt: "5,630 m", startEnd: "Kathmandu",
+          dates: ["May 24, 2026", "Jun 19, 2026", "Sep 03, 2026"],
+          bestTime: "Best undertaken in the summer months when the weather is relatively stable.",
+          highlights: ["🙏 Sacred Parikrama (Kora)", "🌊 Lake Mansarovar Dip", "🏔 Mt. Kailash North Face", "🧘 Spiritual Awakening", "🕉 Gauri Kund"],
+          includes: ["4-star hotel in Kathmandu", "Tibetan hotels & guesthouses", "Vegetarian meals", "All Tibet/China permits & group visa", "AC coach in Tibet", "Sherpa support & oxygen", "Down jacket & day pack"],
+          excludes: ["International flights to/from Kathmandu", "Travel insurance (mandatory)", "Personal expenses", "Horse/porter during Parikrama", "Emergency evacuation"],
+          carry: ["Heavy Down Jacket", "Thermal Innerwear", "Sunglasses", "Strong Sunscreen", "Lip Balm"]
+        },
+        kailashHeli: {
+          title: "Kailash Yatra (Lucknow Heli)", region: "Lucknow → Tibet, China",
+          diff: "Challenging", season: "May – September",
+          dur: "11 Days", alt: "5,645 m", startEnd: "Lucknow",
+          dates: ["May 20, 2026", "Jun 15, 2026", "Aug 28, 2026"],
+          bestTime: "May to September offers clearer skies for the scenic flights and safer trekking conditions.",
+          highlights: ["🚁 Helicopter to Tibet Border", "🙏 Sacred 3-Day Parikrama", "🌊 Mansarovar Holy Dip", "⛰ Dolma La Pass", "🕉 Holy Lake Rituals"],
+          includes: ["Tibet Travel Permit & Visa fees", "Lucknow–Nepalgunj transport", "All vegetarian meals & stay", "Domestic flights & Helicopter", "Tour Leader & support crew"],
+          excludes: ["Travel Insurance (with evacuation)", "Horse/helper fees during Parikrama", "Personal expenses", "Costs from flight/weather delays"],
+          carry: ["Scanned Passport", "Health Certificate", "Heavy Down Jacket", "Thermal Innerwear"]
+        },
+        uppermustang: {
+          title: "Upper Mustang Trek", region: "Mustang, Nepal",
+          diff: "Moderate", season: "Mar-Nov",
+          dur: "14 Days", alt: "3,840 m", startEnd: "Jomsom",
+          dates: ["May 15, 2026", "Oct 05, 2026"],
+          bestTime: "In a rain shadow, so it suits monsoon (June–August) too, though Spring and Autumn are excellent.",
+          highlights: ["🏰 Ancient Lo Manthang", "🏜 Desert Landscapes", "🏯 Old Monasteries", "🧗 Sky Caves", "🏔 Dhaulagiri & Nilgiri Views"],
+          includes: ["Restricted Area Permit ($500)", "Domestic flights", "Teahouse accommodation", "All meals on trek", "Guide & porters", "ACAP & TIMS permits"],
+          excludes: ["International flights & Nepal visa", "Travel insurance", "Personal trekking gear", "Personal expenses", "Tips"],
+          carry: ["Trekking Boots", "Windbreaker Jacket", "Sun Protection", "Light Sleeping Bag"]
+        },
+        kgl: {
+          title: "Kashmir Great Lakes Trek", region: "Kashmir, India",
+          diff: "Moderate", season: "Jul-Sep",
+          dur: "8 Days", alt: "4,200 m", startEnd: "Srinagar",
+          dates: ["Jul 10, 2026", "Aug 05, 2026", "Sep 01, 2026"],
+          bestTime: "July to September, when the snow has melted and the meadows are lush and full of wildflowers.",
+          highlights: ["💎 7 Alpine Lakes", "🏔 Gadsar Pass", "🌸 Green Meadows", "⛺ Lakeside Camping", "🦅 Himalayan Views"],
+          includes: ["Srinagar transfers", "Tent accommodation", "All meals on trek", "Trek leader & staff", "Mules for common luggage", "Permits & forest fees"],
+          excludes: ["Flights to Srinagar", "Personal trekking gear", "Mules for personal luggage", "Travel insurance", "Tips"],
+          carry: ["Trekking Boots", "Daypack (20-30L)", "Sunscreen & Lip Balm", "Warm Layers", "Raincoat/Poncho"]
+        }
+      };
+
+      var GLOBAL_TREKS = (typeof TREKS !== "undefined" && TREKS) ? TREKS : (window.TREKS || null);
+      var TREK_DATA = (GLOBAL_TREKS && Object.keys(GLOBAL_TREKS).length) ? GLOBAL_TREKS : EMBEDDED_TREKS;
+
+      var launcher = document.getElementById("tb-launcher");
+      var panel = document.getElementById("tb-panel");
+      var closeBtn = document.getElementById("tb-close");
+      var msgs = document.getElementById("tb-msgs");
+      var chipsBox = document.getElementById("tb-chips");
+      var input = document.getElementById("tb-input");
+      var sendBtn = document.getElementById("tb-send");
+
+      function esc(s) {
+        return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      }
+      function altNum(t) { return parseInt(String(t.alt || "0").replace(/[^0-9]/g, ""), 10) || 0; }
+      function diffScore(t) {
+        var d = (t.diff || "").toLowerCase();
+        if (d.indexOf("moderate to difficult") > -1 || d.indexOf("challenging") > -1) return 2.6;
+        if (d.indexOf("difficult") > -1 && d.indexOf("moderate") === -1) return 3;
+        if (d.indexOf("moderate") > -1) return 2;
+        if (d.indexOf("easy") > -1) return 1;
+        return 2;
+      }
+      function waLink(text) {
+        return '<a class="tb-wa-btn" target="_blank" rel="noopener" href="https://wa.me/' +
+          WHATSAPP + '?text=' + encodeURIComponent(text) + '">' +
+          '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M.06 24l1.68-6.13A11.83 11.83 0 0 1 .15 11.9C.15 5.33 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.76 11.76 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.06 24z"/></svg>' +
+          'Chat with our team</a>';
+      }
+
+      var keys = Object.keys(TREK_DATA);
+
+      var ALIASES = {
+        ebc: ["everest", "ebc", "base camp", "khumbu", "kala patthar"],
+        abc: ["annapurna", "abc", "sanctuary"],
+        kailash: ["kailash", "mansarovar", "kora", "parikrama", "tibet"],
+        kailashHeli: ["heli", "helicopter", "lucknow"],
+        uppermustang: ["mustang", "lo manthang", "forbidden"],
+        kgl: ["kashmir", "great lakes", "kgl", "srinagar", "alpine lakes"]
+      };
+
+      function findTrek(q) {
+        var best = null, bestScore = 0;
+        keys.forEach(function (k) {
+          var t = TREK_DATA[k];
+          var score = 0;
+          if (q.indexOf(k.toLowerCase()) > -1) score += 3;
+          (ALIASES[k] || []).forEach(function (a) { if (q.indexOf(a) > -1) score += 2; });
+          (t.title || "").toLowerCase().split(/\s+/).forEach(function (w) {
+            if (w.length > 3 && q.indexOf(w) > -1) score += 1;
+          });
+          if (score > bestScore) { bestScore = score; best = t; }
+        });
+        return bestScore >= 2 ? best : null;
+      }
+
+      function trekSummary(t) {
+        var next = (t.dates && t.dates.length) ? t.dates.slice(0, 3).join(", ") : "On request";
+        var hi = (t.highlights || []).slice(0, 3).join(" · ");
+        return "<strong>" + esc(t.title) + "</strong>" +
+          '<span class="tb-mini">📍 ' + esc(t.region) + " &nbsp;•&nbsp; ⏱ " + esc(t.dur) +
+          " &nbsp;•&nbsp; ⛰ " + esc(t.alt) + "</span>" +
+          '<span class="tb-mini">💪 ' + esc(t.diff) + " &nbsp;•&nbsp; 🗓 " + esc(t.season) + "</span>" +
+          (hi ? '<span class="tb-mini">✨ ' + esc(hi) + "</span>" : "") +
+          '<span class="tb-mini">📅 Next departures: ' + esc(next) + "</span>" +
+          waLink("Hi! I'd like to know more about the " + t.title + ".");
+      }
+
+      function listTreks() {
+        var rows = keys.map(function (k) {
+          var t = TREK_DATA[k];
+          return "• <strong>" + esc(t.title) + "</strong> — " + esc(t.region) +
+            " (" + esc(t.dur) + ", " + esc(t.diff) + ")";
+        }).join("<br>");
+        return "Here are the treks I can help with:<br><br>" + rows +
+          '<span class="tb-mini">Ask me about any one — best time, altitude, what to pack, or who it suits.</span>';
+      }
+
+      function recommend(level) {
+        var sorted = keys.map(function (k) { return TREK_DATA[k]; }).sort(function (a, b) {
+          return level === "hard" ? diffScore(b) - diffScore(a) : diffScore(a) - diffScore(b);
+        });
+        var pick = sorted.slice(0, 3);
+        var intro = level === "hard"
+          ? "If you want a serious challenge, these are the toughest, highest routes:"
+          : "Great picks if you're newer to high-altitude trekking (gentler grade, lower risk):";
+        var rows = pick.map(function (t) {
+          return "• <strong>" + esc(t.title) + "</strong> — " + esc(t.diff) + ", " + esc(t.alt) + ", " + esc(t.dur);
+        }).join("<br>");
+        return intro + "<br><br>" + rows +
+          '<span class="tb-mini">Tell me your fitness, days free, or the month you want to go and I\'ll narrow it down.</span>';
+      }
+
+      function medical() {
+        var byAlt = keys.map(function (k) { return TREK_DATA[k]; }).sort(function (a, b) { return altNum(a) - altNum(b); }).slice(0, 3);
+        var rows = byAlt.map(function (t) {
+          return "• <strong>" + esc(t.title) + "</strong> — max " + esc(t.alt);
+        }).join("<br>");
+        return "I have to be honest with you here: most of our treks climb above 3,000–5,600 m, where the air is thin and altitude sickness is a real risk.<br><br>" +
+          "<strong>I can't judge whether a condition is safe for altitude.</strong> If you have a heart condition, high or low blood pressure, asthma or other lung issues, diabetes, recent surgery, or if you're pregnant — please get written clearance from your doctor before booking.<br><br>" +
+          "If you'd like the <strong>lowest-altitude options</strong> to discuss with your doctor:<br>" + rows +
+          '<span class="tb-mini">Our team can also talk through your specific situation:</span>' +
+          waLink("Hi! I have a health condition and want advice on which trek is suitable.");
+      }
+
+      function bestTime(t) {
+        if (t) {
+          return "<strong>Best time for " + esc(t.title) + ":</strong><br>" + esc(t.bestTime || t.season) +
+            '<span class="tb-mini">🗓 Season window: ' + esc(t.season) + "</span>";
+        }
+        var rows = keys.map(function (k) {
+          var x = TREK_DATA[k];
+          return "• <strong>" + esc(x.title) + "</strong> — " + esc(x.season);
+        }).join("<br>");
+        return "Best seasons vary by trek:<br><br>" + rows +
+          '<span class="tb-mini">Tell me a month and I\'ll list what\'s open then.</span>';
+      }
+
+      function attr(t, kind) {
+        if (kind === "duration") return "<strong>" + esc(t.title) + "</strong> takes <strong>" + esc(t.dur) + "</strong>." +
+          '<span class="tb-mini">Max altitude ' + esc(t.alt) + " · starts/ends at " + esc(t.startEnd || "—") + "</span>";
+        if (kind === "altitude") return "<strong>" + esc(t.title) + "</strong> reaches a maximum altitude of <strong>" + esc(t.alt) + "</strong>." +
+          '<span class="tb-mini">Difficulty: ' + esc(t.diff) + "</span>";
+        if (kind === "includes") {
+          var inc = (t.includes || []).map(function (i) { return "• " + esc(i); }).join("<br>");
+          return "<strong>" + esc(t.title) + " includes:</strong><br>" + (inc || "Details on request.");
+        }
+        if (kind === "excludes") {
+          var exc = (t.excludes || []).map(function (i) { return "• " + esc(i); }).join("<br>");
+          return "<strong>Not included in " + esc(t.title) + ":</strong><br>" + (exc || "Details on request.");
+        }
+        if (kind === "carry") {
+          var c = (t.carry || []).map(function (i) { return "• " + esc(i); }).join("<br>");
+          return "<strong>What to carry for " + esc(t.title) + ":</strong><br>" + (c || "Standard trekking gear.");
+        }
+      }
+
+      function answer(raw) {
+        var q = raw.toLowerCase().trim();
+        var t = findTrek(q);
+
+        if (/(^| )(hi|hii|hello|hey|namaste|good (morning|evening|afternoon))/.test(q))
+          return "Namaste! 🙏 I'm your Trek Advisor. I can suggest a trek, tell you the best time to go, the altitude, what to pack, and more. What are you planning?";
+
+        if (/(price|cost|budget|cheap|fee|charge|expensive|how much)/.test(q))
+          return "Pricing depends on the trek, group size, and dates, so I'll let our team give you an exact quote rather than guess." +
+            waLink("Hi! I'd like the price for " + (t ? t.title : "a trek") + ".");
+
+        if (/(heart|blood pressure|\bbp\b|asthma|diabet|pregnan|medical|health condition|disease|surgery|altitude sickness|\bams\b|breathing|lung|senior citizen|old age)/.test(q))
+          return medical();
+
+        if (/(beginner|first[ -]?time|easiest|easy trek|new to trek|never trek|starter|less risk)/.test(q))
+          return recommend("easy");
+
+        if (/(hardest|toughest|most difficult|challenging|experienced|expert|extreme)/.test(q))
+          return recommend("hard");
+
+        if (/(family|kids|child|children|with my parents)/.test(q))
+          return "Most of these are high-altitude routes (3,000 m+), so they suit teens and fit adults more than young children. The gentler, lower options are the safest family choices — and please check with a doctor for kids or older parents.<br><br>" + recommend("easy");
+
+        if (t && /(best time|when to|which month|season|weather)/.test(q)) return bestTime(t);
+        if (/(best time|when to|which month|season|weather)/.test(q)) return bestTime(null);
+
+        if (t && /(how many days|duration|how long|days)/.test(q)) return attr(t, "duration");
+        if (t && /(altitude|how high|height|elevation|meters|metres)/.test(q)) return attr(t, "altitude");
+        if (t && /(include|included|inclusion|provide)/.test(q)) return attr(t, "includes");
+        if (t && /(exclude|not included|exclusion)/.test(q)) return attr(t, "excludes");
+        if (t && /(carry|pack|packing|bring|gear|equipment|what.*take)/.test(q)) return attr(t, "carry");
+
+        if (t) return trekSummary(t);
+
+        if (/(list|all trek|which trek|show trek|options|available|what trek|suggest|recommend)/.test(q))
+          return /(suggest|recommend|for me)/.test(q) ? recommend("easy") : listTreks();
+
+        return "I'm not totally sure I caught that. I can help with: <strong>suggesting a trek</strong>, <strong>best time to go</strong>, <strong>altitude & duration</strong>, <strong>what to pack</strong>, or <strong>health & altitude advice</strong>. Try a button below — or talk to a human:" +
+          waLink("Hi! I have a question about your treks.");
+      }
+
+      function addMsg(html, who) {
+        var d = document.createElement("div");
+        d.className = "tb-msg " + (who === "user" ? "tb-user" : "tb-bot");
+        d.innerHTML = html;
+        msgs.appendChild(d);
+        msgs.scrollTop = msgs.scrollHeight;
+        return d;
+      }
+      function typing() {
+        return addMsg('<span class="tb-typing"><span></span><span></span><span></span></span>', "bot");
+      }
+      function setChips(arr) {
+        chipsBox.innerHTML = "";
+        arr.forEach(function (c) {
+          var b = document.createElement("button");
+          b.className = "tb-chip";
+          b.textContent = c;
+          b.onclick = function () { handle(c); };
+          chipsBox.appendChild(b);
+        });
+      }
+
+      function handle(text) {
+        if (!text.trim()) return;
+        addMsg(esc(text), "user");
+        input.value = "";
+        var typ = typing();
+        setTimeout(function () {
+          typ.remove();
+          addMsg(answer(text), "bot");
+          setChips(["Suggest a trek", "Best time to go", "I have a medical condition", "Show all treks"]);
+        }, 500);
+      }
+
+      var greeted = false;
+      function openPanel() {
+        panel.classList.add("open");
+        if (!greeted) {
+          greeted = true;
+          addMsg("Namaste! 🙏 I'm your <strong>Trek Advisor</strong>. Ask me anything — I'll suggest a trek, the best season, altitude, packing list, and flag any altitude-health concerns. How can I help?", "bot");
+          setChips(["Suggest a trek for me", "Best time to go", "I have a medical condition", "Show all treks"]);
+        }
+      }
+
+      launcher.addEventListener("click", openPanel);
+      launcher.addEventListener("keydown", function (e) { if (e.key === "Enter") openPanel(); });
+      closeBtn.addEventListener("click", function () { panel.classList.remove("open"); });
+      sendBtn.addEventListener("click", function () { handle(input.value); });
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") handle(input.value); });
+    })();
+    </script>
+
   </body>
 </html>
