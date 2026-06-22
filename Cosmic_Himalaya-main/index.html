@@ -11,6 +11,13 @@
     <link href="navbar.css" rel="stylesheet" />
     <link href="footer.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+    <style>
+      /* Navbar logo layout — added without touching navbar.css */
+      .nav-brand { display: flex; align-items: center; gap: 12px; }
+      .nav-logo { height: 46px; width: auto; flex-shrink: 0; display: block; }
+      .nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+      @media (max-width: 600px) { .nav-logo { height: 38px; } }
+    </style>
   </head>
 
   
@@ -18,8 +25,11 @@
     <!-- NAVBAR -->
     <nav>
       <a href="index.html" class="nav-brand">
-        <strong>COSMIC HIMALAYA</strong>
-        <span>Authentic Himalayan Journeys</span>
+        <img src="images/logoImage.png" alt="Cosmic Himalaya" class="nav-logo" />
+        <span class="nav-brand-text">
+          <strong>COSMIC HIMALAYA</strong>
+          <span>Authentic Himalayan Journeys</span>
+        </span>
       </a>
       
       <ul class="nav-links">
