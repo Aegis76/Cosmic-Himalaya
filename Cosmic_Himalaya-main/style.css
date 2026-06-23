@@ -43,11 +43,10 @@ body {
   box-sizing: border-box;
 }
  /* Navbar logo layout — added without touching navbar.css */
-      .nav-brand { display: flex; align-items: center; gap: 12px; }
-      .nav-logo { height: 60px; width: auto; flex-shrink: 0; display: block; }
-      .nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-      @media (max-width: 600px) { .nav-logo { height: 38px; } }
-
+   nav-brand { display: flex; align-items: center; gap: 14px; }
+.nav-logo { height: 90px; width: auto; flex-shrink: 0; display: block; }
+.nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+@media (max-width: 600px) { .nav-logo { height: 56px; } }
 /* ─── REVEAL ANIMATION ─── */
 .reveal {
   opacity: 0;
