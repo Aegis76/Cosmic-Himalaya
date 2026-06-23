@@ -42,6 +42,11 @@ body {
 *::after {
   box-sizing: border-box;
 }
+ /* Navbar logo layout — added without touching navbar.css */
+      .nav-brand { display: flex; align-items: center; gap: 12px; }
+      .nav-logo { height: 46px; width: auto; flex-shrink: 0; display: block; }
+      .nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+      @media (max-width: 600px) { .nav-logo { height: 38px; } }
 
 /* ─── REVEAL ANIMATION ─── */
 .reveal {
