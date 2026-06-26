@@ -670,7 +670,7 @@ function checkoutCart() {
   message += `\n*Total Amount:* ₹${total.toLocaleString("en-IN")}`;
   message += `\n\n_Generated via COSMIC HIMALAYA Store_`;
 
-  const WHATSAPP_NUMBER = "919259269317";
+  const WHATSAPP_NUMBER = "919927006021";
   const waUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(
     message,
   )}`;
