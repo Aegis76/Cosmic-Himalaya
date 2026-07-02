@@ -1,5 +1,20 @@
 // ─── TREK UTILS ───
 
+// Splits a "carry"/"highlight" string into an icon + text pair.
+// If the first token is a real emoji, it's used as the icon and the
+// rest becomes the label (original behavior). If there's no emoji
+// (e.g. "ID & Passport"), the whole string is kept as the label and
+// a fallback icon is used instead — this is what prevents the first
+// word from overlapping the rest of the text.
+function splitIconText(str, fallbackIcon = "•") {
+  const parts = str.trim().split(" ");
+  const first = parts[0];
+  const isEmoji = /\p{Extended_Pictographic}/u.test(first);
+  return isEmoji
+    ? { icon: first, text: parts.slice(1).join(" ") }
+    : { icon: fallbackIcon, text: str };
+}
+
 // Render all treks in a grid (used in trek.html)
 function renderAllTreks(gridId = "allTreksGrid") {
   const grid = document.getElementById(gridId);
@@ -54,10 +69,10 @@ function renderAllTreks(gridId = "allTreksGrid") {
 window.filterTreks = debounce(function () {
   const searchInput = document.getElementById("trekSearch");
   const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
-  
+
   const activeTabEl = document.querySelector(".ftab.active");
   const activeTab = activeTabEl ? activeTabEl.textContent.toLowerCase().trim() : "all treks";
-  
+
   const cards = document.querySelectorAll(".trek-card");
 
   cards.forEach((card) => {
@@ -113,10 +128,10 @@ function openTrek(key) {
 
   // highlights
   const hl = t.highlights
-    .map(
-      (x) =>
-        `<div class="tdh-item"><span class="tdh-ico">${x.split(" ")[0]}</span><div class="tdh-txt">${x.split(" ").slice(1).join(" ")}</div></div>`,
-    )
+    .map((x) => {
+      const { icon, text } = splitIconText(x);
+      return `<div class="tdh-item"><span class="tdh-ico">${icon}</span><div class="tdh-txt">${text}</div></div>`;
+    })
     .join("");
   setEl("tdHighlights", hl, true);
   setEl("tdHighlights2", hl, true);
@@ -139,10 +154,10 @@ function openTrek(key) {
   setEl("tdIncExc", incExcHtml, true);
 
   const carryHtml = t.carry
-    .map(
-      (c) =>
-        `<div class="tdh-item"><span class="tdh-ico">${c.split(" ")[0]}</span><div class="tdh-txt">${c.split(" ").slice(1).join(" ")}</div></div>`,
-    )
+    .map((c) => {
+      const { icon, text } = splitIconText(c, "🎒");
+      return `<div class="tdh-item"><span class="tdh-ico">${icon}</span><div class="tdh-txt">${text}</div></div>`;
+    })
     .join("");
   setEl("tdCarry", carryHtml, true);
   setEl("tdCarry2", carryHtml, true);
@@ -298,16 +313,16 @@ function switchTdTab(id, btn) {
 function redirectToBooking() {
   const urlParams = new URLSearchParams(window.location.search);
   const trekKey = urlParams.get("trek");
-  
+
   const selectedDate = document.getElementById("tdDates").value;
   const trekkerCount = document.getElementById("tdCount").textContent;
-  
+
   if (!trekKey) {
     if (typeof showToast === 'function') showToast("❌ Error: Trek not found");
     else alert("❌ Error: Trek not found");
     return;
   }
-  
+
   const bookingUrl = `booking.html?type=trek&trek=${trekKey}&date=${encodeURIComponent(selectedDate)}&count=${trekkerCount}`;
   window.location.href = bookingUrl;
 }
