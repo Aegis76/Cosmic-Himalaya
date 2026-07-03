@@ -1,8 +1,11 @@
 /* =====================================================================
-   COSMIC HIMALAYA — "FIELD DOSSIER" REDESIGN, BLUE + WHITE
-   Same bold, flat, hairline-bordered design language as the Camps page
-   (camp.css), re-tuned to a two-tone blue/white system with a single
-   bright-blue signal accent instead of black/flare-orange.
+   COSMIC HIMALAYA — "SURVEY CHART" REDESIGN
+   A cartographic / expedition-blueprint identity: corner-bracket
+   "viewfinder" cards, ruler-tick dividers instead of plain underlines,
+   contour-ring watermarks instead of giant background words, and a
+   monospace data face for altitude/date/grade readouts set against
+   the serif display type. Grounded in what this brand actually does —
+   route mapping — rather than a generic blue SaaS palette.
    All class names & CSS variables kept identical — HTML is untouched.
    ===================================================================== */
 
@@ -17,12 +20,19 @@
   --gold2: #1d4ed8;
   --gold3: #93c5fd;
   --accent: #2f6fed;
+  /* Chart Cyan — thin linework: contour rings, grid texture, ticks */
+  --chart: #5eb8ff;
   --white: #fff;
   --light: #f5f8fd;
   --bg: #f7faff;
   --border: #dbe6f5;
   --text: #10203a;
   --muted: #5b6b82;
+
+  /* type roles */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
 
   /* fluid spacing tokens */
   --section-y: clamp(40px, 7vw, 80px);
@@ -43,9 +53,9 @@ body {
 
 /* Navbar logo layout */
 .nav-brand { display: flex; align-items: center; gap: 14px; }
-.nav-logo { height: 90px; width: auto; flex-shrink: 0; display: block; }
+.nav-logo { height: 140px; width: auto; flex-shrink: 0; display: block; }
 .nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
-@media (max-width: 600px) { .nav-logo { height: 56px; } }
+@media (max-width: 600px) { .nav-logo { height: 84px; } }
 
 /* ─── REVEAL ANIMATION ─── */
 .reveal {
@@ -135,7 +145,7 @@ body {
   transform: translateY(110px);
   transition: transform 0.3s ease;
   filter: brightness(0) invert(1);
-  max-width: 120px;
+  max-width: 180px;
   height: auto;
   display: block;
   margin-bottom: 0.75rem;
@@ -227,7 +237,7 @@ body {
   .hero-logo {
     transform: translateY(60px);
     filter: brightness(0) invert(1);
-    max-width: 90px;
+    max-width: 130px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -377,11 +387,12 @@ body {
   margin-bottom: 8px;
 }
 .plan-underline {
-  width: 80px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 2px;
+  width: 120px;
+  height: 10px;
   margin: 0 auto 28px;
+  background:
+    linear-gradient(var(--accent) 0 2px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 12px) bottom / 100% 8px no-repeat;
 }
 .filter-row {
   display: flex;
@@ -833,15 +844,23 @@ body {
   overflow: hidden;
 }
 .stories-section::before {
-  content: "TESTIMONIALS";
+  content: "";
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15vw;
-  font-weight: 900;
-  color: rgba(11, 28, 61, 0.035);
+  width: 900px;
+  height: 900px;
+  max-width: 150vw;
+  max-height: 150vw;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle,
+    transparent 0 34px,
+    rgba(11, 28, 61, 0.05) 34px 36px,
+    transparent 36px 70px
+  );
   z-index: 0;
-  white-space: nowrap;
+  pointer-events: none;
 }
 .stories-grid {
   display: flex;
@@ -903,13 +922,19 @@ body {
 
 @media (max-width: 768px) {
   .story-card { min-width: 100%; }
-  .stories-section::before { font-size: 20vw; }
 }
 
 /* ══════════ FAQ ══════════ */
 .faq-section { padding: var(--section-y) var(--section-x); background: var(--bg); text-align: center; }
 .faq-section h2 { font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; color: var(--navy); margin-bottom: 12px; }
-.faq-underline { width: 80px; height: 3px; background: var(--accent); margin: 0 auto 50px; border-radius: 2px; }
+.faq-underline {
+  width: 120px;
+  height: 10px;
+  margin: 0 auto 50px;
+  background:
+    linear-gradient(var(--accent) 0 2px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 12px) bottom / 100% 8px no-repeat;
+}
 .faq-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
 .faq-tab {
   background: white;
@@ -1140,7 +1165,14 @@ body {
 .why-choose { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
 .wc-title { font-family: "Playfair Display", serif; font-size: 38px; font-weight: 800; color: var(--navy); }
 .wc-title span { color: var(--accent); }
-.wc-underline { width: 70px; height: 3px; background: var(--accent); margin: 16px auto 50px; border-radius: 2px; }
+.wc-underline {
+  width: 120px;
+  height: 10px;
+  margin: 16px auto 50px;
+  background:
+    linear-gradient(var(--accent) 0 2px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--accent) 0 2px, transparent 2px 12px) bottom / 100% 8px no-repeat;
+}
 .wc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .wc-card {
   background: var(--white);
@@ -1159,3 +1191,135 @@ body {
 .wc-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 @media (max-width: 900px) { .wc-grid { grid-template-columns: repeat(2, 1fr); } .wc-title { font-size: 30px; } }
 @media (max-width: 560px) { .wc-grid { grid-template-columns: 1fr; } .why-choose { padding: 60px 16px; } }
+
+/* =====================================================================
+   SURVEY-CHART SIGNATURE LAYER
+   Corner-bracket "viewfinder" frames on cards, faint graph-paper
+   texture on light sections, and monospace treatment for every
+   altitude / date / grade readout — the recurring cartographic motif
+   that ties the whole site together.
+   ===================================================================== */
+
+/* ── corner brackets: plain data cards get both corners ── */
+.wc-card,
+.award-item,
+.rev-card,
+.google-score,
+.stats-bar {
+  position: relative;
+}
+.wc-card::before,
+.award-item::before,
+.rev-card::before,
+.google-score::before,
+.stats-bar::before,
+.wc-card::after,
+.award-item::after,
+.rev-card::after,
+.google-score::after,
+.stats-bar::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  z-index: 2;
+}
+.wc-card::before,
+.award-item::before,
+.rev-card::before,
+.google-score::before,
+.stats-bar::before {
+  top: 8px;
+  left: 8px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.wc-card::after,
+.award-item::after,
+.rev-card::after,
+.google-score::after,
+.stats-bar::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+/* ── corner brackets: photo/content cards get a single top-left mark
+   (reads as a viewfinder reticle on the image, keeps the footer clean) ── */
+.trek-card,
+.story-card {
+  position: relative;
+}
+.trek-card::before,
+.story-card::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── faq items: quiet border-colored tick, lights up in accent when open ── */
+.faq-item { position: relative; }
+.faq-item::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--border);
+  border-left: 2px solid var(--border);
+  pointer-events: none;
+  transition: border-color 0.2s;
+}
+.faq-item.open::before { border-color: var(--accent); }
+
+/* ── graph-paper texture on light sections ── */
+.gallery {
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.035) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.035) 0 1px, transparent 1px 32px),
+    var(--bg);
+}
+.stat-container {
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
+    var(--bg);
+}
+.faq-section {
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
+    var(--bg);
+}
+.trust-section {
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.025) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.025) 0 1px, transparent 1px 32px),
+    linear-gradient(to bottom, #fff, var(--bg));
+}
+
+/* ── monospace data type: every altitude / date / grade / count reads
+   like an instrument readout, contrasted against the serif display type ── */
+.section-eyebrow,
+.route-strip-label,
+.rs-alt,
+.rs-name,
+.tk-meta span,
+.award-year,
+.rc-date,
+.gs-count,
+.stat-sub,
+.story-author-info .rc-trek {
+  font-family: var(--font-mono);
+}
+.rs-alt { letter-spacing: 0.3px; }
