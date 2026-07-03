@@ -1,14 +1,84 @@
-/* ══════════ SUMMER CAMP PAGE ══════════ */
+/* ═══════════════════════════════════════════════════════════
+   SUMMER CAMP PAGE — "FIELD DOSSIER" REDESIGN
+   Bold monochrome (ink black / paper white / concrete grey)
+   + one signal accent: Flare Orange, the color of expedition
+   flags, rescue gear and trail markers on the Himalayan ranges.
+   ═══════════════════════════════════════════════════════════ */
+
+#page-camp {
+  --navy: #0b0b0a;       /* ink — primary dark */
+  --teal: #1b1b19;       /* steel — secondary dark */
+  --gold: #ff4b1f;       /* flare orange — the one accent */
+  --gold2: #d63c13;      /* deep flare — accent pressed/hover */
+  --white: #f6f5f1;      /* paper */
+  --muted: #8c8b85;      /* concrete grey */
+  --border: #dedbd2;     /* hairline on paper */
+  --light: #efeee9;      /* light section bg */
+  background: var(--white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #page-camp * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── Shared texture: faint contour-line overlay, topographic-map DNA ── */
+.camp-hero-slider::after,
+.camp-testi::before,
+.camp-cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.045) 0 1px,
+      transparent 1px 36px
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.02) 0 1px,
+      transparent 1px 58px
+    );
+  z-index: 1;
+}
+.camp-cta-section::before {
+  background-image: repeating-linear-gradient(
+      115deg,
+      rgba(11, 11, 10, 0.035) 0 1px,
+      transparent 1px 36px
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(11, 11, 10, 0.02) 0 1px,
+      transparent 1px 58px
+    );
+}
+.camp-cta-section,
+.camp-testi {
+  position: relative;
+  overflow: hidden;
+}
+.camp-testi > *,
+.camp-cta-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════ HERO ══════════ */
 .camp-hero-slider {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  background: var(--navy);
 }
 .camp-hero-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.8s;
+  transition: opacity 0.9s ease;
 }
 .camp-hero-slide.active {
   opacity: 1;
@@ -17,10 +87,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(1) contrast(1.15) brightness(0.72);
+}
+.camp-hero-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 11, 10, 0.35) 0%,
+    rgba(11, 11, 10, 0.35) 40%,
+    rgba(11, 11, 10, 0.88) 100%
+  );
 }
 .camp-overlay-text {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,63 +112,72 @@
   padding: 40px;
 }
 .camp-big-title {
-  font-size: clamp(60px, 10vw, 130px);
+  font-size: clamp(64px, 11vw, 148px);
   font-weight: 900;
-  color: var(--Grey);
-  line-height: 1;
-  font-family: "Playfair Display", serif;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  color: var(--white);
+  line-height: 0.92;
+  font-family: "Big Shoulders Display", "Playfair Display", serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .camp-big-title .c-summit {
   color: var(--gold);
 }
 .camp-sub-title {
-  font-size: clamp(18px, 3vw, 32px);
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: 4px;
+  font-size: clamp(13px, 2vw, 18px);
+  font-weight: 600;
+  color: rgba(246, 245, 241, 0.65);
+  letter-spacing: 6px;
   text-transform: uppercase;
-  margin: 8px 0;
+  margin: 14px 0 2px;
+  font-family: "Inter", sans-serif;
 }
 .camp-big-camp {
   font-size: clamp(50px, 9vw, 120px);
   font-weight: 900;
-  color: var(--gold);
+  color: var(--white);
   line-height: 1;
-  font-family: "Playfair Display", serif;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  font-family: "Big Shoulders Display", "Playfair Display", serif;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px var(--gold);
 }
 .camp-slide-dots {
   position: absolute;
-  bottom: 80px;
+  bottom: 84px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
+  z-index: 2;
 }
 .camp-dot {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(246, 245, 241, 0.35);
   border: none;
   transition: all 0.2s;
 }
 .camp-dot.active {
   background: var(--gold);
+  width: 22px;
+  border-radius: 4px;
 }
 .camp-dl-btn {
   position: absolute;
-  bottom: 24px;
+  bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--gold);
-  color: var(--navy);
-  padding: 12px 32px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  z-index: 2;
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(246, 245, 241, 0.4);
+  padding: 12px 30px;
+  border-radius: 100px;
+  font-size: 12px;
   font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
@@ -93,22 +185,28 @@
   gap: 8px;
 }
 .camp-dl-btn:hover {
-  background: var(--gold2);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
 }
+
+/* ══════════ CONTACT BAR ══════════ */
 .camp-contact-bar {
-  background: var(--white);
-  padding: 166px 60px;
+  background: var(--navy);
+  padding: 22px 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(246, 245, 241, 0.1);
   flex-wrap: wrap;
   gap: 12px;
 }
 .ccb-q {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(246, 245, 241, 0.6);
+  text-transform: uppercase;
 }
 .ccb-right {
   display: flex;
@@ -121,91 +219,111 @@
   gap: 8px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--white);
 }
 .ccb-contact .ico {
-  font-size: 18px;
+  font-size: 16px;
+  filter: grayscale(1) brightness(1.6);
 }
+
+/* ══════════ SECTION SHELL ══════════ */
 .camp-section {
-  padding: 60px;
+  padding: 70px 60px;
 }
 .camp-section h2 {
-  font-size: 26px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--navy);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: "Inter", sans-serif;
 }
 .camp-underline {
-  width: 80px;
-  height: 2px;
+  width: 40px;
+  height: 3px;
   background: var(--gold);
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
+
+/* ── At a Glance cards ── */
 .camp-info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 56px;
 }
 .ci-card {
-  background: linear-gradient(135deg, var(--navy), var(--teal));
-  border-radius: 12px;
-  padding: 24px 20px;
-  color: var(--white);
-  transition: transform 0.3s;
+  background: var(--white);
+  padding: 28px 22px;
+  color: var(--navy);
+  transition: background 0.25s, color 0.25s;
 }
 .ci-card:hover {
-  transform: translateY(-4px);
+  background: var(--navy);
+  color: var(--white);
+  transform: none;
+}
+.ci-card:hover .ci-label {
+  color: var(--gold);
 }
 .ci-ico {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: 22px;
+  margin-bottom: 14px;
   display: block;
+  filter: grayscale(1) contrast(1.3);
 }
 .ci-label {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--gold);
-  font-weight: 700;
-  margin-bottom: 4px;
+  color: var(--gold2);
+  font-weight: 800;
+  margin-bottom: 6px;
 }
 .ci-val {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
+  font-family: "Big Shoulders Display", sans-serif;
+  letter-spacing: 0.3px;
 }
+
+/* ── Program cards ── */
 .camp-prog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
 }
 .cp-card {
-  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   background: var(--white);
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+  transition: background 0.3s;
 }
 .cp-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  transform: none;
+  box-shadow: none;
 }
 .cp-img {
   height: 220px;
   position: relative;
   overflow: hidden;
+  background: var(--navy);
 }
 .cp-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s;
+  filter: grayscale(1) contrast(1.1) brightness(0.85);
+  transition: filter 0.5s ease, transform 0.5s ease;
 }
 .cp-card:hover .cp-img img {
-  transform: scale(1.06);
+  filter: grayscale(0) contrast(1.05) brightness(0.95);
+  transform: scale(1.05);
 }
 .cp-tag {
   position: absolute;
@@ -213,37 +331,45 @@
   left: 14px;
   background: var(--gold);
   color: var(--navy);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 3px;
+  text-transform: uppercase;
 }
 .cp-body {
-  padding: 20px;
+  padding: 24px 22px;
 }
 .cp-body h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 18px;
+  font-family: "Big Shoulders Display", "Playfair Display", serif;
+  font-size: 24px;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 .cp-dets {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border);
 }
 .cp-det {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 .cp-desc {
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
 }
 .cp-foot {
   display: flex;
@@ -251,25 +377,28 @@
   justify-content: space-between;
 }
 .cp-price {
-  font-family: "Playfair Display", serif;
-  font-size: 20px;
-  font-weight: 900;
+  font-family: "Big Shoulders Display", serif;
+  font-size: 24px;
+  font-weight: 800;
   color: var(--navy);
 }
 .cp-price span {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
   font-family: "Inter", sans-serif;
   font-weight: 500;
+  text-transform: none;
 }
 .cp-enroll {
   background: var(--navy);
-  color: var(--gold);
-  padding: 10px 22px;
+  color: var(--white);
+  padding: 11px 22px;
   border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 700;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -277,95 +406,145 @@
   background: var(--gold);
   color: var(--navy);
 }
+
+/* ══════════ SCHEDULE — trail waypoint profile ══════════ */
 .sched-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 720px;
+  margin: 12px auto 0;
+  position: relative;
+  padding-left: 44px;
+}
+.sched-grid::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--muted) 0 5px,
+    transparent 5px 10px
+  );
 }
 .sched-card {
-  background: var(--white);
-  border-radius: 10px;
-  padding: 20px;
-  border-left: 4px solid var(--gold);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s;
+  position: relative;
+  background: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 22px 0 22px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.25s;
+}
+.sched-card:last-child {
+  border-bottom: none;
+}
+.sched-card::before {
+  content: "";
+  position: absolute;
+  left: -44px;
+  top: 26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 1px var(--gold);
 }
 .sched-card:hover {
-  transform: translateX(3px);
+  padding-left: 30px;
 }
 .sched-time {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   color: var(--gold2);
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  font-family: "Inter", monospace;
 }
 .sched-card h4 {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--navy);
   margin-bottom: 6px;
+  font-family: "Big Shoulders Display", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 .sched-card p {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.6;
+  max-width: 480px;
 }
+
+/* ══════════ TESTIMONIALS ══════════ */
 .camp-testi {
-  padding: 60px;
+  padding: 70px 60px;
   background: var(--navy);
 }
 .camp-testi h2 {
-  font-size: 26px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--white);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
 .camp-testi .cu {
-  height: 2px;
-  width: 80px;
+  height: 3px;
+  width: 40px;
   background: var(--gold);
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 .ct-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  gap: 1px;
+  background: rgba(246, 245, 241, 0.1);
+  border: 1px solid rgba(246, 245, 241, 0.1);
 }
 .ct-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 12px;
-  padding: 24px;
+  background: var(--navy);
+  border: none;
+  border-radius: 0;
+  padding: 28px;
 }
 .ct-stars {
   color: var(--gold);
-  font-size: 15px;
-  margin-bottom: 12px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
 }
 .ct-text {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.7;
-  margin-bottom: 16px;
-  font-style: italic;
+  font-size: 14px;
+  color: rgba(246, 245, 241, 0.8);
+  line-height: 1.75;
+  margin-bottom: 20px;
+  font-style: normal;
 }
 .ct-auth {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(246, 245, 241, 0.12);
 }
 .ct-av {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: var(--gold);
+  background: transparent;
+  border: 1.5px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px;
+  filter: grayscale(1) brightness(1.4);
 }
 .ct-name {
   font-size: 13px;
@@ -374,19 +553,25 @@
 }
 .ct-loc {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(246, 245, 241, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
+/* ══════════ CTA / REGISTER ══════════ */
 .camp-cta-section {
-  padding: 80px 60px;
+  padding: 90px 60px;
   text-align: center;
   background: var(--white);
 }
 .camp-cta-section h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 36px;
+  font-family: "Big Shoulders Display", "Playfair Display", serif;
+  font-size: clamp(32px, 5vw, 48px);
   font-weight: 900;
   color: var(--navy);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 .camp-cta-section h2 em {
   color: var(--gold);
@@ -394,9 +579,9 @@
 }
 .camp-cta-section p {
   color: var(--muted);
-  font-size: 15px;
-  max-width: 500px;
-  margin: 0 auto 32px;
+  font-size: 14px;
+  max-width: 480px;
+  margin: 0 auto 36px;
   line-height: 1.7;
 }
 .cta-form {
@@ -404,34 +589,60 @@
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 520px;
+  max-width: 560px;
   margin: 0 auto;
 }
-.cta-form input {
+.cta-form input,
+.cta-form select {
   flex: 1;
   min-width: 200px;
-  padding: 13px 18px;
+  padding: 14px 18px;
   border: 1.5px solid var(--border);
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 3px;
+  font-size: 13px;
   font-family: "Inter", sans-serif;
   outline: none;
+  background: var(--white);
+  color: var(--navy);
+  transition: border-color 0.2s;
 }
-.cta-form input:focus {
+.cta-form input:focus,
+.cta-form select:focus {
   border-color: var(--gold);
 }
 .cta-form button {
-  padding: 13px 28px;
-  background: var(--gold);
-  color: var(--navy);
-  font-size: 14px;
-  font-weight: 700;
+  padding: 14px 30px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
   border: none;
-  border-radius: 8px;
+  border-radius: 3px;
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
 }
 .cta-form button:hover {
-  background: var(--gold2);
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media (max-width: 720px) {
+  .camp-section,
+  .camp-testi,
+  .camp-cta-section {
+    padding: 48px 24px;
+  }
+  .camp-contact-bar {
+    padding: 18px 24px;
+  }
+  .sched-grid {
+    padding-left: 34px;
+  }
+  .sched-card::before {
+    left: -34px;
+  }
 }
