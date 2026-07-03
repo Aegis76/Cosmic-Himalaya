@@ -1,15 +1,14 @@
 /* ═══════════════════════════════════════════════════════════
    SUMMER CAMP PAGE — "FIELD DOSSIER" REDESIGN
-   Bold monochrome (ink black / paper white / concrete grey)
-   + one signal accent: Flare Orange, the color of expedition
-   flags, rescue gear and trail markers on the Himalayan ranges.
+   Bold two-tone (ink navy / paper white / concrete grey)
+   + one signal accent: Signal Blue, matching the rest of the site.
    ═══════════════════════════════════════════════════════════ */
 
 #page-camp {
-  --navy: #0b0b0a;       /* ink — primary dark */
-  --teal: #1b1b19;       /* steel — secondary dark */
-  --gold: #ff4b1f;       /* flare orange — the one accent */
-  --gold2: #d63c13;      /* deep flare — accent pressed/hover */
+  --navy: #0b1c3d;       /* ink navy — primary dark */
+  --teal: #12274f;       /* steel blue — secondary dark */
+  --gold: #2f6fed;       /* signal blue — the one accent */
+  --gold2: #1d4ed8;      /* deep signal blue — accent pressed/hover */
   --white: #f6f5f1;      /* paper */
   --muted: #8c8b85;      /* concrete grey */
   --border: #dedbd2;     /* hairline on paper */
@@ -47,12 +46,12 @@
 .camp-cta-section::before {
   background-image: repeating-linear-gradient(
       115deg,
-      rgba(11, 11, 10, 0.035) 0 1px,
+      rgba(11, 28, 61, 0.035) 0 1px,
       transparent 1px 36px
     ),
     repeating-linear-gradient(
       115deg,
-      rgba(11, 11, 10, 0.02) 0 1px,
+      rgba(11, 28, 61, 0.02) 0 1px,
       transparent 1px 58px
     );
 }
@@ -95,9 +94,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(11, 11, 10, 0.35) 0%,
-    rgba(11, 11, 10, 0.35) 40%,
-    rgba(11, 11, 10, 0.88) 100%
+    rgba(11, 28, 61, 0.35) 0%,
+    rgba(11, 28, 61, 0.35) 40%,
+    rgba(11, 28, 61, 0.88) 100%
   );
 }
 .camp-overlay-text {
@@ -261,13 +260,15 @@
   color: var(--navy);
   transition: background 0.25s, color 0.25s;
 }
-.ci-card:hover {
-  background: var(--navy);
-  color: var(--white);
-  transform: none;
-}
-.ci-card:hover .ci-label {
-  color: var(--gold);
+@media (hover: hover) and (pointer: fine) {
+  .ci-card:hover {
+    background: var(--navy);
+    color: var(--white);
+    transform: none;
+  }
+  .ci-card:hover .ci-label {
+    color: var(--gold);
+  }
 }
 .ci-ico {
   font-size: 22px;
@@ -321,9 +322,11 @@
   filter: grayscale(1) contrast(1.1) brightness(0.85);
   transition: filter 0.5s ease, transform 0.5s ease;
 }
-.cp-card:hover .cp-img img {
-  filter: grayscale(0) contrast(1.05) brightness(0.95);
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .cp-card:hover .cp-img img {
+    filter: grayscale(0) contrast(1.05) brightness(0.95);
+    transform: scale(1.05);
+  }
 }
 .cp-tag {
   position: absolute;
@@ -454,8 +457,10 @@
   border: 3px solid var(--white);
   box-shadow: 0 0 0 1px var(--gold);
 }
-.sched-card:hover {
-  padding-left: 30px;
+@media (hover: hover) and (pointer: fine) {
+  .sched-card:hover {
+    padding-left: 30px;
+  }
 }
 .sched-time {
   font-size: 11px;
