@@ -201,7 +201,7 @@
             <button class="tr-tab active" onclick="setTrustTab('video', this)">
               ▶ Video Reviews
             </button>
-            <button class="tr-tab" onclick="setTrustTab('awards', this)">
+            <button class="tr-tab" onclick="setTrustTab('reviews', this)">
               ⭐ Google Reviews
             </button>
           </div>
@@ -294,17 +294,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="trust-panel" id="tp-trusted">
-          <div class="trust-panel-content">
-            <div class="tpc-icon">🛡</div>
-            <div class="tpc-title">A Legacy of Trust</div>
-            <p class="tpc-text">
-              From solo adventurers to corporate groups and international students —
-              <strong>500,000+ trekkers</strong> have trusted Cosmic Himalaya to guide them
-              safely through the majestic Himalayas over the last 16 years.
-            </p>
           </div>
         </div>
         <div class="trust-panel active" id="tp-video">
@@ -573,163 +562,16 @@
     <script src="trek-logic.js"></script>
     <script src="script.js"></script>
 
-    <!-- ============================================================
-         MERGED FUNCTIONS: Trust Tabs, FAQ Tabs, Accordion, Cart, etc.
-         ============================================================ -->
+    <!-- Fix 1: Added mobile menu toggle function (assumes CSS handles .open on .nav-right) -->
     <script>
-      // ============================================================
-      // 1. TRUST TAB SWITCHER (Video, Trusted By, Google Reviews)
-      // ============================================================
-      function setTrustTab(tabId, btn) {
-        // Remove 'active' class from all tab buttons
-        document.querySelectorAll('.tr-tab').forEach(function(tab) {
-          tab.classList.remove('active');
-        });
-        // Add 'active' class to the clicked button
-        if (btn) btn.classList.add('active');
-
-        // Hide all trust panels
-        document.querySelectorAll('.trust-panel').forEach(function(panel) {
-          panel.classList.remove('active');
-        });
-
-        // Show the target panel
-        var targetPanel = document.getElementById('tp-' + tabId);
-        if (targetPanel) {
-          targetPanel.classList.add('active');
-        }
-      }
-
-      // ============================================================
-      // 2. FAQ TAB SWITCHER (Beginner, Booking, Family, etc.)
-      // ============================================================
-      function switchFaqTab(tabId, btn) {
-        // Remove 'active' from all FAQ tab buttons
-        document.querySelectorAll('.faq-tab').forEach(function(tab) {
-          tab.classList.remove('active');
-        });
-        if (btn) btn.classList.add('active');
-
-        // Hide all FAQ groups
-        document.querySelectorAll('.faq-group').forEach(function(group) {
-          group.classList.remove('active');
-        });
-
-        // Show the target FAQ group
-        var targetGroup = document.getElementById('faq-' + tabId);
-        if (targetGroup) {
-          targetGroup.classList.add('active');
-        }
-      }
-
-      // ============================================================
-      // 3. FAQ ACCORDION TOGGLE (Show/Hide Answers)
-      // ============================================================
-      function toggleFaq(btn) {
-        // Get the parent .faq-item
-        var item = btn.closest('.faq-item');
-        if (!item) return;
-
-        // Toggle the 'active' class on the item
-        item.classList.toggle('active');
-
-        // Optional: Close other open items (accordion style)
-        // If you want only one open at a time, uncomment below:
-        /*
-        var siblings = item.parentElement.querySelectorAll('.faq-item');
-        siblings.forEach(function(sib) {
-          if (sib !== item) sib.classList.remove('active');
-        });
-        */
-      }
-
-      // ============================================================
-      // 4. CART TOGGLE (Placeholder)
-      // ============================================================
-      function toggleCart() {
-        var badge = document.getElementById('cartBadge');
-        if (badge) {
-          // Toggle visibility or update count
-          var count = parseInt(badge.textContent, 10) || 0;
-          if (count === 0) {
-            badge.textContent = '1';
-            badge.style.display = 'inline-block';
-          } else {
-            badge.textContent = '0';
-            badge.style.display = 'none';
-          }
-        }
-        // Show a toast message (optional)
-        showToast('Cart updated');
-      }
-
-      // ============================================================
-      // 5. MOBILE SEARCH HANDLER
-      // ============================================================
-      function handleMobileSearch(event) {
-        if (event.key === 'Enter') {
-          var query = event.target.value.trim();
-          if (query.length > 0) {
-            // Redirect to a search page or filter treks
-            window.location.href = 'trek.html?search=' + encodeURIComponent(query);
-          }
-        }
-      }
-
-      // ============================================================
-      // 6. TOAST HELPER (if you don't already have it)
-      // ============================================================
-      function showToast(msg) {
-        var toast = document.getElementById('toast');
-        var toastMsg = document.getElementById('toastMsg');
-        if (toast && toastMsg) {
-          toastMsg.textContent = msg;
-          toast.classList.add('show');
-          clearTimeout(toast._timer);
-          toast._timer = setTimeout(function() {
-            toast.classList.remove('show');
-          }, 3000);
-        }
-      }
-
-      // ============================================================
-      // 7. MOBILE MENU TOGGLE (from second code)
-      // ============================================================
       function toggleMobileMenu() {
         const nav = document.querySelector('.nav-right');
         if (nav) {
           nav.classList.toggle('open');
         }
       }
-
-      // ============================================================
-      // 8. DEFAULT ACTIVE STATE ON PAGE LOAD
-      // ============================================================
-      document.addEventListener('DOMContentLoaded', function() {
-        // Trust: ensure the first tab (Video) is active
-        var firstTrustTab = document.querySelector('.tr-tab.active');
-        if (!firstTrustTab) {
-          var tab = document.querySelector('.tr-tab');
-          if (tab) tab.classList.add('active');
-        }
-        var firstTrustPanel = document.querySelector('.trust-panel.active');
-        if (!firstTrustPanel) {
-          var panel = document.getElementById('tp-video');
-          if (panel) panel.classList.add('active');
-        }
-
-        // FAQ: ensure the first FAQ tab and group are active
-        var firstFaqTab = document.querySelector('.faq-tab.active');
-        if (!firstFaqTab) {
-          var ftab = document.querySelector('.faq-tab');
-          if (ftab) ftab.classList.add('active');
-        }
-        var firstFaqGroup = document.querySelector('.faq-group.active');
-        if (!firstFaqGroup) {
-          var fgroup = document.getElementById('faq-beginner');
-          if (fgroup) fgroup.classList.add('active');
-        }
-      });
+      // Also ensure the menu is hidden initially if the class 'open' is not present.
+      // The CSS should have .nav-right { display: none; } and .nav-right.open { display: block; } (or similar).
     </script>
 
     <!-- =====================================================================
