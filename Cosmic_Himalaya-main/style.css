@@ -10,18 +10,17 @@
    ===================================================================== */
 
 :root {
-  /* Ink Navy — primary dark, text on white, hero background */
+  /* Primary dark */
   --navy: #0b1c3d;
-  /* Deep Blue — secondary dark, used in gradients alongside navy */
   --navy2: #12274f;
-  --teal: #16305e;
-  /* Signal Blue — the one accent, used sparingly for CTAs & highlights */
-  --gold: #2f6fed;
-  --gold2: #1d4ed8;
-  --gold3: #93c5fd;
+  --navy-light: #16305e;      /* renamed from --teal */
+
+  /* Accent colours (previously misnamed as --gold, --gold2, --gold3) */
   --accent: #2f6fed;
-  /* Chart Cyan — thin linework: contour rings, grid texture, ticks */
-  --chart: #5eb8ff;
+  --accent-dark: #1d4ed8;
+  --accent-light: #93c5fd;
+
+  /* Neutrals */
   --white: #fff;
   --light: #f5f8fd;
   --bg: #f7faff;
@@ -197,6 +196,7 @@ body {
   align-items: center;
   gap: 12px;
   padding: 16px 34px;
+  min-height: 44px;                    /* touch target */
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.97);
@@ -328,7 +328,7 @@ body {
 }
 .route-strip-line {
   fill: none;
-  stroke: var(--gold3);
+  stroke: var(--accent-light);
   stroke-width: 2;
   opacity: 0.55;
 }
@@ -559,7 +559,10 @@ body {
 /* ================= GALLERY ================= */
 .gallery {
   padding: var(--section-y) var(--section-x);
-  background: var(--bg);
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.02) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.02) 0 1px, transparent 1px 32px),
+    var(--bg);
 }
 .gallery h2 { text-align: center; margin-bottom: 40px; font-size: clamp(24px, 4vw, 36px); color: var(--navy); }
 .gallery-grid {
@@ -592,7 +595,10 @@ body {
 /* ══════════ TRUST TABS ══════════ */
 .trust-section {
   padding: var(--section-y) 0;
-  background: linear-gradient(to bottom, #fff, var(--bg));
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.02) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.02) 0 1px, transparent 1px 32px),
+    linear-gradient(to bottom, #fff, var(--bg));
 }
 .trust-tabs-container {
   display: flex;
@@ -670,7 +676,7 @@ body {
 .award-year {
   font-size: 12px;
   font-weight: 700;
-  color: var(--gold2);
+  color: var(--accent-dark);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 10px;
@@ -749,7 +755,7 @@ body {
   min-height: 44px;
 }
 .gs-write-btn:hover {
-  background: var(--gold2);
+  background: var(--accent-dark);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(47, 111, 237, 0.4);
   color: white;
@@ -909,14 +915,14 @@ body {
 .story-author { display: flex; align-items: center; gap: 18px; border-top: 1px solid var(--border); padding-top: 25px; }
 .story-author .rc-av {
   width: 50px; height: 50px; border-radius: 50%;
-  background: var(--navy); color: var(--gold3);
+  background: var(--navy); color: var(--accent-light);
   display: flex; align-items: center; justify-content: center;
   font-weight: 800; font-size: 20px;
   box-shadow: 0 5px 15px rgba(11, 28, 61, 0.2);
 }
 .story-author-info .rc-name { font-weight: 800; color: var(--navy); font-size: 17px; margin-bottom: 2px; }
 .story-author-info .rc-trek {
-  font-size: 13px; color: var(--gold2); font-weight: 700;
+  font-size: 13px; color: var(--accent-dark); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.5px;
 }
 
@@ -925,7 +931,14 @@ body {
 }
 
 /* ══════════ FAQ ══════════ */
-.faq-section { padding: var(--section-y) var(--section-x); background: var(--bg); text-align: center; }
+.faq-section {
+  padding: var(--section-y) var(--section-x);
+  background:
+    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.02) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.02) 0 1px, transparent 1px 32px),
+    var(--bg);
+  text-align: center;
+}
 .faq-section h2 { font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; color: var(--navy); margin-bottom: 12px; }
 .faq-underline {
   width: 120px;
@@ -1110,11 +1123,12 @@ body {
   .ccb-right { flex-direction: column; gap: 15px; }
 }
 
-/* ─── WHATSAPP FLOATING BUTTON (brand-locked green, unchanged) ─── */
+/* ─── WHATSAPP FLOATING BUTTON ─── */
 .wa-floating {
   position: fixed;
   bottom: 30px; right: 30px;
   width: 60px; height: 60px;
+  min-height: 44px;                    /* touch target */
   background: #25d366;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -1124,13 +1138,14 @@ body {
 }
 .wa-floating:hover { transform: scale(1.1); background: #20ba5a; }
 
-/* ─── BOOK NOW FLOATING BUTTON — now signal blue instead of red ─── */
+/* ─── BOOK NOW FLOATING BUTTON ─── */
 .book-now-floating {
   position: fixed;
   bottom: 105px; right: 30px;
-  background: var(--gold2);
+  background: var(--accent-dark);
   color: white;
   padding: 12px 24px;
+  min-height: 44px;                    /* touch target */
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
@@ -1246,8 +1261,7 @@ body {
   border-right: 2px solid var(--accent);
 }
 
-/* ── corner brackets: photo/content cards get a single top-left mark
-   (reads as a viewfinder reticle on the image, keeps the footer clean) ── */
+/* ── corner brackets: photo/content cards get a single top-left mark ── */
 .trek-card,
 .story-card {
   position: relative;
@@ -1281,32 +1295,6 @@ body {
   transition: border-color 0.2s;
 }
 .faq-item.open::before { border-color: var(--accent); }
-
-/* ── graph-paper texture on light sections ── */
-.gallery {
-  background:
-    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.035) 0 1px, transparent 1px 32px),
-    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.035) 0 1px, transparent 1px 32px),
-    var(--bg);
-}
-.stat-container {
-  background:
-    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
-    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
-    var(--bg);
-}
-.faq-section {
-  background:
-    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
-    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.03) 0 1px, transparent 1px 32px),
-    var(--bg);
-}
-.trust-section {
-  background:
-    repeating-linear-gradient(0deg, rgba(11, 28, 61, 0.025) 0 1px, transparent 1px 32px),
-    repeating-linear-gradient(90deg, rgba(11, 28, 61, 0.025) 0 1px, transparent 1px 32px),
-    linear-gradient(to bottom, #fff, var(--bg));
-}
 
 /* ── monospace data type: every altitude / date / grade / count reads
    like an instrument readout, contrasted against the serif display type ── */
