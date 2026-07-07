@@ -11,6 +11,20 @@
     <link href="navbar.css" rel="stylesheet" />
     <link href="footer.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+
+    <!-- ===== MERGED: Hero Tagline Styles ===== -->
+    <style>
+      .hero-tagline {
+        font-size: 1.4rem;
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        color: rgba(255, 255, 255, 0.85);
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+      }
+      /* If you want pure white instead of soft white, change to: color: #ffffff; */
+    </style>
   </head>
 
   <body>
@@ -37,7 +51,6 @@
         <div class="nav-cart" onclick="toggleCart()">
           🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
         </div>
-        <!-- Fix 1: Added onclick handler -->
         <button class="menu" onclick="toggleMobileMenu()">☰</button>
       </div>
 
@@ -77,11 +90,19 @@
         <div class="hero-scrim"></div>
         <div class="hero-content">
           <div class="eyebrow reveal-up d1"></div>
-          <h1 class="hero-title reveal-up d2">Cosmic Himalaya</span></h1>
+
+          <!-- MAIN TITLE -->
+          <h1 class="hero-title reveal-up d2">Cosmic Himalaya</h1>
+
+          <!-- ✨ TAGLINE — now styled with merged CSS ✨ -->
+          <p class="hero-tagline reveal-up d2">Discover Yourself & Beyond</p>
+
+          <!-- DESCRIPTION -->
           <p class="hero-sub reveal-up d3">
             Walk ancient Sherpa trails through the Khumbu, beneath towering peaks,
             to the base of the world's highest mountain — guided by those born to it.
           </p>
+
           <button
             class="hero-cta reveal-up d4"
             onclick="document.getElementById('popular-treks') && document.getElementById('popular-treks').scrollIntoView({ behavior: 'smooth' })"
@@ -98,7 +119,6 @@
         <div class="treks-slider-wrap">
           <div class="treks-slider" id="treksSlider">
 
-            <!-- Fix 5: Converted onclick to <a> links -->
             <a href="view-trek.html?trek=ebc" class="trek-card-link">
               <div class="trek-card reveal">
                 <div class="tk-img">
@@ -178,7 +198,6 @@
         <span class="section-eyebrow" style="display:block; text-align:center;">From The Trail</span>
         <h2>Images From The Mountains</h2>
         <div class="gallery-grid">
-          <!-- Fix 2: Added alt text to all gallery images -->
           <div class="g-item large">
             <img src="https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg?updatedAt=1778251441175" alt="Everest Base Camp trail with panoramic mountain views" loading="lazy" />
           </div>
@@ -216,7 +235,6 @@
               <div class="gs-num">4.9</div>
               <div class="gs-stars">★★★★★</div>
               <div class="gs-count">10,704+ Genuine Reviews</div>
-              <!-- Fix 3: Kept placeholder but with a comment – replace YOUR_PLACE_ID with actual ID -->
               <a href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID" target="_blank" class="gs-write-btn">
                 Write a Review
               </a>
@@ -506,7 +524,6 @@
       <div class="fs-left">
         <span>Follow the journey</span>
         <a href="https://www.instagram.com/cosmichimalaya/" class="fs-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.2 8.8 2.2 12 2.2m0 1.98c-3.15 0-3.52.01-4.76.07-1.15.05-1.77.24-2.18.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.41-.35 1.03-.4 2.18-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.22.55.47.94.88 1.35.41.41.8.66 1.35.88.41.16 1.03.35 2.18.4 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.41.35-1.03.4-2.18.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.18-.4-1.24-.06-1.61-.07-4.76-.07zm0 3.37a4.45 4.45 0 1 0 0 8.9 4.45 4.45 0 0 0 0-8.9zm0 7.34a2.89 2.89 0 1 1 0-5.78 2.89 2.89 0 0 1 0 5.78zm5.66-7.53a1.04 1.04 0 1 1-2.08 0 1.04 1.04 0 0 1 2.08 0z"/></svg></a>
-        <!-- Fix 3: Updated YouTube and Facebook links -->
         <a href="https://www.youtube.com/@cosmichimalaya" class="fs-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.52A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.57V8.43L15.82 12 9.6 15.57z"/></svg></a>
         <a href="https://www.facebook.com/cosmichimalaya" class="fs-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
         <a href="https://www.linkedin.com/company/112169118/admin/dashboard/" class="fs-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
@@ -562,7 +579,6 @@
     <script src="trek-logic.js"></script>
     <script src="script.js"></script>
 
-    <!-- Fix 1: Added mobile menu toggle function (assumes CSS handles .open on .nav-right) -->
     <script>
       function toggleMobileMenu() {
         const nav = document.querySelector('.nav-right');
@@ -570,12 +586,10 @@
           nav.classList.toggle('open');
         }
       }
-      // Also ensure the menu is hidden initially if the class 'open' is not present.
-      // The CSS should have .nav-right { display: none; } and .nav-right.open { display: block; } (or similar).
     </script>
 
     <!-- =====================================================================
-         TREK ADVISOR CHATBOT  (reads the TREKS object loaded above)
+         TREK ADVISOR CHATBOT
          ===================================================================== -->
 
     <div id="tb-launcher" aria-label="Open Trek Advisor" role="button" tabindex="0">
