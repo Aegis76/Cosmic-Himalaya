@@ -140,16 +140,6 @@ body {
   color: #fff;
 }
 
-.hero-logo {
-  transform: translateY(110px);
-  transition: transform 0.3s ease;
-  filter: brightness(0) invert(1);
-  max-width: 180px;
-  height: auto;
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
 .eyebrow {
   display: flex;
   align-items: center;
