@@ -15,19 +15,19 @@ const TREKS = {
     highlights: ["🏔 Base of Mt. Everest", "🗺 Khumbu Glacier", "🛕 Sherpa Culture", "🌅 Kala Patthar (18,209 ft)", "✈ Lukla Airport Experience"],
 itinerary: [
       { day: 1, title: "Arrival in Kathmandu", sub: "Acclimatize", points: ["Rest here for a day", "Prepare buffer for Lukla weather"] },
-      { day: 2, title: "Lukla Airport", sub: "9,200 ft", points: ["Arrive at sloping runway", "Thrilling takeoff and landing"] },
-      { day: 3, title: "Lukla to Phakding", sub: "3-4 hours", points: ["Forest trail to Nepali villages", "Walk along Dudh Koshi River"] },
-      { day: 4, title: "Phakding to Namche Bazar", sub: "5-6 hours", points: ["Enter Sagarmatha National Park", "Steep climb to suspension bridge"] },
-      { day: 5, title: "Namche Bazar - Rest Day", sub: "Rest Day", points: ["Explore the vibrant market", "Visit Sherpa Cultural Museum"] },
-      { day: 6, title: "Namche Bazar to Tengboche", sub: "5-7 hours", points: ["Trek to Tengboche Monastery", "Walk along Doodh Koshi river"] },
-      { day: 7, title: "Tengboche to Dingboche", sub: "5-6 hours", points: ["Cross Imja River suspension bridge", "Barren lands and steeper trails"] },
-      { day: 8, title: "Dingboche - Rest & Acclimatization", sub: "4,410 ft", points: ["Rest and adjust to altitude", "Optional trek to Nangkartshang"] },
-      { day: 9, title: "Dingboche to Lobuche", sub: "6-7 hours", points: ["Walk along Taboche & Jobo Lhaptshang", "Ascend zigzag Thukla Pass"] },
-      { day: 10, title: "Lobuche to Gorakshep", sub: "4-5 hours", points: ["Assemble before Base Camp push", "Windy trail by Khumbu Glacier"] },
-      { day: 11, title: "Everest Base Camp & Kala Patthar", sub: "18,209 ft", points: ["Highest point of the trek", "Stunning sunrise from Kala Patthar"] },
-      { day: 12, title: "Pheriche to Tengboche", sub: "5-6 hours", points: ["Trek traditional Everest Highway", "Stay at Monastery campus"] },
-      { day: 13, title: "Tengboche to Namche Bazar", sub: "5-6 hours", points: ["Steep descending trail", "Recover in the vibrant town"] },
-      { day: 14, title: "Namche Bazar to Lukla & Departure", sub: "Departure", points: ["Final descent to Lukla", "Early flight back to Kathmandu"] }
+      { day: 2, title: "Fly to Lukla & Trek to Phakding ", sub: "9,200 ft", points: ["Arrive at sloping runway", "Forest trail to Nepali villages"] },
+      { day: 3, title: "Phakding to Namche Bazar", sub: "5-6 hours", points: ["Enter Sagarmatha National Park", "Steep climb to suspension bridge"] },
+      { day: 4, title: "Namche Bazar - Rest Day", sub: "Rest Day", points: ["Explore the vibrant market", "Visit Sherpa Cultural Museum"] },
+      { day: 5, title: "Namche Bazar to Tengboche", sub: "5-7 hours", points: ["Trek to Tengboche Monastery", "Walk along Doodh Koshi river"] },
+      { day: 6, title: "Tengboche to Dingboche", sub: "5-6 hours", points: ["Cross Imja River suspension bridge", "Barren lands and steeper trails"] },
+      { day: 7, title: "Dingboche - Rest & Acclimatization", sub: "4,410 ft", points: ["Rest and adjust to altitude", "Optional trek to Nangkartshang"] },
+      { day: 8, title: "Dingboche to Lobuche", sub: "6-7 hours", points: ["Walk along Taboche & Jobo Lhaptshang", "Ascend zigzag Thukla Pass"] },
+      { day: 9, title: "Lobuche to Gorakshep", sub: "4-5 hours", points: ["Assemble before Base Camp push", "Windy trail by Khumbu Glacier"] },
+      { day: 10, title: "Everest Base Camp & Kala Patthar", sub: "18,209 ft", points: ["Highest point of the trek", "Stunning sunrise from Kala Patthar"] },
+      { day: 11, title: "Pheriche to Namche Bazar", sub: "5-6 hours", points: ["Trek traditional Everest Highway", "Stay at Monastery campus"] },
+      { day: 12, title: "Namche Bazar to Lukla", sub: "Departure", points: ["Final descent to Lukla", "Prepare for the early morning flight to Kathmandu"] }
+      { day: 13, title: "Fly Back to Kathmandu", sub: "Departure", points: ["Early flight back to Kathmandu", "The trek officially ends "] }
+      { day: 14, title: "Departure from kathmandu", points: ["Board your onward flight from Kathmandu", "Departure with unforgettable Himalayan memories"] }
     ],
     includes: [
     "Accommodation on Bed and Breakfast",
