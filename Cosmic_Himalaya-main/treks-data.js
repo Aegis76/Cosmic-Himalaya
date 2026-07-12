@@ -76,11 +76,96 @@ const TREKS = {
     bestTime: "Spring (March to May) and Autumn (September to November) are peak times, but the trek is accessible throughout the year.",
     highlights: ["🏔 Annapurna Sanctuary", "🌸 Rhododendron Forests", "🛁 Jhinu Hot Springs", "🏘 Gurung Village Culture", "📸 Fishtail Peak Views"],
     itinerary: [
-      { day: 1, title: "Arrival at Pokhara", sub: "Arrival", points: ["Gateway to Annapurna treks", "Explore Phewa Lake or local markets"] },
-      { day: 2, title: "Pokhara to Kuli to Ghandruk", sub: "Drive & Trek", points: ["Drive to Kuli via Nayapul", "Trek to Gurung village with mountain views"] },
-      { day: 3, title: "Ghandruk to Chomrong", sub: "Trek", points: ["Trek through forests and villages", "Views of Annapurna South & Machhapuchhare"] },
-      { day: "4-6", title: "Chomrong to Annapurna Base Camp", sub: "Ascend", points: ["Ascend through dense forests and glacial terrain", "Reach Annapurna Base Camp"] },
-      { day: "7-10", title: "Return to Pokhara and Kathmandu", sub: "Descend", points: ["Descend through the same trail", "Relax at Jhinu hot springs"] }
+      {
+        day: 1,
+        title: "Arrival at Pokhara",
+        sub: "Welcome",
+        points: [
+          "Arrive in Pokhara and hotel check-in",
+          "Relax and prepare for the trek"
+        ]
+      },
+      {
+        day: 2,
+        title: "Pokhara to Kuli to Ghandruk",
+        sub: "Trek Begins",
+        points: [
+          "Drive from Pokhara to Kuli",
+          "Trek to the beautiful village of Ghandruk"
+        ]
+      },
+      {
+        day: 3,
+        title: "Ghandruk to Chomrong",
+        sub: "Mountain Trails",
+        points: [
+          "Trek through forests and terraced fields",
+          "Reach the gateway village of Chomrong"
+        ]
+      },
+      {
+        day: 4,
+        title: "Chomrong to Dovan",
+        sub: "Into the Sanctuary",
+        points: [
+          "Descend to Chhomrong Khola and ascend through bamboo forests",
+          "Overnight stay at Dovan"
+        ]
+      },
+      {
+        day: 5,
+        title: "Dovan to Machhapuchhre Base Camp",
+        sub: "Higher Altitudes",
+        points: [
+          "Trek through Deurali and Himalayan landscapes",
+          "Reach Machhapuchhre Base Camp (MBC)"
+        ]
+      },
+      {
+        day: 6,
+        title: "Machhapuchhre Base Camp to Annapurna Base Camp",
+        sub: "Summit Destination",
+        points: [
+          "Short trek to Annapurna Base Camp",
+          "Enjoy panoramic views of the Annapurna massif"
+        ]
+      },
+      {
+        day: 7,
+        title: "Annapurna Base Camp to Bamboo",
+        sub: "Return Journey",
+        points: [
+          "Sunrise views at ABC before descending",
+          "Trek down to Bamboo"
+        ]
+      },
+      {
+        day: 8,
+        title: "Bamboo to Jhinu Danda",
+        sub: "Hot Springs",
+        points: [
+          "Descend through Chomrong to Jhinu Danda",
+          "Relax in the natural hot springs"
+        ]
+      },
+      {
+        day: 9,
+        title: "Jhinu Danda to Pokhara",
+        sub: "Back to the City",
+        points: [
+          "Short trek to the roadhead",
+          "Drive back to Pokhara"
+        ]
+      },
+      {
+        day: 10,
+        title: "Pokhara to Kathmandu",
+        sub: "Departure",
+        points: [
+          "Drive or fly back to Kathmandu",
+          "Trip concludes with unforgettable memories"
+        ]
+      }
     ],
     includes: ["TIMS & ACAP Permits", "Teahouse Stay", "Guide", "Porters", "Transportation"],
     excludes: ["Soft Drinks", "Laundry", "Wifi", "Personal Equipment"],
