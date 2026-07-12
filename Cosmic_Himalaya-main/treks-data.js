@@ -310,7 +310,7 @@ const TREKS = {
   },
   uppermustang: {
     title: "Upper Mustang Trek",
-    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp?updatedAt=1778251432323",
+    img: "https://www.alpineramble.com/uploads/fullbanner/uppermustang-hike.webp",
     region: "Mustang, Nepal",
     diff: "Moderate",
     season: "Mar-Nov",
