@@ -13,7 +13,7 @@ const TREKS = {
     about: "Reach the base of Mount Everest and experience Sherpa culture, glaciers, and iconic Himalayan views. The Everest Base Camp Trek is arguably the most iconic trek in the world, taking you through the heart of the Khumbu region of Nepal to the foot of the world's highest mountain.",
     bestTime: "Spring (March to May) and Autumn (Late September to November) offer the best mountain visibility.",
     highlights: ["🏔 Base of Mt. Everest", "🗺 Khumbu Glacier", "🛕 Sherpa Culture", "🌅 Kala Patthar (18,209 ft)", "✈ Lukla Airport Experience"],
-itinerary: [
+    itinerary: [
       { day: 1, title: "Arrival in Kathmandu", sub: "Acclimatize", points: ["Rest here for a day", "Prepare buffer for Lukla weather"] },
       { day: 2, title: "Fly to Lukla & Trek to Phakding ", sub: "9,200 ft", points: ["Arrive at sloping runway", "Forest trail to Nepali villages"] },
       { day: 3, title: "Phakding to Namche Bazar", sub: "5-6 hours", points: ["Enter Sagarmatha National Park", "Steep climb to suspension bridge"] },
@@ -25,24 +25,24 @@ itinerary: [
       { day: 9, title: "Lobuche to Gorakshep", sub: "4-5 hours", points: ["Assemble before Base Camp push", "Windy trail by Khumbu Glacier"] },
       { day: 10, title: "Everest Base Camp & Kala Patthar", sub: "18,209 ft", points: ["Highest point of the trek", "Stunning sunrise from Kala Patthar"] },
       { day: 11, title: "Pheriche to Namche Bazar", sub: "5-6 hours", points: ["Trek traditional Everest Highway", "Stay at Monastery campus"] },
-      { day: 12, title: "Namche Bazar to Lukla", sub: "Departure", points: ["Final descent to Lukla", "Prepare for the early morning flight to Kathmandu"] }
-      { day: 13, title: "Fly Back to Kathmandu", sub: "Departure", points: ["Early flight back to Kathmandu", "The trek officially ends "] }
+      { day: 12, title: "Namche Bazar to Lukla", sub: "Departure", points: ["Final descent to Lukla", "Prepare for the early morning flight to Kathmandu"] },
+      { day: 13, title: "Fly Back to Kathmandu", sub: "Departure", points: ["Early flight back to Kathmandu", "The trek officially ends "] },
       { day: 14, title: "Departure from kathmandu", points: ["Board your onward flight from Kathmandu", "Departure with unforgettable Himalayan memories"] }
     ],
     includes: [
-    "Accommodation on Bed and Breakfast",
-    "Transfer to and from Zanzibar Airport"
-  ],
-  excludes: [
-    "Visa",
-    "Insurance Visa",
-    "International and domestic flights",
-    "Other meals that are not listed",
-    "Other add on activities that can be arranged at an extra cost",
-    "Swimming Gears",
-    "Tips",
-    "Holiday seasons but it can be arranged at an extra costs"
-  ],
+      "Accommodation on Bed and Breakfast",
+      "Transfer to and from Zanzibar Airport"
+    ],
+    excludes: [
+      "Visa",
+      "Insurance Visa",
+      "International and domestic flights",
+      "Other meals that are not listed",
+      "Other add on activities that can be arranged at an extra cost",
+      "Swimming Gears",
+      "Tips",
+      "Holiday seasons but it can be arranged at an extra costs"
+    ],
     carry: ["ID & Passport", "Medical Certificate", "Trekking Boots", "Down Jacket", "Sunscreen", "Trekking Poles"],
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
@@ -75,7 +75,7 @@ itinerary: [
     about: "Walk through alpine forests, mountain villages, and breathtaking Annapurna landscapes. Ideal for first-time trekkers seeking mountain grandeur. The trek takes you deep into the heart of the Annapurna Sanctuary, surrounded by some of the world’s highest mountains.",
     bestTime: "Spring (March to May) and Autumn (September to November) are peak times, but the trek is accessible throughout the year.",
     highlights: ["🏔 Annapurna Sanctuary", "🌸 Rhododendron Forests", "🛁 Jhinu Hot Springs", "🏘 Gurung Village Culture", "📸 Fishtail Peak Views"],
-itinerary: [
+    itinerary: [
       { day: 1, title: "Arrival at Pokhara", sub: "Arrival", points: ["Gateway to Annapurna treks", "Explore Phewa Lake or local markets"] },
       { day: 2, title: "Pokhara to Kuli to Ghandruk", sub: "Drive & Trek", points: ["Drive to Kuli via Nayapul", "Trek to Gurung village with mountain views"] },
       { day: 3, title: "Ghandruk to Chomrong", sub: "Trek", points: ["Trek through forests and villages", "Views of Annapurna South & Machhapuchhare"] },
@@ -114,7 +114,7 @@ itinerary: [
     about: "A sacred pilgrimage to Mount Kailash and Lake Mansarovar, guided safely through Nepal routes. Experience the ultimate spiritual journey. This route offers a comprehensive experience starting and ending in Kathmandu.",
     bestTime: "The pilgrimage is best undertaken during the summer months when the weather is relatively stable.",
     highlights: ["🙏 Sacred Parikrama (Kora)", "🌊 Lake Mansarovar Dip", "🏔 Mt. Kailash North Face", "🧘 Spiritual Awakening", "🕉 Visit Gauri Kund"],
-itinerary: [
+    itinerary: [
       { day: 1, title: "Arrival in Kathmandu", sub: "Arrival", points: ["Check-in to a 4-star hotel", "Rest and quiet preparation"] },
       { day: 2, title: "Pashupatinath Darshan", sub: "Blessings", points: ["Morning blessings at Shree Pashupatinath", "Orientation and briefing"] },
       { day: 3, title: "Kathmandu to Syabrubesi", sub: "Drive", points: ["Scenic drive through Nepal's hills", "Final overnight stop inside Nepal"] },
@@ -130,27 +130,27 @@ itinerary: [
       { day: 13, title: "Return to Kathmandu", sub: "Kathmandu", points: ["Re-enter Nepal after border formalities", "Final night in a 4-star hotel"] },
       { day: 14, title: "Departure", sub: "Departure", points: ["Depart from Kathmandu", "Carry the presence of Kailash"] }
     ],
-includes: [
-    "4-star hotel in Kathmandu",
-    "Comfortable Tibetan hotels in Kyirong and Saga",
-    "Simple yet warm guesthouses near Mansarovar, Darchen, Diraphuk, and Zuthulphuk",
-    "Vegetarian meals throughout the journey",
-    "All necessary Tibet/China permits and group visa arrangements",
-    "AC coach transportation within Tibet",
-    "Official Mansarovar Eco-Bus Parikrama",
-    "Sherpa assistance and basic medical kit",
-    "Bottled oxygen support",
-    "Down jacket, duffel bag, and day pack"
-  ],
-  excludes: [
-    "International flights to and from Kathmandu",
-    "Travel insurance (mandatory - must be arranged individually)",
-    "Personal expenses (laundry, phone calls, snacks, extra beverages)",
-    "Additional stays due to early return, medical issues, or border restrictions",
-    "Tips or gratitude offerings for support staff",
-    "Cost of horse or porter during the Parikrama",
-    "Emergency evacuation or rescue due to altitude sickness or weather"
-  ],
+    includes: [
+      "4-star hotel in Kathmandu",
+      "Comfortable Tibetan hotels in Kyirong and Saga",
+      "Simple yet warm guesthouses near Mansarovar, Darchen, Diraphuk, and Zuthulphuk",
+      "Vegetarian meals throughout the journey",
+      "All necessary Tibet/China permits and group visa arrangements",
+      "AC coach transportation within Tibet",
+      "Official Mansarovar Eco-Bus Parikrama",
+      "Sherpa assistance and basic medical kit",
+      "Bottled oxygen support",
+      "Down jacket, duffel bag, and day pack"
+    ],
+    excludes: [
+      "International flights to and from Kathmandu",
+      "Travel insurance (mandatory - must be arranged individually)",
+      "Personal expenses (laundry, phone calls, snacks, extra beverages)",
+      "Additional stays due to early return, medical issues, or border restrictions",
+      "Tips or gratitude offerings for support staff",
+      "Cost of horse or porter during the Parikrama",
+      "Emergency evacuation or rescue due to altitude sickness or weather"
+    ],
     carry: ["Heavy Down Jacket", "Thermal Innerwear", "Sunglasses", "Strong Sunscreen", "Lip Balm"],
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp",
@@ -194,19 +194,19 @@ includes: [
       { day: 10, title: "Fly to Simikot & Nepalgunj", sub: "150m", points: ["Heli to border", "Return flight to Nepalgunj"] },
       { day: 11, title: "Drive to Lucknow – Departure", sub: "Lucknow", points: ["4-5 hr drive", "Airport transfer"] }
     ],
-includes: [
-    "Tibet Travel Permit and Visa fees.",
-    "Lucknow-Nepalgunj private transport.",
-    "All vegetarian meals and accommodation.",
-    "Domestic flights and Helicopter services.",
-    "Experienced Tour Leader and support crew"
-  ],
-  excludes: [
-    "Travel Insurance (must include evacuation).",
-    "Horse and helper fees during Parikrama (approx. 3400 Yuan).",
-    "Personal expenses (Wi-Fi, laundry, tips).",
-    "Costs due to flight delays or weather issues."
-  ],
+    includes: [
+      "Tibet Travel Permit and Visa fees.",
+      "Lucknow-Nepalgunj private transport.",
+      "All vegetarian meals and accommodation.",
+      "Domestic flights and Helicopter services.",
+      "Experienced Tour Leader and support crew"
+    ],
+    excludes: [
+      "Travel Insurance (must include evacuation).",
+      "Horse and helper fees during Parikrama (approx. 3400 Yuan).",
+      "Personal expenses (Wi-Fi, laundry, tips).",
+      "Costs due to flight delays or weather issues."
+    ],
     carry: ["Scanned Passport", "Health Certificate", "Heavy Down Jacket", "Thermal Innerwear"],
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp",
@@ -340,11 +340,3 @@ includes: [
     faqs: [{ q: "What is the best time for KGL?", a: "The best time is from July to early September." }]
   }
 };
-
-
-
-
-
-
-
-
