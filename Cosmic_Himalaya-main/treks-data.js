@@ -104,15 +104,14 @@ const TREKS = {
     highlights: ["🏔 Annapurna Sanctuary", "🌸 Rhododendron Forests", "♨ Jhinu Hot Springs", "🏘 Gurung Village Culture", "📸 Machhapuchhre (Fishtail) Views"],
     itinerary: [
       { day: 1, title: "Arrival at Pokhara", alt: 820, sub: "820 m", rest: true, points: ["Hotel check-in by the lake", "Prepare and brief for the trek"] },
-      { day: 2, title: "Drive to Kimche · trek to Ghandruk", alt: 1940, sub: "1,940 m", time: "4–5 hrs", points: ["Short drive to the trailhead", "Trek to the Gurung village of Ghandruk"] },
-      { day: 3, title: "Ghandruk to Chhomrong", alt: 2170, sub: "2,170 m", time: "5–6 hrs", points: ["Forest and terraced fields", "Reach the gateway village of Chhomrong"] },
-      { day: 4, title: "Chhomrong to Dovan", alt: 2600, sub: "2,600 m", time: "5–6 hrs", points: ["Descend to Chhomrong Khola", "Ascend through bamboo forest"] },
-      { day: 5, title: "Dovan to Machhapuchhre Base Camp", alt: 3700, sub: "3,700 m", time: "5–6 hrs", points: ["Trek via Deurali", "Reach MBC beneath Fishtail"] },
-      { day: 6, title: "MBC to Annapurna Base Camp", alt: 4130, sub: "4,130 m", time: "2–3 hrs", points: ["Short climb into the sanctuary", "360° views of the Annapurna massif"] },
-      { day: 7, title: "ABC to Bamboo", alt: 2310, sub: "2,310 m", time: "6–7 hrs", points: ["Sunrise at ABC then descend", "Long walk down to Bamboo"] },
-      { day: 8, title: "Bamboo to Jhinu Danda", alt: 1780, sub: "1,780 m", time: "5–6 hrs", points: ["Descend via Chhomrong", "Soak in the natural hot springs"] },
-      { day: 9, title: "Jhinu Danda to Pokhara", alt: 820, sub: "820 m", time: "3–4 hrs", points: ["Short trek to the roadhead", "Drive back to Pokhara"] },
-      { day: 10, title: "Pokhara to Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Drive or fly to Kathmandu", "Trip concludes"] }
+      { day: 2, title: "Drive to Jhinu Danda · Trek to Chhomrong", alt: 1940, sub: "1,940 m", time: "4–5 hrs", points: ["Short drive to the trailhead", "Trek to the village of Chhomrong"] },
+      { day: 3, title: "Chhomrong to Dovan", alt: 2600, sub: "2,600 m", time: "5–6 hrs", points: ["Descend to Chhomrong Khola", "Experience the thrill of crossing Suspension Bridges"] },
+      { day: 4, title: "Dovan to Deurali", alt: 3700, sub: "3,700 m", time: "6 hrs", points: ["Trek to Deurali", "Ascend through bamboo forest"] },
+      { day: 5, title: "Deurali to Annapurna Base Camp", alt: 4130, sub: "4,130 m", time: "6 hrs", points: ["Experience the thrill of reaching the iconic destination", "360° views of the Annapurna massif"] },
+      { day: 6, title: "ABC to Bamboo", alt: 2310, sub: "2,310 m", time: "6 hrs", points: ["Sunrise at ABC then descend", "Long walk down to Bamboo"] },
+      { day: 7, title: "Bamboo to Jhinu Danda", alt: 1780, sub: "1,780 m", time: "5 hrs", points: ["Descend via Chhomrong", "Soak in the natural hot springs"] },
+      { day: 8, title: "Jhinu Danda to Pokhara", alt: 820, sub: "820 m", time: "3–4 hrs", points: ["Short trek to the roadhead", "Drive back to Pokhara"] },
+      { day: 9, title: "Pokhara to Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Drive or fly to Kathmandu", "Trip concludes"] }
     ],
     includes: ["TIMS & ACAP permits", "Teahouse accommodation", "Licensed guide", "Porters", "Ground transport Pokhara ⇄ trailhead"],
     excludes: ["International & domestic flights", "Travel insurance", "Personal expenses (wifi, laundry, hot showers)", "Tips for staff"],
