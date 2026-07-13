@@ -1,337 +1,1267 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Treks | COSMIC HIMALAYA</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="navbar.css" rel="stylesheet" />
-    <link href="footer.css" rel="stylesheet" />
-    <link href="trek.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
-    
-  </head>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Treks — Nepal Himalaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+/* =====================================================================
+   DESIGN TOKENS  — merges safely with an existing :root
+   Same var names as the source file, refined values.
+   ===================================================================== */
+:root{
+  --navy:#16306b;
+  --navy-deep:#0d1f47;
+  --gold:#c6a662;
+  --gold2:#a8843f;
+  --gold3:#e3cd94;
+  --teal:#0e7c73;
+  --white:#ffffff;
+  --light:#f5f6fa;
+  --border:#e4e7f0;
+  --text:#414a5e;
+  --muted:#8a92a6;
 
-  <body>
-    <!-- NAVBAR -->
-    <nav>
-      <a href="index.html" class="nav-brand">
-        <strong>COSMIC HIMALAYA</strong>
-        <span>Authentic Himalayan Journeys</span>
-      </a>
-      
-      <ul class="nav-links">
-        <li><a href="trek.html" class="nb">Treks</a></li>
-        <li><a href="camp.html" class="nb">Camps</a></li>
-        <li><a href="b2b.html" class="nb">B2B</a></li>
-        <li><a href="store.html" class="nb">Store</a></li>
-        <li><a href="about.html" class="nb">About</a></li>
-        <li><a href="contact.html" class="nb">Contact</a></li>
-      </ul>
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --ease-soft:cubic-bezier(0.4,0,0.2,1);
+  --r-sm:10px; --r-md:14px; --r-lg:20px;
+  --shadow-sm:0 2px 4px rgba(22,48,107,.04),0 8px 20px rgba(22,48,107,.06);
+  --shadow-md:0 6px 12px rgba(22,48,107,.07),0 18px 40px rgba(22,48,107,.10);
+  --shadow-lg:0 10px 20px rgba(22,48,107,.08),0 28px 56px rgba(22,48,107,.14);
+  --mono:"Space Mono",ui-monospace,monospace;
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
 
-      <div class="nav-actions">
-        <div class="nav-search-wrap">
-          <input type="text" placeholder="Search..." id="navSearch" />
-          <span class="ns-ico">🔍</span>
-        </div>
-        <div class="nav-cart" onclick="toggleCart()">
-          🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
-        </div>
-        <button class="menu" type="button">☰</button>
-      </div>
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;font-family:var(--sans);color:var(--text);
+  background:var(--light);-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+button{font-family:inherit;}
+a{color:inherit;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px;}
 
-      <!-- Mobile Menu -->
-      <div class="nav-right">
-        <ul class="mobile-nav-links">
-          <li><a href="trek.html">Treks</a></li>
-          <li><a href="camp.html">Camps</a></li>
-          <li><a href="b2b.html">B2B</a></li>
-          <li><a href="store.html">Store</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+/* utility eyebrow shared by several sections */
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold2);
+}
 
-    <div class="page active" id="page-all-treks">
-      <section class="all-treks-hero">
-        <div
-          class="hero-overlay"
-        
-        ></div>
-        <div class="at-hero-content">
-          <h1>Explore Our <em>Adventures</em></h1>
-          <p>
-            From the heights of Everest to the meadows of Kashmir, find your
-            next journey.
-          </p>
-        </div>
-      </section>
+/* =====================================================================
+   TOP NAV (light chrome so the pages read as a real site)
+   ===================================================================== */
+.site-nav{
+  position:sticky;top:0;z-index:200;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(18px,5vw,60px);
+  background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);letter-spacing:.4px;}
+.brand .mk{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--navy),var(--teal));color:var(--gold3);font-size:15px;}
+.brand small{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:400;display:block;}
+.nav-links{display:flex;gap:26px;font-size:14px;font-weight:600;color:var(--text);}
+.nav-links a{text-decoration:none;position:relative;padding:4px 0;}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);}
+.nav-links a:hover::after{transform:scaleX(1);}
+@media(max-width:720px){.nav-links{display:none;}}
 
-      <section class="trek-filter-bar">
-        <div class="filter-container">
-          <div class="filter-row search-row">
-            <div class="filter-search-wrap">
-              <span class="fs-ico">🔍</span>
-              <input
-                type="text"
-                class="trek-search-input"
-                id="trekSearch"
-                placeholder="Search by trek name, region or month..."
-                onkeyup="filterTreks()"
-              />
-            </div>
-          </div>
-          <div class="filter-row" style="margin-top: 15px">
-            <button class="ftab active" onclick="setFTab(this)">
-              All Treks
-            </button>
-            <!-- <button class="ftab" onclick="setFTab(this)">Uttarakhand</button>
-            <button class="ftab" onclick="setFTab(this)">Himachal</button>
-            <button class="ftab" onclick="setFTab(this)">Ladakh</button>
-            <button class="ftab" onclick="setFTab(this)">Nepal</button>
-            <button class="ftab" onclick="setFTab(this)">Kashmir</button>
-            <button class="ftab" onclick="setFTab(this)">Sikkim</button>
-            <button class="ftab" onclick="setFTab(this)">Difficult</button>
-            <button class="ftab" onclick="setFTab(this)">Moderate</button>
-            <button class="ftab" onclick="setFTab(this)">Easy</button> -->
-          </div>
-        </div>
-      </section>
+/* =====================================================================
+   VIEW SWITCHER (grid  <->  detail)
+   ===================================================================== */
+.view{display:none;}
+.view.active{display:block;animation:panelFade .5s var(--ease) both;}
 
-      <section class="treks-grid-section">
-        <div class="grid-layout" id="allTreksGrid">
-          <!-- Dynamically populated from script.js -->
-        </div>
-        <div id="noTreksFound" class="no-results-msg" style="display: none">
-          <div class="no-res-ico">🏔️</div>
-          <h3>No Treks Found</h3>
-          <p>
-            We couldn't find any treks matching your search. Try a different
-            keyword or category.
-          </p>
-          <button
-            class="ftab active"
-            onclick="resetFilters()"
-            style="margin-top: 20px"
-          >
-            Clear All Filters
-          </button>
-        </div>
-      </section>
+/* =====================================================================
+   ALL-TREKS HERO
+   ===================================================================== */
+.all-treks-hero{
+  height:480px;position:relative;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+  background-image:url("https://images.unsplash.com/photo-1697012511691-52b2c14a133d?q=80&w=1600&auto=format&fit=crop");
+  background-size:cover;background-position:center;
+}
+.all-treks-hero::before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(22,48,107,.15) 0%,rgba(22,48,107,.55) 55%,rgba(13,31,71,.86) 100%);}
+/* faint topographic contour lines drawn over the hero — subject-true texture */
+.all-treks-hero::after{content:"";position:absolute;inset:0;z-index:1;opacity:.14;mix-blend-mode:overlay;
+  background-image:repeating-radial-gradient(ellipse 60% 50% at 68% 42%,transparent 0 22px,rgba(255,255,255,.7) 22px 23px);}
+.at-hero-content{position:relative;z-index:10;max-width:820px;padding:0 20px;animation:atRise .9s var(--ease) both;}
+@keyframes atRise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.at-eyebrow{color:var(--gold3);margin-bottom:16px;}
+.at-hero-content h1{
+  font-family:var(--serif);font-size:clamp(40px,6vw,70px);color:var(--white);
+  margin:0 0 18px;line-height:1.1;letter-spacing:-.5px;text-shadow:0 4px 30px rgba(0,0,0,.35);}
+.at-hero-content h1 em{font-style:italic;color:var(--gold3);}
+.at-hero-content p{color:rgba(255,255,255,.92);font-size:clamp(16px,2vw,20px);line-height:1.6;
+  font-weight:500;max-width:600px;margin:0 auto;text-shadow:0 2px 14px rgba(0,0,0,.3);}
 
-      <!-- Contact Bar -->
-      <div class="camp-contact-bar">
-        <div class="ccb-q">Have a question about our treks?</div>
-        <div class="ccb-right">
-          <div class="ccb-contact">
-            <span class="ico">📞</span>+977 9862468835
-          </div>
-          <div class="ccb-contact">
-            <span class="ico">✉</span>info@cosmichimalaya.com
-          </div>
-          <a href="contact.html" class="pill dark" style="padding: 10px 20px; font-size: 12px;">Contact Us</a>
-        </div>
-      </div>
-    </div>
+/* =====================================================================
+   FILTER BAR + SEARCH
+   ===================================================================== */
+.trek-filter-bar{background:var(--white);padding:24px clamp(20px,5vw,60px);border-bottom:1px solid var(--border);
+  position:sticky;top:64px;z-index:120;}
+.filter-row{display:flex;align-items:center;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
+.filter-row::-webkit-scrollbar{display:none;}
+.filter-icon{width:42px;height:42px;border-radius:50%;background:var(--navy);color:var(--white);
+  display:grid;place-items:center;font-size:15px;flex-shrink:0;box-shadow:0 6px 16px rgba(22,48,107,.25);}
+.ftab{padding:10px 20px;border-radius:999px;border:1.5px solid var(--border);background:transparent;
+  font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;cursor:pointer;
+  transition:color .25s var(--ease-soft),border-color .25s var(--ease-soft),background .25s var(--ease-soft),box-shadow .25s var(--ease-soft),transform .2s var(--ease);}
+.ftab:hover{border-color:var(--gold);transform:translateY(-1px);}
+.ftab.active{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700;box-shadow:0 6px 18px rgba(198,166,98,.35);}
+.filter-search-wrap{position:relative;flex:1;min-width:220px;display:flex;align-items:center;}
+.fs-ico{position:absolute;left:16px;color:var(--muted);font-size:15px;pointer-events:none;z-index:5;transition:color .25s var(--ease-soft);}
+.trek-search-input{flex:1;width:100%;padding:14px 20px 14px 44px;border:1.5px solid var(--border);
+  border-radius:var(--r-md);outline:none;font-family:var(--sans);font-size:16px;background:var(--white);
+  transition:border-color .3s var(--ease-soft),box-shadow .3s var(--ease-soft);}
+.trek-search-input::placeholder{color:var(--muted);}
+.trek-search-input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(198,166,98,.14),0 8px 22px rgba(22,48,107,.06);}
+.filter-search-wrap:focus-within .fs-ico{color:var(--gold);}
+.search-row{overflow:visible!important;margin-bottom:14px;}
 
-    <div class="footer-social">
-   <div class="fs-left">
-    <span>Follow the journey</span>
-    <a href="https://www.instagram.com/cosmichimalaya/" class="fs-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.25.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.25.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.4 2.2 8.8 2.2 12 2.2m0 1.98c-3.15 0-3.52.01-4.76.07-1.15.05-1.77.24-2.18.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.41-.35 1.03-.4 2.18-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.22.55.47.94.88 1.35.41.41.8.66 1.35.88.41.16 1.03.35 2.18.4 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.41.35-1.03.4-2.18.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.18-.4-1.24-.06-1.61-.07-4.76-.07zm0 3.37a4.45 4.45 0 1 0 0 8.9 4.45 4.45 0 0 0 0-8.9zm0 7.34a2.89 2.89 0 1 1 0-5.78 2.89 2.89 0 0 1 0 5.78zm5.66-7.53a1.04 1.04 0 1 1-2.08 0 1.04 1.04 0 0 1 2.08 0z"/></svg></a>
-    <a href="#" class="fs-icon" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.13C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.52A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3 3 0 0 0 2.12-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.57V8.43L15.82 12 9.6 15.57z"/></svg></a>
-    <a href="https://www.linkedin.com/company/112169118/admin/dashboard/" class="fs-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
-    <a href="#" class="fs-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
-    <a href="https://wa.me/919528309087?text=Hello%20I%20would%20like%20more%20information" class="fs-icon" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M.06 24l1.68-6.13A11.83 11.83 0 0 1 .15 11.9C.15 5.33 5.5 0 12.06 0a11.82 11.82 0 0 1 8.42 3.49 11.76 11.76 0 0 1 3.48 8.42c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.06 24zM6.6 20.15c1.68 1 3.28 1.6 5.4 1.6 5.45 0 9.9-4.43 9.9-9.88 0-5.46-4.43-9.9-9.89-9.9C6.55 1.97 2.12 6.4 2.12 11.86c0 2.23.65 3.9 1.75 5.65l-1 3.63 3.73-.99zM17.6 14.7c-.07-.12-.27-.2-.57-.35-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.14.3-.35.45-.53.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41z"/></svg></a>
+/* =====================================================================
+   TREK GRID + CARDS
+   ===================================================================== */
+.treks-grid-section{padding:clamp(30px,5vw,56px) clamp(16px,4vw,40px);max-width:1320px;margin:0 auto;}
+.grid-count{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:1px;margin:0 20px 18px;}
+.grid-count b{color:var(--navy);}
+.grid-layout{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:28px;padding:0 20px;align-items:stretch;}
+.trek-card{border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);
+  background:var(--white);cursor:pointer;display:flex;flex-direction:column;height:100%;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease);}
+.trek-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(198,166,98,.4);}
+.tk-img{height:212px;position:relative;overflow:hidden;flex-shrink:0;}
+.tk-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);}
+.tk-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(13,31,71,.55) 0%,transparent 48%);}
+.trek-card:hover .tk-img img{transform:scale(1.07);}
+.tk-diff{position:absolute;top:12px;left:12px;z-index:2;font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:var(--navy);background:var(--gold3);
+  padding:5px 10px;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.18);}
+.tk-loc{position:absolute;bottom:12px;left:12px;right:12px;z-index:2;color:var(--white);font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:6px;text-shadow:0 2px 8px rgba(0,0,0,.4);}
+.tk-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+.tk-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy);margin:0 0 12px;line-height:1.22;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.22em * 2);}
+.tk-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;padding:12px 0;border-top:1px dashed var(--border);border-bottom:1px dashed var(--border);}
+.tk-meta div{display:flex;flex-direction:column;gap:2px;}
+.tk-meta .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.tk-meta .v{font-size:13px;font-weight:700;color:var(--text);}
+.tk-price{margin-top:14px;font-size:13px;color:var(--muted);display:flex;align-items:baseline;gap:6px;}
+.tk-price b{font-family:var(--sans);color:var(--navy);font-size:20px;font-weight:800;letter-spacing:-.3px;}
+.tk-price .req{font-size:14px;font-weight:700;color:var(--teal);}
+.tk-btn{position:relative;width:100%;margin-top:auto;padding:12px;border:1.5px solid var(--navy);color:var(--navy);
+  background:transparent;font-size:13px;font-weight:700;border-radius:var(--r-sm);letter-spacing:.3px;overflow:hidden;
+  cursor:pointer;z-index:0;transition:color .3s var(--ease-soft);}
+.tk-btn::before{content:"";position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);z-index:-1;}
+.tk-btn:hover{color:var(--gold3);}
+.tk-btn:hover::before{transform:scaleX(1);}
+
+/* NO RESULTS */
+.no-results-msg{text-align:center;padding:80px 20px;background:var(--white);border-radius:var(--r-lg);
+  border:1px solid var(--border);box-shadow:var(--shadow-sm);margin:40px auto;max-width:500px;}
+.no-res-ico{font-size:56px;margin-bottom:16px;opacity:.85;}
+.no-results-msg h3{font-family:var(--serif);font-size:28px;color:var(--navy);margin:0 0 12px;}
+.no-results-msg p{color:var(--muted);font-size:16px;line-height:1.6;margin:0;}
+
+/* =====================================================================
+   TREK DETAILS — HERO
+   ===================================================================== */
+.trek-details-hero{height:540px;position:relative;display:flex;align-items:flex-end;padding:60px;color:var(--white);
+  background-size:cover;background-position:center;}
+.td-hero-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,31,71,.95) 12%,rgba(22,48,107,.5) 48%,transparent 84%);}
+.td-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;animation:atRise .9s var(--ease) both;}
+.td-breadcrumbs{font-size:13px;margin-bottom:18px;color:rgba(255,255,255,.9);font-weight:500;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;text-shadow:0 2px 4px rgba(0,0,0,.3);}
+.td-breadcrumbs a{color:rgba(255,255,255,.85);text-decoration:none;cursor:pointer;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+.td-breadcrumbs a:hover{color:var(--gold3);border-bottom-color:var(--gold3);}
+.td-breadcrumbs .cur{color:var(--gold3);font-weight:700;}
+.td-hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.td-hero-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;
+  padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px);}
+.td-hero-tag.gold{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+.td-title-row h1{font-family:var(--serif);font-size:clamp(34px,5vw,56px);margin:0 0 8px;letter-spacing:-.5px;line-height:1.05;text-shadow:0 4px 24px rgba(0,0,0,.4);}
+.td-title-row p{margin:0;font-size:16px;color:rgba(255,255,255,.9);display:flex;align-items:center;gap:8px;}
+
+/* INFO STRIP */
+.td-info-strip{background:var(--white);box-shadow:var(--shadow-md);border-radius:var(--r-lg);padding:26px 20px;
+  display:flex;justify-content:space-around;margin:-60px auto 0;position:relative;z-index:10;max-width:1200px;border:1px solid rgba(0,0,0,.03);}
+.td-qi{display:flex;align-items:center;gap:14px;padding:0 12px;border-right:1px solid var(--border);transition:transform .3s var(--ease);}
+.td-qi:last-child{border-right:none;}
+.td-qi:hover{transform:translateY(-3px);}
+.qi-ico{font-size:26px;filter:drop-shadow(0 4px 8px rgba(22,48,107,.22));}
+.qi-label{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;color:var(--muted);font-weight:700;letter-spacing:1.2px;margin-bottom:3px;}
+.qi-val{font-size:16px;font-weight:800;color:var(--navy);}
+
+/* =====================================================================
+   MAIN LAYOUT
+   ===================================================================== */
+.td-main-layout{max-width:1200px;margin:56px auto;display:grid;grid-template-columns:1fr 372px;gap:48px;padding:0 20px;overflow-wrap:break-word;}
+.td-left-col{min-width:0;width:100%;}
+
+.td-tabs{display:flex;gap:34px;border-bottom:2px solid var(--border);margin-bottom:36px;position:sticky;top:64px;
+  background:var(--light);z-index:100;padding-top:14px;}
+.td-t{position:relative;padding:15px 0;font-size:14px;font-weight:700;color:var(--muted);background:none;border:none;
+  cursor:pointer;letter-spacing:.4px;transition:color .3s var(--ease-soft);}
+.td-t::after{content:"";position:absolute;left:0;bottom:-2px;height:4px;width:100%;background:var(--gold);
+  border-radius:4px 4px 0 0;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);}
+.td-t.active{color:var(--navy);}
+.td-t.active::after{transform:scaleX(1);}
+.td-t:hover:not(.active){color:var(--navy);}
+
+.td-panel{display:none;width:100%;overflow-x:hidden;}
+.td-panel.active{display:block;animation:panelFade .45s var(--ease) both;}
+@keyframes panelFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.td-section-title{font-family:var(--serif);font-size:clamp(22px,4vw,28px);font-weight:700;color:var(--navy);
+  margin:0 0 18px;display:flex;align-items:center;gap:12px;line-height:1.25;}
+.td-section-title .num{font-family:var(--mono);font-size:13px;color:var(--gold2);font-weight:700;
+  border:1.5px solid var(--gold3);border-radius:8px;padding:4px 8px;align-self:center;}
+.td-text{font-size:16px;line-height:1.85;color:var(--text);margin-bottom:24px;}
+
+.td-callout{display:flex;gap:14px;background:linear-gradient(180deg,rgba(14,124,115,.06),rgba(14,124,115,.02));
+  border:1px solid rgba(14,124,115,.18);border-left:4px solid var(--teal);border-radius:var(--r-md);padding:16px 18px;margin-bottom:30px;}
+.td-callout .ci{font-size:20px;flex-shrink:0;}
+.td-callout .ct b{color:var(--teal);}
+.td-callout .ct{font-size:14.5px;line-height:1.6;color:var(--text);}
+
+/* Highlights */
+.td-highlights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:34px;}
+.tdh-item{display:flex;align-items:flex-start;gap:14px;background:var(--light);padding:16px;border-radius:var(--r-md);
+  border:1px solid rgba(0,0,0,.02);transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);}
+.tdh-item:hover{transform:translateY(-3px);background:var(--white);box-shadow:var(--shadow-sm);}
+.tdh-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+.tdh-txt{font-size:15px;font-weight:600;color:var(--text);line-height:1.5;}
+
+/* carry chips */
+.td-carry{display:flex;flex-wrap:wrap;gap:10px;}
+.carry-chip{font-size:13px;font-weight:600;color:var(--navy);background:var(--white);border:1.5px solid var(--border);
+  padding:9px 14px;border-radius:999px;display:flex;align-items:center;gap:7px;transition:border-color .25s,transform .25s;}
+.carry-chip:hover{border-color:var(--gold);transform:translateY(-2px);}
+.carry-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+/* =====================================================================
+   SIGNATURE — ALTITUDE RIDGELINE
+   ===================================================================== */
+.altitude-card{background:linear-gradient(180deg,var(--navy-deep),var(--navy));border-radius:var(--r-lg);
+  padding:26px 24px 12px;margin-bottom:34px;color:var(--white);box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
+.altitude-card::before{content:"";position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(0deg,transparent 0 39px,rgba(255,255,255,.04) 39px 40px);}
+.alt-head{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;margin-bottom:8px;flex-wrap:wrap;gap:10px;}
+.alt-head h3{font-family:var(--serif);font-size:22px;margin:0 0 4px;font-weight:700;}
+.alt-head .sub{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--gold3);text-transform:uppercase;}
+.alt-peak{text-align:right;}
+.alt-peak .pv{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--gold3);}
+.alt-peak .pl{font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.5px;}
+.alt-svg-wrap{position:relative;z-index:2;width:100%;overflow-x:auto;scrollbar-width:none;}
+.alt-svg-wrap::-webkit-scrollbar{display:none;}
+.alt-svg{display:block;width:100%;min-width:640px;height:230px;}
+.alt-grid-line{stroke:rgba(255,255,255,.10);stroke-width:1;}
+.alt-grid-label{fill:rgba(255,255,255,.45);font-family:var(--mono);font-size:9px;}
+.alt-area{fill:url(#altGrad);}
+.alt-line{fill:none;stroke:var(--gold3);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.4));}
+.alt-dot{fill:var(--navy-deep);stroke:var(--gold3);stroke-width:2;cursor:pointer;transition:r .2s var(--ease),fill .2s;}
+.alt-dot:hover,.alt-dot.hot{r:7;fill:var(--gold);}
+.alt-dot.peak{fill:var(--gold);stroke:var(--white);}
+.alt-daylabel{fill:rgba(255,255,255,.55);font-family:var(--mono);font-size:9px;text-anchor:middle;}
+.alt-legend{position:relative;z-index:2;display:flex;gap:18px;flex-wrap:wrap;padding:8px 2px 6px;font-size:11px;color:rgba(255,255,255,.7);}
+.alt-legend span{display:flex;align-items:center;gap:6px;}
+.alt-legend i{width:14px;height:3px;border-radius:2px;background:var(--gold3);display:inline-block;}
+.alt-legend i.peak{width:9px;height:9px;border-radius:50%;background:var(--gold);}
+
+/* =====================================================================
+   ITINERARY TIMELINE
+   ===================================================================== */
+.itin{position:relative;padding-left:8px;}
+.itin-item{position:relative;padding:0 0 20px 46px;}
+.itin-item::before{content:"";position:absolute;left:15px;top:6px;bottom:-6px;width:2px;background:var(--border);}
+.itin-item:last-child::before{display:none;}
+.itin-node{position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;
+  background:var(--white);border:2px solid var(--gold);color:var(--navy);font-family:var(--mono);font-weight:700;
+  font-size:12px;display:grid;place-items:center;z-index:2;transition:transform .25s var(--ease),background .25s,color .25s,box-shadow .25s;}
+.itin-item.rest .itin-node{border-color:var(--teal);color:var(--teal);}
+.itin-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px;
+  transition:border-color .25s var(--ease-soft),box-shadow .25s var(--ease-soft),transform .25s var(--ease-soft);cursor:default;}
+.itin-item:hover .itin-card{border-color:rgba(198,166,98,.5);box-shadow:var(--shadow-sm);transform:translateX(3px);}
+.itin-item:hover .itin-node{transform:scale(1.12);background:var(--gold);color:var(--navy);box-shadow:0 6px 16px rgba(198,166,98,.4);}
+.itin-item.rest:hover .itin-node{background:var(--teal);color:var(--white);box-shadow:0 6px 16px rgba(14,124,115,.4);}
+.itin-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.itin-title{font-size:16px;font-weight:800;color:var(--navy);line-height:1.3;}
+.itin-badges{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;}
+.itin-badge{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.5px;padding:4px 9px;border-radius:6px;white-space:nowrap;}
+.itin-badge.alt{background:rgba(22,48,107,.08);color:var(--navy);}
+.itin-badge.time{background:rgba(198,166,98,.16);color:var(--gold2);}
+.itin-badge.rest{background:rgba(14,124,115,.12);color:var(--teal);}
+.itin-points{list-style:none;margin:0;padding:0;display:grid;gap:6px;}
+.itin-points li{position:relative;padding-left:18px;font-size:14px;color:var(--text);line-height:1.5;}
+.itin-points li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+/* =====================================================================
+   INCLUSIONS / EXCLUSIONS
+   ===================================================================== */
+.ie-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:30px;}
+.ie-col{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;}
+.ie-col h4{font-family:var(--serif);font-size:19px;margin:0 0 16px;display:flex;align-items:center;gap:10px;color:var(--navy);}
+.ie-col.inc h4 .badge{background:rgba(14,124,115,.12);color:var(--teal);}
+.ie-col.exc h4 .badge{background:rgba(203,72,72,.12);color:#c0392b;}
+.ie-col h4 .badge{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:15px;}
+.ie-list{list-style:none;margin:0;padding:0;display:grid;gap:11px;}
+.ie-list li{position:relative;padding-left:28px;font-size:14.5px;line-height:1.55;color:var(--text);}
+.ie-list li::before{position:absolute;left:0;top:0;font-size:15px;font-weight:700;}
+.ie-col.inc .ie-list li::before{content:"✓";color:var(--teal);}
+.ie-col.exc .ie-list li::before{content:"✕";color:#c0392b;font-size:13px;top:1px;}
+.ie-list li b{color:var(--navy);}
+
+.docs-note{background:var(--light);border:1px dashed var(--border);border-radius:var(--r-md);padding:18px 20px;}
+.docs-note h5{margin:0 0 12px;font-size:14px;color:var(--navy);font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;}
+.docs-note ul{margin:0;padding-left:18px;display:grid;gap:6px;}
+.docs-note li{font-size:14px;color:var(--text);line-height:1.5;}
+
+/* =====================================================================
+   GALLERY
+   ===================================================================== */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:12px;margin-bottom:30px;}
+.gallery-grid figure{margin:0;overflow:hidden;border-radius:var(--r-md);position:relative;background:var(--border);}
+.gallery-grid figure:nth-child(1){grid-column:span 2;grid-row:span 2;}
+.gallery-grid figure:nth-child(4){grid-column:span 2;}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.gallery-grid figure:hover img{transform:scale(1.08);}
+.video-wrap{position:relative;padding-top:56.25%;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md);}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+/* Reviews */
+.review-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;margin-bottom:14px;}
+.rev-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.rev-emoji{width:48px;height:48px;border-radius:50%;background:var(--light);display:grid;place-items:center;font-size:24px;flex-shrink:0;}
+.rev-name{font-weight:800;color:var(--navy);font-size:15px;}
+.rev-loc{font-size:12px;color:var(--muted);}
+.rev-stars{margin-left:auto;color:var(--gold);letter-spacing:2px;font-size:15px;}
+.rev-date{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:2px;}
+.rev-text{font-size:15px;line-height:1.65;color:var(--text);font-style:italic;}
+
+/* =====================================================================
+   FAQ
+   ===================================================================== */
+.faq-list{max-width:100%;margin:0;display:block;}
+.faq-item{border-radius:var(--r-sm);background:var(--white);border:1px solid var(--border);margin-bottom:12px;
+  display:block;overflow:hidden;transition:border-color .3s var(--ease-soft),box-shadow .3s var(--ease-soft);}
+.faq-item:hover{border-color:rgba(198,166,98,.45);box-shadow:var(--shadow-sm);}
+.faq-item.open{border-color:rgba(198,166,98,.5);}
+.faq-q{padding:16px 18px;font-size:15px;font-weight:700;color:var(--navy);width:100%;display:flex;
+  justify-content:space-between;align-items:center;text-align:left;background:none;border:none;cursor:pointer;gap:12px;}
+.faq-q .chev{transition:transform .3s var(--ease);font-size:14px;color:var(--gold2);flex-shrink:0;}
+.faq-item.open .faq-q .chev{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease),padding .35s var(--ease);
+  padding:0 18px;font-size:14.5px;line-height:1.65;color:var(--text);}
+.faq-item.open .faq-a{max-height:300px;padding:0 18px 18px;}
+
+/* =====================================================================
+   BOOKING CARD  (wired to real PDF pricing tiers)
+   ===================================================================== */
+.td-booking-card{position:sticky;top:88px;background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:24px;box-shadow:var(--shadow-md);}
+.bk-tag{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold2);margin-bottom:6px;}
+.td-price-box{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.td-price-now{font-size:32px;font-weight:900;letter-spacing:-.5px;color:var(--navy);}
+.td-price-now .cur{font-size:20px;font-weight:700;color:var(--gold2);vertical-align:top;}
+.td-price-now .per{font-size:14px;font-weight:500;color:var(--muted);}
+.price-tier-note{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.5;}
+.price-tier-note b{color:var(--teal);}
+
+.td-form-group{margin-bottom:16px;}
+.td-form-group label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.td-select{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:inherit;font-size:16px;
+  outline:none;background:var(--white);transition:border-color .25s var(--ease-soft),box-shadow .25s var(--ease-soft);}
+.td-select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(198,166,98,.14);}
+
+.td-count-row{display:flex;align-items:center;justify-content:space-between;background:var(--light);
+  border:1.5px solid var(--border);border-radius:var(--r-sm);padding:6px 8px 6px 14px;}
+.td-count-row .cl{font-size:14px;font-weight:700;color:var(--navy);}
+.td-counter{display:flex;align-items:center;gap:6px;}
+.td-counter button{width:34px;height:34px;display:grid;place-items:center;background:var(--white);border:1.5px solid var(--border);
+  border-radius:8px;font-size:18px;font-weight:700;color:var(--navy);cursor:pointer;line-height:1;
+  transition:color .2s,border-color .2s,transform .15s var(--ease);}
+.td-counter button:hover{color:var(--gold2);border-color:var(--gold);transform:scale(1.08);}
+.td-counter .cval{font-family:var(--mono);min-width:30px;text-align:center;font-size:16px;font-weight:700;color:var(--navy);}
+
+.porter-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;
+  padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--white);}
+.porter-row .pl{font-size:13.5px;font-weight:700;color:var(--navy);}
+.porter-row .ps{font-size:11.5px;color:var(--muted);}
+.switch{position:relative;width:46px;height:26px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;}
+.switch .track{position:absolute;inset:0;background:var(--border);border-radius:999px;cursor:pointer;transition:background .25s;}
+.switch .track::before{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;background:var(--white);
+  border-radius:50%;transition:transform .25s var(--ease);box-shadow:0 2px 5px rgba(0,0,0,.2);}
+.switch input:checked + .track{background:var(--teal);}
+.switch input:checked + .track::before{transform:translateX(20px);}
+
+.td-total-row{display:flex;justify-content:space-between;align-items:center;margin:20px 0 6px;padding-top:16px;border-top:1px dashed var(--border);}
+.td-total-label{font-weight:700;color:var(--navy);font-size:15px;}
+.td-total-val{font-size:24px;font-weight:900;color:var(--navy);letter-spacing:-.5px;}
+.td-total-val .cur{font-size:15px;color:var(--gold2);}
+.total-sub{font-size:11.5px;color:var(--muted);text-align:right;margin-bottom:16px;}
+
+.td-book-btn{position:relative;width:100%;background:linear-gradient(120deg,var(--navy),var(--teal));color:var(--gold3);
+  border:none;padding:16px;border-radius:var(--r-sm);font-size:16px;font-weight:800;letter-spacing:.3px;overflow:hidden;
+  cursor:pointer;box-shadow:0 10px 24px rgba(22,48,107,.22);transition:transform .25s var(--ease),box-shadow .3s var(--ease);}
+.td-book-btn::before{content:"";position:absolute;top:0;left:-120%;width:80%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);transition:left .6s var(--ease);}
+.td-book-btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(22,48,107,.3);}
+.td-book-btn:hover::before{left:130%;}
+.bk-trust{display:flex;flex-direction:column;gap:8px;margin-top:16px;}
+.bk-trust div{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text);}
+.bk-trust .ti{color:var(--teal);font-weight:700;}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media(max-width:1024px){
+  .td-main-layout{grid-template-columns:1fr;gap:30px;margin:44px auto;}
+  .td-booking-card{position:static;margin-top:6px;}
+  .trek-details-hero{height:480px;padding:50px 40px;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid figure:nth-child(1){grid-column:span 2;}
+  .gallery-grid figure:nth-child(4){grid-column:span 1;}
+}
+@media(max-width:768px){
+  .all-treks-hero{height:380px;}
+  .trek-filter-bar{top:64px;}
+  .trek-details-hero{height:420px;padding:40px 20px;}
+  .td-info-strip{flex-wrap:wrap;gap:16px;padding:18px;margin-top:-34px;width:calc(100% - 40px);}
+  .td-qi{width:calc(50% - 10px);gap:10px;padding:0;border-right:none;}
+  .qi-ico{font-size:22px;}
+  .td-tabs{gap:20px;overflow-x:auto;padding:14px 20px 0;margin:0 -20px 30px;white-space:nowrap;flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--border);}
+  .td-tabs::-webkit-scrollbar{display:none;}
+  .td-t{font-size:14px;flex-shrink:0;padding:12px 2px;}
+  .td-t:last-child{padding-right:30px;}
+  .td-highlights-grid{grid-template-columns:1fr;}
+  .ie-grid{grid-template-columns:1fr;}
+  .td-text{font-size:15px;line-height:1.75;}
+}
+@media(max-width:600px){
+  .trek-filter-bar{padding:18px 15px;}
+  .treks-grid-section{padding:24px 8px;}
+  .grid-layout{gap:16px;grid-template-columns:1fr;padding:0 10px;}
+  .grid-count{margin:0 10px 14px;}
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:180px;}
+  .gallery-grid figure:nth-child(1){grid-column:span 1;grid-row:span 1;}
+  .faq-q{padding:14px 15px;font-size:14px;}
+}
+@media(max-width:480px){
+  .all-treks-hero{height:320px;}
+  .trek-details-hero{height:360px;padding:28px 16px;}
+  .td-title-row h1{font-size:28px;}
+  .td-info-strip{gap:12px;padding:14px;margin-top:-26px;width:calc(100% - 28px);border-radius:var(--r-md);}
+  .td-qi{width:calc(50% - 6px);}
+  .qi-ico{font-size:18px;}
+  .td-main-layout{margin:26px auto;padding:0 14px;gap:26px;}
+  .td-booking-card{padding:20px;border-radius:var(--r-md);}
+  .td-price-now{font-size:28px;}
+  .td-counter button{width:38px;height:38px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="site-nav">
+  <div class="brand">
+    <span class="mk">▲</span>
+    <span>Nepal Himalaya<small>TREKS &amp; EXPEDITIONS</small></span>
   </div>
+  <div class="nav-links">
+    <a onclick="showGrid()">All Treks</a>
+    <a>Regions</a>
+    <a>About</a>
+    <a>Contact</a>
+  </div>
+</nav>
+
+<!-- ===================== VIEW: ALL TREKS ===================== -->
+<div id="gridView" class="view active">
+  <header class="all-treks-hero">
+    <div class="at-hero-content">
+      <div class="eyebrow at-eyebrow">Nepal · Tibet · India</div>
+      <h1>Walk the <em>roof of the world</em></h1>
+      <p>Hand-run Himalayan treks with certified Sherpa guides, honest teahouse comfort, and altitude done the safe way.</p>
+    </div>
+  </header>
+
+  <div class="trek-filter-bar">
+    <div class="filter-row search-row">
+      <div class="filter-search-wrap">
+        <span class="fs-ico">🔍</span>
+        <input id="trekSearch" class="trek-search-input" type="text" placeholder="Search treks, regions or peaks…" oninput="renderGrid()" />
+      </div>
+    </div>
+    <div class="filter-row" id="filterTabs">
+      <div class="filter-icon">☰</div>
+    </div>
+  </div>
+
+  <section class="treks-grid-section">
+    <p class="grid-count" id="gridCount"></p>
+    <div class="grid-layout" id="gridLayout"></div>
+  </section>
+</div>
+
+<!-- ===================== VIEW: TREK DETAIL ===================== -->
+<div id="detailView" class="view">
+  <header class="trek-details-hero" id="tdHero">
+    <div class="td-hero-overlay"></div>
+    <div class="td-hero-content">
+      <nav class="td-breadcrumbs">
+        <a onclick="showGrid()">Home</a> <span>›</span>
+        <a onclick="showGrid()">All Treks</a> <span>›</span>
+        <span class="cur" id="bcTitle"></span>
+      </nav>
+      <div class="td-hero-tags" id="tdHeroTags"></div>
+      <div class="td-title-row">
+        <h1 id="tdTitle"></h1>
+        <p id="tdRegion"></p>
+      </div>
+    </div>
+  </header>
+
+  <div class="td-info-strip" id="tdInfoStrip"></div>
+
+  <div class="td-main-layout">
+    <div class="td-left-col">
+      <div class="td-tabs" id="tdTabs">
+        <button class="td-t active" data-p="overview">Overview</button>
+        <button class="td-t" data-p="itinerary">Itinerary</button>
+        <button class="td-t" data-p="inclusions">Inclusions</button>
+        <button class="td-t" data-p="gallery">Gallery</button>
+        <button class="td-t" data-p="reviews">Reviews</button>
+        <button class="td-t" data-p="faq">FAQ</button>
+      </div>
+
+      <div class="td-panel active" id="panel-overview"></div>
+      <div class="td-panel" id="panel-itinerary"></div>
+      <div class="td-panel" id="panel-inclusions"></div>
+      <div class="td-panel" id="panel-gallery"></div>
+      <div class="td-panel" id="panel-reviews"></div>
+      <div class="td-panel" id="panel-faq"></div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-section">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <h6>Navigation</h6>
-            <a href="index.html">Home</a>
-            <a href="trek.html">Treks</a>
-            <a href="camp.html">Summer Camp</a>
-            <a href="store.html">Store</a>
-            <a href="contact.html">Contact</a>
-            <a href="index.html#faq">FAQs</a>
-          </div>
-          <div class="footer-col">
-            <h6>Legal</h6>
-            <a href="disclaimer.html">Disclaimer</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-          </div>
-          <div class="footer-col">
-            <h6>Our Base</h6>
-            <div class="cc-row">📍 Kathmandu, Nepal</div>
-            <div class="cc-row">🏔 Serving Everest, Annapurna & Kailash Regions</div>
-            <div class="cc-row">🕒 Mon–Sun | 08:00 AM – 06:00 PM (NPT)</div>
-          </div>
-          <div class="footer-col">
-            <h6>Contact info</h6>
-            <div class="cc-row">✉ info@cosmichimalaya.com</div>
-            <div class="cc-row">📞 +977 9862468835 (Dilip)</div>
-            <div class="cc-row">📞 +91 85276 61108 (Chandrashekhar Sharma)</div>
-          </div>
+    <aside>
+      <div class="td-booking-card" id="bookingCard"></div>
+    </aside>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   TREK DATA  — EBC corrected to match the quotation PDF.
+   pricing.tiers = real PDF numbers; other treks use priceFrom placeholders.
+   ===================================================================== */
+const rupee = n => "₹" + n.toLocaleString("en-IN");
+
+const TREKS = {
+  ebc: {
+    title: "Everest Base Camp Trek",
+    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+    region: "Khumbu Region, Nepal",
+    country: "Nepal",
+    diff: "Moderate – Difficult",
+    season: "Mar–May & Sep–Nov",
+    dur: "14 Days / 13 Nights",
+    alt: "5,364 m",
+    altNote: "Kala Patthar 5,545 m",
+    dist: "130 km",
+    startEnd: "Lukla",
+    dates: ["Mar 15, 2026", "Apr 10, 2026", "May 5, 2026", "Sep 20, 2026", "Oct 15, 2026"],
+    // Real pricing from the quotation (per person, INR)
+    pricing: {
+      tiers: [
+        { min: 1, max: 4,  price: 66000, label: "1–4 trekkers" },
+        { min: 5, max: 14, price: 64000, label: "5–14 trekkers" },
+        { min: 15, max: 99, price: 60000, label: "15+ trekkers" }
+      ],
+      porter: 5700
+    },
+    about: "The Everest Base Camp trek is the most iconic walk on earth — a 14-day journey through the heart of the Khumbu to the foot of the world's highest mountain. You'll cross Sherpa villages, suspension bridges over the Dudh Koshi, rhododendron forest, and glacial moraine, standing beside the Khumbu Icefall at 5,364 m before a sunrise on Kala Patthar for the definitive view of Everest.",
+    bestTime: "Spring (March–May) and Autumn (late September–November) give the clearest skies and most stable flying weather into Lukla. Peak-season flights may reroute via Ramechhap — road transfer from Kathmandu is arranged if so.",
+    highlights: ["🏔 Stand at Everest Base Camp (5,364 m)", "🌅 Sunrise from Kala Patthar (5,545 m)", "🧊 Face-to-face with the Khumbu Icefall", "🛕 Tengboche Monastery, largest in Khumbu", "🏘 Sherpa culture in Namche Bazaar", "✈ The legendary Lukla mountain flight"],
+    itinerary: [
+      { day: 1,  title: "Arrival in Kathmandu",              alt: 1330, sub: "1,330 m", rest: true,  points: ["Airport pickup and hotel transfer", "Free evening to rest before the trek", "No meals included today"] },
+      { day: 2,  title: "Fly to Lukla · trek to Phakding",   alt: 2652, sub: "2,652 m", time: "3–4 hrs", points: ["Early scenic flight to Lukla (2,860 m)", "Gentle descent along the Dudh Koshi river", "All meals + 3 hot drinks, fresh fruit at breakfast"] },
+      { day: 3,  title: "Phakding to Namche Bazaar",         alt: 3440, sub: "3,440 m", time: "5–6 hrs", points: ["Cross the famous Hillary Suspension Bridge", "Steep climb into the Sherpa capital", "Enter Sagarmatha National Park"] },
+      { day: 4,  title: "Acclimatization at Namche",         alt: 3440, sub: "3,440 m", rest: true,  points: ["Climb-high, sleep-low hike to Everest View Hotel", "First views of Everest, Lhotse & Ama Dablam", "Evening tea, snacks and rest"] },
+      { day: 5,  title: "Namche to Tengboche",               alt: 3860, sub: "3,860 m", time: "5–6 hrs", points: ["Trail to the hilltop Tengboche Monastery", "Grand amphitheatre of Himalayan peaks", "Evening tea and snacks included"] },
+      { day: 6,  title: "Tengboche to Dingboche",            alt: 4410, sub: "4,410 m", time: "5–6 hrs", points: ["Through rhododendron forest, cross Imja Khola", "Ascend to the wind-swept Imja valley", "Full-board meals and hot drinks"] },
+      { day: 7,  title: "Acclimatization at Dingboche",      alt: 4410, sub: "4,410 m", rest: true,  points: ["Optional hike to Nangkartshang (5,083 m)", "Views toward Island Peak & Makalu", "Second key rest day for altitude"] },
+      { day: 8,  title: "Dingboche to Lobuche",              alt: 4940, sub: "4,940 m", time: "4–5 hrs", points: ["Reach the Khumbu Glacier moraine", "Pause at the Everest Memorial at Thukla", "Overnight at Lobuche"] },
+      { day: 9,  title: "Gorakshep · Everest Base Camp",     alt: 5164, sub: "EBC 5,364 m", time: "7–8 hrs", points: ["Long walk along the glacier to Gorakshep", "Reach Everest Base Camp — see the Khumbu Icefall", "Return to sleep at Gorakshep (5,164 m)"] },
+      { day: 10, title: "Kala Patthar · trek to Pheriche",   alt: 4371, sub: "5,545 m", time: "7–8 hrs", points: ["Pre-dawn climb to Kala Patthar for sunrise on Everest", "Highest point of the trek (5,545 m)", "Descend to Pheriche (4,371 m)"] },
+      { day: 11, title: "Pheriche to Namche Bazaar",         alt: 3440, sub: "3,440 m", time: "6–7 hrs", points: ["Long descent back to lush Namche", "Retrace the traditional Everest highway", "Full-board meals included"] },
+      { day: 12, title: "Namche Bazaar to Lukla",            alt: 2860, sub: "2,860 m", time: "6–7 hrs", points: ["Final trekking day back to Lukla", "Last suspension-bridge crossings", "Rest ahead of the morning flight"] },
+      { day: 13, title: "Fly back to Kathmandu",             alt: 1330, sub: "1,330 m", points: ["Early flight Lukla → Kathmandu / Ramechhap", "Hotel transfer and free time", "Farewell dinner + completion-certificate ceremony"] },
+      { day: 14, title: "Departure from Kathmandu",          alt: 1330, sub: "Departure", rest: true, points: ["Early cab transfer to the airport", "Trip concludes with Himalayan memories", "No meals included today"] }
+    ],
+    includes: [
+      "<b>2 nights</b> in a 3★ Kathmandu hotel (B&B, twin sharing)",
+      "<b>11 nights</b> in trail teahouse lodges (twin sharing)",
+      "Full-board meals on trek (Day 2–12): B, L, D with 3 hot drinks per meal & evening snacks",
+      "Fresh fruit with breakfast, every day",
+      "1 litre of warm drinking water each evening",
+      "Round-trip Kathmandu/Ramechhap ⇄ Lukla flights + all Kathmandu airport transfers",
+      "Certified, English-speaking trekking guide for the full trip",
+      "Sagarmatha National Park & Khumbu Pasang Lhamu Rural Municipality permits",
+      "Trek map + Everest Base Camp completion certificate"
+    ],
+    excludes: [
+      "<b>Porter service</b> — add ₹5,700/person for the entire trek (1 porter per 2 trekkers)",
+      "Nepal visa (not required for Indian nationals) & personal expenses — laundry, bar bills, battery charging, bottled water, calls, hot showers",
+      "Lunch & dinner in Kathmandu (except the farewell dinner)",
+      "Any extra nights of accommodation in Kathmandu",
+      "International airfare, arrival or departure taxes",
+      "Tips for guides & porters",
+      "Travel insurance + emergency rescue/heli-evacuation — <b>insurance is mandatory</b> and must cover high-altitude trekking & helicopter evacuation"
+    ],
+    documents: ["Soft copy of a valid ID (Passport or Voter ID) to confirm booking", "Original Passport or Voter ID for on-site verification", "Passport-sized photographs (as required for permits)"],
+    carry: ["Valid ID / Passport", "Insurance (heli-evac)", "Trekking Boots", "Down Jacket", "Sunscreen & Lip Balm", "Trekking Poles", "Thermal Layers", "Headlamp"],
+    photos: [
+      "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+      "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+      "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+    ],
+    videos: ["0XbCoPtpMh0"],
+    reviews: [
+      { name: "Anish", loc: "Delhi", e: "🧗", r: 5, date: "Oct 2025", text: "Incredible experience — the guide's pacing on the acclimatization days made all the difference. Kala Patthar at sunrise is unmatched." },
+      { name: "Priya", loc: "Pune", e: "🥾", r: 5, date: "May 2025", text: "Everything was handled: permits, flights, food. The two rest days are what get you to base camp feeling strong." }
+    ],
+    faqs: [
+      { q: "How difficult is the Everest Base Camp trek?", a: "It's rated moderate to difficult. There's no technical climbing, but you're walking 5–8 hours a day at altitude for up to two weeks. Good cardiovascular fitness and some prior high-altitude experience are strongly recommended." },
+      { q: "Is travel insurance really mandatory?", a: "Yes. Your policy must explicitly cover high-altitude trekking and helicopter evacuation. Emergency rescue and evacuation costs are not included in the package." },
+      { q: "What happens if the Lukla flight is cancelled?", a: "During peak seasons flights may be diverted to Ramechhap's Manthali Airport, in which case road transport from Kathmandu to Ramechhap is arranged. The 14-day duration can shift with flight and weather conditions." },
+      { q: "Do Indian nationals need a visa?", a: "No — Nepal visa fees are not applicable for Indian nationals. Carry a valid Passport or Voter ID, which is also needed for your trekking permits." },
+      { q: "Are porters included?", a: "Porters are an optional add-on at ₹5,700 per person for the entire trek, at a ratio of 1 porter per 2 trekkers. There's a strictly enforced 12 kg per-person baggage limit for porter welfare." }
+    ]
+  },
+
+  abc: {
+    title: "Annapurna Base Camp Trek",
+    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp",
+    region: "Annapurna Region, Nepal", country: "Nepal",
+    diff: "Moderate", season: "Year-Round", dur: "10 Days", alt: "4,130 m", dist: "115 km", startEnd: "Pokhara",
+    dates: ["Apr 05, 2026", "May 15, 2026", "Oct 10, 2026"], priceFrom: 42000,
+    about: "Walk through alpine forest, mountain villages and the dramatic Annapurna Sanctuary — an amphitheatre ringed by some of the world's highest peaks. One of the best moderate treks for first-timers seeking real Himalayan grandeur.",
+    bestTime: "Spring and Autumn are peak, but the sanctuary is accessible year-round.",
+    highlights: ["🏔 Annapurna Sanctuary", "🌸 Rhododendron Forests", "♨ Jhinu Hot Springs", "🏘 Gurung Village Culture", "📸 Machhapuchhre (Fishtail) Views"],
+    itinerary: [
+      { day: 1, title: "Arrival at Pokhara", alt: 820, sub: "820 m", rest: true, points: ["Hotel check-in by the lake", "Prepare and brief for the trek"] },
+      { day: 2, title: "Drive to Kimche · trek to Ghandruk", alt: 1940, sub: "1,940 m", time: "4–5 hrs", points: ["Short drive to the trailhead", "Trek to the Gurung village of Ghandruk"] },
+      { day: 3, title: "Ghandruk to Chhomrong", alt: 2170, sub: "2,170 m", time: "5–6 hrs", points: ["Forest and terraced fields", "Reach the gateway village of Chhomrong"] },
+      { day: 4, title: "Chhomrong to Dovan", alt: 2600, sub: "2,600 m", time: "5–6 hrs", points: ["Descend to Chhomrong Khola", "Ascend through bamboo forest"] },
+      { day: 5, title: "Dovan to Machhapuchhre Base Camp", alt: 3700, sub: "3,700 m", time: "5–6 hrs", points: ["Trek via Deurali", "Reach MBC beneath Fishtail"] },
+      { day: 6, title: "MBC to Annapurna Base Camp", alt: 4130, sub: "4,130 m", time: "2–3 hrs", points: ["Short climb into the sanctuary", "360° views of the Annapurna massif"] },
+      { day: 7, title: "ABC to Bamboo", alt: 2310, sub: "2,310 m", time: "6–7 hrs", points: ["Sunrise at ABC then descend", "Long walk down to Bamboo"] },
+      { day: 8, title: "Bamboo to Jhinu Danda", alt: 1780, sub: "1,780 m", time: "5–6 hrs", points: ["Descend via Chhomrong", "Soak in the natural hot springs"] },
+      { day: 9, title: "Jhinu Danda to Pokhara", alt: 820, sub: "820 m", time: "3–4 hrs", points: ["Short trek to the roadhead", "Drive back to Pokhara"] },
+      { day: 10, title: "Pokhara to Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Drive or fly to Kathmandu", "Trip concludes"] }
+    ],
+    includes: ["TIMS & ACAP permits", "Teahouse accommodation", "Licensed guide", "Porters", "Ground transport Pokhara ⇄ trailhead"],
+    excludes: ["International & domestic flights", "Travel insurance", "Personal expenses (wifi, laundry, hot showers)", "Tips for staff"],
+    documents: ["Passport / valid ID soft copy", "Passport-sized photos for permits"],
+    carry: ["Trekking Boots", "Daypack", "Warm Jacket", "Raincoat", "Sun Protection"],
+    photos: ["https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp","https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%202.webp","https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop","https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"],
+    videos: ["dNuzZeRBX5Y"],
+    reviews: [{ name: "Elena", loc: "Russia", e: "🌸", r: 5, date: "Sep 2025", text: "Beautiful scenery and very well managed. A perfect first Himalayan trek." }],
+    faqs: [{ q: "Is it good for beginners?", a: "Yes — it's one of the best moderate treks for anyone with good general fitness." }]
+  },
+
+  kailash: {
+    title: "Kailash Mansarovar Yatra",
+    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp",
+    region: "Nepal – Tibet Route", country: "Tibet",
+    diff: "Difficult", season: "May – Sep", dur: "14 Days", alt: "5,630 m", dist: "Overland + 52 km Kora", startEnd: "Kathmandu",
+    dates: ["May 24, 2026", "Jun 19, 2026", "Sep 03, 2026"], priceFrom: 185000,
+    about: "A sacred pilgrimage to Mount Kailash and Lake Mansarovar via Nepal, starting and ending in Kathmandu. The ultimate spiritual journey across the Tibetan plateau, built around the three-day Kailash Parikrama (Kora).",
+    bestTime: "Summer months offer the most stable weather for the high-altitude crossing.",
+    highlights: ["🙏 Sacred 3-day Parikrama (Kora)", "🌊 Holy dip at Lake Mansarovar", "🏔 North Face of Mt. Kailash", "⛰ Dolma-La Pass (5,630 m)", "🕉 Gauri Kund"],
+    itinerary: [
+      { day: 1, title: "Arrival in Kathmandu", alt: 1330, sub: "1,330 m", rest: true, points: ["Check-in and rest", "Quiet preparation"] },
+      { day: 2, title: "Pashupatinath Darshan", alt: 1330, sub: "Blessings", rest: true, points: ["Morning blessings", "Orientation & briefing"] },
+      { day: 3, title: "Kathmandu to Syabrubesi", alt: 1550, sub: "1,550 m", time: "7–8 hrs", points: ["Scenic drive through the hills", "Final night inside Nepal"] },
+      { day: 4, title: "Enter Tibet — Kyirong", alt: 2900, sub: "2,900 m", points: ["Border immigration formalities", "Acclimatize in Kyirong"] },
+      { day: 5, title: "Kyirong to Mansarovar via Saga", alt: 4590, sub: "4,590 m", time: "long drive", points: ["Cross the Tibetan plateau", "Arrive at the sacred lake"] },
+      { day: 6, title: "Spiritual day at Mansarovar", alt: 4590, sub: "Spiritual", rest: true, points: ["Snan, puja, meditation", "Reflection by the lake"] },
+      { day: 7, title: "Mansarovar to Darchen", alt: 4575, sub: "4,575 m", points: ["Short drive to Darchen", "Kora briefing"] },
+      { day: 8, title: "Yamadwar to Diraphuk", alt: 5080, sub: "Kora begins", time: "6–7 hrs", points: ["Begin the Parikrama", "North Face of Kailash"] },
+      { day: 9, title: "Acclimatize at Diraphuk", alt: 5080, sub: "5,080 m", rest: true, points: ["Let the body adjust", "Prepare for the pass"] },
+      { day: 10, title: "Dolma-La Pass to Zuthulphuk", alt: 5630, sub: "5,630 m", time: "8–9 hrs", points: ["Climb the Dolma-La Pass", "Descend to Gauri Kund"] },
+      { day: 11, title: "Complete Kora · drive to Saga", alt: 4600, sub: "Saga", time: "long drive", points: ["Finish the Parikrama", "Drive toward Saga"] },
+      { day: 12, title: "Saga to Kyirong", alt: 2900, sub: "2,900 m", points: ["Descend to lower altitude", "Overnight in Kyirong"] },
+      { day: 13, title: "Return to Kathmandu", alt: 1330, sub: "1,330 m", points: ["Re-enter Nepal", "Final night in Kathmandu"] },
+      { day: 14, title: "Departure", alt: 1330, sub: "Departure", rest: true, points: ["Depart Kathmandu", "Carry the presence of Kailash"] }
+    ],
+    includes: ["4★ hotel in Kathmandu", "Tibetan hotels & guesthouses en route", "Vegetarian meals throughout", "All Tibet/China permits & group visa", "AC coach transport in Tibet", "Sherpa assistance, medical kit & bottled oxygen", "Down jacket, duffel & day pack"],
+    excludes: ["International flights to/from Kathmandu", "Travel insurance (mandatory, arranged individually)", "Personal expenses", "Horse/porter during Parikrama", "Emergency evacuation or rescue"],
+    documents: ["Passport valid 6+ months", "Passport-sized photos for group visa"],
+    carry: ["Heavy Down Jacket", "Thermal Innerwear", "Sunglasses", "Strong Sunscreen", "Lip Balm"],
+    photos: ["https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp","https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%203.jpg","https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%201.jpg","https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"],
+    videos: ["rcE0dfTez-I"],
+    reviews: [{ name: "Rajesh", loc: "Mumbai", e: "🕉", r: 5, date: "Aug 2025", text: "Divine experience. Everything was well coordinated across the border." }],
+    faqs: [{ q: "Do I need a visa?", a: "Yes, a group visa for Tibet is required, which we arrange for the whole group." }]
+  },
+
+  kailashHeli: {
+    title: "Kailash Yatra — Lucknow Heli",
+    img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp",
+    region: "Lucknow → Tibet", country: "Tibet",
+    diff: "Challenging", season: "May – Sep", dur: "11 Days", alt: "5,645 m", dist: "Heli + Overland", startEnd: "Lucknow",
+    dates: ["May 20, 2026", "Jun 15, 2026", "Aug 28, 2026"], priceFrom: 165000,
+    about: "An 11-day pilgrimage from Lucknow using scenic flights and a helicopter hop to Hilsa — the fastest comfortable path to Mount Kailash and Lake Mansarovar, with the full three-day Parikrama.",
+    bestTime: "May–September for clearer skies and safer flying conditions.",
+    highlights: ["🚁 Helicopter to the Tibet border", "🙏 Sacred 3-day Parikrama", "🌊 Mansarovar holy dip", "⛰ Dolma-La Pass (5,645 m)"],
+    itinerary: [
+      { day: 1, title: "Lucknow to Nepalgunj", alt: 150, sub: "180 km", time: "4–5 hrs", points: ["Drive to Nepalgunj", "Preparation briefing"] },
+      { day: 2, title: "Fly Nepalgunj to Simikot", alt: 2910, sub: "2,910 m", points: ["55-min scenic flight", "Acclimatization rest"] },
+      { day: 3, title: "Heli to Hilsa · drive Taklakot", alt: 3775, sub: "3,775 m", points: ["20-min helicopter ride", "Drive to Taklakot"] },
+      { day: 4, title: "Rest day in Taklakot", alt: 3775, sub: "3,775 m", rest: true, points: ["Dedicated acclimatization", "Light local walks"] },
+      { day: 5, title: "Drive to Lake Mansarovar", alt: 4590, sub: "4,590 m", points: ["Holy dip in the lake", "Spiritual rituals"] },
+      { day: 6, title: "Mansarovar to Darchen", alt: 4575, sub: "4,575 m", points: ["Sunrise at the lake", "Prepare for Parikrama"] },
+      { day: 7, title: "Trek to Dirapuk", alt: 5080, sub: "Kora day 1", time: "6–7 hrs", points: ["18 km trek", "Views of the North Face"] },
+      { day: 8, title: "Dirapuk to Zuthulphuk", alt: 5645, sub: "5,645 m", time: "8–9 hrs", points: ["Cross Dolma-La Pass", "Visit sacred Gauri Kund"] },
+      { day: 9, title: "Darchen to Taklakot", alt: 3775, sub: "3,775 m", points: ["Finish Parikrama", "Drive back to Taklakot"] },
+      { day: 10, title: "Fly Simikot to Nepalgunj", alt: 150, sub: "Return", points: ["Heli to border", "Return flight to Nepalgunj"] },
+      { day: 11, title: "Drive to Lucknow", alt: 120, sub: "Departure", rest: true, points: ["4–5 hr drive", "Airport transfer"] }
+    ],
+    includes: ["Tibet travel permit & visa fees", "Lucknow–Nepalgunj private transport", "All vegetarian meals & accommodation", "Domestic flights & helicopter services", "Experienced tour leader & support crew"],
+    excludes: ["Travel insurance (must include evacuation)", "Horse/helper fees during Parikrama (~3,400 Yuan)", "Personal expenses (wifi, laundry, tips)", "Costs from flight delays or weather"],
+    documents: ["Scanned passport", "Health certificate", "Passport-sized photos"],
+    carry: ["Scanned Passport", "Health Certificate", "Heavy Down Jacket", "Thermal Innerwear"],
+    photos: ["https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp","https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%203.webp","https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%204.webp","https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"],
+    videos: ["rcE0dfTez-I"],
+    reviews: [{ name: "Anish", loc: "Lucknow", e: "🚁", r: 5, date: "Sep 2025", text: "The helicopter route saved so much time. Highly recommended for a shorter window." }],
+    faqs: [{ q: "How long is the Parikrama?", a: "The Mount Kailash Parikrama is 52 km, undertaken over three days." }]
+  },
+
+  uppermustang: {
+    title: "Upper Mustang Trek",
+    img: "https://www.alpineramble.com/uploads/fullbanner/uppermustang-hike.webp",
+    region: "Mustang, Nepal", country: "Nepal",
+    diff: "Moderate", season: "Mar – Nov", dur: "14 Days", alt: "3,840 m", dist: "125 km", startEnd: "Jomsom",
+    dates: ["May 15, 2026", "Oct 05, 2026"], priceFrom: 110000,
+    about: "The 'Forbidden Kingdom' of Upper Mustang — a desert-like, rain-shadow landscape of ochre cliffs, sky caves and the walled medieval capital of Lo Manthang, steeped in Tibetan Buddhist culture.",
+    bestTime: "Being in a rain shadow, Upper Mustang is one of few treks open through the monsoon (Jun–Aug); Spring and Autumn are also excellent.",
+    highlights: ["🏰 Walled capital of Lo Manthang", "🏜 High-desert landscapes", "🏯 Centuries-old monasteries", "🧗 Chhoser sky caves", "🏔 Dhaulagiri & Nilgiri views"],
+    itinerary: [
+      { day: 1, title: "Arrival in Kathmandu", alt: 1400, sub: "1,400 m", rest: true, points: ["Hotel transfer", "Permit prep & briefing"] },
+      { day: 2, title: "Fly/drive to Pokhara", alt: 820, sub: "820 m", rest: true, points: ["Journey to the lakeside city", "Explore Pokhara"] },
+      { day: 3, title: "Fly to Jomsom · trek Kagbeni", alt: 2810, sub: "2,810 m", time: "3–4 hrs", points: ["Mountain flight to Jomsom", "Walk the Kali Gandaki riverbed"] },
+      { day: 4, title: "Trek to Chele", alt: 3050, sub: "3,050 m", time: "5–6 hrs", points: ["Enter the restricted zone", "Climb to Chele village"] },
+      { day: 5, title: "Trek to Syangboche", alt: 3475, sub: "3,475 m", time: "6–7 hrs", points: ["Cross several passes", "Sweeping Himalayan views"] },
+      { day: 6, title: "Trek to Ghami", alt: 3520, sub: "3,520 m", time: "5–6 hrs", points: ["Dramatic rock formations", "Reach Ghami village"] },
+      { day: 7, title: "Trek to Tsarang", alt: 3560, sub: "3,560 m", time: "4–5 hrs", points: ["Longest Mani wall in Mustang", "Ancient Tsarang Monastery"] },
+      { day: 8, title: "Trek to Lo Manthang", alt: 3840, sub: "3,840 m", time: "4–5 hrs", points: ["Arrive at the walled capital", "First view of the King's palace"] },
+      { day: 9, title: "Explore Lo Manthang & sky caves", alt: 3840, sub: "3,840 m", rest: true, points: ["Ancient gompas", "Hike to Chhoser sky caves"] },
+      { day: 10, title: "Trek to Dhakmar", alt: 3820, sub: "3,820 m", time: "6–7 hrs", points: ["Walk beneath red cliffs", "Visit Ghar Gompa"] },
+      { day: 11, title: "Trek to Ghiling", alt: 3570, sub: "3,570 m", time: "5–6 hrs", points: ["Return via different trails", "Serene Ghiling village"] },
+      { day: 12, title: "Trek to Chhusang", alt: 2980, sub: "2,980 m", time: "6–7 hrs", points: ["Long descent, wide views", "Last night up high"] },
+      { day: 13, title: "Trek to Jomsom", alt: 2720, sub: "2,720 m", time: "5–6 hrs", points: ["Arrive back at Jomsom", "Celebrate the finish"] },
+      { day: 14, title: "Fly to Pokhara & Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Morning flight via Pokhara", "Farewell dinner in Kathmandu"] }
+    ],
+    includes: ["Restricted Area Permit ($500/person)", "Domestic flights KTM–PKR–JOM & back", "Teahouse accommodation", "All meals on trek", "Licensed guide & porters", "ACAP & TIMS permits", "First aid & emergency oxygen"],
+    excludes: ["International flights & Nepal visa", "Travel insurance (heli-evac)", "Personal trekking gear", "Personal expenses", "Tips for guides & porters"],
+    documents: ["Passport valid 6+ months", "Passport-sized photos for the Restricted Area Permit"],
+    carry: ["Trekking Boots", "Windbreaker", "Sun Protection", "Light Sleeping Bag"],
+    photos: ["https://www.alpineramble.com/uploads/fullbanner/uppermustang-hike.webp","https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp","https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop","https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"],
+    videos: ["teQQWA2CmsA"],
+    reviews: [{ name: "Sarah", loc: "UK", e: "🏜", r: 5, date: "Oct 2025", text: "The desert landscapes and ancient culture of Lo Manthang were unlike anything I'd seen." }],
+    faqs: [{ q: "Is a special permit required?", a: "Yes — a Restricted Area Permit ($500 per person) is required for Upper Mustang." }]
+  },
+
+  kgl: {
+    title: "Kashmir Great Lakes Trek",
+    img: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop",
+    region: "Kashmir, India", country: "India",
+    diff: "Moderate", season: "Jul – Sep", dur: "8 Days", alt: "4,200 m", dist: "72 km", startEnd: "Srinagar",
+    dates: ["Jul 10, 2026", "Aug 05, 2026", "Sep 01, 2026"], priceFrom: 18500,
+    about: "Often called the most beautiful trek in India — seven high-altitude alpine lakes strung across flower meadows beneath rugged peaks, with lakeside camping the whole way.",
+    bestTime: "July to early September, when the snow has melted and the meadows are green and full of wildflowers.",
+    highlights: ["💎 7 alpine lakes", "🏔 Gadsar Pass (4,200 m)", "🌸 Wildflower meadows", "⛺ Lakeside camping", "🦅 Panoramic Himalayan views"],
+    itinerary: [
+      { day: 1, title: "Arrival in Srinagar · base camp", alt: 1585, sub: "1,585 m", rest: true, points: ["Transfer to Shitkadi base", "Briefing & acclimatization"] },
+      { day: 2, title: "Trek to Nichnai", alt: 3500, sub: "3,500 m", time: "5–6 hrs", points: ["Through pine forest", "Views of Sonamarg valley"] },
+      { day: 3, title: "Trek to Vishansar Lake", alt: 3700, sub: "3,700 m", time: "5–6 hrs", points: ["Cross Nichnai Pass", "First view of Vishansar"] },
+      { day: 4, title: "Rest at Vishansar", alt: 3700, sub: "3,700 m", rest: true, points: ["Explore Vishansar & Kishansar", "Optional short hikes"] },
+      { day: 5, title: "Trek to Gadsar Lake", alt: 3800, sub: "3,800 m", time: "6–7 hrs", points: ["Cross Gadsar Pass (4,200 m)", "The lake of flowers"] },
+      { day: 6, title: "Trek to Satsar", alt: 3600, sub: "3,600 m", time: "5–6 hrs", points: ["Meadows and rocky terrain", "Cluster of seven lakes"] },
+      { day: 7, title: "Trek to Gangabal twin lakes", alt: 3500, sub: "3,500 m", time: "6–7 hrs", points: ["Cross Zaj Pass", "Mt. Harmukh & Gangabal"] },
+      { day: 8, title: "Descend to Naranag · Srinagar", alt: 2250, sub: "2,250 m", time: "5–6 hrs", points: ["Final forest descent", "Drive back to Srinagar"] }
+    ],
+    includes: ["Srinagar airport transfers", "Tent accommodation (triple sharing)", "All meals on trek", "Trek leader & support staff", "Mules for common luggage", "Permits & forest fees"],
+    excludes: ["Flights to Srinagar", "Personal trekking gear", "Mules for personal luggage", "Travel insurance", "Tips for staff"],
+    documents: ["Government photo ID", "Medical fitness certificate"],
+    carry: ["Trekking Boots", "Daypack (20–30 L)", "Sunscreen & Lip Balm", "Warm Layers", "Poncho"],
+    photos: ["https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop","https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop","https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop","https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1470&auto=format&fit=crop"],
+    videos: ["rcE0dfTez-I"],
+    reviews: [{ name: "Amit", loc: "Bangalore", e: "💎", r: 5, date: "Aug 2025", text: "Truly a paradise on earth — the lakes are mesmerizing and the camping is unforgettable." }],
+    faqs: [{ q: "What is the best time for KGL?", a: "July to early September, once the snow melts and the meadows bloom." }]
+  }
+};
+
+/* =====================================================================
+   FILTERS  (by country)
+   ===================================================================== */
+const FILTERS = ["All", "Nepal", "Tibet", "India"];
+let activeFilter = "All";
+
+function buildFilterTabs(){
+  const wrap = document.getElementById("filterTabs");
+  wrap.querySelectorAll(".ftab").forEach(n => n.remove());
+  FILTERS.forEach(f => {
+    const b = document.createElement("button");
+    b.className = "ftab" + (f === activeFilter ? " active" : "");
+    b.textContent = f;
+    b.onclick = () => { activeFilter = f; buildFilterTabs(); renderGrid(); };
+    wrap.appendChild(b);
+  });
+}
+
+/* =====================================================================
+   RENDER GRID
+   ===================================================================== */
+function priceLabel(t){
+  if (t.pricing){
+    const min = Math.min(...t.pricing.tiers.map(x => x.price));
+    return `<span>from</span> <b>${rupee(min)}</b> <span>/ person</span>`;
+  }
+  if (t.priceFrom) return `<span>from</span> <b>${rupee(t.priceFrom)}</b> <span>/ person</span>`;
+  return `<span class="req">On request</span>`;
+}
+
+function renderGrid(){
+  const q = (document.getElementById("trekSearch").value || "").toLowerCase().trim();
+  const grid = document.getElementById("gridLayout");
+  grid.innerHTML = "";
+  const entries = Object.entries(TREKS).filter(([k, t]) => {
+    const matchFilter = activeFilter === "All" || t.country === activeFilter;
+    const hay = (t.title + " " + t.region + " " + t.diff).toLowerCase();
+    return matchFilter && hay.includes(q);
+  });
+
+  document.getElementById("gridCount").innerHTML =
+    `Showing <b>${entries.length}</b> ${entries.length === 1 ? "trek" : "treks"}` +
+    (activeFilter !== "All" ? ` in ${activeFilter}` : "");
+
+  if (!entries.length){
+    grid.innerHTML = `<div class="no-results-msg" style="grid-column:1/-1">
+      <div class="no-res-ico">🏔</div>
+      <h3>No treks match that</h3>
+      <p>Try a different region filter, or clear your search to see everything.</p></div>`;
+    return;
+  }
+
+  entries.forEach(([key, t], i) => {
+    const card = document.createElement("div");
+    card.className = "trek-card";
+    card.style.animation = `atRise .5s var(--ease) ${i * 0.05}s both`;
+    card.onclick = () => openTrek(key);
+    card.innerHTML = `
+      <div class="tk-img">
+        <img src="${t.img}" alt="${t.title}" loading="lazy"
+             onerror="this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop'">
+        <span class="tk-diff">${t.diff}</span>
+        <span class="tk-loc">📍 ${t.region}</span>
+      </div>
+      <div class="tk-body">
+        <h3 class="tk-title">${t.title}</h3>
+        <div class="tk-meta">
+          <div><span class="k">Duration</span><span class="v">${t.dur.split(" /")[0]}</span></div>
+          <div><span class="k">Max Altitude</span><span class="v">${t.alt}</span></div>
+          <div><span class="k">Best Season</span><span class="v">${t.season}</span></div>
+          <div><span class="k">Distance</span><span class="v">${t.dist}</span></div>
+        </div>
+        <div class="tk-price">${priceLabel(t)}</div>
+        <button class="tk-btn">View Trek →</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* =====================================================================
+   ALTITUDE RIDGELINE  (the signature)
+   ===================================================================== */
+function buildAltitudeSVG(itin){
+  const W = 900, H = 230, padL = 44, padR = 20, padT = 22, padB = 34;
+  const alts = itin.map(d => d.alt);
+  const maxA = Math.max(...alts), minA = Math.min(...alts);
+  const niceMax = Math.ceil(maxA / 1000) * 1000;
+  const niceMin = Math.floor(minA / 1000) * 1000;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const x = i => padL + (plotW * i) / (itin.length - 1);
+  const y = a => padT + plotH * (1 - (a - niceMin) / (niceMax - niceMin));
+
+  // gridlines every 1000 m
+  let grid = "";
+  for (let a = niceMin; a <= niceMax; a += 1000){
+    grid += `<line class="alt-grid-line" x1="${padL}" y1="${y(a).toFixed(1)}" x2="${W - padR}" y2="${y(a).toFixed(1)}"/>`;
+    grid += `<text class="alt-grid-label" x="6" y="${(y(a) + 3).toFixed(1)}">${(a/1000).toFixed(0)}k</text>`;
+  }
+
+  const linePts = itin.map((d, i) => `${x(i).toFixed(1)},${y(d.alt).toFixed(1)}`).join(" ");
+  const areaPts = `${padL},${(H - padB).toFixed(1)} ${linePts} ${(W - padR).toFixed(1)},${(H - padB).toFixed(1)}`;
+
+  const peakIdx = alts.indexOf(maxA);
+  let dots = "", labels = "";
+  itin.forEach((d, i) => {
+    const isPeak = i === peakIdx;
+    dots += `<circle class="alt-dot${isPeak ? " peak" : ""}" data-day="${d.day}" cx="${x(i).toFixed(1)}" cy="${y(d.alt).toFixed(1)}" r="${isPeak ? 6 : 4.5}">
+      <title>Day ${d.day} · ${d.title} · sleep ${d.alt.toLocaleString("en-IN")} m</title></circle>`;
+    if (i % 2 === 0 || isPeak)
+      labels += `<text class="alt-daylabel" x="${x(i).toFixed(1)}" y="${H - 12}">D${d.day}</text>`;
+  });
+
+  return `<svg class="alt-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Altitude profile of the trek by day">
+    <defs><linearGradient id="altGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e3cd94" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#e3cd94" stop-opacity="0.02"/>
+    </linearGradient></defs>
+    ${grid}
+    <polygon class="alt-area" points="${areaPts}"/>
+    <polyline class="alt-line" points="${linePts}"/>
+    ${dots}${labels}
+  </svg>`;
+}
+
+/* =====================================================================
+   PANEL BUILDERS
+   ===================================================================== */
+function stars(n){ return "★".repeat(n) + "☆".repeat(5 - n); }
+
+function buildOverview(t){
+  return `
+    <h2 class="td-section-title"><span class="num">01</span> About this trek</h2>
+    <p class="td-text">${t.about}</p>
+    <div class="td-callout">
+      <span class="ci">🗓</span>
+      <div class="ct"><b>Best time to go.</b> ${t.bestTime}</div>
+    </div>
+    <h2 class="td-section-title"><span class="num">02</span> Trip highlights</h2>
+    <div class="td-highlights-grid">
+      ${t.highlights.map(h => {
+        const sp = h.indexOf(" ");
+        return `<div class="tdh-item"><span class="tdh-ico">${h.slice(0, sp)}</span><span class="tdh-txt">${h.slice(sp + 1)}</span></div>`;
+      }).join("")}
+    </div>
+    <h2 class="td-section-title"><span class="num">03</span> What to carry</h2>
+    <div class="td-carry">
+      ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
+    </div>`;
+}
+
+function buildItinerary(t){
+  const peakM = Math.max(...t.itinerary.map(d => d.alt));
+  return `
+    <div class="altitude-card">
+      <div class="alt-head">
+        <div>
+          <h3>Altitude profile</h3>
+          <div class="sub">Sleeping elevation · day by day</div>
+        </div>
+        <div class="alt-peak">
+          <div class="pv">${t.alt}</div>
+          <div class="pl">highest point${t.altNote ? " · " + t.altNote : ""}</div>
         </div>
       </div>
-      <div class="footer-bottom">
-        © 2026 COSMIC HIMALAYA Adventures. All rights reserved.
+      <div class="alt-svg-wrap">${buildAltitudeSVG(t.itinerary)}</div>
+      <div class="alt-legend">
+        <span><i></i> Sleeping altitude</span>
+        <span><i class="peak"></i> Highest point</span>
+        <span>Watch the two plateaus — those are your acclimatization days.</span>
       </div>
-    </footer>
-
-    <script src="navbar.js"></script>
-    <script src="config.js"></script>
-    <script src="img-utils.js"></script>
-    <script src="treks-data.js"></script>
-    <script src="trek-logic.js"></script>
-    <script src="script.js"></script>
-    <script>
-      // Dynamically render all treks from TREKS object
-      function renderAllTreks() {
-        const grid = document.getElementById("allTreksGrid");
-        if (!grid) return;
-
-        grid.innerHTML = "";
-
-        // Sort keys to ensure consistent order if needed, or just use Object.keys
-        Object.keys(TREKS).forEach((key) => {
-          const t = TREKS[key];
-          const card = document.createElement("div");
-          card.className = "trek-card reveal";
-          card.setAttribute(
-            "onclick",
-            `window.location.href='view-trek.html?trek=${key}'`,
-          );
-
-          // Store full region and searchable text in data attributes
-          // Extract months from dates array for searchability
-          const months = t.dates
-            ? t.dates.map((d) => d.split(" ")[0]).join(" ")
-            : "";
-          const searchableText = (
-            t.title +
-            " " +
-            t.region +
-            " " +
-            t.diff +
-            " " +
-            t.dur +
-            " " +
-            (t.season || "") +
-            " " +
-            months
-          ).toLowerCase();
-          card.setAttribute("data-search", searchableText);
-
-          card.innerHTML = `
-          <div class="tk-img">
-            <img src="${t.img}" alt="${t.title}">
-            <div class="tk-loc">📍 ${t.region.split(",")[0]}</div>
-          </div>
-          <div class="tk-body">
-            <div class="tk-title">${t.title}</div>
-            <div class="tk-meta">
-              <span>DURATION: <strong>${t.dur.toUpperCase()}</strong></span>
-              <span>GRADE: <strong>${t.diff.toUpperCase()}</strong></span>
+    </div>
+    <h2 class="td-section-title"><span class="num">${String(t.itinerary.length)}</span> Day-by-day</h2>
+    <div class="itin">
+      ${t.itinerary.map(d => `
+        <div class="itin-item ${d.rest ? "rest" : ""}" data-day="${d.day}"
+             onmouseenter="hotDay(${d.day},true)" onmouseleave="hotDay(${d.day},false)">
+          <div class="itin-node">${d.day}</div>
+          <div class="itin-card">
+            <div class="itin-top">
+              <div class="itin-title">${d.title}</div>
+              <div class="itin-badges">
+                ${d.rest ? `<span class="itin-badge rest">REST</span>` : ""}
+                ${d.time ? `<span class="itin-badge time">${d.time}</span>` : ""}
+                <span class="itin-badge alt">${d.sub}</span>
+              </div>
             </div>
-            <button class="tk-btn">View Trek Details</button>
+            <ul class="itin-points">${d.points.map(p => `<li>${p}</li>`).join("")}</ul>
           </div>
-        `;
-          grid.appendChild(card);
-        });
+        </div>`).join("")}
+    </div>`;
+}
 
-        // Trigger reveal animations
-        if (typeof triggerReveal === "function") triggerReveal();
-      }
+function hotDay(day, on){
+  document.querySelectorAll(`.alt-dot[data-day="${day}"]`).forEach(d => d.classList.toggle("hot", on));
+}
 
-      // Call render on load
-      window.addEventListener("DOMContentLoaded", () => {
-        renderAllTreks();
+function buildInclusions(t){
+  return `
+    <div class="ie-grid">
+      <div class="ie-col inc">
+        <h4><span class="badge">✓</span> What's included</h4>
+        <ul class="ie-list">${t.includes.map(i => `<li>${i}</li>`).join("")}</ul>
+      </div>
+      <div class="ie-col exc">
+        <h4><span class="badge">✕</span> Not included</h4>
+        <ul class="ie-list">${t.excludes.map(i => `<li>${i}</li>`).join("")}</ul>
+      </div>
+    </div>
+    <div class="docs-note">
+      <h5>📄 Documents required to book</h5>
+      <ul>${(t.documents || []).map(d => `<li>${d}</li>`).join("")}</ul>
+    </div>`;
+}
 
-        // Handle search query from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const query = urlParams.get("q");
-        if (query) {
-          const searchInput = document.getElementById("trekSearch");
-          const navSearchInput = document.querySelector(".nav-search input");
-          if (searchInput) searchInput.value = query;
-          if (navSearchInput) navSearchInput.value = query;
-          filterTreks();
-        }
-      });
+function buildGallery(t){
+  const vid = t.videos && t.videos[0]
+    ? `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${t.videos[0]}" title="Trek video" allowfullscreen loading="lazy"></iframe></div>`
+    : "";
+  return `
+    <h2 class="td-section-title"><span class="num">📷</span> Gallery</h2>
+    <div class="gallery-grid">
+      ${t.photos.map(p => `<figure><img src="${p}" alt="${t.title}" loading="lazy"
+         onerror="this.parentElement.style.display='none'"></figure>`).join("")}
+    </div>
+    ${vid}`;
+}
 
-      // Override filterTreks to work with data attributes
-      window.filterTreks = debounce(function () {
-        const query = document
-          .getElementById("trekSearch")
-          .value.toLowerCase()
-          .trim();
-        const activeTabEl = document.querySelector(".ftab.active");
-        const activeTab = activeTabEl
-          ? activeTabEl.textContent.toLowerCase().trim()
-          : "all treks";
-        const cards = document.querySelectorAll(".trek-card");
-        let visibleCount = 0;
+function buildReviews(t){
+  return `
+    <h2 class="td-section-title"><span class="num">★</span> Trekker reviews</h2>
+    ${(t.reviews || []).map(r => `
+      <div class="review-card">
+        <div class="rev-head">
+          <div class="rev-emoji">${r.e}</div>
+          <div>
+            <div class="rev-name">${r.name}</div>
+            <div class="rev-loc">📍 ${r.loc}</div>
+          </div>
+          <div style="margin-left:auto;text-align:right">
+            <div class="rev-stars">${stars(r.r)}</div>
+            <div class="rev-date">${r.date}</div>
+          </div>
+        </div>
+        <p class="rev-text">"${r.text}"</p>
+      </div>`).join("")}`;
+}
 
-        // Use requestAnimationFrame for smooth UI updates
-        requestAnimationFrame(() => {
-          cards.forEach((card) => {
-            const text = card.getAttribute("data-search");
-            if (!text) return;
+function buildFaq(t){
+  return `
+    <h2 class="td-section-title"><span class="num">?</span> Frequently asked</h2>
+    <div class="faq-list">
+      ${(t.faqs || []).map((f, i) => `
+        <div class="faq-item ${i === 0 ? "open" : ""}">
+          <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span class="chev">▾</span></button>
+          <div class="faq-a">${f.a}</div>
+        </div>`).join("")}
+    </div>`;
+}
 
-            const matchesSearch = !query || text.includes(query);
-            let matchesTab =
-              activeTab === "all treks" || text.includes(activeTab);
+function toggleFaq(btn){ btn.closest(".faq-item").classList.toggle("open"); }
 
-            if (matchesSearch && matchesTab) {
-              card.style.display = "block";
-              visibleCount++;
-            } else {
-              card.style.display = "none";
-            }
-          });
+/* =====================================================================
+   BOOKING CARD  (real tiered pricing for EBC)
+   ===================================================================== */
+let bookingState = { pax: 2, porter: false, trek: null };
 
-          // Show/Hide no results message
-          const noResults = document.getElementById("noTreksFound");
-          if (noResults) {
-            noResults.style.display = visibleCount === 0 ? "block" : "none";
-          }
+function tierPrice(t, pax){
+  if (t.pricing){
+    const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max) || t.pricing.tiers[t.pricing.tiers.length - 1];
+    return tier.price;
+  }
+  return t.priceFrom || null;
+}
 
-          // Trigger reveal animations for visible cards
-          if (typeof triggerReveal === "function") triggerReveal();
-        });
-      }, 250);
+function buildBookingCard(t){
+  bookingState = { pax: 2, porter: false, trek: t };
+  const hasPrice = !!(t.pricing || t.priceFrom);
+  const datesOpts = t.dates.map(d => `<option>${d}</option>`).join("");
 
-      window.resetFilters = function () {
-        const searchInput = document.getElementById("trekSearch");
-        if (searchInput) searchInput.value = "";
+  let priceBlock;
+  if (t.pricing){
+    priceBlock = `
+      <div class="bk-tag">Per person · group pricing</div>
+      <div class="td-price-now"><span class="cur">₹</span><span id="ppPrice"></span> <span class="per">/ person</span></div>
+      <div class="price-tier-note" id="tierNote"></div>`;
+  } else if (t.priceFrom){
+    priceBlock = `
+      <div class="bk-tag">Per person · indicative</div>
+      <div class="td-price-now"><span class="cur">₹</span>${t.priceFrom.toLocaleString("en-IN")} <span class="per">/ person</span></div>
+      <div class="price-tier-note">Final quote confirmed on group size & season.</div>`;
+  } else {
+    priceBlock = `<div class="bk-tag">Custom trip</div><div class="td-price-now" style="font-size:24px">On request</div>`;
+  }
 
-        // Find the "All Treks" button by its text content
-        const tabs = document.querySelectorAll(".ftab");
-        let allTreksTab = null;
-        tabs.forEach((tab) => {
-          if (tab.textContent.trim().toLowerCase() === "all treks") {
-            allTreksTab = tab;
-          }
-        });
+  const porterRow = t.pricing ? `
+    <div class="porter-row">
+      <div><div class="pl">Add porter support</div><div class="ps">${rupee(t.pricing.porter)}/person · 1 porter per 2 trekkers</div></div>
+      <label class="switch"><input type="checkbox" id="porterToggle" onchange="updateBooking()"><span class="track"></span></label>
+    </div>` : "";
 
-        if (allTreksTab) {
-          setFTab(allTreksTab);
-        } else {
-          const firstTab = document.querySelector(".ftab");
-          if (firstTab) setFTab(firstTab);
-        }
+  const card = `
+    <div class="td-price-box">${priceBlock}</div>
+    <div class="td-form-group">
+      <label>Choose a departure</label>
+      <select class="td-select">${datesOpts}</select>
+    </div>
+    <div class="td-form-group">
+      <label>Trekkers</label>
+      <div class="td-count-row">
+        <span class="cl">Group size</span>
+        <div class="td-counter">
+          <button onclick="changePax(-1)" aria-label="Fewer trekkers">−</button>
+          <span class="cval" id="paxVal">2</span>
+          <button onclick="changePax(1)" aria-label="More trekkers">+</button>
+        </div>
+      </div>
+    </div>
+    ${porterRow}
+    <div class="td-total-row">
+      <span class="td-total-label">Total</span>
+      <span class="td-total-val"><span class="cur">₹</span><span id="totalVal"></span></span>
+    </div>
+    <div class="total-sub" id="totalSub"></div>
+    <button class="td-book-btn">${hasPrice ? "Reserve your spot" : "Request a quote"}</button>
+    <div class="bk-trust">
+      <div><span class="ti">✓</span> Free date changes up to 30 days out</div>
+      <div><span class="ti">✓</span> Certified guides · porter welfare covered</div>
+      <div><span class="ti">✓</span> Non-refundable advance confirms your booking</div>
+    </div>`;
 
-        filterTreks();
-      };
-    </script>
-  </body>
+  document.getElementById("bookingCard").innerHTML = card;
+  updateBooking();
+}
+
+function changePax(delta){
+  bookingState.pax = Math.max(1, Math.min(20, bookingState.pax + delta));
+  document.getElementById("paxVal").textContent = bookingState.pax;
+  updateBooking();
+}
+
+function updateBooking(){
+  const t = bookingState.trek;
+  if (!t) return;
+  const porterEl = document.getElementById("porterToggle");
+  bookingState.porter = porterEl ? porterEl.checked : false;
+  const pax = bookingState.pax;
+
+  const pp = tierPrice(t, pax);
+  const ppEl = document.getElementById("ppPrice");
+  if (ppEl && t.pricing){
+    ppEl.textContent = pp.toLocaleString("en-IN");
+    const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max);
+    document.getElementById("tierNote").innerHTML =
+      `You're in the <b>${tier ? tier.label : ""}</b> band. Bigger groups pay less — from ₹60,000 at 15+.`;
+  }
+
+  if (pp == null){
+    const tv = document.getElementById("totalVal");
+    if (tv) tv.textContent = "—";
+    return;
+  }
+  let total = pp * pax;
+  let subParts = [`${rupee(pp)} × ${pax}`];
+  if (bookingState.porter && t.pricing){
+    const porter = t.pricing.porter * pax;
+    total += porter;
+    subParts.push(`porter ${rupee(t.pricing.porter)} × ${pax}`);
+  }
+  document.getElementById("totalVal").textContent = total.toLocaleString("en-IN");
+  const sub = document.getElementById("totalSub");
+  if (sub) sub.textContent = subParts.join("  ·  ");
+}
+
+/* =====================================================================
+   OPEN / SWITCH VIEWS
+   ===================================================================== */
+function openTrek(key){
+  const t = TREKS[key];
+  if (!t) return;
+
+  document.getElementById("tdHero").style.backgroundImage =
+    `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url("${t.photos[0] || t.img}")`;
+  document.getElementById("bcTitle").textContent = t.title;
+  document.getElementById("tdTitle").textContent = t.title;
+  document.getElementById("tdRegion").innerHTML = `📍 ${t.region}`;
+
+  document.getElementById("tdHeroTags").innerHTML = `
+    <span class="td-hero-tag gold">${t.diff}</span>
+    <span class="td-hero-tag">${t.dur.split(" /")[0]}</span>
+    <span class="td-hero-tag">Season · ${t.season}</span>`;
+
+  const strip = [
+    ["🗓", "Duration", t.dur.split(" /")[0]],
+    ["⛰", "Max Altitude", t.alt],
+    ["🥾", "Difficulty", t.diff.split(" ")[0]],
+    ["🌤", "Best Season", t.season],
+    ["📏", "Distance", t.dist],
+    ["🚩", "Start / End", t.startEnd]
+  ];
+  document.getElementById("tdInfoStrip").innerHTML = strip.map(([ic, l, v]) => `
+    <div class="td-qi"><div class="qi-ico">${ic}</div>
+      <div><div class="qi-label">${l}</div><div class="qi-val">${v}</div></div></div>`).join("");
+
+  document.getElementById("panel-overview").innerHTML   = buildOverview(t);
+  document.getElementById("panel-itinerary").innerHTML  = buildItinerary(t);
+  document.getElementById("panel-inclusions").innerHTML = buildInclusions(t);
+  document.getElementById("panel-gallery").innerHTML    = buildGallery(t);
+  document.getElementById("panel-reviews").innerHTML    = buildReviews(t);
+  document.getElementById("panel-faq").innerHTML        = buildFaq(t);
+  buildBookingCard(t);
+
+  // reset to first tab
+  document.querySelectorAll(".td-t").forEach((b, i) => b.classList.toggle("active", i === 0));
+  document.querySelectorAll(".td-panel").forEach((p, i) => p.classList.toggle("active", i === 0));
+
+  document.getElementById("gridView").classList.remove("active");
+  document.getElementById("detailView").classList.add("active");
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function showGrid(){
+  document.getElementById("detailView").classList.remove("active");
+  document.getElementById("gridView").classList.add("active");
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+/* tab switching */
+document.getElementById("tdTabs").addEventListener("click", e => {
+  const btn = e.target.closest(".td-t");
+  if (!btn) return;
+  document.querySelectorAll(".td-t").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  const p = btn.dataset.p;
+  document.querySelectorAll(".td-panel").forEach(pan => pan.classList.remove("active"));
+  document.getElementById("panel-" + p).classList.add("active");
+});
+
+/* init */
+buildFilterTabs();
+renderGrid();
+</script>
+</body>
 </html>
