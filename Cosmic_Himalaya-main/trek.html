@@ -17,7 +17,7 @@
         <strong>COSMIC HIMALAYA</strong>
         <span>Authentic Himalayan Journeys</span>
       </a>
-      
+
       <ul class="nav-links">
         <li><a href="trek.html" class="nb">Treks</a></li>
         <li><a href="camp.html" class="nb">Camps</a></li>
@@ -121,6 +121,7 @@
         <div class="td-panel" id="panel-gallery"></div>
         <div class="td-panel" id="panel-reviews"></div>
         <div class="td-panel" id="panel-faq"></div>
+        <div class="td-panel" id="panel-details"></div>
       </div>
 
       <aside>
@@ -411,6 +412,127 @@
     function toggleFaq(btn) { btn.closest(".faq-item").classList.toggle("open"); }
 
     /* =====================================================================
+       DETAILS PANEL  —  comprehensive technical & logistical specs
+       ===================================================================== */
+    function buildDetails(t) {
+      // parse duration to get days
+      const durMatch = t.dur.match(/(\d+)\s*[-–]\s*(\d+)/) || t.dur.match(/(\d+)/);
+      const durDays = durMatch ? durMatch[1] : "14";
+
+      // estimate group size from pricing tiers if available
+      let groupInfo = "2–12 trekkers";
+      if (t.pricing && t.pricing.tiers.length) {
+        const minG = t.pricing.tiers[0].min;
+        const maxG = t.pricing.tiers[t.pricing.tiers.length - 1].max;
+        groupInfo = `${minG}–${maxG} trekkers`;
+      }
+
+      // accommodation type (derive from includes)
+      let accomType = "Teahouse / Lodge";
+      if (t.includes && t.includes.some(i => i.toLowerCase().includes("hotel"))) accomType = "Hotel + Teahouse";
+      if (t.title && t.title.toLowerCase().includes("camp")) accomType = "Tented Camp";
+
+      // meals info from includes
+      let mealsInfo = "All meals during trek (breakfast, lunch, dinner)";
+      if (t.includes && t.includes.some(i => i.toLowerCase().includes("meal"))) {
+        const m = t.includes.find(i => i.toLowerCase().includes("meal"));
+        if (m) mealsInfo = m;
+      }
+
+      // permits (from documents or derive)
+      const permitList = (t.documents || []).filter(d =>
+        d.toLowerCase().includes("permit") || d.toLowerCase().includes("card") || d.toLowerCase().includes("visa")
+      );
+      const permits = permitList.length ? permitList : ["Sagarmatha National Park Permit", "Khumbu Rural Municipality Permit", "TIMS Card (if required)"];
+
+      // physical rating
+      let fitnessLevel = "Moderate to High";
+      if (t.diff && t.diff.toLowerCase().includes("difficult")) fitnessLevel = "High";
+      else if (t.diff && t.diff.toLowerCase().includes("moderate")) fitnessLevel = "Moderate";
+
+      // weather info from season
+      let weatherNote = "Clear days with cold nights. Temperatures drop significantly with altitude.";
+      if (t.season && t.season.includes("Spring")) weatherNote = "Warm days, blooming rhododendrons, occasional afternoon clouds. Nights are cold above 4,000m.";
+      if (t.season && t.season.includes("Autumn")) weatherNote = "Crystal-clear skies, stable weather, perfect visibility. Temperatures are cool to cold at altitude.";
+
+      // safety info
+      const safetyItems = [
+        "Certified Wilderness First Responder (WFR) guides",
+        "Oxygen cylinders & pulse oximeters carried above 4,000m",
+        "Daily health check-ups by your guide",
+        "Helicopter evacuation available (covered by insurance)",
+        "Acclimatization days built into every itinerary"
+      ];
+
+      return `
+        <h2 class="td-section-title"><span class="num">🔧</span> Technical Specifications</h2>
+        <div class="details-spec-grid">
+          <div class="ds-item"><span class="ds-icon">🗓</span><div><span class="ds-label">Duration</span><span class="ds-value">${t.dur}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">⛰</span><div><span class="ds-label">Max Altitude</span><span class="ds-value">${t.alt}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">🥾</span><div><span class="ds-label">Difficulty</span><span class="ds-value">${t.diff}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">📏</span><div><span class="ds-label">Distance</span><span class="ds-value">${t.dist}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">🌤</span><div><span class="ds-label">Best Season</span><span class="ds-value">${t.season}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">🚩</span><div><span class="ds-label">Start / End</span><span class="ds-value">${t.startEnd}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">🌍</span><div><span class="ds-label">Region</span><span class="ds-value">${t.region}, ${t.country}</span></div></div>
+          <div class="ds-item"><span class="ds-icon">👥</span><div><span class="ds-label">Group Size</span><span class="ds-value">${groupInfo}</span></div></div>
+        </div>
+
+        <h2 class="td-section-title"><span class="num">🏕</span> Accommodation & Meals</h2>
+        <div class="details-info-grid">
+          <div class="dig-item"><span class="dig-icon">🏠</span><div><span class="dig-label">Accommodation</span><span class="dig-value">${accomType}</span></div></div>
+          <div class="dig-item"><span class="dig-icon">🍽</span><div><span class="dig-label">Meals</span><span class="dig-value">${mealsInfo}</span></div></div>
+          <div class="dig-item"><span class="dig-icon">🚿</span><div><span class="dig-label">Facilities</span><span class="dig-value">Basic teahouse with shared bathrooms, hot showers (pay-per-use)</span></div></div>
+        </div>
+
+        <h2 class="td-section-title"><span class="num">📋</span> Permits & Documentation</h2>
+        <div class="details-permit-list">
+          ${permits.map(p => `<div class="permit-chip">📄 ${p}</div>`).join("")}
+        </div>
+        <p class="td-text" style="margin-top:10px;font-size:14px;color:var(--dim);">All permits are arranged by our team. You'll need to bring 2 passport-size photos and a copy of your passport.</p>
+
+        <h2 class="td-section-title"><span class="num">💪</span> Physical Fitness Requirements</h2>
+        <div class="details-fitness">
+          <div class="fitness-badge" style="background:${fitnessLevel === 'High' ? 'var(--accent)' : 'var(--gold)'};color:#fff;">${fitnessLevel}</div>
+          <p style="margin-top:8px;font-size:15px;line-height:1.6;color:var(--text);">
+            ${fitnessLevel === 'High' ?
+              'This trek demands excellent cardiovascular fitness and prior high-altitude experience. You should be comfortable walking 5–7 hours per day on steep, uneven terrain with a 10–12 kg pack.' :
+              'This trek requires good physical condition. You should be comfortable walking 4–6 hours per day on varied terrain. Some prior trekking experience is recommended.'}
+          </p>
+          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="fitness-chip">✅ 5+ km daily walking</span>
+            <span class="fitness-chip">✅ 600–800m elevation gain/day</span>
+            <span class="fitness-chip">✅ Weighted pack (10–12 kg)</span>
+            <span class="fitness-chip">✅ Altitude acclimatization tolerance</span>
+          </div>
+        </div>
+
+        <h2 class="td-section-title"><span class="num">🌦</span> Weather & Season Details</h2>
+        <div class="details-weather">
+          <p style="font-size:15px;line-height:1.6;color:var(--text);">${weatherNote}</p>
+          <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Daytime</span><br><span style="font-size:14px;color:var(--dim);">10–20°C (lower) / 0–10°C (higher)</span></div>
+            <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Nighttime</span><br><span style="font-size:14px;color:var(--dim);">-5 to 5°C (lower) / -15 to -5°C (higher)</span></div>
+          </div>
+        </div>
+
+        <h2 class="td-section-title"><span class="num">🛡</span> Safety & Health</h2>
+        <ul class="details-safety-list">
+          ${safetyItems.map(s => `<li><span class="safety-check">✓</span> ${s}</li>`).join("")}
+        </ul>
+        <div class="td-callout" style="margin-top:12px;">
+          <span class="ci">⚠️</span>
+          <div class="ct"><b>Altitude sickness protocol.</b> We follow a strict "climb high, sleep low" policy. If you show symptoms of AMS, we descend immediately. Your guide carries a pulse oximeter and oxygen.</div>
+        </div>
+
+        <h2 class="td-section-title"><span class="num">🎒</span> Equipment Checklist</h2>
+        <div class="td-carry" style="margin-bottom:0;">
+          ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
+        </div>
+        <p style="margin-top:12px;font-size:13px;color:var(--dim);">A complete gear list is sent upon booking. We recommend packing light — porters carry up to 15 kg per trekker.</p>
+      `;
+    }
+
+    /* =====================================================================
        BOOKING CARD  (real tiered pricing for EBC)
        ===================================================================== */
     let bookingState = { pax: 2, porter: false, trek: null };
@@ -558,6 +680,7 @@
       document.getElementById("panel-gallery").innerHTML = buildGallery(t);
       document.getElementById("panel-reviews").innerHTML = buildReviews(t);
       document.getElementById("panel-faq").innerHTML = buildFaq(t);
+      document.getElementById("panel-details").innerHTML = buildDetails(t);
       buildBookingCard(t);
 
       // reset to first tab
