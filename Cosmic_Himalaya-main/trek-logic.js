@@ -89,6 +89,69 @@ window.filterTreks = debounce(function () {
   });
 }, 250);
 
+/* =====================================================================
+   ITINERARY – Quick / Detailed / Trek Graph tabs
+   ===================================================================== */
+function buildItinerary(t) {
+  const itin = t.itinerary;
+
+  // ---------- Quick view ----------
+  const quickHtml = itin.map(d => `
+    <div class="itin-quick-item">
+      <div class="iq-day">Day ${d.day}</div>
+      <div class="iq-heading">${d.title}</div>
+      <div class="iq-stats">
+        <span class="iq-alt">⛰ ${d.sub}</span>
+        ${d.time ? `<span class="iq-time">⏱ ${d.time}</span>` : ''}
+        ${d.rest ? '<span class="iq-rest">REST DAY</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+
+  // ---------- Detailed view ----------
+  const detailedHtml = itin.map(d => `
+    <div class="itin-detailed-item">
+      <div class="id-head">
+        <span class="id-day">Day ${d.day}</span>
+        <span class="id-title">${d.title}</span>
+      </div>
+      <div class="id-body">
+        <div class="id-stats">
+          <span>⛰ ${d.sub}</span>
+          ${d.time ? `<span>⏱ ${d.time}</span>` : ''}
+          ${d.rest ? '<span class="id-rest">REST DAY</span>' : ''}
+        </div>
+        <ul class="id-points">
+          ${d.points.map(p => `<li>${p}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `).join('');
+
+  // ---------- Trek Graph (altitude profile) ----------
+  const graphHtml = `
+    <div class="altitude-card" style="margin-top:0;">
+      ${buildAltitudeSVG(itin)}
+    </div>
+  `;
+
+  // ---------- Assemble tabbed container ----------
+  return `
+    <div class="itinerary-tabs">
+      <div class="itinerary-tab-buttons">
+        <button class="itab active" data-view="quick">Quick</button>
+        <button class="itab" data-view="detailed">Detailed</button>
+        <button class="itab" data-view="graph">Trek Graph</button>
+      </div>
+      <div class="itinerary-panels">
+        <div class="itinerary-panel active" id="itinerary-quick">${quickHtml}</div>
+        <div class="itinerary-panel" id="itinerary-detailed">${detailedHtml}</div>
+        <div class="itinerary-panel" id="itinerary-graph">${graphHtml}</div>
+      </div>
+    </div>
+  `;
+}
+
 // ─── TREK DETAILS LOGIC ───
 let currentCount = 1,
   currentPrice = 0;
@@ -140,14 +203,26 @@ function openTrek(key) {
   const infoStripHtml = `<div class="td-qi"><span class="qi-ico">⏱</span><div><div class="qi-label">Duration</div><div class="qi-val">${t.dur}</div></div></div><div class="td-qi"><span class="qi-ico">🏔</span><div><div class="qi-label">Max Altitude</div><div class="qi-val">${t.alt}</div></div></div><div class="td-qi"><span class="qi-ico">🥾</span><div><div class="qi-label">Difficulty</div><div class="qi-val">${t.diff}</div></div></div><div class="td-qi"><span class="qi-ico">📍</span><div><div class="qi-label">Start / End</div><div class="qi-val">${t.startEnd}</div></div></div><div class="td-qi"><span class="qi-ico">🌤</span><div><div class="qi-label">Best Season</div><div class="qi-val">${t.season}</div></div></div>`;
   setEl("tdInfoStrip", infoStripHtml, true);
 
-  // itinerary
-  const itinHtml = t.itinerary
-    .map(
-      (d) =>
-        `<div class="itin-day"><div class="itin-head"><div class="itin-num">D${d.day}</div><div><div class="itin-title">${d.title}</div><div class="itin-sub">${d.sub}</div></div></div><div class="itin-body"><ul>${d.points.map((p) => `<li>${p}</li>`).join("")}</ul></div></div>`,
-    )
-    .join("");
+  // ITINERARY – NEW TABBED VERSION
+  const itinHtml = buildItinerary(t);
   setEl("tdItinerary", itinHtml, true);
+
+  // Attach itinerary tab switching listeners
+  const itabContainer = document.querySelector('.itinerary-tab-buttons');
+  if (itabContainer) {
+    itabContainer.addEventListener('click', function(e) {
+      const btn = e.target.closest('.itab');
+      if (!btn) return;
+
+      this.querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const view = btn.dataset.view;
+      document.querySelectorAll('.itinerary-panel').forEach(p => p.classList.remove('active'));
+      const panel = document.getElementById('itinerary-' + view);
+      if (panel) panel.classList.add('active');
+    });
+  }
 
   // inc/exc
   const incExcHtml = `<div class="ie-box ie-inc"><h4>✅ Included</h4><ul class="ie-list">${t.includes.map((i) => `<li><span>✅</span>${i}</li>`).join("")}</ul></div><div class="ie-box ie-exc"><h4>❌ Not Included</h4><ul class="ie-list">${t.excludes.map((e) => `<li><span>❌</span>${e}</li>`).join("")}</ul></div>`;
