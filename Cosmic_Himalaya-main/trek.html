@@ -300,48 +300,70 @@
         </div>`;
     }
 
+    /* =====================================================================
+       NEW ITINERARY – Quick / Detailed / Trek Graph tabs
+       ===================================================================== */
     function buildItinerary(t) {
-      const peakM = Math.max(...t.itinerary.map(d => d.alt));
-      return `
-        <div class="altitude-card">
-          <div class="alt-head">
-            <div>
-              <h3>Altitude profile</h3>
-              <div class="sub">Sleeping elevation · day by day</div>
-            </div>
-            <div class="alt-peak">
-              <div class="pv">${t.alt}</div>
-              <div class="pl">highest point${t.altNote ? " · " + t.altNote : ""}</div>
-            </div>
-          </div>
-          <div class="alt-svg-wrap">${buildAltitudeSVG(t.itinerary)}</div>
-          <div class="alt-legend">
-            <span><i></i> Sleeping altitude</span>
-            <span><i class="peak"></i> Highest point</span>
-            <span>Watch the two plateaus — those are your acclimatization days.</span>
+      const itin = t.itinerary;
+
+      // Quick view
+      const quickHtml = itin.map(d => `
+        <div class="itin-quick-item">
+          <div class="iq-day">Day ${d.day}</div>
+          <div class="iq-heading">${d.title}</div>
+          <div class="iq-stats">
+            <span class="iq-alt">⛰ ${d.sub}</span>
+            ${d.time ? `<span class="iq-time">⏱ ${d.time}</span>` : ''}
+            ${d.rest ? '<span class="iq-rest">REST DAY</span>' : ''}
           </div>
         </div>
-        <h2 class="td-section-title"><span class="num">${String(t.itinerary.length)}</span> Day-by-day</h2>
-        <div class="itin">
-          ${t.itinerary.map(d => `
-            <div class="itin-item ${d.rest ? "rest" : ""}" data-day="${d.day}"
-                 onmouseenter="hotDay(${d.day},true)" onmouseleave="hotDay(${d.day},false)">
-              <div class="itin-node">${d.day}</div>
-              <div class="itin-card">
-                <div class="itin-top">
-                  <div class="itin-title">${d.title}</div>
-                  <div class="itin-badges">
-                    ${d.rest ? `<span class="itin-badge rest">REST</span>` : ""}
-                    ${d.time ? `<span class="itin-badge time">${d.time}</span>` : ""}
-                    <span class="itin-badge alt">${d.sub}</span>
-                  </div>
-                </div>
-                <ul class="itin-points">${d.points.map(p => `<li>${p}</li>`).join("")}</ul>
-              </div>
-            </div>`).join("")}
-        </div>`;
+      `).join('');
+
+      // Detailed view
+      const detailedHtml = itin.map(d => `
+        <div class="itin-detailed-item">
+          <div class="id-head">
+            <span class="id-day">Day ${d.day}</span>
+            <span class="id-title">${d.title}</span>
+          </div>
+          <div class="id-body">
+            <div class="id-stats">
+              <span>⛰ ${d.sub}</span>
+              ${d.time ? `<span>⏱ ${d.time}</span>` : ''}
+              ${d.rest ? '<span class="id-rest">REST DAY</span>' : ''}
+            </div>
+            <ul class="id-points">
+              ${d.points.map(p => `<li>${p}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `).join('');
+
+      // Trek Graph (altitude profile)
+      const graphHtml = `
+        <div class="altitude-card" style="margin-top:0;">
+          ${buildAltitudeSVG(itin)}
+        </div>
+      `;
+
+      // Assemble tabbed container
+      return `
+        <div class="itinerary-tabs">
+          <div class="itinerary-tab-buttons">
+            <button class="itab active" data-view="quick">Quick</button>
+            <button class="itab" data-view="detailed">Detailed</button>
+            <button class="itab" data-view="graph">Trek Graph</button>
+          </div>
+          <div class="itinerary-panels">
+            <div class="itinerary-panel active" id="itinerary-quick">${quickHtml}</div>
+            <div class="itinerary-panel" id="itinerary-detailed">${detailedHtml}</div>
+            <div class="itinerary-panel" id="itinerary-graph">${graphHtml}</div>
+          </div>
+        </div>
+      `;
     }
 
+    // The old hotDay function is no longer used, but we keep it for compatibility.
     function hotDay(day, on) {
       document.querySelectorAll(`.alt-dot[data-day="${day}"]`).forEach(d => d.classList.toggle("hot", on));
     }
@@ -675,7 +697,26 @@
           <div><div class="qi-label">${l}</div><div class="qi-val">${v}</div></div></div>`).join("");
 
       document.getElementById("panel-overview").innerHTML = buildOverview(t);
+      // ---------- Use the new tabbed itinerary ----------
       document.getElementById("panel-itinerary").innerHTML = buildItinerary(t);
+
+      // Attach itinerary tab switching listeners
+      const itabContainer = document.querySelector('.itinerary-tab-buttons');
+      if (itabContainer) {
+        itabContainer.addEventListener('click', function(e) {
+          const btn = e.target.closest('.itab');
+          if (!btn) return;
+
+          this.querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const view = btn.dataset.view;
+          document.querySelectorAll('.itinerary-panel').forEach(p => p.classList.remove('active'));
+          const panel = document.getElementById('itinerary-' + view);
+          if (panel) panel.classList.add('active');
+        });
+      }
+
       document.getElementById("panel-inclusions").innerHTML = buildInclusions(t);
       document.getElementById("panel-gallery").innerHTML = buildGallery(t);
       document.getElementById("panel-reviews").innerHTML = buildReviews(t);
