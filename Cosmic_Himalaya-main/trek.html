@@ -469,184 +469,15 @@
         }
 
         /* ------------------------------------------------------------------
-           DETAILS — now tabbed: Quick / Detailed / Graph
+           DETAILS — simplified: only Equipment Checklist
            ------------------------------------------------------------------ */
         function buildDetails(t) {
-            // ——— helper: derive data ———
-            const durMatch = t.dur.match(/(\d+)\s*[-–]\s*(\d+)/) || t.dur.match(/(\d+)/);
-            const durDays = durMatch ? durMatch[1] : "14";
-
-            let groupInfo = "2–12 trekkers";
-            if (t.pricing && t.pricing.tiers.length) {
-                const minG = t.pricing.tiers[0].min;
-                const maxG = t.pricing.tiers[t.pricing.tiers.length - 1].max;
-                groupInfo = `${minG}–${maxG} trekkers`;
-            }
-
-            let accomType = "Teahouse / Lodge";
-            if (t.includes && t.includes.some(i => i.toLowerCase().includes("hotel"))) accomType = "Hotel + Teahouse";
-            if (t.title && t.title.toLowerCase().includes("camp")) accomType = "Tented Camp";
-
-            let mealsInfo = "All meals during trek (breakfast, lunch, dinner)";
-            if (t.includes && t.includes.some(i => i.toLowerCase().includes("meal"))) {
-                const m = t.includes.find(i => i.toLowerCase().includes("meal"));
-                if (m) mealsInfo = m;
-            }
-
-            const permitList = (t.documents || []).filter(d =>
-                d.toLowerCase().includes("permit") || d.toLowerCase().includes("card") || d.toLowerCase().includes("visa")
-            );
-            const permits = permitList.length ? permitList :
-                ["Sagarmatha National Park Permit", "Khumbu Rural Municipality Permit", "TIMS Card (if required)"];
-
-            let fitnessLevel = "Moderate to High";
-            if (t.diff && t.diff.toLowerCase().includes("difficult")) fitnessLevel = "High";
-            else if (t.diff && t.diff.toLowerCase().includes("moderate")) fitnessLevel = "Moderate";
-
-            let weatherNote = "Clear days with cold nights. Temperatures drop significantly with altitude.";
-            if (t.season && t.season.includes("Spring")) {
-                weatherNote = "Warm days, blooming rhododendrons, occasional afternoon clouds. Nights are cold above 4,000m.";
-            }
-            if (t.season && t.season.includes("Autumn")) {
-                weatherNote = "Crystal-clear skies, stable weather, perfect visibility. Temperatures are cool to cold at altitude.";
-            }
-
-            const safetyItems = [
-                "Certified Wilderness First Responder (WFR) guides",
-                "Oxygen cylinders & pulse oximeters carried above 4,000m",
-                "Daily health check-ups by your guide",
-                "Helicopter evacuation available (covered by insurance)",
-                "Acclimatization days built into every itinerary"
-            ];
-
-            // ——— Quick view ———
-            const quickHtml = `
-                <div class="details-quick-grid">
-                    <div class="dq-item"><span class="dq-icon">🗓</span><div><span class="dq-label">Duration</span><span class="dq-value">${t.dur}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">⛰</span><div><span class="dq-label">Max Altitude</span><span class="dq-value">${t.alt}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">🥾</span><div><span class="dq-label">Difficulty</span><span class="dq-value">${t.diff}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">📏</span><div><span class="dq-label">Distance</span><span class="dq-value">${t.dist}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">🌤</span><div><span class="dq-label">Best Season</span><span class="dq-value">${t.season}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">🚩</span><div><span class="dq-label">Start / End</span><span class="dq-value">${t.startEnd}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">🌍</span><div><span class="dq-label">Region</span><span class="dq-value">${t.region}, ${t.country}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">👥</span><div><span class="dq-label">Group Size</span><span class="dq-value">${groupInfo}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">🏠</span><div><span class="dq-label">Accommodation</span><span class="dq-value">${accomType}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">🍽</span><div><span class="dq-label">Meals</span><span class="dq-value">${mealsInfo}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">💪</span><div><span class="dq-label">Fitness</span><span class="dq-value">${fitnessLevel}</span></div></div>
-                    <div class="dq-item"><span class="dq-icon">📋</span><div><span class="dq-label">Permits</span><span class="dq-value">${permits.length} required</span></div></div>
-                </div>
-                <div style="margin-top:16px;padding:14px 18px;background:var(--bg-alt);border-radius:10px;font-size:14px;color:var(--dim);">
-                    <span style="font-weight:600;color:var(--text);">💡 Quick take:</span> ${weatherNote}
-                </div>
-            `;
-
-            // ——— Detailed view (all the specs) ———
-            const detailedHtml = `
-                <h2 class="td-section-title"><span class="num">🔧</span> Technical Specifications</h2>
-                <div class="details-spec-grid">
-                    <div class="ds-item"><span class="ds-icon">🗓</span><div><span class="ds-label">Duration</span><span class="ds-value">${t.dur}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">⛰</span><div><span class="ds-label">Max Altitude</span><span class="ds-value">${t.alt}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">🥾</span><div><span class="ds-label">Difficulty</span><span class="ds-value">${t.diff}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">📏</span><div><span class="ds-label">Distance</span><span class="ds-value">${t.dist}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">🌤</span><div><span class="ds-label">Best Season</span><span class="ds-value">${t.season}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">🚩</span><div><span class="ds-label">Start / End</span><span class="ds-value">${t.startEnd}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">🌍</span><div><span class="ds-label">Region</span><span class="ds-value">${t.region}, ${t.country}</span></div></div>
-                    <div class="ds-item"><span class="ds-icon">👥</span><div><span class="ds-label">Group Size</span><span class="ds-value">${groupInfo}</span></div></div>
-                </div>
-
-                <h2 class="td-section-title"><span class="num">🏕</span> Accommodation & Meals</h2>
-                <div class="details-info-grid">
-                    <div class="dig-item"><span class="dig-icon">🏠</span><div><span class="dig-label">Accommodation</span><span class="dig-value">${accomType}</span></div></div>
-                    <div class="dig-item"><span class="dig-icon">🍽</span><div><span class="dig-label">Meals</span><span class="dig-value">${mealsInfo}</span></div></div>
-                    <div class="dig-item"><span class="dig-icon">🚿</span><div><span class="dig-label">Facilities</span><span class="dig-value">Basic teahouse with shared bathrooms, hot showers (pay-per-use)</span></div></div>
-                </div>
-
-                <h2 class="td-section-title"><span class="num">📋</span> Permits & Documentation</h2>
-                <div class="details-permit-list">
-                    ${permits.map(p => `<div class="permit-chip">📄 ${p}</div>`).join("")}
-                </div>
-                <p class="td-text" style="margin-top:10px;font-size:14px;color:var(--dim);">All permits are arranged by our team. You'll need to bring 2 passport-size photos and a copy of your passport.</p>
-
-                <h2 class="td-section-title"><span class="num">💪</span> Physical Fitness Requirements</h2>
-                <div class="details-fitness">
-                    <div class="fitness-badge" style="background:${fitnessLevel === 'High' ? 'var(--accent)' : 'var(--gold)'};color:#fff;">${fitnessLevel}</div>
-                    <p style="margin-top:8px;font-size:15px;line-height:1.6;color:var(--text);">
-                        ${fitnessLevel === 'High' ?
-                            'This trek demands excellent cardiovascular fitness and prior high-altitude experience. You should be comfortable walking 5–7 hours per day on steep, uneven terrain with a 10–12 kg pack.' :
-                            'This trek requires good physical condition. You should be comfortable walking 4–6 hours per day on varied terrain. Some prior trekking experience is recommended.'}
-                    </p>
-                    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
-                        <span class="fitness-chip">✅ 5+ km daily walking</span>
-                        <span class="fitness-chip">✅ 600–800m elevation gain/day</span>
-                        <span class="fitness-chip">✅ Weighted pack (10–12 kg)</span>
-                        <span class="fitness-chip">✅ Altitude acclimatization tolerance</span>
-                    </div>
-                </div>
-
-                <h2 class="td-section-title"><span class="num">🌦</span> Weather & Season Details</h2>
-                <div class="details-weather">
-                    <p style="font-size:15px;line-height:1.6;color:var(--text);">${weatherNote}</p>
-                    <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                        <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Daytime</span><br><span style="font-size:14px;color:var(--dim);">10–20°C (lower) / 0–10°C (higher)</span></div>
-                        <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Nighttime</span><br><span style="font-size:14px;color:var(--dim);">-5 to 5°C (lower) / -15 to -5°C (higher)</span></div>
-                    </div>
-                </div>
-
-                <h2 class="td-section-title"><span class="num">🛡</span> Safety & Health</h2>
-                <ul class="details-safety-list">
-                    ${safetyItems.map(s => `<li><span class="safety-check">✓</span> ${s}</li>`).join("")}
-                </ul>
-                <div class="td-callout" style="margin-top:12px;">
-                    <span class="ci">⚠️</span>
-                    <div class="ct"><b>Altitude sickness protocol.</b> We follow a strict "climb high, sleep low" policy. If you show symptoms of AMS, we descend immediately. Your guide carries a pulse oximeter and oxygen.</div>
-                </div>
-
+            return `
                 <h2 class="td-section-title"><span class="num">🎒</span> Equipment Checklist</h2>
                 <div class="td-carry" style="margin-bottom:0;">
                     ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
                 </div>
                 <p style="margin-top:12px;font-size:13px;color:var(--dim);">A complete gear list is sent upon booking. We recommend packing light — porters carry up to 15 kg per trekker.</p>
-            `;
-
-            // ——— Graph view (altitude profile) ———
-            const graphHtml = `
-                <div class="altitude-card" style="margin-top:0;">
-                    <div class="alt-head">
-                        <div>
-                            <h3>Altitude profile</h3>
-                            <div class="sub">Sleeping elevation · day by day</div>
-                        </div>
-                        <div class="alt-peak">
-                            <div class="pv">${t.alt}</div>
-                            <div class="pl">highest point${t.altNote ? " · " + t.altNote : ""}</div>
-                        </div>
-                    </div>
-                    <div class="alt-svg-wrap">${buildAltitudeSVG(t.itinerary)}</div>
-                    <div class="alt-legend">
-                        <span><i></i> Sleeping altitude</span>
-                        <span><i class="peak"></i> Highest point</span>
-                        <span>Watch the two plateaus — those are your acclimatization days.</span>
-                    </div>
-                </div>
-                <div style="margin-top:16px;padding:14px 18px;background:var(--bg-alt);border-radius:10px;font-size:14px;color:var(--dim);">
-                    <span style="font-weight:600;color:var(--text);">📈</span> This graph shows the sleeping altitude for each day of the trek. The highest point is marked with a larger dot.
-                </div>
-            `;
-
-            // ——— Assemble tabbed container ———
-            return `
-                <div class="details-tabs-wrapper">
-                    <div class="details-tab-buttons">
-                        <button class="dtab active" data-view="quick">Quick</button>
-                        <button class="dtab" data-view="detailed">Detailed</button>
-                        <button class="dtab" data-view="graph">Graph</button>
-                    </div>
-                    <div class="details-panels">
-                        <div class="details-panel active" id="details-quick">${quickHtml}</div>
-                        <div class="details-panel" id="details-detailed">${detailedHtml}</div>
-                        <div class="details-panel" id="details-graph">${graphHtml}</div>
-                    </div>
-                </div>
             `;
         }
 
@@ -824,22 +655,6 @@
             const p = btn.dataset.p;
             document.querySelectorAll(".td-panel").forEach(pan => pan.classList.remove("active"));
             document.getElementById("panel-" + p).classList.add("active");
-        });
-
-        /* ------------------------------------------------------------------
-           TAB SWITCHING (details sub-tabs)
-           ------------------------------------------------------------------ */
-        document.addEventListener("click", function(e) {
-            const btn = e.target.closest(".dtab");
-            if (!btn) return;
-            const wrapper = btn.closest(".details-tabs-wrapper");
-            if (!wrapper) return;
-            wrapper.querySelectorAll(".dtab").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            const view = btn.dataset.view;
-            wrapper.querySelectorAll(".details-panel").forEach(p => p.classList.remove("active"));
-            const panel = wrapper.querySelector("#details-" + view);
-            if (panel) panel.classList.add("active");
         });
 
         /* ------------------------------------------------------------------
