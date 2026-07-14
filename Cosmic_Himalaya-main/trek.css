@@ -1223,7 +1223,7 @@ nav {
 .alt-legend i.peak { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
 
 /* =====================================================================
-   ITINERARY TIMELINE
+   ITINERARY TIMELINE (legacy – kept for compatibility)
    ===================================================================== */
 .itin { position: relative; padding-left: 8px; }
 .itin-item { position: relative; padding: 0 0 20px 46px; }
@@ -1640,6 +1640,190 @@ nav {
 .bk-trust .ti { color: var(--teal); font-weight: 700; }
 
 /* =====================================================================
+   ITINERARY TABS (Quick / Detailed / Trek Graph)
+   ===================================================================== */
+.itinerary-tabs {
+  margin-top: 10px;
+}
+
+.itinerary-tab-buttons {
+  display: flex;
+  gap: 12px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+}
+
+.itab {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: color 0.25s, background 0.25s;
+  letter-spacing: 0.3px;
+}
+.itab:hover {
+  color: var(--navy);
+  background: rgba(22, 48, 107, 0.04);
+}
+.itab.active {
+  color: var(--navy);
+  background: var(--gold3);
+  box-shadow: 0 2px 0 var(--gold);
+}
+
+.itinerary-panels {
+  position: relative;
+}
+
+.itinerary-panel {
+  display: none;
+  animation: panelFade 0.35s var(--ease) both;
+}
+.itinerary-panel.active {
+  display: block;
+}
+
+/* ---- Quick view ---- */
+.itin-quick-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.itin-quick-item:hover {
+  background: var(--light);
+}
+.iq-day {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--gold2);
+  font-size: 14px;
+}
+.iq-heading {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 15px;
+}
+.iq-stats {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.iq-alt { color: var(--text); font-weight: 500; }
+.iq-time { color: var(--text); }
+.iq-rest {
+  background: var(--teal);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ---- Detailed view ---- */
+.itin-detailed-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+.itin-detailed-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.id-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.id-day {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--gold2);
+  font-size: 18px;
+  background: var(--gold3);
+  padding: 2px 12px;
+  border-radius: 20px;
+}
+.id-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.id-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.id-rest {
+  background: var(--teal);
+  color: white;
+  padding: 0 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.id-points {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 6px;
+}
+.id-points li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.id-points li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ---- Trek Graph (reuse altitude-card) ---- */
+#itinerary-graph .altitude-card {
+  margin: 0;
+  background: var(--navy-deep);
+  border-radius: var(--r-lg);
+  padding: 20px 18px 10px;
+}
+#itinerary-graph .alt-head {
+  margin-bottom: 4px;
+}
+#itinerary-graph .alt-svg-wrap {
+  margin-top: 6px;
+}
+
+/* =====================================================================
    RESPONSIVE
    ===================================================================== */
 @media (max-width: 1024px) {
@@ -1680,6 +1864,33 @@ nav {
   .td-highlights-grid { grid-template-columns: 1fr; }
   .ie-grid { grid-template-columns: 1fr; }
   .td-text { font-size: 15px; line-height: 1.75; }
+
+  /* Itinerary tabs responsive */
+  .itab {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+  .itin-quick-item {
+    grid-template-columns: 50px 1fr;
+    gap: 6px;
+  }
+  .iq-stats {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .id-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .id-day {
+    font-size: 14px;
+  }
+  .id-title {
+    font-size: 16px;
+  }
 }
 @media (max-width: 600px) {
   .trek-filter-bar { padding: 18px 15px; }
