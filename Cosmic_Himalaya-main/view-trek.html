@@ -445,25 +445,28 @@
     <script src="script.js"></script>
     <script>
       // Handle URL parameters to open a specific trek
-      window.onload = () => {
-        const params = new URLSearchParams(window.location.search);
-        const trekKey = params.get("trek");
-        if (trekKey) {
-          openTrek(trekKey);
-        } else {
-          // Default to Everest Base Camp (valid key)
-          openTrek("ebc");
+      window.onload = function() {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const trekKey = params.get("trek");
+          if (trekKey) {
+            openTrek(trekKey);
+          } else {
+            // Default to Everest Base Camp (valid key)
+            openTrek("ebc");
+          }
+        } catch (e) {
+          console.error("Error loading trek:", e);
+          document.body.innerHTML = "<h1>Error loading trek</h1><p>" + e.message + "</p>";
         }
       };
 
       // Override showPage to prevent hiding content if we are on this standalone page
       const originalShowPage = showPage;
-      window.showPage = (n) => {
+      window.showPage = function(n) {
         if (n === "trek") {
-          // Already on trek page, just scroll to top
           window.scrollTo(0, 0);
         } else {
-          // If they want to go home, camp or store, redirect to those pages
           window.location.href = n + ".html";
         }
       };
