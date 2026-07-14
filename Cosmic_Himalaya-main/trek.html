@@ -1,758 +1,758 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Treks — Nepal Himalaya</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="trek.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Treks — Nepal Himalaya</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="trek.css" />
 </head>
+
 <body>
 
-  <!-- ===================== NAV ===================== -->
-   <nav>
-      <a href="index.html" class="nav-brand">
-        <strong>COSMIC HIMALAYA</strong>
-        <span>Authentic Himalayan Journeys</span>
-      </a>
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
+    <nav>
+        <a href="index.html" class="nav-brand">
+            <strong>COSMIC HIMALAYA</strong>
+            <span>Authentic Himalayan Journeys</span>
+        </a>
 
-      <ul class="nav-links">
-        <li><a href="trek.html" class="nb">Treks</a></li>
-        <li><a href="camp.html" class="nb">Camps</a></li>
-        <li><a href="b2b.html" class="nb">B2B</a></li>
-        <li><a href="store.html" class="nb">Store</a></li>
-        <li><a href="about.html" class="nb">About</a></li>
-        <li><a href="contact.html" class="nb">Contact</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <div class="nav-search-wrap">
-          <input type="text" placeholder="Search..." id="navSearch" />
-          <span class="ns-ico">🔍</span>
-        </div>
-        <div class="nav-cart" onclick="toggleCart()">
-          🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
-        </div>
-        <button class="menu">☰</button>
-      </div>
-
-      <!-- Mobile Menu -->
-      <div class="nav-right">
-        <div class="mobile-search-wrap">
-          <input type="text" placeholder="Search treks..." onkeypress="handleMobileSearch(event)" />
-          <span>🔍</span>
-        </div>
-        <ul class="mobile-nav-links">
-          <li><a href="trek.html">Treks</a></li>
-          <li><a href="camp.html">Camps</a></li>
-          <li><a href="b2b.html">B2B</a></li>
-          <li><a href="store.html">Store</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+        <ul class="nav-links">
+            <li><a href="trek.html" class="nb">Treks</a></li>
+            <li><a href="camp.html" class="nb">Camps</a></li>
+            <li><a href="b2b.html" class="nb">B2B</a></li>
+            <li><a href="store.html" class="nb">Store</a></li>
+            <li><a href="about.html" class="nb">About</a></li>
+            <li><a href="contact.html" class="nb">Contact</a></li>
         </ul>
-      </div>
+
+        <div class="nav-actions">
+            <div class="nav-search-wrap">
+                <input type="text" placeholder="Search..." id="navSearch" />
+                <span class="ns-ico">🔍</span>
+            </div>
+            <div class="nav-cart" onclick="toggleCart()">
+                🛒<span id="cartBadge" class="cart-badge" style="display: none">0</span>
+            </div>
+            <button class="menu">☰</button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="nav-right">
+            <div class="mobile-search-wrap">
+                <input type="text" placeholder="Search treks..." onkeypress="handleMobileSearch(event)" />
+                <span>🔍</span>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="trek.html">Treks</a></li>
+                <li><a href="camp.html">Camps</a></li>
+                <li><a href="b2b.html">B2B</a></li>
+                <li><a href="store.html">Store</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-  <!-- ===================== VIEW: ALL TREKS ===================== -->
-  <div id="gridView" class="view active">
-    <header class="all-treks-hero">
-      <div class="at-hero-content">
-        <div class="eyebrow at-eyebrow">Nepal · Tibet · India</div>
-        <h1>Walk the <em>roof of the world</em></h1>
-        <p>Hand-run Himalayan treks with certified Sherpa guides, honest teahouse comfort, and altitude done the safe way.</p>
-      </div>
-    </header>
+    <!-- ============================================================
+    VIEW: ALL TREKS (GRID)
+    ============================================================ -->
+    <div id="gridView" class="view active">
+        <header class="all-treks-hero">
+            <div class="at-hero-content">
+                <div class="eyebrow at-eyebrow">Nepal · Tibet · India</div>
+                <h1>Walk the <em>roof of the world</em></h1>
+                <p>Hand-run Himalayan treks with certified Sherpa guides, honest teahouse comfort, and altitude done the safe way.</p>
+            </div>
+        </header>
 
-    <div class="trek-filter-bar">
-      <div class="filter-row search-row">
-        <div class="filter-search-wrap">
-          <span class="fs-ico">🔍</span>
-          <input id="trekSearch" class="trek-search-input" type="text" placeholder="Search treks, regions or peaks…" oninput="renderGrid()" />
+        <div class="trek-filter-bar">
+            <div class="filter-row search-row">
+                <div class="filter-search-wrap">
+                    <span class="fs-ico">🔍</span>
+                    <input id="trekSearch" class="trek-search-input" type="text" placeholder="Search treks, regions or peaks…" oninput="renderGrid()" />
+                </div>
+            </div>
+            <div class="filter-row" id="filterTabs">
+                <div class="filter-icon">☰</div>
+            </div>
         </div>
-      </div>
-      <div class="filter-row" id="filterTabs">
-        <div class="filter-icon">☰</div>
-      </div>
+
+        <section class="treks-grid-section">
+            <p class="grid-count" id="gridCount"></p>
+            <div class="grid-layout" id="gridLayout"></div>
+        </section>
     </div>
 
-    <section class="treks-grid-section">
-      <p class="grid-count" id="gridCount"></p>
-      <div class="grid-layout" id="gridLayout"></div>
-    </section>
-  </div>
+    <!-- ============================================================
+    VIEW: TREK DETAIL
+    ============================================================ -->
+    <div id="detailView" class="view">
+        <header class="trek-details-hero" id="tdHero">
+            <div class="td-hero-overlay"></div>
+            <div class="td-hero-content">
+                <nav class="td-breadcrumbs">
+                    <a onclick="showGrid()">Home</a> <span>›</span>
+                    <a onclick="showGrid()">All Treks</a> <span>›</span>
+                    <span class="cur" id="bcTitle"></span>
+                </nav>
+                <div class="td-hero-tags" id="tdHeroTags"></div>
+                <div class="td-title-row">
+                    <h1 id="tdTitle"></h1>
+                    <p id="tdRegion"></p>
+                </div>
+            </div>
+        </header>
 
-  <!-- ===================== VIEW: TREK DETAIL ===================== -->
-  <div id="detailView" class="view">
-    <header class="trek-details-hero" id="tdHero">
-      <div class="td-hero-overlay"></div>
-      <div class="td-hero-content">
-        <nav class="td-breadcrumbs">
-          <a onclick="showGrid()">Home</a> <span>›</span>
-          <a onclick="showGrid()">All Treks</a> <span>›</span>
-          <span class="cur" id="bcTitle"></span>
-        </nav>
-        <div class="td-hero-tags" id="tdHeroTags"></div>
-        <div class="td-title-row">
-          <h1 id="tdTitle"></h1>
-          <p id="tdRegion"></p>
+        <div class="td-info-strip" id="tdInfoStrip"></div>
+
+        <div class="td-main-layout">
+            <div class="td-left-col">
+                <div class="td-tabs" id="tdTabs">
+                    <button class="td-t active" data-p="overview">Overview</button>
+                    <button class="td-t" data-p="itinerary">Itinerary</button>
+                    <button class="td-t" data-p="inclusions">Inclusions</button>
+                    <button class="td-t" data-p="gallery">Gallery</button>
+                    <button class="td-t" data-p="reviews">Reviews</button>
+                    <button class="td-t" data-p="faq">FAQ</button>
+                    <button class="td-t" data-p="details">Details</button>
+                </div>
+
+                <div class="td-panel active" id="panel-overview"></div>
+                <div class="td-panel" id="panel-itinerary"></div>
+                <div class="td-panel" id="panel-inclusions"></div>
+                <div class="td-panel" id="panel-gallery"></div>
+                <div class="td-panel" id="panel-reviews"></div>
+                <div class="td-panel" id="panel-faq"></div>
+                <div class="td-panel" id="panel-details"></div>
+            </div>
+
+            <aside>
+                <div class="td-booking-card" id="bookingCard"></div>
+            </aside>
         </div>
-      </div>
-    </header>
-
-    <div class="td-info-strip" id="tdInfoStrip"></div>
-
-    <div class="td-main-layout">
-      <div class="td-left-col">
-        <div class="td-tabs" id="tdTabs">
-          <button class="td-t active" data-p="overview">Overview</button>
-          <button class="td-t" data-p="itinerary">Itinerary</button>
-          <button class="td-t" data-p="inclusions">Inclusions</button>
-          <button class="td-t" data-p="gallery">Gallery</button>
-          <button class="td-t" data-p="reviews">Reviews</button>
-          <button class="td-t" data-p="faq">FAQ</button>
-          <button class="td-t" data-p="details">Details</button>
-        </div>
-
-        <div class="td-panel active" id="panel-overview"></div>
-        <div class="td-panel" id="panel-itinerary"></div>
-        <div class="td-panel" id="panel-inclusions"></div>
-        <div class="td-panel" id="panel-gallery"></div>
-        <div class="td-panel" id="panel-reviews"></div>
-        <div class="td-panel" id="panel-faq"></div>
-        <div class="td-panel" id="panel-details"></div>
-      </div>
-
-      <aside>
-        <div class="td-booking-card" id="bookingCard"></div>
-      </aside>
     </div>
-  </div>
 
-  <!-- Load trek data from external file -->
-  <script src="treks-data.js"></script>
+    <!-- ============================================================
+    EXTERNAL DATA
+    ============================================================ -->
+    <script src="treks-data.js"></script>
 
-  <!-- Page logic (rendering, interactions) -->
-  <script>
-    /* =====================================================================
-       The TREKS object is now loaded from treks-data.js
-       ===================================================================== */
+    <!-- ============================================================
+    APPLICATION LOGIC
+    ============================================================ -->
+    <script>
+        /* ------------------------------------------------------------------
+           CONFIGURATION
+           ------------------------------------------------------------------ */
+        const FILTERS = ["All", "Nepal", "Tibet", "India"];
+        let activeFilter = "All";
+        let bookingState = { pax: 2, porter: false, trek: null };
 
-    const rupee = n => "₹" + n.toLocaleString("en-IN");
+        /* ------------------------------------------------------------------
+           UTILITY HELPERS
+           ------------------------------------------------------------------ */
+        const rupee = n => "₹" + n.toLocaleString("en-IN");
 
-    /* =====================================================================
-       FILTERS  (by country)
-       ===================================================================== */
-    const FILTERS = ["All", "Nepal", "Tibet", "India"];
-    let activeFilter = "All";
+        const stars = n => "★".repeat(n) + "☆".repeat(5 - n);
 
-    function buildFilterTabs() {
-      const wrap = document.getElementById("filterTabs");
-      wrap.querySelectorAll(".ftab").forEach(n => n.remove());
-      FILTERS.forEach(f => {
-        const b = document.createElement("button");
-        b.className = "ftab" + (f === activeFilter ? " active" : "");
-        b.textContent = f;
-        b.onclick = () => { activeFilter = f;
-          buildFilterTabs();
-          renderGrid(); };
-        wrap.appendChild(b);
-      });
-    }
+        const tierPrice = (t, pax) => {
+            if (t.pricing) {
+                const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max) ||
+                    t.pricing.tiers[t.pricing.tiers.length - 1];
+                return tier.price;
+            }
+            return t.priceFrom || null;
+        };
 
-    /* =====================================================================
-       RENDER GRID
-       ===================================================================== */
-    function priceLabel(t) {
-      if (t.pricing) {
-        const min = Math.min(...t.pricing.tiers.map(x => x.price));
-        return `<span>from</span> <b>${rupee(min)}</b> <span>/ person</span>`;
-      }
-      if (t.priceFrom) return `<span>from</span> <b>${rupee(t.priceFrom)}</b> <span>/ person</span>`;
-      return `<span class="req">On request</span>`;
-    }
+        const priceLabel = t => {
+            if (t.pricing) {
+                const min = Math.min(...t.pricing.tiers.map(x => x.price));
+                return `<span>from</span> <b>${rupee(min)}</b> <span>/ person</span>`;
+            }
+            if (t.priceFrom) {
+                return `<span>from</span> <b>${rupee(t.priceFrom)}</b> <span>/ person</span>`;
+            }
+            return `<span class="req">On request</span>`;
+        };
 
-    function renderGrid() {
-      const q = (document.getElementById("trekSearch").value || "").toLowerCase().trim();
-      const grid = document.getElementById("gridLayout");
-      grid.innerHTML = "";
-      const entries = Object.entries(TREKS).filter(([k, t]) => {
-        const matchFilter = activeFilter === "All" || t.country === activeFilter;
-        const hay = (t.title + " " + t.region + " " + t.diff).toLowerCase();
-        return matchFilter && hay.includes(q);
-      });
+        /* ------------------------------------------------------------------
+           RENDER GRID
+           ------------------------------------------------------------------ */
+        function buildFilterTabs() {
+            const wrap = document.getElementById("filterTabs");
+            wrap.querySelectorAll(".ftab").forEach(n => n.remove());
+            FILTERS.forEach(f => {
+                const b = document.createElement("button");
+                b.className = "ftab" + (f === activeFilter ? " active" : "");
+                b.textContent = f;
+                b.onclick = () => {
+                    activeFilter = f;
+                    buildFilterTabs();
+                    renderGrid();
+                };
+                wrap.appendChild(b);
+            });
+        }
 
-      document.getElementById("gridCount").innerHTML =
-        `Showing <b>${entries.length}</b> ${entries.length === 1 ? "trek" : "treks"}` +
-        (activeFilter !== "All" ? ` in ${activeFilter}` : "");
+        function renderGrid() {
+            const q = (document.getElementById("trekSearch").value || "").toLowerCase().trim();
+            const grid = document.getElementById("gridLayout");
+            grid.innerHTML = "";
 
-      if (!entries.length) {
-        grid.innerHTML = `<div class="no-results-msg" style="grid-column:1/-1">
-          <div class="no-res-ico">🏔</div>
-          <h3>No treks match that</h3>
-          <p>Try a different region filter, or clear your search to see everything.</p></div>`;
-        return;
-      }
+            const entries = Object.entries(TREKS).filter(([k, t]) => {
+                const matchFilter = activeFilter === "All" || t.country === activeFilter;
+                const hay = (t.title + " " + t.region + " " + t.diff).toLowerCase();
+                return matchFilter && hay.includes(q);
+            });
 
-      entries.forEach(([key, t], i) => {
-        const card = document.createElement("div");
-        card.className = "trek-card";
-        card.style.animation = `atRise .5s var(--ease) ${i * 0.05}s both`;
-        card.onclick = () => openTrek(key);
-        card.innerHTML = `
-          <div class="tk-img">
-            <img src="${t.img}" alt="${t.title}" loading="lazy"
-                 onerror="this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop'">
-            <span class="tk-diff">${t.diff}</span>
-            <span class="tk-loc">📍 ${t.region}</span>
-          </div>
-          <div class="tk-body">
-            <h3 class="tk-title">${t.title}</h3>
-            <div class="tk-meta">
-              <div><span class="k">Duration</span><span class="v">${t.dur.split(" /")[0]}</span></div>
-              <div><span class="k">Max Altitude</span><span class="v">${t.alt}</span></div>
-              <div><span class="k">Best Season</span><span class="v">${t.season}</span></div>
-              <div><span class="k">Distance</span><span class="v">${t.dist}</span></div>
-            </div>
-            <div class="tk-price">${priceLabel(t)}</div>
-            <button class="tk-btn">View Trek →</button>
-          </div>`;
-        grid.appendChild(card);
-      });
-    }
+            document.getElementById("gridCount").innerHTML =
+                `Showing <b>${entries.length}</b> ${entries.length === 1 ? "trek" : "treks"}` +
+                (activeFilter !== "All" ? ` in ${activeFilter}` : "");
 
-    /* =====================================================================
-       ALTITUDE RIDGELINE  (the signature)
-       ===================================================================== */
-    function buildAltitudeSVG(itin) {
-      const W = 900,
-        H = 230,
-        padL = 44,
-        padR = 20,
-        padT = 22,
-        padB = 34;
-      const alts = itin.map(d => d.alt);
-      const maxA = Math.max(...alts),
-        minA = Math.min(...alts);
-      const niceMax = Math.ceil(maxA / 1000) * 1000;
-      const niceMin = Math.floor(minA / 1000) * 1000;
-      const plotW = W - padL - padR,
-        plotH = H - padT - padB;
-      const x = i => padL + (plotW * i) / (itin.length - 1);
-      const y = a => padT + plotH * (1 - (a - niceMin) / (niceMax - niceMin));
+            if (!entries.length) {
+                grid.innerHTML = `<div class="no-results-msg" style="grid-column:1/-1">
+                    <div class="no-res-ico">🏔</div>
+                    <h3>No treks match that</h3>
+                    <p>Try a different region filter, or clear your search to see everything.</p>
+                </div>`;
+                return;
+            }
 
-      let grid = "";
-      for (let a = niceMin; a <= niceMax; a += 1000) {
-        grid += `<line class="alt-grid-line" x1="${padL}" y1="${y(a).toFixed(1)}" x2="${W - padR}" y2="${y(a).toFixed(1)}"/>`;
-        grid += `<text class="alt-grid-label" x="6" y="${(y(a) + 3).toFixed(1)}">${(a / 1000).toFixed(0)}k</text>`;
-      }
+            entries.forEach(([key, t], i) => {
+                const card = document.createElement("div");
+                card.className = "trek-card";
+                card.style.animation = `atRise .5s var(--ease) ${i * 0.05}s both`;
+                card.onclick = () => openTrek(key);
+                card.innerHTML = `
+                    <div class="tk-img">
+                        <img src="${t.img}" alt="${t.title}" loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="tk-diff">${t.diff}</span>
+                        <span class="tk-loc">📍 ${t.region}</span>
+                    </div>
+                    <div class="tk-body">
+                        <h3 class="tk-title">${t.title}</h3>
+                        <div class="tk-meta">
+                            <div><span class="k">Duration</span><span class="v">${t.dur.split(" /")[0]}</span></div>
+                            <div><span class="k">Max Altitude</span><span class="v">${t.alt}</span></div>
+                            <div><span class="k">Best Season</span><span class="v">${t.season}</span></div>
+                            <div><span class="k">Distance</span><span class="v">${t.dist}</span></div>
+                        </div>
+                        <div class="tk-price">${priceLabel(t)}</div>
+                        <button class="tk-btn">View Trek →</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-      const linePts = itin.map((d, i) => `${x(i).toFixed(1)},${y(d.alt).toFixed(1)}`).join(" ");
-      const areaPts = `${padL},${(H - padB).toFixed(1)} ${linePts} ${(W - padR).toFixed(1)},${(H - padB).toFixed(1)}`;
+        /* ------------------------------------------------------------------
+           ALTITUDE SVG
+           ------------------------------------------------------------------ */
+        function buildAltitudeSVG(itin) {
+            const W = 900,
+                H = 230,
+                padL = 44,
+                padR = 20,
+                padT = 22,
+                padB = 34;
+            const alts = itin.map(d => d.alt);
+            const maxA = Math.max(...alts),
+                minA = Math.min(...alts);
+            const niceMax = Math.ceil(maxA / 1000) * 1000;
+            const niceMin = Math.floor(minA / 1000) * 1000;
+            const plotW = W - padL - padR,
+                plotH = H - padT - padB;
+            const x = i => padL + (plotW * i) / (itin.length - 1);
+            const y = a => padT + plotH * (1 - (a - niceMin) / (niceMax - niceMin));
 
-      const peakIdx = alts.indexOf(maxA);
-      let dots = "",
-        labels = "";
-      itin.forEach((d, i) => {
-        const isPeak = i === peakIdx;
-        dots += `<circle class="alt-dot${isPeak ? " peak" : ""}" data-day="${d.day}" cx="${x(i).toFixed(1)}" cy="${y(d.alt).toFixed(1)}" r="${isPeak ? 6 : 4.5}">
-          <title>Day ${d.day} · ${d.title} · sleep ${d.alt.toLocaleString("en-IN")} m</title></circle>`;
-        if (i % 2 === 0 || isPeak)
-          labels += `<text class="alt-daylabel" x="${x(i).toFixed(1)}" y="${H - 12}">D${d.day}</text>`;
-      });
+            let grid = "";
+            for (let a = niceMin; a <= niceMax; a += 1000) {
+                grid += `<line class="alt-grid-line" x1="${padL}" y1="${y(a).toFixed(1)}" x2="${W - padR}" y2="${y(a).toFixed(1)}"/>`;
+                grid += `<text class="alt-grid-label" x="6" y="${(y(a) + 3).toFixed(1)}">${(a / 1000).toFixed(0)}k</text>`;
+            }
 
-      return `<svg class="alt-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Altitude profile of the trek by day">
-        <defs><linearGradient id="altGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#e3cd94" stop-opacity="0.42"/>
-          <stop offset="100%" stop-color="#e3cd94" stop-opacity="0.02"/>
-        </linearGradient></defs>
-        ${grid}
-        <polygon class="alt-area" points="${areaPts}"/>
-        <polyline class="alt-line" points="${linePts}"/>
-        ${dots}${labels}
-      </svg>`;
-    }
+            const linePts = itin.map((d, i) => `${x(i).toFixed(1)},${y(d.alt).toFixed(1)}`).join(" ");
+            const areaPts = `${padL},${(H - padB).toFixed(1)} ${linePts} ${(W - padR).toFixed(1)},${(H - padB).toFixed(1)}`;
 
-    /* =====================================================================
-       PANEL BUILDERS
-       ===================================================================== */
-    function stars(n) { return "★".repeat(n) + "☆".repeat(5 - n); }
+            const peakIdx = alts.indexOf(maxA);
+            let dots = "",
+                labels = "";
+            itin.forEach((d, i) => {
+                const isPeak = i === peakIdx;
+                dots += `<circle class="alt-dot${isPeak ? " peak" : ""}" data-day="${d.day}" cx="${x(i).toFixed(1)}" cy="${y(d.alt).toFixed(1)}" r="${isPeak ? 6 : 4.5}">
+                    <title>Day ${d.day} · ${d.title} · sleep ${d.alt.toLocaleString("en-IN")} m</title></circle>`;
+                if (i % 2 === 0 || isPeak) {
+                    labels += `<text class="alt-daylabel" x="${x(i).toFixed(1)}" y="${H - 12}">D${d.day}</text>`;
+                }
+            });
 
-    function buildOverview(t) {
-      return `
-        <h2 class="td-section-title"><span class="num">01</span> About this trek</h2>
-        <p class="td-text">${t.about}</p>
-        <div class="td-callout">
-          <span class="ci">🗓</span>
-          <div class="ct"><b>Best time to go.</b> ${t.bestTime}</div>
-        </div>
-        <h2 class="td-section-title"><span class="num">02</span> Trip highlights</h2>
-        <div class="td-highlights-grid">
-          ${t.highlights.map(h => {
-            const sp = h.indexOf(" ");
-            return `<div class="tdh-item"><span class="tdh-ico">${h.slice(0, sp)}</span><span class="tdh-txt">${h.slice(sp + 1)}</span></div>`;
-          }).join("")}
-        </div>
-        <h2 class="td-section-title"><span class="num">03</span> What to carry</h2>
-        <div class="td-carry">
-          ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
-        </div>`;
-    }
+            return `<svg class="alt-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Altitude profile of the trek by day">
+                <defs><linearGradient id="altGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#e3cd94" stop-opacity="0.42"/>
+                    <stop offset="100%" stop-color="#e3cd94" stop-opacity="0.02"/>
+                </linearGradient></defs>
+                ${grid}
+                <polygon class="alt-area" points="${areaPts}"/>
+                <polyline class="alt-line" points="${linePts}"/>
+                ${dots}${labels}
+            </svg>`;
+        }
 
-    /* =====================================================================
-       NEW ITINERARY – Quick / Detailed / Trek Graph tabs
-       ===================================================================== */
-    function buildItinerary(t) {
-      const itin = t.itinerary;
+        /* ------------------------------------------------------------------
+           PANEL BUILDERS
+           ------------------------------------------------------------------ */
+        function buildOverview(t) {
+            return `
+                <h2 class="td-section-title"><span class="num">01</span> About this trek</h2>
+                <p class="td-text">${t.about}</p>
+                <div class="td-callout">
+                    <span class="ci">🗓</span>
+                    <div class="ct"><b>Best time to go.</b> ${t.bestTime}</div>
+                </div>
+                <h2 class="td-section-title"><span class="num">02</span> Trip highlights</h2>
+                <div class="td-highlights-grid">
+                    ${t.highlights.map(h => {
+                        const sp = h.indexOf(" ");
+                        return `<div class="tdh-item"><span class="tdh-ico">${h.slice(0, sp)}</span><span class="tdh-txt">${h.slice(sp + 1)}</span></div>`;
+                    }).join("")}
+                </div>
+                <h2 class="td-section-title"><span class="num">03</span> What to carry</h2>
+                <div class="td-carry">
+                    ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
+                </div>
+            `;
+        }
 
-      // Quick view
-      const quickHtml = itin.map(d => `
-        <div class="itin-quick-item">
-          <div class="iq-day">Day ${d.day}</div>
-          <div class="iq-heading">${d.title}</div>
-          <div class="iq-stats">
-            <span class="iq-alt">⛰ ${d.sub}</span>
-            ${d.time ? `<span class="iq-time">⏱ ${d.time}</span>` : ''}
-            ${d.rest ? '<span class="iq-rest">REST DAY</span>' : ''}
-          </div>
-        </div>
-      `).join('');
+        function buildItinerary(t) {
+            return `
+                <div class="altitude-card">
+                    <div class="alt-head">
+                        <div>
+                            <h3>Altitude profile</h3>
+                            <div class="sub">Sleeping elevation · day by day</div>
+                        </div>
+                        <div class="alt-peak">
+                            <div class="pv">${t.alt}</div>
+                            <div class="pl">highest point${t.altNote ? " · " + t.altNote : ""}</div>
+                        </div>
+                    </div>
+                    <div class="alt-svg-wrap">${buildAltitudeSVG(t.itinerary)}</div>
+                    <div class="alt-legend">
+                        <span><i></i> Sleeping altitude</span>
+                        <span><i class="peak"></i> Highest point</span>
+                        <span>Watch the two plateaus — those are your acclimatization days.</span>
+                    </div>
+                </div>
+                <h2 class="td-section-title"><span class="num">${String(t.itinerary.length)}</span> Day-by-day</h2>
+                <div class="itin">
+                    ${t.itinerary.map(d => `
+                        <div class="itin-item ${d.rest ? "rest" : ""}" data-day="${d.day}"
+                             onmouseenter="hotDay(${d.day},true)" onmouseleave="hotDay(${d.day},false)">
+                            <div class="itin-node">${d.day}</div>
+                            <div class="itin-card">
+                                <div class="itin-top">
+                                    <div class="itin-title">${d.title}</div>
+                                    <div class="itin-badges">
+                                        ${d.rest ? `<span class="itin-badge rest">REST</span>` : ""}
+                                        ${d.time ? `<span class="itin-badge time">${d.time}</span>` : ""}
+                                        <span class="itin-badge alt">${d.sub}</span>
+                                    </div>
+                                </div>
+                                <ul class="itin-points">${d.points.map(p => `<li>${p}</li>`).join("")}</ul>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
 
-      // Detailed view
-      const detailedHtml = itin.map(d => `
-        <div class="itin-detailed-item">
-          <div class="id-head">
-            <span class="id-day">Day ${d.day}</span>
-            <span class="id-title">${d.title}</span>
-          </div>
-          <div class="id-body">
-            <div class="id-stats">
-              <span>⛰ ${d.sub}</span>
-              ${d.time ? `<span>⏱ ${d.time}</span>` : ''}
-              ${d.rest ? '<span class="id-rest">REST DAY</span>' : ''}
-            </div>
-            <ul class="id-points">
-              ${d.points.map(p => `<li>${p}</li>`).join('')}
-            </ul>
-          </div>
-        </div>
-      `).join('');
+        function hotDay(day, on) {
+            document.querySelectorAll(`.alt-dot[data-day="${day}"]`).forEach(d => d.classList.toggle("hot", on));
+        }
 
-      // Trek Graph (altitude profile)
-      const graphHtml = `
-        <div class="altitude-card" style="margin-top:0;">
-          ${buildAltitudeSVG(itin)}
-        </div>
-      `;
+        function buildInclusions(t) {
+            return `
+                <div class="ie-grid">
+                    <div class="ie-col inc">
+                        <h4><span class="badge">✓</span> What's included</h4>
+                        <ul class="ie-list">${t.includes.map(i => `<li>${i}</li>`).join("")}</ul>
+                    </div>
+                    <div class="ie-col exc">
+                        <h4><span class="badge">✕</span> Not included</h4>
+                        <ul class="ie-list">${t.excludes.map(i => `<li>${i}</li>`).join("")}</ul>
+                    </div>
+                </div>
+                <div class="docs-note">
+                    <h5>📄 Documents required to book</h5>
+                    <ul>${(t.documents || []).map(d => `<li>${d}</li>`).join("")}</ul>
+                </div>
+            `;
+        }
 
-      // Assemble tabbed container
-      return `
-        <div class="itinerary-tabs">
-          <div class="itinerary-tab-buttons">
-            <button class="itab active" data-view="quick">Quick</button>
-            <button class="itab" data-view="detailed">Detailed</button>
-            <button class="itab" data-view="graph">Trek Graph</button>
-          </div>
-          <div class="itinerary-panels">
-            <div class="itinerary-panel active" id="itinerary-quick">${quickHtml}</div>
-            <div class="itinerary-panel" id="itinerary-detailed">${detailedHtml}</div>
-            <div class="itinerary-panel" id="itinerary-graph">${graphHtml}</div>
-          </div>
-        </div>
-      `;
-    }
+        function buildGallery(t) {
+            const vid = t.videos && t.videos[0] ?
+                `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${t.videos[0]}" title="Trek video" allowfullscreen loading="lazy"></iframe></div>` :
+                "";
+            return `
+                <h2 class="td-section-title"><span class="num">📷</span> Gallery</h2>
+                <div class="gallery-grid">
+                    ${t.photos.map(p => `<figure><img src="${p}" alt="${t.title}" loading="lazy"
+                         onerror="this.parentElement.style.display='none'"></figure>`).join("")}
+                </div>
+                ${vid}
+            `;
+        }
 
-    // The old hotDay function is no longer used, but we keep it for compatibility.
-    function hotDay(day, on) {
-      document.querySelectorAll(`.alt-dot[data-day="${day}"]`).forEach(d => d.classList.toggle("hot", on));
-    }
+        function buildReviews(t) {
+            return `
+                <h2 class="td-section-title"><span class="num">★</span> Trekker reviews</h2>
+                ${(t.reviews || []).map(r => `
+                    <div class="review-card">
+                        <div class="rev-head">
+                            <div class="rev-emoji">${r.e}</div>
+                            <div>
+                                <div class="rev-name">${r.name}</div>
+                                <div class="rev-loc">📍 ${r.loc}</div>
+                            </div>
+                            <div style="margin-left:auto;text-align:right">
+                                <div class="rev-stars">${stars(r.r)}</div>
+                                <div class="rev-date">${r.date}</div>
+                            </div>
+                        </div>
+                        <p class="rev-text">"${r.text}"</p>
+                    </div>
+                `).join("")}
+            `;
+        }
 
-    function buildInclusions(t) {
-      return `
-        <div class="ie-grid">
-          <div class="ie-col inc">
-            <h4><span class="badge">✓</span> What's included</h4>
-            <ul class="ie-list">${t.includes.map(i => `<li>${i}</li>`).join("")}</ul>
-          </div>
-          <div class="ie-col exc">
-            <h4><span class="badge">✕</span> Not included</h4>
-            <ul class="ie-list">${t.excludes.map(i => `<li>${i}</li>`).join("")}</ul>
-          </div>
-        </div>
-        <div class="docs-note">
-          <h5>📄 Documents required to book</h5>
-          <ul>${(t.documents || []).map(d => `<li>${d}</li>`).join("")}</ul>
-        </div>`;
-    }
+        function buildFaq(t) {
+            return `
+                <h2 class="td-section-title"><span class="num">?</span> Frequently asked</h2>
+                <div class="faq-list">
+                    ${(t.faqs || []).map((f, i) => `
+                        <div class="faq-item ${i === 0 ? "open" : ""}">
+                            <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span class="chev">▾</span></button>
+                            <div class="faq-a">${f.a}</div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
 
-    function buildGallery(t) {
-      const vid = t.videos && t.videos[0] ?
-        `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${t.videos[0]}" title="Trek video" allowfullscreen loading="lazy"></iframe></div>` :
-        "";
-      return `
-        <h2 class="td-section-title"><span class="num">📷</span> Gallery</h2>
-        <div class="gallery-grid">
-          ${t.photos.map(p => `<figure><img src="${p}" alt="${t.title}" loading="lazy"
-             onerror="this.parentElement.style.display='none'"></figure>`).join("")}
-        </div>
-        ${vid}`;
-    }
+        function toggleFaq(btn) {
+            btn.closest(".faq-item").classList.toggle("open");
+        }
 
-    function buildReviews(t) {
-      return `
-        <h2 class="td-section-title"><span class="num">★</span> Trekker reviews</h2>
-        ${(t.reviews || []).map(r => `
-          <div class="review-card">
-            <div class="rev-head">
-              <div class="rev-emoji">${r.e}</div>
-              <div>
-                <div class="rev-name">${r.name}</div>
-                <div class="rev-loc">📍 ${r.loc}</div>
-              </div>
-              <div style="margin-left:auto;text-align:right">
-                <div class="rev-stars">${stars(r.r)}</div>
-                <div class="rev-date">${r.date}</div>
-              </div>
-            </div>
-            <p class="rev-text">"${r.text}"</p>
-          </div>`).join("")}`;
-    }
+        /* ------------------------------------------------------------------
+           DETAILS PANEL  (full technical specs)
+           ------------------------------------------------------------------ */
+        function buildDetails(t) {
+            const durMatch = t.dur.match(/(\d+)\s*[-–]\s*(\d+)/) || t.dur.match(/(\d+)/);
+            const durDays = durMatch ? durMatch[1] : "14";
 
-    function buildFaq(t) {
-      return `
-        <h2 class="td-section-title"><span class="num">?</span> Frequently asked</h2>
-        <div class="faq-list">
-          ${(t.faqs || []).map((f, i) => `
-            <div class="faq-item ${i === 0 ? "open" : ""}">
-              <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span class="chev">▾</span></button>
-              <div class="faq-a">${f.a}</div>
-            </div>`).join("")}
-        </div>`;
-    }
+            let groupInfo = "2–12 trekkers";
+            if (t.pricing && t.pricing.tiers.length) {
+                const minG = t.pricing.tiers[0].min;
+                const maxG = t.pricing.tiers[t.pricing.tiers.length - 1].max;
+                groupInfo = `${minG}–${maxG} trekkers`;
+            }
 
-    function toggleFaq(btn) { btn.closest(".faq-item").classList.toggle("open"); }
+            let accomType = "Teahouse / Lodge";
+            if (t.includes && t.includes.some(i => i.toLowerCase().includes("hotel"))) accomType = "Hotel + Teahouse";
+            if (t.title && t.title.toLowerCase().includes("camp")) accomType = "Tented Camp";
 
-    /* =====================================================================
-       DETAILS PANEL  —  comprehensive technical & logistical specs
-       ===================================================================== */
-    function buildDetails(t) {
-      // parse duration to get days
-      const durMatch = t.dur.match(/(\d+)\s*[-–]\s*(\d+)/) || t.dur.match(/(\d+)/);
-      const durDays = durMatch ? durMatch[1] : "14";
+            let mealsInfo = "All meals during trek (breakfast, lunch, dinner)";
+            if (t.includes && t.includes.some(i => i.toLowerCase().includes("meal"))) {
+                const m = t.includes.find(i => i.toLowerCase().includes("meal"));
+                if (m) mealsInfo = m;
+            }
 
-      // estimate group size from pricing tiers if available
-      let groupInfo = "2–12 trekkers";
-      if (t.pricing && t.pricing.tiers.length) {
-        const minG = t.pricing.tiers[0].min;
-        const maxG = t.pricing.tiers[t.pricing.tiers.length - 1].max;
-        groupInfo = `${minG}–${maxG} trekkers`;
-      }
+            const permitList = (t.documents || []).filter(d =>
+                d.toLowerCase().includes("permit") || d.toLowerCase().includes("card") || d.toLowerCase().includes("visa")
+            );
+            const permits = permitList.length ? permitList :
+                ["Sagarmatha National Park Permit", "Khumbu Rural Municipality Permit", "TIMS Card (if required)"];
 
-      // accommodation type (derive from includes)
-      let accomType = "Teahouse / Lodge";
-      if (t.includes && t.includes.some(i => i.toLowerCase().includes("hotel"))) accomType = "Hotel + Teahouse";
-      if (t.title && t.title.toLowerCase().includes("camp")) accomType = "Tented Camp";
+            let fitnessLevel = "Moderate to High";
+            if (t.diff && t.diff.toLowerCase().includes("difficult")) fitnessLevel = "High";
+            else if (t.diff && t.diff.toLowerCase().includes("moderate")) fitnessLevel = "Moderate";
 
-      // meals info from includes
-      let mealsInfo = "All meals during trek (breakfast, lunch, dinner)";
-      if (t.includes && t.includes.some(i => i.toLowerCase().includes("meal"))) {
-        const m = t.includes.find(i => i.toLowerCase().includes("meal"));
-        if (m) mealsInfo = m;
-      }
+            let weatherNote = "Clear days with cold nights. Temperatures drop significantly with altitude.";
+            if (t.season && t.season.includes("Spring")) {
+                weatherNote = "Warm days, blooming rhododendrons, occasional afternoon clouds. Nights are cold above 4,000m.";
+            }
+            if (t.season && t.season.includes("Autumn")) {
+                weatherNote = "Crystal-clear skies, stable weather, perfect visibility. Temperatures are cool to cold at altitude.";
+            }
 
-      // permits (from documents or derive)
-      const permitList = (t.documents || []).filter(d =>
-        d.toLowerCase().includes("permit") || d.toLowerCase().includes("card") || d.toLowerCase().includes("visa")
-      );
-      const permits = permitList.length ? permitList : ["Sagarmatha National Park Permit", "Khumbu Rural Municipality Permit", "TIMS Card (if required)"];
+            const safetyItems = [
+                "Certified Wilderness First Responder (WFR) guides",
+                "Oxygen cylinders & pulse oximeters carried above 4,000m",
+                "Daily health check-ups by your guide",
+                "Helicopter evacuation available (covered by insurance)",
+                "Acclimatization days built into every itinerary"
+            ];
 
-      // physical rating
-      let fitnessLevel = "Moderate to High";
-      if (t.diff && t.diff.toLowerCase().includes("difficult")) fitnessLevel = "High";
-      else if (t.diff && t.diff.toLowerCase().includes("moderate")) fitnessLevel = "Moderate";
+            return `
+                <h2 class="td-section-title"><span class="num">🔧</span> Technical Specifications</h2>
+                <div class="details-spec-grid">
+                    <div class="ds-item"><span class="ds-icon">🗓</span><div><span class="ds-label">Duration</span><span class="ds-value">${t.dur}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">⛰</span><div><span class="ds-label">Max Altitude</span><span class="ds-value">${t.alt}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">🥾</span><div><span class="ds-label">Difficulty</span><span class="ds-value">${t.diff}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">📏</span><div><span class="ds-label">Distance</span><span class="ds-value">${t.dist}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">🌤</span><div><span class="ds-label">Best Season</span><span class="ds-value">${t.season}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">🚩</span><div><span class="ds-label">Start / End</span><span class="ds-value">${t.startEnd}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">🌍</span><div><span class="ds-label">Region</span><span class="ds-value">${t.region}, ${t.country}</span></div></div>
+                    <div class="ds-item"><span class="ds-icon">👥</span><div><span class="ds-label">Group Size</span><span class="ds-value">${groupInfo}</span></div></div>
+                </div>
 
-      // weather info from season
-      let weatherNote = "Clear days with cold nights. Temperatures drop significantly with altitude.";
-      if (t.season && t.season.includes("Spring")) weatherNote = "Warm days, blooming rhododendrons, occasional afternoon clouds. Nights are cold above 4,000m.";
-      if (t.season && t.season.includes("Autumn")) weatherNote = "Crystal-clear skies, stable weather, perfect visibility. Temperatures are cool to cold at altitude.";
+                <h2 class="td-section-title"><span class="num">🏕</span> Accommodation & Meals</h2>
+                <div class="details-info-grid">
+                    <div class="dig-item"><span class="dig-icon">🏠</span><div><span class="dig-label">Accommodation</span><span class="dig-value">${accomType}</span></div></div>
+                    <div class="dig-item"><span class="dig-icon">🍽</span><div><span class="dig-label">Meals</span><span class="dig-value">${mealsInfo}</span></div></div>
+                    <div class="dig-item"><span class="dig-icon">🚿</span><div><span class="dig-label">Facilities</span><span class="dig-value">Basic teahouse with shared bathrooms, hot showers (pay-per-use)</span></div></div>
+                </div>
 
-      // safety info
-      const safetyItems = [
-        "Certified Wilderness First Responder (WFR) guides",
-        "Oxygen cylinders & pulse oximeters carried above 4,000m",
-        "Daily health check-ups by your guide",
-        "Helicopter evacuation available (covered by insurance)",
-        "Acclimatization days built into every itinerary"
-      ];
+                <h2 class="td-section-title"><span class="num">📋</span> Permits & Documentation</h2>
+                <div class="details-permit-list">
+                    ${permits.map(p => `<div class="permit-chip">📄 ${p}</div>`).join("")}
+                </div>
+                <p class="td-text" style="margin-top:10px;font-size:14px;color:var(--dim);">All permits are arranged by our team. You'll need to bring 2 passport-size photos and a copy of your passport.</p>
 
-      return `
-        <h2 class="td-section-title"><span class="num">🔧</span> Technical Specifications</h2>
-        <div class="details-spec-grid">
-          <div class="ds-item"><span class="ds-icon">🗓</span><div><span class="ds-label">Duration</span><span class="ds-value">${t.dur}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">⛰</span><div><span class="ds-label">Max Altitude</span><span class="ds-value">${t.alt}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">🥾</span><div><span class="ds-label">Difficulty</span><span class="ds-value">${t.diff}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">📏</span><div><span class="ds-label">Distance</span><span class="ds-value">${t.dist}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">🌤</span><div><span class="ds-label">Best Season</span><span class="ds-value">${t.season}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">🚩</span><div><span class="ds-label">Start / End</span><span class="ds-value">${t.startEnd}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">🌍</span><div><span class="ds-label">Region</span><span class="ds-value">${t.region}, ${t.country}</span></div></div>
-          <div class="ds-item"><span class="ds-icon">👥</span><div><span class="ds-label">Group Size</span><span class="ds-value">${groupInfo}</span></div></div>
-        </div>
+                <h2 class="td-section-title"><span class="num">💪</span> Physical Fitness Requirements</h2>
+                <div class="details-fitness">
+                    <div class="fitness-badge" style="background:${fitnessLevel === 'High' ? 'var(--accent)' : 'var(--gold)'};color:#fff;">${fitnessLevel}</div>
+                    <p style="margin-top:8px;font-size:15px;line-height:1.6;color:var(--text);">
+                        ${fitnessLevel === 'High' ?
+                            'This trek demands excellent cardiovascular fitness and prior high-altitude experience. You should be comfortable walking 5–7 hours per day on steep, uneven terrain with a 10–12 kg pack.' :
+                            'This trek requires good physical condition. You should be comfortable walking 4–6 hours per day on varied terrain. Some prior trekking experience is recommended.'}
+                    </p>
+                    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
+                        <span class="fitness-chip">✅ 5+ km daily walking</span>
+                        <span class="fitness-chip">✅ 600–800m elevation gain/day</span>
+                        <span class="fitness-chip">✅ Weighted pack (10–12 kg)</span>
+                        <span class="fitness-chip">✅ Altitude acclimatization tolerance</span>
+                    </div>
+                </div>
 
-        <h2 class="td-section-title"><span class="num">🏕</span> Accommodation & Meals</h2>
-        <div class="details-info-grid">
-          <div class="dig-item"><span class="dig-icon">🏠</span><div><span class="dig-label">Accommodation</span><span class="dig-value">${accomType}</span></div></div>
-          <div class="dig-item"><span class="dig-icon">🍽</span><div><span class="dig-label">Meals</span><span class="dig-value">${mealsInfo}</span></div></div>
-          <div class="dig-item"><span class="dig-icon">🚿</span><div><span class="dig-label">Facilities</span><span class="dig-value">Basic teahouse with shared bathrooms, hot showers (pay-per-use)</span></div></div>
-        </div>
+                <h2 class="td-section-title"><span class="num">🌦</span> Weather & Season Details</h2>
+                <div class="details-weather">
+                    <p style="font-size:15px;line-height:1.6;color:var(--text);">${weatherNote}</p>
+                    <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                        <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Daytime</span><br><span style="font-size:14px;color:var(--dim);">10–20°C (lower) / 0–10°C (higher)</span></div>
+                        <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Nighttime</span><br><span style="font-size:14px;color:var(--dim);">-5 to 5°C (lower) / -15 to -5°C (higher)</span></div>
+                    </div>
+                </div>
 
-        <h2 class="td-section-title"><span class="num">📋</span> Permits & Documentation</h2>
-        <div class="details-permit-list">
-          ${permits.map(p => `<div class="permit-chip">📄 ${p}</div>`).join("")}
-        </div>
-        <p class="td-text" style="margin-top:10px;font-size:14px;color:var(--dim);">All permits are arranged by our team. You'll need to bring 2 passport-size photos and a copy of your passport.</p>
+                <h2 class="td-section-title"><span class="num">🛡</span> Safety & Health</h2>
+                <ul class="details-safety-list">
+                    ${safetyItems.map(s => `<li><span class="safety-check">✓</span> ${s}</li>`).join("")}
+                </ul>
+                <div class="td-callout" style="margin-top:12px;">
+                    <span class="ci">⚠️</span>
+                    <div class="ct"><b>Altitude sickness protocol.</b> We follow a strict "climb high, sleep low" policy. If you show symptoms of AMS, we descend immediately. Your guide carries a pulse oximeter and oxygen.</div>
+                </div>
 
-        <h2 class="td-section-title"><span class="num">💪</span> Physical Fitness Requirements</h2>
-        <div class="details-fitness">
-          <div class="fitness-badge" style="background:${fitnessLevel === 'High' ? 'var(--accent)' : 'var(--gold)'};color:#fff;">${fitnessLevel}</div>
-          <p style="margin-top:8px;font-size:15px;line-height:1.6;color:var(--text);">
-            ${fitnessLevel === 'High' ?
-              'This trek demands excellent cardiovascular fitness and prior high-altitude experience. You should be comfortable walking 5–7 hours per day on steep, uneven terrain with a 10–12 kg pack.' :
-              'This trek requires good physical condition. You should be comfortable walking 4–6 hours per day on varied terrain. Some prior trekking experience is recommended.'}
-          </p>
-          <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
-            <span class="fitness-chip">✅ 5+ km daily walking</span>
-            <span class="fitness-chip">✅ 600–800m elevation gain/day</span>
-            <span class="fitness-chip">✅ Weighted pack (10–12 kg)</span>
-            <span class="fitness-chip">✅ Altitude acclimatization tolerance</span>
-          </div>
-        </div>
+                <h2 class="td-section-title"><span class="num">🎒</span> Equipment Checklist</h2>
+                <div class="td-carry" style="margin-bottom:0;">
+                    ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
+                </div>
+                <p style="margin-top:12px;font-size:13px;color:var(--dim);">A complete gear list is sent upon booking. We recommend packing light — porters carry up to 15 kg per trekker.</p>
+            `;
+        }
 
-        <h2 class="td-section-title"><span class="num">🌦</span> Weather & Season Details</h2>
-        <div class="details-weather">
-          <p style="font-size:15px;line-height:1.6;color:var(--text);">${weatherNote}</p>
-          <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-            <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Daytime</span><br><span style="font-size:14px;color:var(--dim);">10–20°C (lower) / 0–10°C (higher)</span></div>
-            <div style="background:var(--bg-alt);padding:12px 16px;border-radius:8px;"><span style="font-weight:600;">Nighttime</span><br><span style="font-size:14px;color:var(--dim);">-5 to 5°C (lower) / -15 to -5°C (higher)</span></div>
-          </div>
-        </div>
+        /* ------------------------------------------------------------------
+           BOOKING CARD
+           ------------------------------------------------------------------ */
+        function buildBookingCard(t) {
+            bookingState = { pax: 2, porter: false, trek: t };
+            const hasPrice = !!(t.pricing || t.priceFrom);
+            const datesOpts = t.dates.map(d => `<option>${d}</option>`).join("");
 
-        <h2 class="td-section-title"><span class="num">🛡</span> Safety & Health</h2>
-        <ul class="details-safety-list">
-          ${safetyItems.map(s => `<li><span class="safety-check">✓</span> ${s}</li>`).join("")}
-        </ul>
-        <div class="td-callout" style="margin-top:12px;">
-          <span class="ci">⚠️</span>
-          <div class="ct"><b>Altitude sickness protocol.</b> We follow a strict "climb high, sleep low" policy. If you show symptoms of AMS, we descend immediately. Your guide carries a pulse oximeter and oxygen.</div>
-        </div>
+            let priceBlock;
+            if (t.pricing) {
+                priceBlock = `
+                    <div class="bk-tag">Per person · group pricing</div>
+                    <div class="td-price-now"><span class="cur">₹</span><span id="ppPrice"></span> <span class="per">/ person</span></div>
+                    <div class="price-tier-note" id="tierNote"></div>
+                `;
+            } else if (t.priceFrom) {
+                priceBlock = `
+                    <div class="bk-tag">Per person · indicative</div>
+                    <div class="td-price-now"><span class="cur">₹</span>${t.priceFrom.toLocaleString("en-IN")} <span class="per">/ person</span></div>
+                    <div class="price-tier-note">Final quote confirmed on group size & season.</div>
+                `;
+            } else {
+                priceBlock = `<div class="bk-tag">Custom trip</div><div class="td-price-now" style="font-size:24px">On request</div>`;
+            }
 
-        <h2 class="td-section-title"><span class="num">🎒</span> Equipment Checklist</h2>
-        <div class="td-carry" style="margin-bottom:0;">
-          ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
-        </div>
-        <p style="margin-top:12px;font-size:13px;color:var(--dim);">A complete gear list is sent upon booking. We recommend packing light — porters carry up to 15 kg per trekker.</p>
-      `;
-    }
+            const porterRow = t.pricing ? `
+                <div class="porter-row">
+                    <div><div class="pl">Add porter support</div><div class="ps">${rupee(t.pricing.porter)}/person · 1 porter per 2 trekkers</div></div>
+                    <label class="switch"><input type="checkbox" id="porterToggle" onchange="updateBooking()"><span class="track"></span></label>
+                </div>
+            ` : "";
 
-    /* =====================================================================
-       BOOKING CARD  (real tiered pricing for EBC)
-       ===================================================================== */
-    let bookingState = { pax: 2, porter: false, trek: null };
+            const card = `
+                <div class="td-price-box">${priceBlock}</div>
+                <div class="td-form-group">
+                    <label>Choose a departure</label>
+                    <select class="td-select">${datesOpts}</select>
+                </div>
+                <div class="td-form-group">
+                    <label>Trekkers</label>
+                    <div class="td-count-row">
+                        <span class="cl">Group size</span>
+                        <div class="td-counter">
+                            <button onclick="changePax(-1)" aria-label="Fewer trekkers">−</button>
+                            <span class="cval" id="paxVal">2</span>
+                            <button onclick="changePax(1)" aria-label="More trekkers">+</button>
+                        </div>
+                    </div>
+                </div>
+                ${porterRow}
+                <div class="td-total-row">
+                    <span class="td-total-label">Total</span>
+                    <span class="td-total-val"><span class="cur">₹</span><span id="totalVal"></span></span>
+                </div>
+                <div class="total-sub" id="totalSub"></div>
+                <button class="td-book-btn">${hasPrice ? "Reserve your spot" : "Request a quote"}</button>
+                <div class="bk-trust">
+                    <div><span class="ti">✓</span> Free date changes up to 30 days out</div>
+                    <div><span class="ti">✓</span> Certified guides · porter welfare covered</div>
+                    <div><span class="ti">✓</span> Non-refundable advance confirms your booking</div>
+                </div>
+            `;
 
-    function tierPrice(t, pax) {
-      if (t.pricing) {
-        const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max) || t.pricing.tiers[t.pricing.tiers.length - 1];
-        return tier.price;
-      }
-      return t.priceFrom || null;
-    }
+            document.getElementById("bookingCard").innerHTML = card;
+            updateBooking();
+        }
 
-    function buildBookingCard(t) {
-      bookingState = { pax: 2, porter: false, trek: t };
-      const hasPrice = !!(t.pricing || t.priceFrom);
-      const datesOpts = t.dates.map(d => `<option>${d}</option>`).join("");
+        function changePax(delta) {
+            bookingState.pax = Math.max(1, Math.min(20, bookingState.pax + delta));
+            document.getElementById("paxVal").textContent = bookingState.pax;
+            updateBooking();
+        }
 
-      let priceBlock;
-      if (t.pricing) {
-        priceBlock = `
-          <div class="bk-tag">Per person · group pricing</div>
-          <div class="td-price-now"><span class="cur">₹</span><span id="ppPrice"></span> <span class="per">/ person</span></div>
-          <div class="price-tier-note" id="tierNote"></div>`;
-      } else if (t.priceFrom) {
-        priceBlock = `
-          <div class="bk-tag">Per person · indicative</div>
-          <div class="td-price-now"><span class="cur">₹</span>${t.priceFrom.toLocaleString("en-IN")} <span class="per">/ person</span></div>
-          <div class="price-tier-note">Final quote confirmed on group size & season.</div>`;
-      } else {
-        priceBlock = `<div class="bk-tag">Custom trip</div><div class="td-price-now" style="font-size:24px">On request</div>`;
-      }
+        function updateBooking() {
+            const t = bookingState.trek;
+            if (!t) return;
+            const porterEl = document.getElementById("porterToggle");
+            bookingState.porter = porterEl ? porterEl.checked : false;
+            const pax = bookingState.pax;
 
-      const porterRow = t.pricing ? `
-        <div class="porter-row">
-          <div><div class="pl">Add porter support</div><div class="ps">${rupee(t.pricing.porter)}/person · 1 porter per 2 trekkers</div></div>
-          <label class="switch"><input type="checkbox" id="porterToggle" onchange="updateBooking()"><span class="track"></span></label>
-        </div>` : "";
+            const pp = tierPrice(t, pax);
+            const ppEl = document.getElementById("ppPrice");
+            if (ppEl && t.pricing) {
+                ppEl.textContent = pp.toLocaleString("en-IN");
+                const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max);
+                document.getElementById("tierNote").innerHTML =
+                    `You're in the <b>${tier ? tier.label : ""}</b> band. Bigger groups pay less — from ₹60,000 at 15+.`;
+            }
 
-      const card = `
-        <div class="td-price-box">${priceBlock}</div>
-        <div class="td-form-group">
-          <label>Choose a departure</label>
-          <select class="td-select">${datesOpts}</select>
-        </div>
-        <div class="td-form-group">
-          <label>Trekkers</label>
-          <div class="td-count-row">
-            <span class="cl">Group size</span>
-            <div class="td-counter">
-              <button onclick="changePax(-1)" aria-label="Fewer trekkers">−</button>
-              <span class="cval" id="paxVal">2</span>
-              <button onclick="changePax(1)" aria-label="More trekkers">+</button>
-            </div>
-          </div>
-        </div>
-        ${porterRow}
-        <div class="td-total-row">
-          <span class="td-total-label">Total</span>
-          <span class="td-total-val"><span class="cur">₹</span><span id="totalVal"></span></span>
-        </div>
-        <div class="total-sub" id="totalSub"></div>
-        <button class="td-book-btn">${hasPrice ? "Reserve your spot" : "Request a quote"}</button>
-        <div class="bk-trust">
-          <div><span class="ti">✓</span> Free date changes up to 30 days out</div>
-          <div><span class="ti">✓</span> Certified guides · porter welfare covered</div>
-          <div><span class="ti">✓</span> Non-refundable advance confirms your booking</div>
-        </div>`;
+            if (pp == null) {
+                const tv = document.getElementById("totalVal");
+                if (tv) tv.textContent = "—";
+                return;
+            }
 
-      document.getElementById("bookingCard").innerHTML = card;
-      updateBooking();
-    }
+            let total = pp * pax;
+            let subParts = [`${rupee(pp)} × ${pax}`];
+            if (bookingState.porter && t.pricing) {
+                const porter = t.pricing.porter * pax;
+                total += porter;
+                subParts.push(`porter ${rupee(t.pricing.porter)} × ${pax}`);
+            }
+            document.getElementById("totalVal").textContent = total.toLocaleString("en-IN");
+            const sub = document.getElementById("totalSub");
+            if (sub) sub.textContent = subParts.join("  ·  ");
+        }
 
-    function changePax(delta) {
-      bookingState.pax = Math.max(1, Math.min(20, bookingState.pax + delta));
-      document.getElementById("paxVal").textContent = bookingState.pax;
-      updateBooking();
-    }
+        /* ------------------------------------------------------------------
+           VIEW SWITCHING
+           ------------------------------------------------------------------ */
+        function openTrek(key) {
+            const t = TREKS[key];
+            if (!t) return;
 
-    function updateBooking() {
-      const t = bookingState.trek;
-      if (!t) return;
-      const porterEl = document.getElementById("porterToggle");
-      bookingState.porter = porterEl ? porterEl.checked : false;
-      const pax = bookingState.pax;
+            document.getElementById("tdHero").style.backgroundImage =
+                `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url("${t.photos[0] || t.img}")`;
+            document.getElementById("bcTitle").textContent = t.title;
+            document.getElementById("tdTitle").textContent = t.title;
+            document.getElementById("tdRegion").innerHTML = `📍 ${t.region}`;
 
-      const pp = tierPrice(t, pax);
-      const ppEl = document.getElementById("ppPrice");
-      if (ppEl && t.pricing) {
-        ppEl.textContent = pp.toLocaleString("en-IN");
-        const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max);
-        document.getElementById("tierNote").innerHTML =
-          `You're in the <b>${tier ? tier.label : ""}</b> band. Bigger groups pay less — from ₹60,000 at 15+.`;
-      }
+            document.getElementById("tdHeroTags").innerHTML = `
+                <span class="td-hero-tag gold">${t.diff}</span>
+                <span class="td-hero-tag">${t.dur.split(" /")[0]}</span>
+                <span class="td-hero-tag">Season · ${t.season}</span>
+            `;
 
-      if (pp == null) {
-        const tv = document.getElementById("totalVal");
-        if (tv) tv.textContent = "—";
-        return;
-      }
-      let total = pp * pax;
-      let subParts = [`${rupee(pp)} × ${pax}`];
-      if (bookingState.porter && t.pricing) {
-        const porter = t.pricing.porter * pax;
-        total += porter;
-        subParts.push(`porter ${rupee(t.pricing.porter)} × ${pax}`);
-      }
-      document.getElementById("totalVal").textContent = total.toLocaleString("en-IN");
-      const sub = document.getElementById("totalSub");
-      if (sub) sub.textContent = subParts.join("  ·  ");
-    }
+            const strip = [
+                ["🗓", "Duration", t.dur.split(" /")[0]],
+                ["⛰", "Max Altitude", t.alt],
+                ["🥾", "Difficulty", t.diff.split(" ")[0]],
+                ["🌤", "Best Season", t.season],
+                ["📏", "Distance", t.dist],
+                ["🚩", "Start / End", t.startEnd]
+            ];
+            document.getElementById("tdInfoStrip").innerHTML = strip.map(([ic, l, v]) => `
+                <div class="td-qi"><div class="qi-ico">${ic}</div>
+                    <div><div class="qi-label">${l}</div><div class="qi-val">${v}</div></div></div>
+            `).join("");
 
-    /* =====================================================================
-       OPEN / SWITCH VIEWS
-       ===================================================================== */
-    function openTrek(key) {
-      const t = TREKS[key];
-      if (!t) return;
+            document.getElementById("panel-overview").innerHTML = buildOverview(t);
+            document.getElementById("panel-itinerary").innerHTML = buildItinerary(t);
+            document.getElementById("panel-inclusions").innerHTML = buildInclusions(t);
+            document.getElementById("panel-gallery").innerHTML = buildGallery(t);
+            document.getElementById("panel-reviews").innerHTML = buildReviews(t);
+            document.getElementById("panel-faq").innerHTML = buildFaq(t);
+            document.getElementById("panel-details").innerHTML = buildDetails(t);
+            buildBookingCard(t);
 
-      document.getElementById("tdHero").style.backgroundImage =
-        `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url("${t.photos[0] || t.img}")`;
-      document.getElementById("bcTitle").textContent = t.title;
-      document.getElementById("tdTitle").textContent = t.title;
-      document.getElementById("tdRegion").innerHTML = `📍 ${t.region}`;
+            // Reset to first tab
+            document.querySelectorAll(".td-t").forEach((b, i) => b.classList.toggle("active", i === 0));
+            document.querySelectorAll(".td-panel").forEach((p, i) => p.classList.toggle("active", i === 0));
 
-      document.getElementById("tdHeroTags").innerHTML = `
-        <span class="td-hero-tag gold">${t.diff}</span>
-        <span class="td-hero-tag">${t.dur.split(" /")[0]}</span>
-        <span class="td-hero-tag">Season · ${t.season}</span>`;
+            document.getElementById("gridView").classList.remove("active");
+            document.getElementById("detailView").classList.add("active");
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
 
-      const strip = [
-        ["🗓", "Duration", t.dur.split(" /")[0]],
-        ["⛰", "Max Altitude", t.alt],
-        ["🥾", "Difficulty", t.diff.split(" ")[0]],
-        ["🌤", "Best Season", t.season],
-        ["📏", "Distance", t.dist],
-        ["🚩", "Start / End", t.startEnd]
-      ];
-      document.getElementById("tdInfoStrip").innerHTML = strip.map(([ic, l, v]) => `
-        <div class="td-qi"><div class="qi-ico">${ic}</div>
-          <div><div class="qi-label">${l}</div><div class="qi-val">${v}</div></div></div>`).join("");
+        function showGrid() {
+            document.getElementById("detailView").classList.remove("active");
+            document.getElementById("gridView").classList.add("active");
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
 
-      document.getElementById("panel-overview").innerHTML = buildOverview(t);
-      // ---------- Use the new tabbed itinerary ----------
-      document.getElementById("panel-itinerary").innerHTML = buildItinerary(t);
-
-      // Attach itinerary tab switching listeners
-      const itabContainer = document.querySelector('.itinerary-tab-buttons');
-      if (itabContainer) {
-        itabContainer.addEventListener('click', function(e) {
-          const btn = e.target.closest('.itab');
-          if (!btn) return;
-
-          this.querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          const view = btn.dataset.view;
-          document.querySelectorAll('.itinerary-panel').forEach(p => p.classList.remove('active'));
-          const panel = document.getElementById('itinerary-' + view);
-          if (panel) panel.classList.add('active');
+        /* ------------------------------------------------------------------
+           TAB SWITCHING (detail view)
+           ------------------------------------------------------------------ */
+        document.getElementById("tdTabs").addEventListener("click", e => {
+            const btn = e.target.closest(".td-t");
+            if (!btn) return;
+            document.querySelectorAll(".td-t").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            const p = btn.dataset.p;
+            document.querySelectorAll(".td-panel").forEach(pan => pan.classList.remove("active"));
+            document.getElementById("panel-" + p).classList.add("active");
         });
-      }
 
-      document.getElementById("panel-inclusions").innerHTML = buildInclusions(t);
-      document.getElementById("panel-gallery").innerHTML = buildGallery(t);
-      document.getElementById("panel-reviews").innerHTML = buildReviews(t);
-      document.getElementById("panel-faq").innerHTML = buildFaq(t);
-      document.getElementById("panel-details").innerHTML = buildDetails(t);
-      buildBookingCard(t);
+        /* ------------------------------------------------------------------
+           INIT
+           ------------------------------------------------------------------ */
+        buildFilterTabs();
+        renderGrid();
+    </script>
 
-      // reset to first tab
-      document.querySelectorAll(".td-t").forEach((b, i) => b.classList.toggle("active", i === 0));
-      document.querySelectorAll(".td-panel").forEach((p, i) => p.classList.toggle("active", i === 0));
-
-      document.getElementById("gridView").classList.remove("active");
-      document.getElementById("detailView").classList.add("active");
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
-
-    function showGrid() {
-      document.getElementById("detailView").classList.remove("active");
-      document.getElementById("gridView").classList.add("active");
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
-
-    /* tab switching */
-    document.getElementById("tdTabs").addEventListener("click", e => {
-      const btn = e.target.closest(".td-t");
-      if (!btn) return;
-      document.querySelectorAll(".td-t").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const p = btn.dataset.p;
-      document.querySelectorAll(".td-panel").forEach(pan => pan.classList.remove("active"));
-      document.getElementById("panel-" + p).classList.add("active");
-    });
-
-    /* init */
-    buildFilterTabs();
-    renderGrid();
-  </script>
 </body>
 </html>
