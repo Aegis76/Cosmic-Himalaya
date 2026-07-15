@@ -256,60 +256,90 @@
         }
 
         /* ------------------------------------------------------------------
-           DETAILED ITINERARY — day-tab view (NEW)
+           DETAILED ITINERARY — full detailed view (NEW)
            ------------------------------------------------------------------ */
         function buildDetailedItinerary(t) {
-            let tabsHtml = '';
-            let panelsHtml = '';
+            let dayBtns = '';
+            let dayPanels = '';
 
             t.itinerary.forEach((d, idx) => {
                 const isActive = idx === 0;
-                tabsHtml += `
-                    <button class="det-day-tab ${isActive ? 'active' : ''}"
+                const points = d.points || [];
+
+                // --- Parse altitude, drive, accommodation, description ---
+                let altLines = [];
+                let driveLines = [];
+                let accomLines = [];
+                let descLines = [];
+
+                // First pass: classify each point
+                points.forEach(p => {
+                    const lower = p.toLowerCase();
+                    if (/altitude|sleep|m \/|ft/i.test(lower) && !/drive|distance|km/i.test(lower)) {
+                        altLines.push(p);
+                    } else if (/drive|distance|km|hrs?|hours?/i.test(lower) && !/altitude|sleep|m \//i.test(lower)) {
+                        driveLines.push(p);
+                    } else if (/accommodation|guest|hotel|lodge|stay|dorm|triple|quad/i.test(lower)) {
+                        accomLines.push(p);
+                    } else {
+                        descLines.push(p);
+                    }
+                });
+
+                // Build HTML for each section
+                const altHtml = altLines.length ? `
+                    <div class="det-info-block">
+                        <span class="det-info-label">Altitude</span>
+                        <ul class="det-info-list">
+                            ${altLines.map(line => `<li>${line.replace(/^·\s*/, '')}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : '';
+
+                const driveHtml = driveLines.length ? `
+                    <div class="det-info-block">
+                        <span class="det-info-label">Drive / Distance</span>
+                        <span class="det-info-val">${driveLines.map(l => l.replace(/^·\s*/, '')).join(' · ')}</span>
+                    </div>
+                ` : '';
+
+                const accomHtml = accomLines.length ? `
+                    <div class="det-info-block">
+                        <span class="det-info-label">Accommodation</span>
+                        <span class="det-info-val">${accomLines.map(l => l.replace(/^·\s*/, '')).join(' · ')}</span>
+                    </div>
+                ` : '';
+
+                const descHtml = descLines.length ? `
+                    <div class="det-description">
+                        <ul class="det-desc-list">
+                            ${descLines.map(line => `<li>${line.replace(/^·\s*/, '')}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : '';
+
+                // Images — use first 3 from trek photos, or fallback placeholders
+                const images = t.photos && t.photos.length ? t.photos.slice(0, 3) : [];
+                const imgHtml = images.length ? images.map(src => `
+                    <figure><img src="${src}" alt="${t.title} — Day ${d.day}" loading="lazy"
+                         onerror="this.parentElement.style.display='none'"></figure>
+                `).join('') : `
+                    <figure><div class="det-img-placeholder">🏔️</div></figure>
+                    <figure><div class="det-img-placeholder">🌿</div></figure>
+                    <figure><div class="det-img-placeholder">⛰️</div></figure>
+                `;
+
+                // Day button
+                dayBtns += `
+                    <button class="det-day-btn ${isActive ? 'active' : ''}"
                             data-day="${d.day}"
-                            onclick="switchDetDay(${d.day})">
-                        <span>Day</span> <span>${d.day}</span>
+                            onclick="switchDetailedDay(${d.day})">
+                        Day ${d.day}
                     </button>
                 `;
 
-                let altHtml = '', driveHtml = '', accomHtml = '';
-                let extraDetails = [];
-                const points = d.points || [];
-
-                const altIdx = points.findIndex(p => /altitude/i.test(p));
-                if (altIdx !== -1) {
-                    altHtml = `<div class="det-info-block"><span class="det-info-label">Altitude</span><ul class="det-info-list">`;
-                    let i = altIdx + 1;
-                    while (i < points.length && points[i].startsWith('·')) {
-                        altHtml += `<li>${points[i].replace(/^·\s*/, '')}</li>`;
-                        i++;
-                    }
-                    altHtml += `</ul></div>`;
-                    extraDetails = points.slice(i);
-                } else {
-                    extraDetails = points.slice();
-                }
-
-                const driveIdx = extraDetails.findIndex(p => /drive|distance|km/i.test(p) && !/altitude/i.test(p));
-                if (driveIdx !== -1) {
-                    driveHtml = `<div class="det-info-block"><span class="det-info-label">Drive</span><span class="det-info-val">${extraDetails[driveIdx]}</span></div>`;
-                    extraDetails.splice(driveIdx, 1);
-                }
-
-                const accomIdx = extraDetails.findIndex(p => /accommodation|guest|hotel|lodge|stay/i.test(p));
-                if (accomIdx !== -1) {
-                    accomHtml = `<div class="det-info-block"><span class="det-info-label">Accommodation</span><span class="det-info-val">${extraDetails[accomIdx]}</span></div>`;
-                    extraDetails.splice(accomIdx, 1);
-                }
-
-                let descHtml = '';
-                if (extraDetails.length) {
-                    descHtml = `<div class="det-description"><ul class="det-desc-list">`;
-                    extraDetails.forEach(p => { if (p.trim()) descHtml += `<li>${p}</li>`; });
-                    descHtml += `</ul></div>`;
-                }
-
-                panelsHtml += `
+                // Day panel
+                dayPanels += `
                     <div class="det-day-panel ${isActive ? 'active' : ''}" data-day="${d.day}">
                         <h3 class="det-day-heading">${d.title}</h3>
                         <div class="det-info-grid">
@@ -319,14 +349,7 @@
                         </div>
                         ${descHtml}
                         <div class="det-day-images">
-                            ${t.photos && t.photos.length > 0 ? t.photos.slice(0, 3).map(p => `
-                                <figure><img src="${p}" alt="${t.title} — Day ${d.day}" loading="lazy"
-                                     onerror="this.parentElement.style.display='none'"></figure>
-                            `).join('') : `
-                                <figure><div class="det-img-placeholder">🏔️</div></figure>
-                                <figure><div class="det-img-placeholder">🌿</div></figure>
-                                <figure><div class="det-img-placeholder">⛰️</div></figure>
-                            `}
+                            ${imgHtml}
                         </div>
                         ${d.detailedDesc ? `<div class="det-extended-text">${d.detailedDesc}</div>` : ''}
                     </div>
@@ -335,16 +358,22 @@
 
             return `
                 <div class="detailed-itinerary-wrap">
-                    <div class="det-tabs-bar">${tabsHtml}</div>
-                    <div class="det-panels-wrap">${panelsHtml}</div>
+                    <div class="det-day-selector-row">
+                        ${dayBtns}
+                    </div>
+                    <div class="det-day-content-wrap">
+                        ${dayPanels}
+                    </div>
                 </div>
             `;
         }
 
-        function switchDetDay(day) {
-            document.querySelectorAll('.det-day-tab').forEach(b => {
+        function switchDetailedDay(day) {
+            // Update buttons
+            document.querySelectorAll('.det-day-btn').forEach(b => {
                 b.classList.toggle('active', parseInt(b.dataset.day) === day);
             });
+            // Update panels
             document.querySelectorAll('.det-day-panel').forEach(p => {
                 p.classList.toggle('active', parseInt(p.dataset.day) === day);
             });
