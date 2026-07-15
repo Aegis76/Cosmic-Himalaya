@@ -89,7 +89,7 @@ function injectCartUI() {
 function injectWhatsAppUI() {
   if (document.getElementById("waFloating")) return;
 
-  const WHATSAPP_NUMBER = "919927006021";
+  const WHATSAPP_NUMBER = "977 9862468835";
   const waHTML = `
     <a href="trek.html" 
        class="book-now-floating" 
