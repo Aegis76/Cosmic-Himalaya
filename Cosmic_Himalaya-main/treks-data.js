@@ -23,6 +23,246 @@ const TREKS = {
     about: "The Everest Base Camp trek is the most iconic walk on earth — a 14-day journey through the heart of the Khumbu to the foot of the world's highest mountain. You'll cross Sherpa villages, suspension bridges over the Dudh Koshi, rhododendron forest, and glacial moraine, standing beside the Khumbu Icefall at 5,364 m before a sunrise on Kala Patthar for the definitive view of Everest.",
     bestTime: "Spring (March–May) and Autumn (late September–November) give the clearest skies and most stable flying weather into Lukla. Peak-season flights may reroute via Ramechhap — road transfer from Kathmandu is arranged if so.",
     highlights: ["🏔 Stand at Everest Base Camp (5,364 m)", "🌅 Sunrise from Kala Patthar (5,545 m)", "🧊 Face-to-face with the Khumbu Icefall", "🛕 Tengboche Monastery, largest in Khumbu", "🏘 Sherpa culture in Namche Bazaar", "✈ The legendary Lukla mountain flight"],
+    
+    // ----- NEW detailed itinerary for the Details panel -----
+    detailedItinerary: [
+      {
+        day: 1,
+        title: "Arrival in Kathmandu",
+        altitudePoints: [
+          { label: "Kathmandu", value: "1,330 m" }
+        ],
+        altitudeGain: "—",
+        driveDistance: "—",
+        accommodation: "3★ Hotel (twin sharing)",
+        description: "Airport pickup and hotel transfer. Free evening to rest before the trek. No meals included today.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp"
+        ]
+      },
+      {
+        day: 2,
+        title: "Fly to Lukla · trek to Phakding",
+        altitudePoints: [
+          { label: "Lukla", value: "2,860 m" },
+          { label: "Phakding", value: "2,652 m" }
+        ],
+        altitudeGain: "— (descent)",
+        driveDistance: "Flight: 30 min · Trek: 3–4 hrs",
+        accommodation: "Teahouse",
+        description: "Early scenic flight to Lukla (2,860 m). Gentle descent along the Dudh Koshi river. All meals + 3 hot drinks, fresh fruit at breakfast.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 3,
+        title: "Phakding to Namche Bazaar",
+        altitudePoints: [
+          { label: "Phakding", value: "2,652 m" },
+          { label: "Namche Bazaar", value: "3,440 m" }
+        ],
+        altitudeGain: "+788 m",
+        driveDistance: "Trek: 5–6 hrs",
+        accommodation: "Teahouse",
+        description: "Cross the famous Hillary Suspension Bridge. Steep climb into the Sherpa capital. Enter Sagarmatha National Park.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 4,
+        title: "Acclimatization at Namche",
+        altitudePoints: [
+          { label: "Namche Bazaar", value: "3,440 m" }
+        ],
+        altitudeGain: "—",
+        driveDistance: "Rest day",
+        accommodation: "Teahouse",
+        description: "Climb-high, sleep-low hike to Everest View Hotel. First views of Everest, Lhotse & Ama Dablam. Evening tea, snacks and rest.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 5,
+        title: "Namche to Tengboche",
+        altitudePoints: [
+          { label: "Namche", value: "3,440 m" },
+          { label: "Tengboche", value: "3,860 m" }
+        ],
+        altitudeGain: "+420 m",
+        driveDistance: "Trek: 5–6 hrs",
+        accommodation: "Teahouse",
+        description: "Trail to the hilltop Tengboche Monastery. Grand amphitheatre of Himalayan peaks. Evening tea and snacks included.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 6,
+        title: "Tengboche to Dingboche",
+        altitudePoints: [
+          { label: "Tengboche", value: "3,860 m" },
+          { label: "Dingboche", value: "4,410 m" }
+        ],
+        altitudeGain: "+550 m",
+        driveDistance: "Trek: 5–6 hrs",
+        accommodation: "Teahouse",
+        description: "Through rhododendron forest, cross Imja Khola. Ascend to the wind-swept Imja valley. Full-board meals and hot drinks.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 7,
+        title: "Acclimatization at Dingboche",
+        altitudePoints: [
+          { label: "Dingboche", value: "4,410 m" }
+        ],
+        altitudeGain: "—",
+        driveDistance: "Rest day",
+        accommodation: "Teahouse",
+        description: "Optional hike to Nangkartshang (5,083 m). Views toward Island Peak & Makalu. Second key rest day for altitude.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 8,
+        title: "Dingboche to Lobuche",
+        altitudePoints: [
+          { label: "Dingboche", value: "4,410 m" },
+          { label: "Lobuche", value: "4,940 m" }
+        ],
+        altitudeGain: "+530 m",
+        driveDistance: "Trek: 4–5 hrs",
+        accommodation: "Teahouse",
+        description: "Reach the Khumbu Glacier moraine. Pause at the Everest Memorial at Thukla. Overnight at Lobuche.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 9,
+        title: "Gorakshep · Everest Base Camp",
+        altitudePoints: [
+          { label: "Lobuche", value: "4,940 m" },
+          { label: "Gorakshep", value: "5,164 m" },
+          { label: "EBC", value: "5,364 m" }
+        ],
+        altitudeGain: "+424 m",
+        driveDistance: "Trek: 7–8 hrs",
+        accommodation: "Teahouse at Gorakshep",
+        description: "Long walk along the glacier to Gorakshep. Reach Everest Base Camp — see the Khumbu Icefall. Return to sleep at Gorakshep (5,164 m).",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 10,
+        title: "Kala Patthar · trek to Pheriche",
+        altitudePoints: [
+          { label: "Kala Patthar", value: "5,545 m" },
+          { label: "Pheriche", value: "4,371 m" }
+        ],
+        altitudeGain: "— (descent)",
+        driveDistance: "Trek: 7–8 hrs",
+        accommodation: "Teahouse",
+        description: "Pre-dawn climb to Kala Patthar for sunrise on Everest. Highest point of the trek (5,545 m). Descend to Pheriche (4,371 m).",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 11,
+        title: "Pheriche to Namche Bazaar",
+        altitudePoints: [
+          { label: "Pheriche", value: "4,371 m" },
+          { label: "Namche", value: "3,440 m" }
+        ],
+        altitudeGain: "— (descent)",
+        driveDistance: "Trek: 6–7 hrs",
+        accommodation: "Teahouse",
+        description: "Long descent back to lush Namche. Retrace the traditional Everest highway. Full-board meals included.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 12,
+        title: "Namche Bazaar to Lukla",
+        altitudePoints: [
+          { label: "Namche", value: "3,440 m" },
+          { label: "Lukla", value: "2,860 m" }
+        ],
+        altitudeGain: "— (descent)",
+        driveDistance: "Trek: 6–7 hrs",
+        accommodation: "Teahouse",
+        description: "Final trekking day back to Lukla. Last suspension-bridge crossings. Rest ahead of the morning flight.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 13,
+        title: "Fly back to Kathmandu",
+        altitudePoints: [
+          { label: "Kathmandu", value: "1,330 m" }
+        ],
+        altitudeGain: "—",
+        driveDistance: "Flight: 30 min",
+        accommodation: "3★ Hotel (twin sharing)",
+        description: "Early flight Lukla → Kathmandu / Ramechhap. Hotel transfer and free time. Farewell dinner + completion-certificate ceremony.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
+          "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+        ]
+      },
+      {
+        day: 14,
+        title: "Departure from Kathmandu",
+        altitudePoints: [
+          { label: "Kathmandu", value: "1,330 m" }
+        ],
+        altitudeGain: "—",
+        driveDistance: "Airport transfer",
+        accommodation: "—",
+        description: "Early cab transfer to the airport. Trip concludes with Himalayan memories. No meals included today.",
+        images: [
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
+          "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp"
+        ]
+      }
+    ],
+    // ----- end of detailedItinerary -----
+
     itinerary: [
       { day: 1, title: "Arrival in Kathmandu", alt: 1330, sub: "1,330 m", rest: true, points: ["Airport pickup and hotel transfer", "Free evening to rest before the trek", "No meals included today"] },
       { day: 2, title: "Fly to Lukla · trek to Phakding", alt: 2652, sub: "2,652 m", time: "3–4 hrs", points: ["Early scenic flight to Lukla (2,860 m)", "Gentle descent along the Dudh Koshi river", "All meals + 3 hot drinks, fresh fruit at breakfast"] },
@@ -39,6 +279,7 @@ const TREKS = {
       { day: 13, title: "Fly back to Kathmandu", alt: 1330, sub: "1,330 m", points: ["Early flight Lukla → Kathmandu / Ramechhap", "Hotel transfer and free time", "Farewell dinner + completion-certificate ceremony"] },
       { day: 14, title: "Departure from Kathmandu", alt: 1330, sub: "Departure", rest: true, points: ["Early cab transfer to the airport", "Trip concludes with Himalayan memories", "No meals included today"] }
     ],
+    
     includes: [
       "<b>2 nights</b> in a 3★ Kathmandu hotel (B&B, twin sharing)",
       "<b>11 nights</b> in trail teahouse lodges (twin sharing)",
@@ -86,6 +327,7 @@ const TREKS = {
       { q: "Are porters included?", a: "Porters are an optional add-on at ₹5,700 per person for the entire trek, at a ratio of 1 porter per 2 trekkers. There's a strictly enforced 12 kg per-person baggage limit for porter welfare." }
     ]
   },
+  
   abc: {
     title: "Annapurna Base Camp Trek",
     img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp",
@@ -130,7 +372,8 @@ const TREKS = {
       { title: "Cultural Highlights of Gurung Villages", date: "18 Apr 2026", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop" }
     ],
     reviews: [{ name: "Elena", loc: "Russia", e: "🌸", r: 5, date: "Sep 2025", text: "Beautiful scenery and very well managed. A perfect first Himalayan trek." }],
-    faqs: [{ q: "Is it good for beginners?", a: "Yes — it's one of the best moderate treks for anyone with good general fitness." }]
+    faqs: [{ q: "Is it good for beginners?", a: "Yes — it's one of the best moderate treks for anyone with good general fitness." }],
+    detailedItinerary: []
   },
   kailash: {
     title: "Kailash Mansarovar Yatra",
@@ -181,7 +424,8 @@ const TREKS = {
       { title: "Life and Culture on the Tibetan Plateau", date: "10 Jun 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%201.jpg" }
     ],
     reviews: [{ name: "Rajesh", loc: "Mumbai", e: "🕉", r: 5, date: "Aug 2025", text: "Divine experience. Everything was well coordinated across the border." }],
-    faqs: [{ q: "Do I need a visa?", a: "Yes, a group visa for Tibet is required, which we arrange for the whole group." }]
+    faqs: [{ q: "Do I need a visa?", a: "Yes, a group visa for Tibet is required, which we arrange for the whole group." }],
+    detailedItinerary: []
   },
   kailashHeli: {
     title: "Kailash Yatra — Lucknow Heli",
@@ -229,7 +473,8 @@ const TREKS = {
       { title: "Maximum Altitude: Crossing Dolma La", date: "05 Jun 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%204.webp" }
     ],
     reviews: [{ name: "Anish", loc: "Lucknow", e: "🚁", r: 5, date: "Sep 2025", text: "The helicopter route saved so much time. Highly recommended for a shorter window." }],
-    faqs: [{ q: "How long is the Parikrama?", a: "The Mount Kailash Parikrama is 52 km, undertaken over three days." }]
+    faqs: [{ q: "How long is the Parikrama?", a: "The Mount Kailash Parikrama is 52 km, undertaken over three days." }],
+    detailedItinerary: []
   },
   uppermustang: {
     title: "Upper Mustang Trek",
@@ -280,7 +525,8 @@ const TREKS = {
       { title: "Upper Mustang Packing Guide", date: "22 May 2026", img: "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop" }
     ],
     reviews: [{ name: "Sarah", loc: "UK", e: "🏜", r: 5, date: "Oct 2025", text: "The desert landscapes and ancient culture of Lo Manthang were unlike anything I'd seen." }],
-    faqs: [{ q: "Is a special permit required?", a: "Yes — a Restricted Area Permit ($500 per person) is required for Upper Mustang." }]
+    faqs: [{ q: "Is a special permit required?", a: "Yes — a Restricted Area Permit ($500 per person) is required for Upper Mustang." }],
+    detailedItinerary: []
   },
   kgl: {
     title: "Kashmir Great Lakes Trek",
@@ -324,6 +570,7 @@ const TREKS = {
       { title: "Photography Guide for Kashmir Lakes", date: "20 Jul 2026", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop" }
     ],
     reviews: [{ name: "Amit", loc: "Bangalore", e: "💎", r: 5, date: "Aug 2025", text: "Truly a paradise on earth — the lakes are mesmerizing and the camping is unforgettable." }],
-    faqs: [{ q: "What is the best time for KGL?", a: "July to early September, once the snow melts and the meadows bloom." }]
+    faqs: [{ q: "What is the best time for KGL?", a: "July to early September, once the snow melts and the meadows bloom." }],
+    detailedItinerary: []
   }
 };
