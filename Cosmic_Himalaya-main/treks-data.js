@@ -11,20 +11,34 @@ const TREKS = {
     altNote: "Kala Patthar 5,545 m",
     dist: "130 km",
     startEnd: "Lukla",
-    dates: ["Mar 15, 2026", "Apr 10, 2026", "May 5, 2026", "Sep 20, 2026", "Oct 15, 2026"],
-    pricing: {
-      tiers: [
-        { min: 1, max: 4, price: 66000, label: "1–4 trekkers" },
-        { min: 5, max: 14, price: 64000, label: "5–14 trekkers" },
-        { min: 15, max: 99, price: 60000, label: "15+ trekkers" }
-      ],
-      porter: 5700
-    },
-    about: "The Everest Base Camp trek is the most iconic walk on earth — a 14-day journey through the heart of the Khumbu to the foot of the world's highest mountain. You'll cross Sherpa villages, suspension bridges over the Dudh Koshi, rhododendron forest, and glacial moraine, standing beside the Khumbu Icefall at 5,364 m before a sunrise on Kala Patthar for the definitive view of Everest.",
-    bestTime: "Spring (March–May) and Autumn (late September–November) give the clearest skies and most stable flying weather into Lukla. Peak-season flights may reroute via Ramechhap — road transfer from Kathmandu is arranged if so.",
-    highlights: ["🏔 Stand at Everest Base Camp (5,364 m)", "🌅 Sunrise from Kala Patthar (5,545 m)", "🧊 Face-to-face with the Khumbu Icefall", "🛕 Tengboche Monastery, largest in Khumbu", "🏘 Sherpa culture in Namche Bazaar", "✈ The legendary Lukla mountain flight"],
-    
-    // ----- NEW detailed itinerary for the Details panel -----
+
+    dates: [
+      "Mar 15, 2026",
+      "Apr 10, 2026",
+      "May 5, 2026",
+      "Sep 20, 2026",
+      "Oct 15, 2026"
+    ],
+
+    // QUOTATION SYSTEM
+    quotationOnly: true,
+    ctaText: "Ask for Quotation",
+
+    about:
+      "The Everest Base Camp trek is the most iconic walk on earth — a 14-day journey through the heart of the Khumbu to the foot of the world's highest mountain. You'll cross Sherpa villages, suspension bridges over the Dudh Koshi, rhododendron forest, and glacial moraine, standing beside the Khumbu Icefall at 5,364 m before a sunrise on Kala Patthar for the definitive view of Everest.",
+
+    bestTime:
+      "Spring (March–May) and Autumn (late September–November) give the clearest skies and most stable flying weather into Lukla. Peak-season flights may reroute via Ramechhap — road transfer from Kathmandu is arranged if so.",
+
+    highlights: [
+      "🏔 Stand at Everest Base Camp (5,364 m)",
+      "🌅 Sunrise from Kala Patthar (5,545 m)",
+      "🧊 Face-to-face with the Khumbu Icefall",
+      "🛕 Tengboche Monastery, largest in Khumbu",
+      "🏘 Sherpa culture in Namche Bazaar",
+      "✈ The legendary Lukla mountain flight"
+    ],
+
     detailedItinerary: [
       {
         day: 1,
@@ -35,13 +49,15 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "—",
         accommodation: "3★ Hotel (twin sharing)",
-        description: "Airport pickup and hotel transfer. Free evening to rest before the trek. No meals included today.",
+        description:
+          "Airport pickup and hotel transfer. Free evening to rest before the trek. No meals included today.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp"
         ]
       },
+
       {
         day: 2,
         title: "Fly to Lukla · trek to Phakding",
@@ -52,13 +68,15 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Flight: 30 min · Trek: 3–4 hrs",
         accommodation: "Teahouse",
-        description: "Early scenic flight to Lukla (2,860 m). Gentle descent along the Dudh Koshi river. All meals + 3 hot drinks, fresh fruit at breakfast.",
+        description:
+          "Early scenic flight to Lukla (2,860 m). Gentle descent along the Dudh Koshi river. All meals + 3 hot drinks, fresh fruit at breakfast.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 3,
         title: "Phakding to Namche Bazaar",
@@ -69,13 +87,15 @@ const TREKS = {
         altitudeGain: "+788 m",
         driveDistance: "Trek: 5–6 hrs",
         accommodation: "Teahouse",
-        description: "Cross the famous Hillary Suspension Bridge. Steep climb into the Sherpa capital. Enter Sagarmatha National Park.",
+        description:
+          "Cross the famous Hillary Suspension Bridge. Steep climb into the Sherpa capital. Enter Sagarmatha National Park.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 4,
         title: "Acclimatization at Namche",
@@ -85,13 +105,15 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Rest day",
         accommodation: "Teahouse",
-        description: "Climb-high, sleep-low hike to Everest View Hotel. First views of Everest, Lhotse & Ama Dablam. Evening tea, snacks and rest.",
+        description:
+          "Climb-high, sleep-low hike to Everest View Hotel. First views of Everest, Lhotse & Ama Dablam. Evening tea, snacks and rest.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 5,
         title: "Namche to Tengboche",
@@ -102,13 +124,15 @@ const TREKS = {
         altitudeGain: "+420 m",
         driveDistance: "Trek: 5–6 hrs",
         accommodation: "Teahouse",
-        description: "Trail to the hilltop Tengboche Monastery. Grand amphitheatre of Himalayan peaks. Evening tea and snacks included.",
+        description:
+          "Trail to the hilltop Tengboche Monastery. Grand amphitheatre of Himalayan peaks. Evening tea and snacks included.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 6,
         title: "Tengboche to Dingboche",
@@ -119,13 +143,15 @@ const TREKS = {
         altitudeGain: "+550 m",
         driveDistance: "Trek: 5–6 hrs",
         accommodation: "Teahouse",
-        description: "Through rhododendron forest, cross Imja Khola. Ascend to the wind-swept Imja valley. Full-board meals and hot drinks.",
+        description:
+          "Through rhododendron forest, cross Imja Khola. Ascend to the wind-swept Imja valley. Full-board meals and hot drinks.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 7,
         title: "Acclimatization at Dingboche",
@@ -135,13 +161,15 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Rest day",
         accommodation: "Teahouse",
-        description: "Optional hike to Nangkartshang (5,083 m). Views toward Island Peak & Makalu. Second key rest day for altitude.",
+        description:
+          "Optional hike to Nangkartshang (5,083 m). Views toward Island Peak & Makalu. Second key rest day for altitude.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 8,
         title: "Dingboche to Lobuche",
@@ -152,13 +180,15 @@ const TREKS = {
         altitudeGain: "+530 m",
         driveDistance: "Trek: 4–5 hrs",
         accommodation: "Teahouse",
-        description: "Reach the Khumbu Glacier moraine. Pause at the Everest Memorial at Thukla. Overnight at Lobuche.",
+        description:
+          "Reach the Khumbu Glacier moraine. Pause at the Everest Memorial at Thukla. Overnight at Lobuche.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 9,
         title: "Gorakshep · Everest Base Camp",
@@ -170,13 +200,15 @@ const TREKS = {
         altitudeGain: "+424 m",
         driveDistance: "Trek: 7–8 hrs",
         accommodation: "Teahouse at Gorakshep",
-        description: "Long walk along the glacier to Gorakshep. Reach Everest Base Camp — see the Khumbu Icefall. Return to sleep at Gorakshep (5,164 m).",
+        description:
+          "Long walk along the glacier to Gorakshep. Reach Everest Base Camp — see the Khumbu Icefall. Return to sleep at Gorakshep (5,164 m).",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 10,
         title: "Kala Patthar · trek to Pheriche",
@@ -187,13 +219,15 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Trek: 7–8 hrs",
         accommodation: "Teahouse",
-        description: "Pre-dawn climb to Kala Patthar for sunrise on Everest. Highest point of the trek (5,545 m). Descend to Pheriche (4,371 m).",
+        description:
+          "Pre-dawn climb to Kala Patthar for sunrise on Everest. Highest point of the trek (5,545 m). Descend to Pheriche (4,371 m).",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 11,
         title: "Pheriche to Namche Bazaar",
@@ -204,13 +238,15 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Trek: 6–7 hrs",
         accommodation: "Teahouse",
-        description: "Long descent back to lush Namche. Retrace the traditional Everest highway. Full-board meals included.",
+        description:
+          "Long descent back to lush Namche. Retrace the traditional Everest highway. Full-board meals included.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 12,
         title: "Namche Bazaar to Lukla",
@@ -221,13 +257,15 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Trek: 6–7 hrs",
         accommodation: "Teahouse",
-        description: "Final trekking day back to Lukla. Last suspension-bridge crossings. Rest ahead of the morning flight.",
+        description:
+          "Final trekking day back to Lukla. Last suspension-bridge crossings. Rest ahead of the morning flight.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 13,
         title: "Fly back to Kathmandu",
@@ -237,13 +275,15 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Flight: 30 min",
         accommodation: "3★ Hotel (twin sharing)",
-        description: "Early flight Lukla → Kathmandu / Ramechhap. Hotel transfer and free time. Farewell dinner + completion-certificate ceremony.",
+        description:
+          "Early flight Lukla → Kathmandu / Ramechhap. Hotel transfer and free time. Farewell dinner + completion-certificate ceremony.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
+
       {
         day: 14,
         title: "Departure from Kathmandu",
@@ -253,7 +293,8 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Airport transfer",
         accommodation: "—",
-        description: "Early cab transfer to the airport. Trip concludes with Himalayan memories. No meals included today.",
+        description:
+          "Early cab transfer to the airport. Trip concludes with Himalayan memories. No meals included today.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
@@ -261,7 +302,6 @@ const TREKS = {
         ]
       }
     ],
-    // ----- end of detailedItinerary -----
 
     itinerary: [
       { day: 1, title: "Arrival in Kathmandu", alt: 1330, sub: "1,330 m", rest: true, points: ["Airport pickup and hotel transfer", "Free evening to rest before the trek", "No meals included today"] },
@@ -279,7 +319,7 @@ const TREKS = {
       { day: 13, title: "Fly back to Kathmandu", alt: 1330, sub: "1,330 m", points: ["Early flight Lukla → Kathmandu / Ramechhap", "Hotel transfer and free time", "Farewell dinner + completion-certificate ceremony"] },
       { day: 14, title: "Departure from Kathmandu", alt: 1330, sub: "Departure", rest: true, points: ["Early cab transfer to the airport", "Trip concludes with Himalayan memories", "No meals included today"] }
     ],
-    
+
     includes: [
       "<b>2 nights</b> in a 3★ Kathmandu hotel (B&B, twin sharing)",
       "<b>11 nights</b> in trail teahouse lodges (twin sharing)",
@@ -291,8 +331,9 @@ const TREKS = {
       "Sagarmatha National Park & Khumbu Pasang Lhamu Rural Municipality permits",
       "Trek map + Everest Base Camp completion certificate"
     ],
+
     excludes: [
-      "<b>Porter service</b> — add ₹5,700/person for the entire trek (1 porter per 2 trekkers)",
+      "<b>Porter service</b> — available on request (1 porter per 2 trekkers)",
       "Nepal visa (not required for Indian nationals) & personal expenses — laundry, bar bills, battery charging, bottled water, calls, hot showers",
       "Lunch & dinner in Kathmandu (except the farewell dinner)",
       "Any extra nights of accommodation in Kathmandu",
@@ -300,8 +341,24 @@ const TREKS = {
       "Tips for guides & porters",
       "Travel insurance + emergency rescue/heli-evacuation — <b>insurance is mandatory</b> and must cover high-altitude trekking & helicopter evacuation"
     ],
-    documents: ["Soft copy of a valid ID (Passport or Voter ID) to confirm booking", "Original Passport or Voter ID for on-site verification", "Passport-sized photographs (as required for permits)"],
-    carry: ["Valid ID / Passport", "Insurance (heli-evac)", "Trekking Boots", "Down Jacket", "Sunscreen & Lip Balm", "Trekking Poles", "Thermal Layers", "Headlamp"],
+
+    documents: [
+      "Soft copy of a valid ID (Passport or Voter ID) to confirm booking",
+      "Original Passport or Voter ID for on-site verification",
+      "Passport-sized photographs (as required for permits)"
+    ],
+
+    carry: [
+      "Valid ID / Passport",
+      "Insurance (heli-evac)",
+      "Trekking Boots",
+      "Down Jacket",
+      "Sunscreen & Lip Balm",
+      "Trekking Poles",
+      "Thermal Layers",
+      "Headlamp"
+    ],
+
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
@@ -309,25 +366,74 @@ const TREKS = {
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
     ],
+
     videos: ["0XbCoPtpMh0"],
+
     articles: [
-      { title: "Complete Guide to Everest Base Camp Trek 2026", date: "12 Apr 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg" },
-      { title: "Essential Packing List for Everest Expedition", date: "15 Apr 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg" },
-      { title: "Best Time to Visit Khumbu: A Season Guide", date: "20 Apr 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp" }
+      {
+        title: "Complete Guide to Everest Base Camp Trek 2026",
+        date: "12 Apr 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg"
+      },
+      {
+        title: "Essential Packing List for Everest Expedition",
+        date: "15 Apr 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg"
+      },
+      {
+        title: "Best Time to Visit Khumbu: A Season Guide",
+        date: "20 Apr 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp"
+      }
     ],
+
     reviews: [
-      { name: "Anish", loc: "Delhi", e: "🧗", r: 5, date: "Oct 2025", text: "Incredible experience — the guide's pacing on the acclimatization days made all the difference. Kala Patthar at sunrise is unmatched." },
-      { name: "Priya", loc: "Pune", e: "🥾", r: 5, date: "May 2025", text: "Everything was handled: permits, flights, food. The two rest days are what get you to base camp feeling strong." }
+      {
+        name: "Anish",
+        loc: "Delhi",
+        e: "🧗",
+        r: 5,
+        date: "Oct 2025",
+        text: "Incredible experience — the guide's pacing on the acclimatization days made all the difference. Kala Patthar at sunrise is unmatched."
+      },
+      {
+        name: "Priya",
+        loc: "Pune",
+        e: "🥾",
+        r: 5,
+        date: "May 2025",
+        text: "Everything was handled: permits, flights, food. The two rest days are what get you to base camp feeling strong."
+      }
     ],
+
     faqs: [
-      { q: "How difficult is the Everest Base Camp trek?", a: "It's rated moderate to difficult. There's no technical climbing, but you're walking 5–8 hours a day at altitude for up to two weeks. Good cardiovascular fitness and some prior high-altitude experience are strongly recommended." },
-      { q: "Is travel insurance really mandatory?", a: "Yes. Your policy must explicitly cover high-altitude trekking and helicopter evacuation. Emergency rescue and evacuation costs are not included in the package." },
-      { q: "What happens if the Lukla flight is cancelled?", a: "During peak seasons flights may be diverted to Ramechhap's Manthali Airport, in which case road transport from Kathmandu to Ramechhap is arranged. The 14-day duration can shift with flight and weather conditions." },
-      { q: "Do Indian nationals need a visa?", a: "No — Nepal visa fees are not applicable for Indian nationals. Carry a valid Passport or Voter ID, which is also needed for your trekking permits." },
-      { q: "Are porters included?", a: "Porters are an optional add-on at ₹5,700 per person for the entire trek, at a ratio of 1 porter per 2 trekkers. There's a strictly enforced 12 kg per-person baggage limit for porter welfare." }
+      {
+        q: "How difficult is the Everest Base Camp trek?",
+        a: "It's rated moderate to difficult. There's no technical climbing, but you're walking 5–8 hours a day at altitude for up to two weeks. Good cardiovascular fitness and some prior high-altitude experience are strongly recommended."
+      },
+      {
+        q: "Is travel insurance really mandatory?",
+        a: "Yes. Your policy must explicitly cover high-altitude trekking and helicopter evacuation. Emergency rescue and evacuation costs are not included in the package."
+      },
+      {
+        q: "What happens if the Lukla flight is cancelled?",
+        a: "During peak seasons flights may be diverted to Ramechhap's Manthali Airport, in which case road transport from Kathmandu to Ramechhap is arranged. The 14-day duration can shift with flight and weather conditions."
+      },
+      {
+        q: "Do Indian nationals need a visa?",
+        a: "No — Nepal visa fees are not applicable for Indian nationals. Carry a valid Passport or Voter ID, which is also needed for your trekking permits."
+      },
+      {
+        q: "Are porters included?",
+        a: "Porter services are available on request at a ratio of 1 porter per 2 trekkers. Please contact us for a customized quotation. There's a strictly enforced 12 kg per-person baggage limit for porter welfare."
+      }
     ]
   },
-  
+
+  // =========================================================
+  // ANNAPURNA BASE CAMP
+  // =========================================================
+
   abc: {
     title: "Annapurna Base Camp Trek",
     img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp",
@@ -339,11 +445,30 @@ const TREKS = {
     alt: "4,130 m",
     dist: "115 km",
     startEnd: "Pokhara",
-    dates: ["Apr 05, 2026", "May 15, 2026", "Oct 10, 2026"],
-    priceFrom: 42000,
-    about: "Walk through alpine forest, mountain villages and the dramatic Annapurna Sanctuary — an amphitheatre ringed by some of the world's highest peaks. One of the best moderate treks for first-timers seeking real Himalayan grandeur.",
-    bestTime: "Spring and Autumn are peak, but the sanctuary is accessible year-round.",
-    highlights: ["🏔 Annapurna Sanctuary", "🌸 Rhododendron Forests", "♨ Jhinu Hot Springs", "🏘 Gurung Village Culture", "📸 Machhapuchhre (Fishtail) Views"],
+
+    dates: [
+      "Apr 05, 2026",
+      "May 15, 2026",
+      "Oct 10, 2026"
+    ],
+
+    quotationOnly: true,
+    ctaText: "Ask for Quotation",
+
+    about:
+      "Walk through alpine forest, mountain villages and the dramatic Annapurna Sanctuary — an amphitheatre ringed by some of the world's highest peaks. One of the best moderate treks for first-timers seeking real Himalayan grandeur.",
+
+    bestTime:
+      "Spring and Autumn are peak, but the sanctuary is accessible year-round.",
+
+    highlights: [
+      "🏔 Annapurna Sanctuary",
+      "🌸 Rhododendron Forests",
+      "♨ Jhinu Hot Springs",
+      "🏘 Gurung Village Culture",
+      "📸 Machhapuchhre (Fishtail) Views"
+    ],
+
     itinerary: [
       { day: 1, title: "Arrival at Pokhara", alt: 820, sub: "820 m", rest: true, points: ["Hotel check-in by the lake", "Prepare and brief for the trek"] },
       { day: 2, title: "Drive to Jhinu Danda · Trek to Chhomrong", alt: 1940, sub: "1,940 m", time: "4–5 hrs", points: ["Short drive to the trailhead", "Trek to the village of Chhomrong"] },
@@ -355,26 +480,87 @@ const TREKS = {
       { day: 8, title: "Jhinu Danda to Pokhara", alt: 820, sub: "820 m", time: "3–4 hrs", points: ["Short trek to the roadhead", "Drive back to Pokhara"] },
       { day: 9, title: "Pokhara to Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Drive or fly to Kathmandu", "Trip concludes"] }
     ],
-    includes: ["TIMS & ACAP permits", "Teahouse accommodation", "Licensed guide", "Porters", "Ground transport Pokhara ⇄ trailhead"],
-    excludes: ["International & domestic flights", "Travel insurance", "Personal expenses (wifi, laundry, hot showers)", "Tips for staff"],
-    documents: ["Passport / valid ID soft copy", "Passport-sized photos for permits"],
-    carry: ["Trekking Boots", "Daypack", "Warm Jacket", "Raincoat", "Sun Protection"],
+
+    includes: [
+      "TIMS & ACAP permits",
+      "Teahouse accommodation",
+      "Licensed guide",
+      "Porters",
+      "Ground transport Pokhara ⇄ trailhead"
+    ],
+
+    excludes: [
+      "International & domestic flights",
+      "Travel insurance",
+      "Personal expenses (wifi, laundry, hot showers)",
+      "Tips for staff"
+    ],
+
+    documents: [
+      "Passport / valid ID soft copy",
+      "Passport-sized photos for permits"
+    ],
+
+    carry: [
+      "Trekking Boots",
+      "Daypack",
+      "Warm Jacket",
+      "Raincoat",
+      "Sun Protection"
+    ],
+
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%202.webp",
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
     ],
+
     videos: ["dNuzZeRBX5Y"],
+
     articles: [
-      { title: "Annapurna Sanctuary: A Complete Guide", date: "05 Apr 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp" },
-      { title: "Walking Through Rhododendron Forests", date: "12 Apr 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%202.webp" },
-      { title: "Cultural Highlights of Gurung Villages", date: "18 Apr 2026", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop" }
+      {
+        title: "Annapurna Sanctuary: A Complete Guide",
+        date: "05 Apr 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp"
+      },
+      {
+        title: "Walking Through Rhododendron Forests",
+        date: "12 Apr 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%202.webp"
+      },
+      {
+        title: "Cultural Highlights of Gurung Villages",
+        date: "18 Apr 2026",
+        img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+      }
     ],
-    reviews: [{ name: "Elena", loc: "Russia", e: "🌸", r: 5, date: "Sep 2025", text: "Beautiful scenery and very well managed. A perfect first Himalayan trek." }],
-    faqs: [{ q: "Is it good for beginners?", a: "Yes — it's one of the best moderate treks for anyone with good general fitness." }],
+
+    reviews: [
+      {
+        name: "Elena",
+        loc: "Russia",
+        e: "🌸",
+        r: 5,
+        date: "Sep 2025",
+        text: "Beautiful scenery and very well managed. A perfect first Himalayan trek."
+      }
+    ],
+
+    faqs: [
+      {
+        q: "Is it good for beginners?",
+        a: "Yes — it's one of the best moderate treks for anyone with good general fitness."
+      }
+    ],
+
     detailedItinerary: []
   },
+
+  // =========================================================
+  // KAILASH MANSAROVAR
+  // =========================================================
+
   kailash: {
     title: "Kailash Mansarovar Yatra",
     img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp",
@@ -386,11 +572,30 @@ const TREKS = {
     alt: "5,630 m",
     dist: "Overland + 52 km Kora",
     startEnd: "Kathmandu",
-    dates: ["May 24, 2026", "Jun 19, 2026", "Sep 03, 2026"],
-    priceFrom: 185000,
-    about: "A sacred pilgrimage to Mount Kailash and Lake Mansarovar via Nepal, starting and ending in Kathmandu. The ultimate spiritual journey across the Tibetan plateau, built around the three-day Kailash Parikrama (Kora).",
-    bestTime: "Summer months offer the most stable weather for the high-altitude crossing.",
-    highlights: ["🙏 Sacred 3-day Parikrama (Kora)", "🌊 Holy dip at Lake Mansarovar", "🏔 North Face of Mt. Kailash", "⛰ Dolma-La Pass (5,630 m)", "🕉 Gauri Kund"],
+
+    dates: [
+      "May 24, 2026",
+      "Jun 19, 2026",
+      "Sep 03, 2026"
+    ],
+
+    quotationOnly: true,
+    ctaText: "Ask for Quotation",
+
+    about:
+      "A sacred pilgrimage to Mount Kailash and Lake Mansarovar via Nepal, starting and ending in Kathmandu. The ultimate spiritual journey across the Tibetan plateau, built around the three-day Kailash Parikrama (Kora).",
+
+    bestTime:
+      "Summer months offer the most stable weather for the high-altitude crossing.",
+
+    highlights: [
+      "🙏 Sacred 3-day Parikrama (Kora)",
+      "🌊 Holy dip at Lake Mansarovar",
+      "🏔 North Face of Mt. Kailash",
+      "⛰ Dolma-La Pass (5,630 m)",
+      "🕉 Gauri Kund"
+    ],
+
     itinerary: [
       { day: 1, title: "Arrival in Kathmandu", alt: 1330, sub: "1,330 m", rest: true, points: ["Check-in and rest", "Quiet preparation"] },
       { day: 2, title: "Pashupatinath Darshan", alt: 1330, sub: "Blessings", rest: true, points: ["Morning blessings", "Orientation & briefing"] },
@@ -407,26 +612,90 @@ const TREKS = {
       { day: 13, title: "Return to Kathmandu", alt: 1330, sub: "1,330 m", points: ["Re-enter Nepal", "Final night in Kathmandu"] },
       { day: 14, title: "Departure", alt: 1330, sub: "Departure", rest: true, points: ["Depart Kathmandu", "Carry the presence of Kailash"] }
     ],
-    includes: ["4★ hotel in Kathmandu", "Tibetan hotels & guesthouses en route", "Vegetarian meals throughout", "All Tibet/China permits & group visa", "AC coach transport in Tibet", "Sherpa assistance, medical kit & bottled oxygen", "Down jacket, duffel & day pack"],
-    excludes: ["International flights to/from Kathmandu", "Travel insurance (mandatory, arranged individually)", "Personal expenses", "Horse/porter during Parikrama", "Emergency evacuation or rescue"],
-    documents: ["Passport valid 6+ months", "Passport-sized photos for group visa"],
-    carry: ["Heavy Down Jacket", "Thermal Innerwear", "Sunglasses", "Strong Sunscreen", "Lip Balm"],
+
+    includes: [
+      "4★ hotel in Kathmandu",
+      "Tibetan hotels & guesthouses en route",
+      "Vegetarian meals throughout",
+      "All Tibet/China permits & group visa",
+      "AC coach transport in Tibet",
+      "Sherpa assistance, medical kit & bottled oxygen",
+      "Down jacket, duffel & day pack"
+    ],
+
+    excludes: [
+      "International flights to/from Kathmandu",
+      "Travel insurance (mandatory, arranged individually)",
+      "Personal expenses",
+      "Horse/porter during Parikrama",
+      "Emergency evacuation or rescue"
+    ],
+
+    documents: [
+      "Passport valid 6+ months",
+      "Passport-sized photos for group visa"
+    ],
+
+    carry: [
+      "Heavy Down Jacket",
+      "Thermal Innerwear",
+      "Sunglasses",
+      "Strong Sunscreen",
+      "Lip Balm"
+    ],
+
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%203.jpg",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%201.jpg",
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
     ],
+
     videos: ["rcE0dfTez-I"],
+
     articles: [
-      { title: "Kailash Mansarovar: A Spiritual Odyssey", date: "24 May 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp" },
-      { title: "Preparing for the Sacred Parikrama", date: "01 Jun 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%203.jpg" },
-      { title: "Life and Culture on the Tibetan Plateau", date: "10 Jun 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%201.jpg" }
+      {
+        title: "Kailash Mansarovar: A Spiritual Odyssey",
+        date: "24 May 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%202.webp"
+      },
+      {
+        title: "Preparing for the Sacred Parikrama",
+        date: "01 Jun 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%203.jpg"
+      },
+      {
+        title: "Life and Culture on the Tibetan Plateau",
+        date: "10 Jun 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%201.jpg"
+      }
     ],
-    reviews: [{ name: "Rajesh", loc: "Mumbai", e: "🕉", r: 5, date: "Aug 2025", text: "Divine experience. Everything was well coordinated across the border." }],
-    faqs: [{ q: "Do I need a visa?", a: "Yes, a group visa for Tibet is required, which we arrange for the whole group." }],
+
+    reviews: [
+      {
+        name: "Rajesh",
+        loc: "Mumbai",
+        e: "🕉",
+        r: 5,
+        date: "Aug 2025",
+        text: "Divine experience. Everything was well coordinated across the border."
+      }
+    ],
+
+    faqs: [
+      {
+        q: "Do I need a visa?",
+        a: "Yes, a group visa for Tibet is required, which we arrange for the whole group."
+      }
+    ],
+
     detailedItinerary: []
   },
+
+  // =========================================================
+  // KAILASH HELI
+  // =========================================================
+
   kailashHeli: {
     title: "Kailash Yatra — Lucknow Heli",
     img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp",
@@ -438,11 +707,29 @@ const TREKS = {
     alt: "5,645 m",
     dist: "Heli + Overland",
     startEnd: "Lucknow",
-    dates: ["May 20, 2026", "Jun 15, 2026", "Aug 28, 2026"],
-    priceFrom: 165000,
-    about: "An 11-day pilgrimage from Lucknow using scenic flights and a helicopter hop to Hilsa — the fastest comfortable path to Mount Kailash and Lake Mansarovar, with the full three-day Parikrama.",
-    bestTime: "May–September for clearer skies and safer flying conditions.",
-    highlights: ["🚁 Helicopter to the Tibet border", "🙏 Sacred 3-day Parikrama", "🌊 Mansarovar holy dip", "⛰ Dolma-La Pass (5,645 m)"],
+
+    dates: [
+      "May 20, 2026",
+      "Jun 15, 2026",
+      "Aug 28, 2026"
+    ],
+
+    quotationOnly: true,
+    ctaText: "Ask for Quotation",
+
+    about:
+      "An 11-day pilgrimage from Lucknow using scenic flights and a helicopter hop to Hilsa — the fastest comfortable path to Mount Kailash and Lake Mansarovar, with the full three-day Parikrama.",
+
+    bestTime:
+      "May–September for clearer skies and safer flying conditions.",
+
+    highlights: [
+      "🚁 Helicopter to the Tibet border",
+      "🙏 Sacred 3-day Parikrama",
+      "🌊 Mansarovar holy dip",
+      "⛰ Dolma-La Pass (5,645 m)"
+    ],
+
     itinerary: [
       { day: 1, title: "Lucknow to Nepalgunj", alt: 150, sub: "180 km", time: "4–5 hrs", points: ["Drive to Nepalgunj", "Preparation briefing"] },
       { day: 2, title: "Fly Nepalgunj to Simikot", alt: 2910, sub: "2,910 m", points: ["55-min scenic flight", "Acclimatization rest"] },
@@ -456,26 +743,87 @@ const TREKS = {
       { day: 10, title: "Fly Simikot to Nepalgunj", alt: 150, sub: "Return", points: ["Heli to border", "Return flight to Nepalgunj"] },
       { day: 11, title: "Drive to Lucknow", alt: 120, sub: "Departure", rest: true, points: ["4–5 hr drive", "Airport transfer"] }
     ],
-    includes: ["Tibet travel permit & visa fees", "Lucknow–Nepalgunj private transport", "All vegetarian meals & accommodation", "Domestic flights & helicopter services", "Experienced tour leader & support crew"],
-    excludes: ["Travel insurance (must include evacuation)", "Horse/helper fees during Parikrama (~3,400 Yuan)", "Personal expenses (wifi, laundry, tips)", "Costs from flight delays or weather"],
-    documents: ["Scanned passport", "Health certificate", "Passport-sized photos"],
-    carry: ["Scanned Passport", "Health Certificate", "Heavy Down Jacket", "Thermal Innerwear"],
+
+    includes: [
+      "Tibet travel permit & visa fees",
+      "Lucknow–Nepalgunj private transport",
+      "All vegetarian meals & accommodation",
+      "Domestic flights & helicopter services",
+      "Experienced tour leader & support crew"
+    ],
+
+    excludes: [
+      "Travel insurance (must include evacuation)",
+      "Horse/helper fees during Parikrama — available separately",
+      "Personal expenses (wifi, laundry, tips)",
+      "Costs from flight delays or weather"
+    ],
+
+    documents: [
+      "Scanned passport",
+      "Health certificate",
+      "Passport-sized photos"
+    ],
+
+    carry: [
+      "Scanned Passport",
+      "Health Certificate",
+      "Heavy Down Jacket",
+      "Thermal Innerwear"
+    ],
+
     photos: [
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%203.webp",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%204.webp",
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
     ],
+
     videos: ["rcE0dfTez-I"],
+
     articles: [
-      { title: "Lucknow to Kailash: The Heli Route", date: "20 May 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp" },
-      { title: "Border Formalities at Hilsa", date: "25 May 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%203.webp" },
-      { title: "Maximum Altitude: Crossing Dolma La", date: "05 Jun 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%204.webp" }
+      {
+        title: "Lucknow to Kailash: The Heli Route",
+        date: "20 May 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%201.webp"
+      },
+      {
+        title: "Border Formalities at Hilsa",
+        date: "25 May 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Yatra%20(Lucknow%20Heli)%203.webp"
+      },
+      {
+        title: "Maximum Altitude: Crossing Dolma La",
+        date: "05 Jun 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Kailash%20Mansarovar%20Yatra%204.webp"
+      }
     ],
-    reviews: [{ name: "Anish", loc: "Lucknow", e: "🚁", r: 5, date: "Sep 2025", text: "The helicopter route saved so much time. Highly recommended for a shorter window." }],
-    faqs: [{ q: "How long is the Parikrama?", a: "The Mount Kailash Parikrama is 52 km, undertaken over three days." }],
+
+    reviews: [
+      {
+        name: "Anish",
+        loc: "Lucknow",
+        e: "🚁",
+        r: 5,
+        date: "Sep 2025",
+        text: "The helicopter route saved so much time. Highly recommended for a shorter window."
+      }
+    ],
+
+    faqs: [
+      {
+        q: "How long is the Parikrama?",
+        a: "The Mount Kailash Parikrama is 52 km, undertaken over three days."
+      }
+    ],
+
     detailedItinerary: []
   },
+
+  // =========================================================
+  // UPPER MUSTANG
+  // =========================================================
+
   uppermustang: {
     title: "Upper Mustang Trek",
     img: "https://www.alpineramble.com/uploads/fullbanner/uppermustang-hike.webp",
@@ -487,11 +835,29 @@ const TREKS = {
     alt: "3,840 m",
     dist: "125 km",
     startEnd: "Jomsom",
-    dates: ["May 15, 2026", "Oct 05, 2026"],
-    priceFrom: 110000,
-    about: "The 'Forbidden Kingdom' of Upper Mustang — a desert-like, rain-shadow landscape of ochre cliffs, sky caves and the walled medieval capital of Lo Manthang, steeped in Tibetan Buddhist culture.",
-    bestTime: "Being in a rain shadow, Upper Mustang is one of few treks open through the monsoon (Jun–Aug); Spring and Autumn are also excellent.",
-    highlights: ["🏰 Walled capital of Lo Manthang", "🏜 High-desert landscapes", "🏯 Centuries-old monasteries", "🧗 Chhoser sky caves", "🏔 Dhaulagiri & Nilgiri views"],
+
+    dates: [
+      "May 15, 2026",
+      "Oct 05, 2026"
+    ],
+
+    quotationOnly: true,
+    ctaText: "Ask for Quotation",
+
+    about:
+      "The 'Forbidden Kingdom' of Upper Mustang — a desert-like, rain-shadow landscape of ochre cliffs, sky caves and the walled medieval capital of Lo Manthang, steeped in Tibetan Buddhist culture.",
+
+    bestTime:
+      "Being in a rain shadow, Upper Mustang is one of few treks open through the monsoon (Jun–Aug); Spring and Autumn are also excellent.",
+
+    highlights: [
+      "🏰 Walled capital of Lo Manthang",
+      "🏜 High-desert landscapes",
+      "🏯 Centuries-old monasteries",
+      "🧗 Chhoser sky caves",
+      "🏔 Dhaulagiri & Nilgiri views"
+    ],
+
     itinerary: [
       { day: 1, title: "Arrival in Kathmandu", alt: 1400, sub: "1,400 m", rest: true, points: ["Hotel transfer", "Permit prep & briefing"] },
       { day: 2, title: "Fly/drive to Pokhara", alt: 820, sub: "820 m", rest: true, points: ["Journey to the lakeside city", "Explore Pokhara"] },
@@ -508,26 +874,89 @@ const TREKS = {
       { day: 13, title: "Trek to Jomsom", alt: 2720, sub: "2,720 m", time: "5–6 hrs", points: ["Arrive back at Jomsom", "Celebrate the finish"] },
       { day: 14, title: "Fly to Pokhara & Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Morning flight via Pokhara", "Farewell dinner in Kathmandu"] }
     ],
-    includes: ["Restricted Area Permit ($500/person)", "Domestic flights KTM–PKR–JOM & back", "Teahouse accommodation", "All meals on trek", "Licensed guide & porters", "ACAP & TIMS permits", "First aid & emergency oxygen"],
-    excludes: ["International flights & Nepal visa", "Travel insurance (heli-evac)", "Personal trekking gear", "Personal expenses", "Tips for guides & porters"],
-    documents: ["Passport valid 6+ months", "Passport-sized photos for the Restricted Area Permit"],
-    carry: ["Trekking Boots", "Windbreaker", "Sun Protection", "Light Sleeping Bag"],
+
+    includes: [
+      "Restricted Area Permit",
+      "Domestic flights KTM–PKR–JOM & back",
+      "Teahouse accommodation",
+      "All meals on trek",
+      "Licensed guide & porters",
+      "ACAP & TIMS permits",
+      "First aid & emergency oxygen"
+    ],
+
+    excludes: [
+      "International flights & Nepal visa",
+      "Travel insurance (heli-evac)",
+      "Personal trekking gear",
+      "Personal expenses",
+      "Tips for guides & porters"
+    ],
+
+    documents: [
+      "Passport valid 6+ months",
+      "Passport-sized photos for the Restricted Area Permit"
+    ],
+
+    carry: [
+      "Trekking Boots",
+      "Windbreaker",
+      "Sun Protection",
+      "Light Sleeping Bag"
+    ],
+
     photos: [
       "https://www.alpineramble.com/uploads/fullbanner/uppermustang-hike.webp",
       "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp",
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
     ],
+
     videos: ["teQQWA2CmsA"],
+
     articles: [
-      { title: "Exploring Lo Manthang", date: "10 May 2026", img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp" },
-      { title: "Mustang: The Hidden Kingdom", date: "15 May 2026", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop" },
-      { title: "Upper Mustang Packing Guide", date: "22 May 2026", img: "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop" }
+      {
+        title: "Exploring Lo Manthang",
+        date: "10 May 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp"
+      },
+      {
+        title: "Mustang: The Hidden Kingdom",
+        date: "15 May 2026",
+        img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        title: "Upper Mustang Packing Guide",
+        date: "22 May 2026",
+        img: "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+      }
     ],
-    reviews: [{ name: "Sarah", loc: "UK", e: "🏜", r: 5, date: "Oct 2025", text: "The desert landscapes and ancient culture of Lo Manthang were unlike anything I'd seen." }],
-    faqs: [{ q: "Is a special permit required?", a: "Yes — a Restricted Area Permit ($500 per person) is required for Upper Mustang." }],
+
+    reviews: [
+      {
+        name: "Sarah",
+        loc: "UK",
+        e: "🏜",
+        r: 5,
+        date: "Oct 2025",
+        text: "The desert landscapes and ancient culture of Lo Manthang were unlike anything I'd seen."
+      }
+    ],
+
+    faqs: [
+      {
+        q: "Is a special permit required?",
+        a: "Yes — a Restricted Area Permit is required for Upper Mustang and will be arranged as part of your trek package."
+      }
+    ],
+
     detailedItinerary: []
   },
+
+  // =========================================================
+  // KASHMIR GREAT LAKES
+  // =========================================================
+
   kgl: {
     title: "Kashmir Great Lakes Trek",
     img: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop",
@@ -539,11 +968,30 @@ const TREKS = {
     alt: "4,200 m",
     dist: "72 km",
     startEnd: "Srinagar",
-    dates: ["Jul 10, 2026", "Aug 05, 2026", "Sep 01, 2026"],
-    priceFrom: 18500,
-    about: "Often called the most beautiful trek in India — seven high-altitude alpine lakes strung across flower meadows beneath rugged peaks, with lakeside camping the whole way.",
-    bestTime: "July to early September, when the snow has melted and the meadows are green and full of wildflowers.",
-    highlights: ["💎 7 alpine lakes", "🏔 Gadsar Pass (4,200 m)", "🌸 Wildflower meadows", "⛺ Lakeside camping", "🦅 Panoramic Himalayan views"],
+
+    dates: [
+      "Jul 10, 2026",
+      "Aug 05, 2026",
+      "Sep 01, 2026"
+    ],
+
+    quotationOnly: true,
+    ctaText: "Ask for Quotation",
+
+    about:
+      "Often called the most beautiful trek in India — seven high-altitude alpine lakes strung across flower meadows beneath rugged peaks, with lakeside camping the whole way.",
+
+    bestTime:
+      "July to early September, when the snow has melted and the meadows are green and full of wildflowers.",
+
+    highlights: [
+      "💎 7 alpine lakes",
+      "🏔 Gadsar Pass (4,200 m)",
+      "🌸 Wildflower meadows",
+      "⛺ Lakeside camping",
+      "🦅 Panoramic Himalayan views"
+    ],
+
     itinerary: [
       { day: 1, title: "Arrival in Srinagar · base camp", alt: 1585, sub: "1,585 m", rest: true, points: ["Transfer to Shitkadi base", "Briefing & acclimatization"] },
       { day: 2, title: "Trek to Nichnai", alt: 3500, sub: "3,500 m", time: "5–6 hrs", points: ["Through pine forest", "Views of Sonamarg valley"] },
@@ -554,23 +1002,77 @@ const TREKS = {
       { day: 7, title: "Trek to Gangabal twin lakes", alt: 3500, sub: "3,500 m", time: "6–7 hrs", points: ["Cross Zaj Pass", "Mt. Harmukh & Gangabal"] },
       { day: 8, title: "Descend to Naranag · Srinagar", alt: 2250, sub: "2,250 m", time: "5–6 hrs", points: ["Final forest descent", "Drive back to Srinagar"] }
     ],
-    includes: ["Srinagar airport transfers", "Tent accommodation (triple sharing)", "All meals on trek", "Trek leader & support staff", "Mules for common luggage", "Permits & forest fees"],
-    excludes: ["Flights to Srinagar", "Personal trekking gear", "Mules for personal luggage", "Travel insurance", "Tips for staff"],
-    documents: ["Government photo ID", "Medical fitness certificate"],
-    carry: ["Trekking Boots", "Daypack (20–30 L)", "Sunscreen & Lip Balm", "Warm Layers", "Poncho"],
+
+    includes: [
+      "Srinagar airport transfers",
+      "Tent accommodation (triple sharing)",
+      "All meals on trek",
+      "Trek leader & support staff",
+      "Mules for common luggage",
+      "Permits & forest fees"
+    ],
+
+    excludes: [
+      "Flights to Srinagar",
+      "Personal trekking gear",
+      "Mules for personal luggage",
+      "Travel insurance",
+      "Tips for staff"
+    ],
+
+    documents: [
+      "Government photo ID",
+      "Medical fitness certificate"
+    ],
+
+    carry: [
+      "Trekking Boots",
+      "Daypack (20–30 L)",
+      "Sunscreen & Lip Balm",
+      "Warm Layers",
+      "Poncho"
+    ],
+
     photos: [
       "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1470&auto=format&fit=crop"
     ],
+
     videos: ["rcE0dfTez-I"],
+
     articles: [
-      { title: "KGL: India's Most Beautiful Trek", date: "15 Jul 2026", img: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop" },
-      { title: "Photography Guide for Kashmir Lakes", date: "20 Jul 2026", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop" }
+      {
+        title: "KGL: India's Most Beautiful Trek",
+        date: "15 Jul 2026",
+        img: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        title: "Photography Guide for Kashmir Lakes",
+        date: "20 Jul 2026",
+        img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+      }
     ],
-    reviews: [{ name: "Amit", loc: "Bangalore", e: "💎", r: 5, date: "Aug 2025", text: "Truly a paradise on earth — the lakes are mesmerizing and the camping is unforgettable." }],
-    faqs: [{ q: "What is the best time for KGL?", a: "July to early September, once the snow melts and the meadows bloom." }],
+
+    reviews: [
+      {
+        name: "Amit",
+        loc: "Bangalore",
+        e: "💎",
+        r: 5,
+        date: "Aug 2025",
+        text: "Truly a paradise on earth — the lakes are mesmerizing and the camping is unforgettable."
+      }
+    ],
+
+    faqs: [
+      {
+        q: "What is the best time for KGL?",
+        a: "July to early September, once the snow melts and the meadows bloom."
+      }
+    ],
+
     detailedItinerary: []
   }
 };
