@@ -145,9 +145,10 @@
     EXTERNAL DATA
     ============================================================ -->
     <script src="treks-data.js"></script>
+    <script src="trek-logic.js"></script>
 
     <!-- ============================================================
-    APPLICATION LOGIC
+    APPLICATION LOGIC (page-specific)
     ============================================================ -->
     <script>
         /* ------------------------------------------------------------------
@@ -255,14 +256,6 @@
         }
 
         /* ------------------------------------------------------------------
-           ALTITUDE SVG (kept for reference, but not used in new itinerary)
-           ------------------------------------------------------------------ */
-        function buildAltitudeSVG(itin) {
-            // ... (unchanged, kept for potential future use) ...
-            // (full code omitted for brevity – you can keep the original)
-        }
-
-        /* ------------------------------------------------------------------
            DETAILED ITINERARY — day-tab view (NEW)
            ------------------------------------------------------------------ */
         function buildDetailedItinerary(t) {
@@ -279,7 +272,6 @@
                     </button>
                 `;
 
-                // ── parse structured info from points ──
                 let altHtml = '', driveHtml = '', accomHtml = '';
                 let extraDetails = [];
                 const points = d.points || [];
@@ -317,7 +309,6 @@
                     descHtml += `</ul></div>`;
                 }
 
-                // ── build panel ──
                 panelsHtml += `
                     <div class="det-day-panel ${isActive ? 'active' : ''}" data-day="${d.day}">
                         <h3 class="det-day-heading">${d.title}</h3>
@@ -350,7 +341,6 @@
             `;
         }
 
-        // ── tab switching for detailed itinerary ──
         function switchDetDay(day) {
             document.querySelectorAll('.det-day-tab').forEach(b => {
                 b.classList.toggle('active', parseInt(b.dataset.day) === day);
@@ -361,37 +351,287 @@
         }
 
         /* ------------------------------------------------------------------
-           PANEL BUILDERS (unchanged except buildItinerary now uses new detailed)
+           PANEL BUILDERS
            ------------------------------------------------------------------ */
         function buildOverview(t) {
-            // ... (unchanged)
+            return `
+                <h2 class="td-section-title"><span class="num">01</span> About this trek</h2>
+                <p class="td-text">${t.about}</p>
+                <div class="td-callout">
+                    <span class="ci">🗓</span>
+                    <div class="ct"><b>Best time to go.</b> ${t.bestTime}</div>
+                </div>
+                <h2 class="td-section-title"><span class="num">02</span> Trip highlights</h2>
+                <div class="td-highlights-grid">
+                    ${t.highlights.map(h => {
+                        const sp = h.indexOf(" ");
+                        return `<div class="tdh-item"><span class="tdh-ico">${h.slice(0, sp)}</span><span class="tdh-txt">${h.slice(sp + 1)}</span></div>`;
+                    }).join("")}
+                </div>
+                <h2 class="td-section-title"><span class="num">03</span> What to carry</h2>
+                <div class="td-carry">
+                    ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
+                </div>
+            `;
         }
 
         function buildItinerary(t) {
-            // Replace the old altitude-card version with the new detailed tab view
             return buildDetailedItinerary(t);
         }
 
-        function buildInclusions(t) { /* ... unchanged */ }
-        function buildGallery(t) { /* ... unchanged */ }
-        function buildReviews(t) { /* ... unchanged */ }
-        function buildFaq(t) { /* ... unchanged */ }
-        function buildDetails(t) { /* ... unchanged */ }
+        function buildInclusions(t) {
+            return `
+                <div class="ie-grid">
+                    <div class="ie-col inc">
+                        <h4><span class="badge">✓</span> What's included</h4>
+                        <ul class="ie-list">${t.includes.map(i => `<li>${i}</li>`).join("")}</ul>
+                    </div>
+                    <div class="ie-col exc">
+                        <h4><span class="badge">✕</span> Not included</h4>
+                        <ul class="ie-list">${t.excludes.map(i => `<li>${i}</li>`).join("")}</ul>
+                    </div>
+                </div>
+                <div class="docs-note">
+                    <h5>📄 Documents required to book</h5>
+                    <ul>${(t.documents || []).map(d => `<li>${d}</li>`).join("")}</ul>
+                </div>
+            `;
+        }
+
+        function buildGallery(t) {
+            const vid = t.videos && t.videos[0] ?
+                `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${t.videos[0]}" title="Trek video" allowfullscreen loading="lazy"></iframe></div>` :
+                "";
+            return `
+                <h2 class="td-section-title"><span class="num">📷</span> Gallery</h2>
+                <div class="gallery-grid">
+                    ${t.photos.map(p => `<figure><img src="${p}" alt="${t.title}" loading="lazy"
+                         onerror="this.parentElement.style.display='none'"></figure>`).join("")}
+                </div>
+                ${vid}
+            `;
+        }
+
+        function buildReviews(t) {
+            return `
+                <h2 class="td-section-title"><span class="num">★</span> Trekker reviews</h2>
+                ${(t.reviews || []).map(r => `
+                    <div class="review-card">
+                        <div class="rev-head">
+                            <div class="rev-emoji">${r.e}</div>
+                            <div>
+                                <div class="rev-name">${r.name}</div>
+                                <div class="rev-loc">📍 ${r.loc}</div>
+                            </div>
+                            <div style="margin-left:auto;text-align:right">
+                                <div class="rev-stars">${stars(r.r)}</div>
+                                <div class="rev-date">${r.date}</div>
+                            </div>
+                        </div>
+                        <p class="rev-text">"${r.text}"</p>
+                    </div>
+                `).join("")}
+            `;
+        }
+
+        function buildFaq(t) {
+            return `
+                <h2 class="td-section-title"><span class="num">?</span> Frequently asked</h2>
+                <div class="faq-list">
+                    ${(t.faqs || []).map((f, i) => `
+                        <div class="faq-item ${i === 0 ? "open" : ""}">
+                            <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span class="chev">▾</span></button>
+                            <div class="faq-a">${f.a}</div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function buildDetails(t) {
+            return `
+                <h2 class="td-section-title"><span class="num">🎒</span> Equipment Checklist</h2>
+                <div class="td-carry" style="margin-bottom:0;">
+                    ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
+                </div>
+                <p style="margin-top:12px;font-size:13px;color:var(--dim);">A complete gear list is sent upon booking. We recommend packing light — porters carry up to 15 kg per trekker.</p>
+            `;
+        }
 
         /* ------------------------------------------------------------------
            BOOKING CARD
            ------------------------------------------------------------------ */
-        // ... (unchanged)
+        function buildBookingCard(t) {
+            bookingState = { pax: 2, porter: false, trek: t };
+            const hasPrice = !!(t.pricing || t.priceFrom);
+            const datesOpts = t.dates.map(d => `<option>${d}</option>`).join("");
+
+            let priceBlock;
+            if (t.pricing) {
+                priceBlock = `
+                    <div class="bk-tag">Per person · group pricing</div>
+                    <div class="td-price-now"><span class="cur">₹</span><span id="ppPrice"></span> <span class="per">/ person</span></div>
+                    <div class="price-tier-note" id="tierNote"></div>
+                `;
+            } else if (t.priceFrom) {
+                priceBlock = `
+                    <div class="bk-tag">Per person · indicative</div>
+                    <div class="td-price-now"><span class="cur">₹</span>${t.priceFrom.toLocaleString("en-IN")} <span class="per">/ person</span></div>
+                    <div class="price-tier-note">Final quote confirmed on group size & season.</div>
+                `;
+            } else {
+                priceBlock = `<div class="bk-tag">Custom trip</div><div class="td-price-now" style="font-size:24px">On request</div>`;
+            }
+
+            const porterRow = t.pricing ? `
+                <div class="porter-row">
+                    <div><div class="pl">Add porter support</div><div class="ps">${rupee(t.pricing.porter)}/person · 1 porter per 2 trekkers</div></div>
+                    <label class="switch"><input type="checkbox" id="porterToggle" onchange="updateBooking()"><span class="track"></span></label>
+                </div>
+            ` : "";
+
+            const card = `
+                <div class="td-price-box">${priceBlock}</div>
+                <div class="td-form-group">
+                    <label>Choose a departure</label>
+                    <select class="td-select">${datesOpts}</select>
+                </div>
+                <div class="td-form-group">
+                    <label>Trekkers</label>
+                    <div class="td-count-row">
+                        <span class="cl">Group size</span>
+                        <div class="td-counter">
+                            <button onclick="changePax(-1)" aria-label="Fewer trekkers">−</button>
+                            <span class="cval" id="paxVal">2</span>
+                            <button onclick="changePax(1)" aria-label="More trekkers">+</button>
+                        </div>
+                    </div>
+                </div>
+                ${porterRow}
+                <div class="td-total-row">
+                    <span class="td-total-label">Total</span>
+                    <span class="td-total-val"><span class="cur">₹</span><span id="totalVal"></span></span>
+                </div>
+                <div class="total-sub" id="totalSub"></div>
+                <button class="td-book-btn">${hasPrice ? "Reserve your spot" : "Request a quote"}</button>
+                <div class="bk-trust">
+                    <div><span class="ti">✓</span> Free date changes up to 30 days out</div>
+                    <div><span class="ti">✓</span> Certified guides · porter welfare covered</div>
+                    <div><span class="ti">✓</span> Non-refundable advance confirms your booking</div>
+                </div>
+            `;
+
+            document.getElementById("bookingCard").innerHTML = card;
+            updateBooking();
+        }
+
+        function changePax(delta) {
+            bookingState.pax = Math.max(1, Math.min(20, bookingState.pax + delta));
+            document.getElementById("paxVal").textContent = bookingState.pax;
+            updateBooking();
+        }
+
+        function updateBooking() {
+            const t = bookingState.trek;
+            if (!t) return;
+            const porterEl = document.getElementById("porterToggle");
+            bookingState.porter = porterEl ? porterEl.checked : false;
+            const pax = bookingState.pax;
+
+            const pp = tierPrice(t, pax);
+            const ppEl = document.getElementById("ppPrice");
+            if (ppEl && t.pricing) {
+                ppEl.textContent = pp.toLocaleString("en-IN");
+                const tier = t.pricing.tiers.find(x => pax >= x.min && pax <= x.max);
+                document.getElementById("tierNote").innerHTML =
+                    `You're in the <b>${tier ? tier.label : ""}</b> band. Bigger groups pay less — from ₹60,000 at 15+.`;
+            }
+
+            if (pp == null) {
+                const tv = document.getElementById("totalVal");
+                if (tv) tv.textContent = "—";
+                return;
+            }
+
+            let total = pp * pax;
+            let subParts = [`${rupee(pp)} × ${pax}`];
+            if (bookingState.porter && t.pricing) {
+                const porter = t.pricing.porter * pax;
+                total += porter;
+                subParts.push(`porter ${rupee(t.pricing.porter)} × ${pax}`);
+            }
+            document.getElementById("totalVal").textContent = total.toLocaleString("en-IN");
+            const sub = document.getElementById("totalSub");
+            if (sub) sub.textContent = subParts.join("  ·  ");
+        }
 
         /* ------------------------------------------------------------------
            VIEW SWITCHING
            ------------------------------------------------------------------ */
-        // ... (unchanged)
+        function openTrek(key) {
+            const t = TREKS[key];
+            if (!t) return;
+
+            document.getElementById("tdHero").style.backgroundImage =
+                `linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url("${t.photos[0] || t.img}")`;
+            document.getElementById("bcTitle").textContent = t.title;
+            document.getElementById("tdTitle").textContent = t.title;
+            document.getElementById("tdRegion").innerHTML = `📍 ${t.region}`;
+
+            document.getElementById("tdHeroTags").innerHTML = `
+                <span class="td-hero-tag gold">${t.diff}</span>
+                <span class="td-hero-tag">${t.dur.split(" /")[0]}</span>
+                <span class="td-hero-tag">Season · ${t.season}</span>
+            `;
+
+            const strip = [
+                ["🗓", "Duration", t.dur.split(" /")[0]],
+                ["⛰", "Max Altitude", t.alt],
+                ["🥾", "Difficulty", t.diff.split(" ")[0]],
+                ["🌤", "Best Season", t.season],
+                ["📏", "Distance", t.dist],
+                ["🚩", "Start / End", t.startEnd]
+            ];
+            document.getElementById("tdInfoStrip").innerHTML = strip.map(([ic, l, v]) => `
+                <div class="td-qi"><div class="qi-ico">${ic}</div>
+                    <div><div class="qi-label">${l}</div><div class="qi-val">${v}</div></div></div>
+            `).join("");
+
+            document.getElementById("panel-overview").innerHTML = buildOverview(t);
+            document.getElementById("panel-itinerary").innerHTML = buildItinerary(t);
+            document.getElementById("panel-inclusions").innerHTML = buildInclusions(t);
+            document.getElementById("panel-gallery").innerHTML = buildGallery(t);
+            document.getElementById("panel-reviews").innerHTML = buildReviews(t);
+            document.getElementById("panel-faq").innerHTML = buildFaq(t);
+            document.getElementById("panel-details").innerHTML = buildDetails(t);
+            buildBookingCard(t);
+
+            document.querySelectorAll(".td-t").forEach((b, i) => b.classList.toggle("active", i === 0));
+            document.querySelectorAll(".td-panel").forEach((p, i) => p.classList.toggle("active", i === 0));
+
+            document.getElementById("gridView").classList.remove("active");
+            document.getElementById("detailView").classList.add("active");
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
+
+        function showGrid() {
+            document.getElementById("detailView").classList.remove("active");
+            document.getElementById("gridView").classList.add("active");
+            window.scrollTo({ top: 0, behavior: "auto" });
+        }
 
         /* ------------------------------------------------------------------
            TAB SWITCHING (main detail view)
            ------------------------------------------------------------------ */
-        // ... (unchanged)
+        document.getElementById("tdTabs").addEventListener("click", e => {
+            const btn = e.target.closest(".td-t");
+            if (!btn) return;
+            document.querySelectorAll(".td-t").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            const p = btn.dataset.p;
+            document.querySelectorAll(".td-panel").forEach(pan => pan.classList.remove("active"));
+            document.getElementById("panel-" + p).classList.add("active");
+        });
 
         /* ------------------------------------------------------------------
            INIT
