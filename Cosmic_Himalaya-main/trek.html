@@ -166,7 +166,6 @@
             color: #1e293b;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 640px) {
             .det-day-selector-row {
                 padding: 0.5rem 0.75rem;
@@ -533,70 +532,67 @@
         }
 
         /* ------------------------------------------------------------------
-           DETAILED ITINERARY (new – for Details panel)
+           DETAILED ITINERARY (UPDATED – uses t.detailedItinerary)
            ------------------------------------------------------------------ */
         function buildDetailedItinerary(t) {
+            // Check if we have detailed data
+            const detailData = t.detailedItinerary && t.detailedItinerary.length > 0 ? t.detailedItinerary : null;
+
+            if (!detailData) {
+                // Fallback: no detailed itinerary available
+                return `
+                    <div class="detailed-itinerary-wrap">
+                        <p style="padding:2rem;text-align:center;color:#666;background:#f8fafc;border-radius:1rem;">
+                            🏔️ Detailed day‑by‑day breakdown is not available for this trek.<br>
+                            Please refer to the <strong>Itinerary</strong> tab for the classic list.
+                        </p>
+                    </div>
+                `;
+            }
+
             let dayBtns = '';
             let dayPanels = '';
 
-            t.itinerary.forEach((d, idx) => {
+            detailData.forEach((day, idx) => {
                 const isActive = idx === 0;
-                const points = d.points || [];
 
-                // Classify points
-                let altLines = [];
-                let driveLines = [];
-                let accomLines = [];
-                let descLines = [];
-
-                points.forEach(p => {
-                    const lower = p.toLowerCase();
-                    if (/altitude|sleep|m \/|ft/i.test(lower) && !/drive|distance|km/i.test(lower)) {
-                        altLines.push(p);
-                    } else if (/drive|distance|km|hrs?|hours?/i.test(lower) && !/altitude|sleep|m \//i.test(lower)) {
-                        driveLines.push(p);
-                    } else if (/accommodation|guest|hotel|lodge|stay|dorm|triple|quad/i.test(lower)) {
-                        accomLines.push(p);
-                    } else {
-                        descLines.push(p);
-                    }
-                });
-
-                const altHtml = altLines.length ? `
+                // Altitude points
+                const altHtml = day.altitudePoints && day.altitudePoints.length ? `
                     <div class="det-info-block">
                         <span class="det-info-label">Altitude</span>
                         <ul class="det-info-list">
-                            ${altLines.map(line => `<li>${line.replace(/^·\s*/, '')}</li>`).join('')}
+                            ${day.altitudePoints.map(p => `<li>${p.label}: ${p.value}</li>`).join('')}
                         </ul>
                     </div>
                 ` : '';
 
-                const driveHtml = driveLines.length ? `
+                // Drive / distance
+                const driveHtml = day.driveDistance && day.driveDistance !== '—' ? `
                     <div class="det-info-block">
                         <span class="det-info-label">Drive / Distance</span>
-                        <span class="det-info-val">${driveLines.map(l => l.replace(/^·\s*/, '')).join(' · ')}</span>
+                        <span class="det-info-val">${day.driveDistance}</span>
                     </div>
                 ` : '';
 
-                const accomHtml = accomLines.length ? `
+                // Accommodation
+                const accomHtml = day.accommodation && day.accommodation !== '—' ? `
                     <div class="det-info-block">
                         <span class="det-info-label">Accommodation</span>
-                        <span class="det-info-val">${accomLines.map(l => l.replace(/^·\s*/, '')).join(' · ')}</span>
+                        <span class="det-info-val">${day.accommodation}</span>
                     </div>
                 ` : '';
 
-                const descHtml = descLines.length ? `
+                // Description (could be a string or an array of lines – we'll treat as a single paragraph)
+                const descHtml = day.description ? `
                     <div class="det-description">
-                        <ul class="det-desc-list">
-                            ${descLines.map(line => `<li>${line.replace(/^·\s*/, '')}</li>`).join('')}
-                        </ul>
+                        <p>${day.description}</p>
                     </div>
                 ` : '';
 
-                // Images – use first 3 from trek photos, or placeholders
-                const images = t.photos && t.photos.length ? t.photos.slice(0, 3) : [];
+                // Images – use day-specific images if present, else fallback to trek photos
+                let images = day.images && day.images.length ? day.images : t.photos.slice(0, 3);
                 const imgHtml = images.length ? images.map(src => `
-                    <figure><img src="${src}" alt="${t.title} — Day ${d.day}" loading="lazy"
+                    <figure><img src="${src}" alt="${t.title} — Day ${day.day}" loading="lazy"
                          onerror="this.parentElement.style.display='none'"></figure>
                 `).join('') : `
                     <figure><div class="det-img-placeholder">🏔️</div></figure>
@@ -606,15 +602,15 @@
 
                 dayBtns += `
                     <button class="det-day-btn ${isActive ? 'active' : ''}"
-                            data-day="${d.day}"
-                            onclick="switchDetailedDay(${d.day})">
-                        Day ${d.day}
+                            data-day="${day.day}"
+                            onclick="switchDetailedDay(${day.day})">
+                        Day ${day.day}
                     </button>
                 `;
 
                 dayPanels += `
-                    <div class="det-day-panel ${isActive ? 'active' : ''}" data-day="${d.day}">
-                        <h3 class="det-day-heading">${d.title}</h3>
+                    <div class="det-day-panel ${isActive ? 'active' : ''}" data-day="${day.day}">
+                        <h3 class="det-day-heading">${day.title}</h3>
                         <div class="det-info-grid">
                             ${altHtml}
                             ${driveHtml}
@@ -624,7 +620,6 @@
                         <div class="det-day-images">
                             ${imgHtml}
                         </div>
-                        ${d.detailedDesc ? `<div class="det-extended-text">${d.detailedDesc}</div>` : ''}
                     </div>
                 `;
             });
@@ -675,7 +670,6 @@
             `;
         }
 
-        // inclusions, gallery, reviews, faq unchanged
         function buildInclusions(t) {
             return `
                 <div class="ie-grid">
@@ -750,10 +744,9 @@
         }
 
         /* ------------------------------------------------------------------
-           DETAILS PANEL – now shows the detailed itinerary
+           DETAILS PANEL – now uses the updated buildDetailedItinerary
            ------------------------------------------------------------------ */
         function buildDetails(t) {
-            // Return the new detailed itinerary
             return buildDetailedItinerary(t);
         }
 
@@ -902,7 +895,7 @@
             document.getElementById("panel-gallery").innerHTML = buildGallery(t);
             document.getElementById("panel-reviews").innerHTML = buildReviews(t);
             document.getElementById("panel-faq").innerHTML = buildFaq(t);
-            document.getElementById("panel-details").innerHTML = buildDetails(t);  // new detailed itinerary
+            document.getElementById("panel-details").innerHTML = buildDetails(t);  // uses updated function
 
             buildBookingCard(t);
 
