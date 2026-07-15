@@ -12,12 +12,186 @@
 
     <!-- External Stylesheet -->
     <link rel="stylesheet" href="trek.css" />
+
+    <!-- Additional styles for the new detailed itinerary in the Details panel -->
+    <style>
+        /* --- Detailed Itinerary (Details panel) --- */
+        .det-day-selector-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            background: #f1f1f1;
+            padding: 0.75rem 1rem;
+            border-radius: 2.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .det-day-btn {
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: #fff;
+            color: #4a4a4a;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .det-day-btn.active {
+            background: #dc2626;
+            color: #fff;
+        }
+        .det-day-btn:hover:not(.active) {
+            background: #e5e7eb;
+        }
+
+        .det-day-panel {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .det-day-panel.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .det-day-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #1e293b;
+        }
+
+        .det-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: #f8fafc;
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+        }
+        .det-info-block {
+            display: flex;
+            flex-direction: column;
+        }
+        .det-info-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .det-info-val {
+            font-weight: 500;
+            color: #0f172a;
+            margin-top: 0.1rem;
+        }
+        .det-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.1rem 0 0 0;
+        }
+        .det-info-list li {
+            font-size: 0.9rem;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+        .det-info-list li::before {
+            content: "•";
+            margin-right: 0.4rem;
+            color: #dc2626;
+        }
+
+        .det-description {
+            margin: 1rem 0 1.5rem 0;
+        }
+        .det-desc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .det-desc-list li {
+            padding-left: 1.25rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            color: #334155;
+        }
+        .det-desc-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #dc2626;
+        }
+
+        .det-day-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+            margin: 1.25rem 0 1rem 0;
+        }
+        .det-day-images figure {
+            margin: 0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background: #f1f5f9;
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .det-day-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .det-img-placeholder {
+            font-size: 2.5rem;
+            opacity: 0.4;
+        }
+
+        .det-extended-text {
+            margin-top: 1rem;
+            padding: 1rem 1.25rem;
+            background: #f1f5f9;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .det-day-selector-row {
+                padding: 0.5rem 0.75rem;
+                border-radius: 1.5rem;
+                gap: 0.5rem;
+            }
+            .det-day-btn {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.9rem;
+            }
+            .det-info-grid {
+                grid-template-columns: 1fr;
+                padding: 0.75rem 1rem;
+            }
+            .det-day-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- ============================================================
-    NAVIGATION
+    NAVIGATION (unchanged)
     ============================================================ -->
     <nav>
         <a href="index.html" class="nav-brand">
@@ -123,7 +297,7 @@
                     <button class="td-t" data-p="gallery">Gallery</button>
                     <button class="td-t" data-p="reviews">Reviews</button>
                     <button class="td-t" data-p="faq">FAQ</button>
-                    <button class="td-t" data-p="details">Details</button>
+                    <button class="td-t" data-p="details">Details</button>   <!-- now shows detailed itinerary -->
                 </div>
 
                 <div class="td-panel active" id="panel-overview"></div>
@@ -256,7 +430,110 @@
         }
 
         /* ------------------------------------------------------------------
-           DETAILED ITINERARY — full detailed view (NEW)
+           ALTITUDE SVG (original function - restored)
+           ------------------------------------------------------------------ */
+        function buildAltitudeSVG(itin) {
+            const W = 900,
+                H = 230,
+                padL = 44,
+                padR = 20,
+                padT = 22,
+                padB = 34;
+            const alts = itin.map(d => d.alt);
+            const maxA = Math.max(...alts),
+                minA = Math.min(...alts);
+            const niceMax = Math.ceil(maxA / 1000) * 1000;
+            const niceMin = Math.floor(minA / 1000) * 1000;
+            const plotW = W - padL - padR,
+                plotH = H - padT - padB;
+            const x = i => padL + (plotW * i) / (itin.length - 1);
+            const y = a => padT + plotH * (1 - (a - niceMin) / (niceMax - niceMin));
+
+            let grid = "";
+            for (let a = niceMin; a <= niceMax; a += 1000) {
+                grid += `<line class="alt-grid-line" x1="${padL}" y1="${y(a).toFixed(1)}" x2="${W - padR}" y2="${y(a).toFixed(1)}"/>`;
+                grid += `<text class="alt-grid-label" x="6" y="${(y(a) + 3).toFixed(1)}">${(a / 1000).toFixed(0)}k</text>`;
+            }
+
+            const linePts = itin.map((d, i) => `${x(i).toFixed(1)},${y(d.alt).toFixed(1)}`).join(" ");
+            const areaPts = `${padL},${(H - padB).toFixed(1)} ${linePts} ${(W - padR).toFixed(1)},${(H - padB).toFixed(1)}`;
+
+            const peakIdx = alts.indexOf(maxA);
+            let dots = "",
+                labels = "";
+            itin.forEach((d, i) => {
+                const isPeak = i === peakIdx;
+                dots += `<circle class="alt-dot${isPeak ? " peak" : ""}" data-day="${d.day}" cx="${x(i).toFixed(1)}" cy="${y(d.alt).toFixed(1)}" r="${isPeak ? 6 : 4.5}">
+                    <title>Day ${d.day} · ${d.title} · sleep ${d.alt.toLocaleString("en-IN")} m</title></circle>`;
+                if (i % 2 === 0 || isPeak) {
+                    labels += `<text class="alt-daylabel" x="${x(i).toFixed(1)}" y="${H - 12}">D${d.day}</text>`;
+                }
+            });
+
+            return `<svg class="alt-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Altitude profile of the trek by day">
+                <defs><linearGradient id="altGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#e3cd94" stop-opacity="0.42"/>
+                    <stop offset="100%" stop-color="#e3cd94" stop-opacity="0.02"/>
+                </linearGradient></defs>
+                ${grid}
+                <polygon class="alt-area" points="${areaPts}"/>
+                <polyline class="alt-line" points="${linePts}"/>
+                ${dots}${labels}
+            </svg>`;
+        }
+
+        /* ------------------------------------------------------------------
+           ORIGINAL ITINERARY (restored)
+           ------------------------------------------------------------------ */
+        function buildItinerary(t) {
+            return `
+                <div class="altitude-card">
+                    <div class="alt-head">
+                        <div>
+                            <h3>Altitude profile</h3>
+                            <div class="sub">Sleeping elevation · day by day</div>
+                        </div>
+                        <div class="alt-peak">
+                            <div class="pv">${t.alt}</div>
+                            <div class="pl">highest point${t.altNote ? " · " + t.altNote : ""}</div>
+                        </div>
+                    </div>
+                    <div class="alt-svg-wrap">${buildAltitudeSVG(t.itinerary)}</div>
+                    <div class="alt-legend">
+                        <span><i></i> Sleeping altitude</span>
+                        <span><i class="peak"></i> Highest point</span>
+                        <span>Watch the two plateaus — those are your acclimatization days.</span>
+                    </div>
+                </div>
+                <h2 class="td-section-title"><span class="num">${String(t.itinerary.length)}</span> Day-by-day</h2>
+                <div class="itin">
+                    ${t.itinerary.map(d => `
+                        <div class="itin-item ${d.rest ? "rest" : ""}" data-day="${d.day}"
+                             onmouseenter="hotDay(${d.day},true)" onmouseleave="hotDay(${d.day},false)">
+                            <div class="itin-node">${d.day}</div>
+                            <div class="itin-card">
+                                <div class="itin-top">
+                                    <div class="itin-title">${d.title}</div>
+                                    <div class="itin-badges">
+                                        ${d.rest ? `<span class="itin-badge rest">REST</span>` : ""}
+                                        ${d.time ? `<span class="itin-badge time">${d.time}</span>` : ""}
+                                        <span class="itin-badge alt">${d.sub}</span>
+                                    </div>
+                                </div>
+                                <ul class="itin-points">${d.points.map(p => `<li>${p}</li>`).join("")}</ul>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function hotDay(day, on) {
+            document.querySelectorAll(`.alt-dot[data-day="${day}"]`).forEach(d => d.classList.toggle("hot", on));
+        }
+
+        /* ------------------------------------------------------------------
+           DETAILED ITINERARY (new – for Details panel)
            ------------------------------------------------------------------ */
         function buildDetailedItinerary(t) {
             let dayBtns = '';
@@ -266,13 +543,12 @@
                 const isActive = idx === 0;
                 const points = d.points || [];
 
-                // --- Parse altitude, drive, accommodation, description ---
+                // Classify points
                 let altLines = [];
                 let driveLines = [];
                 let accomLines = [];
                 let descLines = [];
 
-                // First pass: classify each point
                 points.forEach(p => {
                     const lower = p.toLowerCase();
                     if (/altitude|sleep|m \/|ft/i.test(lower) && !/drive|distance|km/i.test(lower)) {
@@ -286,7 +562,6 @@
                     }
                 });
 
-                // Build HTML for each section
                 const altHtml = altLines.length ? `
                     <div class="det-info-block">
                         <span class="det-info-label">Altitude</span>
@@ -318,7 +593,7 @@
                     </div>
                 ` : '';
 
-                // Images — use first 3 from trek photos, or fallback placeholders
+                // Images – use first 3 from trek photos, or placeholders
                 const images = t.photos && t.photos.length ? t.photos.slice(0, 3) : [];
                 const imgHtml = images.length ? images.map(src => `
                     <figure><img src="${src}" alt="${t.title} — Day ${d.day}" loading="lazy"
@@ -329,7 +604,6 @@
                     <figure><div class="det-img-placeholder">⛰️</div></figure>
                 `;
 
-                // Day button
                 dayBtns += `
                     <button class="det-day-btn ${isActive ? 'active' : ''}"
                             data-day="${d.day}"
@@ -338,7 +612,6 @@
                     </button>
                 `;
 
-                // Day panel
                 dayPanels += `
                     <div class="det-day-panel ${isActive ? 'active' : ''}" data-day="${d.day}">
                         <h3 class="det-day-heading">${d.title}</h3>
@@ -369,11 +642,9 @@
         }
 
         function switchDetailedDay(day) {
-            // Update buttons
             document.querySelectorAll('.det-day-btn').forEach(b => {
                 b.classList.toggle('active', parseInt(b.dataset.day) === day);
             });
-            // Update panels
             document.querySelectorAll('.det-day-panel').forEach(p => {
                 p.classList.toggle('active', parseInt(p.dataset.day) === day);
             });
@@ -404,10 +675,7 @@
             `;
         }
 
-        function buildItinerary(t) {
-            return buildDetailedItinerary(t);
-        }
-
+        // inclusions, gallery, reviews, faq unchanged
         function buildInclusions(t) {
             return `
                 <div class="ie-grid">
@@ -477,18 +745,20 @@
             `;
         }
 
-        function buildDetails(t) {
-            return `
-                <h2 class="td-section-title"><span class="num">🎒</span> Equipment Checklist</h2>
-                <div class="td-carry" style="margin-bottom:0;">
-                    ${t.carry.map(c => `<span class="carry-chip"><span class="dot"></span>${c}</span>`).join("")}
-                </div>
-                <p style="margin-top:12px;font-size:13px;color:var(--dim);">A complete gear list is sent upon booking. We recommend packing light — porters carry up to 15 kg per trekker.</p>
-            `;
+        function toggleFaq(btn) {
+            btn.closest(".faq-item").classList.toggle("open");
         }
 
         /* ------------------------------------------------------------------
-           BOOKING CARD
+           DETAILS PANEL – now shows the detailed itinerary
+           ------------------------------------------------------------------ */
+        function buildDetails(t) {
+            // Return the new detailed itinerary
+            return buildDetailedItinerary(t);
+        }
+
+        /* ------------------------------------------------------------------
+           BOOKING CARD (unchanged)
            ------------------------------------------------------------------ */
         function buildBookingCard(t) {
             bookingState = { pax: 2, porter: false, trek: t };
@@ -632,9 +902,11 @@
             document.getElementById("panel-gallery").innerHTML = buildGallery(t);
             document.getElementById("panel-reviews").innerHTML = buildReviews(t);
             document.getElementById("panel-faq").innerHTML = buildFaq(t);
-            document.getElementById("panel-details").innerHTML = buildDetails(t);
+            document.getElementById("panel-details").innerHTML = buildDetails(t);  // new detailed itinerary
+
             buildBookingCard(t);
 
+            // Reset main tabs to first
             document.querySelectorAll(".td-t").forEach((b, i) => b.classList.toggle("active", i === 0));
             document.querySelectorAll(".td-panel").forEach((p, i) => p.classList.toggle("active", i === 0));
 
