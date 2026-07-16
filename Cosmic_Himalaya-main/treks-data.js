@@ -39,7 +39,7 @@ const TREKS = {
       "✈ The legendary Lukla mountain flight"
     ],
 
-    detailedItinerary: [
+detailedItinerary: [
       {
         day: 1,
         title: "Arrival in Kathmandu",
@@ -49,15 +49,13 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "—",
         accommodation: "3★ Hotel (twin sharing)",
-        description:
-          "Airport pickup and hotel transfer. Free evening to rest before the trek. No meals included today.",
+        description: "Welcome to the vibrant heart of Nepal! After a warm airport pickup, you'll be whisked to your comfortable hotel in the bustling Thamel district. The evening is yours to unwind, sip a cup of masala chai, and perhaps take a gentle stroll through Thamel's colourful streets — where prayer flags flutter over shops selling pashminas and singing bowls. No meals are included today, but the neighbourhood is packed with cosy rooftop restaurants serving everything from wood‑fired pizzas to traditional Newari platters. Rest up — the adventure begins at dawn!",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp"
         ]
       },
-
       {
         day: 2,
         title: "Fly to Lukla · trek to Phakding",
@@ -68,15 +66,13 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Flight: 30 min · Trek: 3–4 hrs",
         accommodation: "Teahouse",
-        description:
-          "Early scenic flight to Lukla (2,860 m). Gentle descent along the Dudh Koshi river. All meals + 3 hot drinks, fresh fruit at breakfast.",
+        description: "An early morning transfer to the airport sets the tone for one of the world's most thrilling flights — a short hop to Lukla's cliff‑hanging airstrip, surrounded by green hills. As you step off the plane, the crisp mountain air hits you; you're now in the heart of Sherpa country. After a hot breakfast, the trail gently descends along the roaring Dudh Koshi River, crossing your first suspension bridges decorated with prayer flags. The path winds through small farming villages, where children wave and porters greet you with a cheerful 'Namaste'. Tonight, you'll settle into a cosy teahouse in Phakding, where a steaming bowl of dal bhat — the quintessential Nepali meal — fuels you for the days ahead. All meals, three hot drinks, and fresh fruit at breakfast are included.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 3,
         title: "Phakding to Namche Bazaar",
@@ -87,15 +83,13 @@ const TREKS = {
         altitudeGain: "+788 m",
         driveDistance: "Trek: 5–6 hrs",
         accommodation: "Teahouse",
-        description:
-          "Cross the famous Hillary Suspension Bridge. Steep climb into the Sherpa capital. Enter Sagarmatha National Park.",
+        description: "Today's trek is a true highlight — a steady climb through pine and rhododendron forests, criss‑crossing the Dudh Koshi via iconic suspension bridges, including the famous Hillary Bridge, swaying high above the river. As you ascend, the air thins and the trail becomes steeper; but the reward is the first glimpse of Everest's peak peeking through the trees. Entering the Sagarmatha National Park, you'll register at the gate before tackling the final switchback climb into Namche Bazaar — the bustling Sherpa capital. Namche is a vibrant hub of colourful lodges, bakeries (try the apple pie!) and souvenir shops, all set against a dramatic amphitheatre of peaks. After a hearty dinner, rest your legs — tomorrow is an acclimatisation day, but the views from here are already unforgettable.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 4,
         title: "Acclimatization at Namche",
@@ -105,15 +99,13 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Rest day",
         accommodation: "Teahouse",
-        description:
-          "Climb-high, sleep-low hike to Everest View Hotel. First views of Everest, Lhotse & Ama Dablam. Evening tea, snacks and rest.",
+        description: "Rest days are not for sitting still! Today we follow the golden rule of acclimatisation: 'climb high, sleep low'. A gentle morning hike takes you to the Everest View Hotel, perched at 3,880 m. From its terrace, you'll be rewarded with your first unobstructed panorama of Everest, Lhotse, Nuptse, and the spectacular peak of Ama Dablam. Soak in the sight while sipping a hot cup of local butter tea (or a cappuccino!) — it's a moment you'll carry forever. Back in Namche, explore the local market, visit the Sherpa museum, or simply relax in a bakery with a slice of apple pie and chat with fellow trekkers. In the evening, enjoy a hearty meal and the warmth of the teahouse stove. Tea, snacks and dinner are all included.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 5,
         title: "Namche to Tengboche",
@@ -124,15 +116,13 @@ const TREKS = {
         altitudeGain: "+420 m",
         driveDistance: "Trek: 5–6 hrs",
         accommodation: "Teahouse",
-        description:
-          "Trail to the hilltop Tengboche Monastery. Grand amphitheatre of Himalayan peaks. Evening tea and snacks included.",
+        description: "Leaving Namche, the trail contours high above the Dudh Koshi, offering ever‑changing vistas of the valley. After crossing a long suspension bridge, you begin a steady climb through birch and rhododendron forests alive with birdlife. The destination is Tengboche — home to the largest monastery in the Khumbu region. As you approach, the sight of the monastery's golden roofs against the massive flanks of Ama Dablam is simply breath‑taking. You'll have time to wander through the monastery grounds, spin the prayer wheels, and perhaps attend the evening puja (prayer ceremony) accompanied by the deep resonance of conch shells and drums. Tonight's teahouse stay is simple, but the spiritual atmosphere and the panorama of Himalayan giants — Everest, Lhotse, Nuptse, and Ama Dablam — make it a highlight. Evening tea and snacks are included, and dinner is a comforting local meal.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 6,
         title: "Tengboche to Dingboche",
@@ -143,15 +133,13 @@ const TREKS = {
         altitudeGain: "+550 m",
         driveDistance: "Trek: 5–6 hrs",
         accommodation: "Teahouse",
-        description:
-          "Through rhododendron forest, cross Imja Khola. Ascend to the wind-swept Imja valley. Full-board meals and hot drinks.",
+        description: "Today's trail weaves through dense rhododendron forests, then opens up as you cross the Imja Khola and ascend the windswept Imja Valley. The vegetation becomes sparser, and the landscape takes on a stark, alpine beauty — giant boulders, scree slopes, and the distant gleam of glaciers. You'll pass through the tiny settlement of Pangboche, home to an ancient monastery, before arriving at Dingboche, a picturesque village nestled at the foot of Lhotse. Here, the air is thin but the views are colossal. Dingboche is known for its hearty bakeries — a warm cinnamon roll or a slice of lemon cake is a real treat after the day's walk. All meals are included, and you'll also have hot drinks to warm you up as the evening chill sets in.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 7,
         title: "Acclimatization at Dingboche",
@@ -161,15 +149,13 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Rest day",
         accommodation: "Teahouse",
-        description:
-          "Optional hike to Nangkartshang (5,083 m). Views toward Island Peak & Makalu. Second key rest day for altitude.",
+        description: "Acclimatisation is critical at this altitude, so we take a second rest day — but we earn our views. An optional hike up Nangkartshang (5,083 m) offers a spectacular vantage point to gaze across the Imja Valley toward Island Peak and the massive flanks of Makalu. Even if you stay lower, the village itself is a delight: stone walls sheltering barley fields, and the warm glow of teahouse windows against the stark landscape. Take time to rest, drink plenty of fluids, and enjoy the simple pleasure of a hot lunch. Local specialities like Sherpa stew or a bowl of garlic soup — rumoured to help with altitude — are on offer. This day sets you up for the push to Base Camp, so cherish the calm and the breathtaking mountain views.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 8,
         title: "Dingboche to Lobuche",
@@ -180,15 +166,13 @@ const TREKS = {
         altitudeGain: "+530 m",
         driveDistance: "Trek: 4–5 hrs",
         accommodation: "Teahouse",
-        description:
-          "Reach the Khumbu Glacier moraine. Pause at the Everest Memorial at Thukla. Overnight at Lobuche.",
+        description: "The trail leads you along the lateral moraine of the Khumbu Glacier, a grey, rocky landscape that feels like another planet. As you climb, the Himalayas become ever more present — Pumori and Lingtren dominate the skyline. Halfway, you'll pause at the Thukla Pass, where a cluster of stone memorials honour climbers who lost their lives on Everest. It's a sobering but poignant reminder of the mountain's power. From there, it's a short walk to Lobuche, a small settlement of teahouses perched on the glacier's edge. Tonight, the altitude is real, but the teahouse warmth and a simple meal of dal bhat or pasta offer comfort. Stay hydrated and rest well — Base Camp awaits tomorrow.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 9,
         title: "Gorakshep · Everest Base Camp",
@@ -200,15 +184,13 @@ const TREKS = {
         altitudeGain: "+424 m",
         driveDistance: "Trek: 7–8 hrs",
         accommodation: "Teahouse at Gorakshep",
-        description:
-          "Long walk along the glacier to Gorakshep. Reach Everest Base Camp — see the Khumbu Icefall. Return to sleep at Gorakshep (5,164 m).",
+        description: "This is the day you came for! An early start leads you across the glacier's rocky tongue to Gorakshep, a desolate outpost that was once Everest's base camp. After a short break, you continue onto the moraine, following prayer‑flag marked cairns until — suddenly — you're there. Everest Base Camp! Standing at 5,364 m, you're face to face with the Khumbu Icefall, a moving, creaking cascade of seracs that marks the start of the climbing route. The feeling of achievement is overwhelming, and you'll share high‑fives, photos, and perhaps a few tears. The return to Gorakshep is a quiet walk, your mind buzzing with the day's majesty. Overnight at the highest teahouse of the trek — sleeping at 5,164 m is a challenge, but the sense of accomplishment makes every breath worthwhile.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 10,
         title: "Kala Patthar · trek to Pheriche",
@@ -219,15 +201,13 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Trek: 7–8 hrs",
         accommodation: "Teahouse",
-        description:
-          "Pre-dawn climb to Kala Patthar for sunrise on Everest. Highest point of the trek (5,545 m). Descend to Pheriche (4,371 m).",
+        description: "A pre‑dawn start — headlamps and layers — as you trudge up Kala Patthar in the darkness. It's a steep, lung‑burning climb, but the reward is unparalleled: the first golden rays hit Everest's summit, turning the world's highest peak into a fiery pyramid against the cobalt sky. You're at 5,545 m, the highest point of the entire trek, and the 360‑degree panorama of Everest, Lhotse, Nuptse, and the entire Khumbu Glacier is something you'll never forget. After soaking in the sunrise, you begin the long descent to Pheriche (4,371 m), dropping into the valley and feeling the air thicken with each step. Pheriche is a peaceful village with excellent teahouses — a warm meal and a good night's sleep await, and the altitude begins to feel a little friendlier.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 11,
         title: "Pheriche to Namche Bazaar",
@@ -238,15 +218,13 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Trek: 6–7 hrs",
         accommodation: "Teahouse",
-        description:
-          "Long descent back to lush Namche. Retrace the traditional Everest highway. Full-board meals included.",
+        description: "Retracing your steps, the return journey feels different — lighter, faster, and filled with the satisfaction of having reached Base Camp. You'll breeze through Tengboche and down into the lush forests, crossing bridges you remember from the way up. The air grows thicker and warmer, and the familiar sight of Namche Bazaar brings a smile. Back in the bustling Sherpa capital, you can celebrate with a proper hot shower, a cold beer, or a slice of that famous apple pie. The teahouse tonight feels like a luxury hotel, and you'll sleep soundly after a day of rewarding descent. Full‑board meals are included, and you've earned every bite.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 12,
         title: "Namche Bazaar to Lukla",
@@ -257,15 +235,13 @@ const TREKS = {
         altitudeGain: "— (descent)",
         driveDistance: "Trek: 6–7 hrs",
         accommodation: "Teahouse",
-        description:
-          "Final trekking day back to Lukla. Last suspension-bridge crossings. Rest ahead of the morning flight.",
+        description: "The last day of trekking! The trail winds down through forests and villages, with the Dudh Koshi river accompanying you all the way. You'll cross the iconic suspension bridges one final time, each one a familiar landmark now. The pace is relaxed; you can stop for tea at a favourite spot, chat with fellow trekkers, and savour the last views of the high peaks behind you. Arriving in Lukla, the air is filled with the buzz of returning adventurers. Tonight, you'll stay in a comfortable teahouse, and you can enjoy a final celebration dinner — perhaps a sizzling plate of momos or a hearty pizza — as you reflect on the incredible journey. Rest well; tomorrow, you fly back.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 13,
         title: "Fly back to Kathmandu",
@@ -275,15 +251,13 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Flight: 30 min",
         accommodation: "3★ Hotel (twin sharing)",
-        description:
-          "Early flight Lukla → Kathmandu / Ramechhap. Hotel transfer and free time. Farewell dinner + completion-certificate ceremony.",
+        description: "An early morning flight from Lukla (or via Ramechhap, depending on weather) takes you back to the hustle and bustle of Kathmandu. The 30‑minute flight feels like a blink compared to the days of trekking. After transferring to your hotel, the afternoon is free to wash away the trail dust, explore Thamel's shops, or simply relax in a garden cafe. In the evening, we gather for a special farewell dinner — a celebration of your achievement — where you'll receive your Everest Base Camp completion certificate. Raise a glass of local beer or a glass of fresh juice to the mountains, the memories, and the new friends you've made.",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/EBC%20Trek%20%202.webp",
           "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
           "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
         ]
       },
-
       {
         day: 14,
         title: "Departure from Kathmandu",
@@ -293,8 +267,7 @@ const TREKS = {
         altitudeGain: "—",
         driveDistance: "Airport transfer",
         accommodation: "—",
-        description:
-          "Early cab transfer to the airport. Trip concludes with Himalayan memories. No meals included today.",
+        description: "Your Himalayan adventure concludes with a private transfer to Tribhuvan International Airport. As you look back at the city, you carry with you the roar of the Khumbu Icefall, the prayer flags at Kala Patthar, the warmth of Sherpa hospitality, and the unique sense of pride that only Everest can bestow. No meals are included today, but the memories of dal bhat, butter tea, and the laughter shared around teahouse stoves will linger long after you've left. Until the next mountain calls — safe travels!",
         images: [
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%201.jpg",
           "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Everest%20Base%20Camp%20Trek%203.jpg",
@@ -302,6 +275,7 @@ const TREKS = {
         ]
       }
     ],
+    // ----- end of enhanced detailedItinerary -----
 
     itinerary: [
       { day: 1, title: "Arrival in Kathmandu", alt: 1330, sub: "1,330 m", rest: true, points: ["Airport pickup and hotel transfer", "Free evening to rest before the trek", "No meals included today"] },
