@@ -881,9 +881,9 @@ detailedItinerary: [
 
     photos: [
       "https://images.unsplash.com/photo-1592731056711-b3101e30584b?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Ama%20Dablam%20Trek%202.webp",
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1520209268518-aec60b8bb5cb?q=80&w=1470&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1540876508220-988a11575ed6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1608275565739-c0be72b1da5e?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1592731057019-57ed336948ed?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     ],
 
     videos: ["teQQWA2CmsA"],
