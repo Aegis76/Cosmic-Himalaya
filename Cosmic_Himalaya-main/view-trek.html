@@ -12,6 +12,18 @@
     <link href="style.css" rel="stylesheet" />
 
     <style>
+        /* ---------- theme variables ---------- */
+        :root {
+            --navy: #0a1628;
+            --teal: #0d9488;
+            --teal-light: #f0fdfa;
+            --teal-border: #99f6e4;
+            --teal-badge: #ccfbf1;
+            --gradient-primary: linear-gradient(120deg, var(--navy, #0a1628), var(--teal, #0d9488));
+            --gold: #d4a843;
+            --border: #e2e8f0;
+        }
+
         /* ---------- detailed itinerary (copied from lower code) ---------- */
         .det-day-selector-row {
             display: flex;
@@ -38,7 +50,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         .det-day-btn.active {
-            background: #dc2626;
+            background: var(--gradient-primary);
             color: #fff;
         }
         .det-day-btn:hover:not(.active) {
@@ -105,7 +117,7 @@
         .det-info-list li::before {
             content: "•";
             margin-right: 0.4rem;
-            color: #dc2626;
+            color: var(--teal);
         }
         .det-description {
             margin: 1rem 0 1.5rem;
@@ -167,19 +179,19 @@
         }
         .alt-line {
             fill: none;
-            stroke: #dc2626;
+            stroke: var(--teal);
             stroke-width: 2.5;
             stroke-linejoin: round;
             stroke-linecap: round;
         }
         .alt-dot {
-            fill: #dc2626;
+            fill: var(--teal);
             stroke: #fff;
             stroke-width: 1.5;
             transition: r 0.2s, fill 0.2s;
         }
         .alt-dot.peak {
-            fill: #b91c1c;
+            fill: var(--navy);
             r: 6;
         }
         .alt-dot.hot {
@@ -224,7 +236,7 @@
         .alt-peak .pv {
             font-size: 1.25rem;
             font-weight: 800;
-            color: #dc2626;
+            color: var(--teal);
             line-height: 1;
         }
         .alt-peak .pl {
@@ -244,16 +256,16 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #dc2626;
+            background: var(--teal);
             margin-right: 0.3rem;
             vertical-align: middle;
         }
         .alt-legend i.peak {
-            background: #b91c1c;
+            background: var(--navy);
             width: 14px;
             height: 14px;
             border: 2px solid #fff;
-            box-shadow: 0 0 0 1px #dc2626;
+            box-shadow: 0 0 0 1px var(--teal);
         }
 
         /* ---------- itinerary items (copied) ---------- */
@@ -278,7 +290,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: #dc2626;
+            background: var(--gradient-primary);
             color: #fff;
             font-weight: 700;
             font-size: 0.8rem;
@@ -292,7 +304,7 @@
             background: #f8fafc;
             border-radius: 0.75rem;
             padding: 0.75rem 1rem;
-            border-left: 4px solid #dc2626;
+            border-left: 4px solid var(--teal);
             transition: background 0.2s;
         }
         .itin-card:hover {
@@ -334,8 +346,8 @@
             color: #1e40af;
         }
         .itin-badge.alt {
-            background: #fce7f3;
-            color: #9d174d;
+            background: var(--teal-badge);
+            color: #0f766e;
         }
         .itin-points {
             list-style: none;
@@ -354,7 +366,7 @@
             content: "▸";
             position: absolute;
             left: 0;
-            color: #dc2626;
+            color: var(--teal);
             font-weight: 700;
         }
 
@@ -363,8 +375,8 @@
             margin: 0 0 22px;
             padding: 16px 18px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #fff7ed, #fef2f2);
-            border: 1px solid #fee2e2;
+            background: linear-gradient(135deg, var(--teal-light), #ccfbf1);
+            border: 1px solid var(--teal-border);
         }
         .quotation-price .qp-row {
             display: flex;
@@ -377,7 +389,7 @@
             font-weight: 800;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: #dc2626;
+            color: var(--teal);
         }
         .quotation-price .qp-amount {
             font-family: "Playfair Display", serif;
@@ -405,8 +417,8 @@
             padding: 7px 12px;
             margin-bottom: 15px;
             border-radius: 30px;
-            background: #fef2f2;
-            color: #dc2626;
+            background: var(--teal-light);
+            color: var(--teal);
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 1.2px;
@@ -500,7 +512,7 @@
             color: #0f172a;
         }
         .td-panel .td-section-title .num {
-            color: #dc2626;
+            color: var(--teal);
             margin-right: 0.5rem;
             font-weight: 800;
         }
@@ -571,7 +583,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #dc2626;
+            background: var(--teal);
         }
 
         /* inclusions / exclusions */
@@ -605,8 +617,8 @@
             font-weight: 700;
         }
         .ie-col.inc .badge {
-            background: #dcfce7;
-            color: #16a34a;
+            background: #ccfbf1;
+            color: #0f766e;
         }
         .ie-col.exc .badge {
             background: #fee2e2;
@@ -629,10 +641,10 @@
             content: "•";
             position: absolute;
             left: 0;
-            color: #dc2626;
+            color: var(--teal);
         }
         .docs-note {
-            background: #fefce8;
+            background: var(--teal-light);
             border-radius: 0.75rem;
             padding: 1rem 1.25rem;
             margin-top: 1.5rem;
@@ -641,7 +653,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             margin: 0 0 0.5rem;
-            color: #854d0e;
+            color: #0f766e;
         }
         .docs-note ul {
             list-style: none;
@@ -650,7 +662,7 @@
         }
         .docs-note ul li {
             font-size: 0.8rem;
-            color: #713f12;
+            color: #134e4a;
             padding: 0.1rem 0;
             padding-left: 1.2rem;
             position: relative;
@@ -810,7 +822,7 @@
             text-decoration: line-through;
         }
         .td-book-btn {
-            background: #dc2626;
+            background: var(--gradient-primary);
             color: #fff;
             border: none;
             padding: 0.9rem 1.5rem;
@@ -822,7 +834,7 @@
             width: 100%;
         }
         .td-book-btn:hover {
-            background: #b91c1c;
+            background: linear-gradient(120deg, #0d1f3a, #0b7a70);
         }
         .td-book-btn:active {
             transform: scale(0.98);
@@ -849,8 +861,8 @@
         }
         .td-select:focus {
             outline: none;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
         }
         .td-total-row {
             display: flex;
@@ -861,8 +873,28 @@
             margin-top: 0.5rem;
         }
         .td-total-val {
-            color: #dc2626;
+            color: var(--teal);
             font-size: 1.1rem;
+        }
+
+        /* tab active color */
+        .td-t.active {
+            color: var(--teal) !important;
+            border-bottom-color: var(--teal) !important;
+        }
+
+        /* breadcrumb link */
+        .td-breadcrumbs a {
+            color: var(--teal);
+        }
+        .td-breadcrumbs a:hover {
+            color: var(--navy);
+        }
+
+        /* bestseller badge */
+        .td-title-row span[style*="background:var(--gold)"] {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
         }
     </style>
 </head>
@@ -1259,7 +1291,7 @@
         ------------------------------------------------------------ */
         function switchDetailedDay(day) {
             document.querySelectorAll('.det-day-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.day) ===
-            day));
+                day));
             document.querySelectorAll('.det-day-panel').forEach(p => p.classList.toggle('active', parseInt(p.dataset.day) ===
                 day));
         }
