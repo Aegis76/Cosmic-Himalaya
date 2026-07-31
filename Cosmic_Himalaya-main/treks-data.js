@@ -1884,5 +1884,3 @@ const TREKS = {
     ]
   }
 };
-
-export default TREKS;
