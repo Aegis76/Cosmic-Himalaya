@@ -12,6 +12,16 @@
     <link href="style.css" rel="stylesheet" />
 
     <style>
+        /* ---------- color overrides: gold/amber scheme, red only in Details tab for days ---------- */
+        :root {
+            --gold: #c9a84c;
+            --gold-dark: #a8893a;
+            --gold-light: #f5efe6;
+            --gold-bg: #faf6ed;
+            --navy: #1a2a3a;
+            --red-accent: #dc2626;
+        }
+
         /* ---------- detailed itinerary (copied from lower code) ---------- */
         .det-day-selector-row {
             display: flex;
@@ -37,6 +47,7 @@
             white-space: nowrap;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
+        /* RED only for active day button in Details tab */
         .det-day-btn.active {
             background: #dc2626;
             color: #fff;
@@ -105,7 +116,7 @@
         .det-info-list li::before {
             content: "•";
             margin-right: 0.4rem;
-            color: #dc2626;
+            color: var(--gold);
         }
         .det-description {
             margin: 1rem 0 1.5rem;
@@ -140,7 +151,7 @@
             opacity: 0.4;
         }
 
-        /* ---------- altitude SVG (copied) ---------- */
+        /* ---------- altitude SVG (gold/amber scheme) ---------- */
         .alt-svg-wrap {
             width: 100%;
             margin: 1rem 0 0.5rem;
@@ -167,23 +178,23 @@
         }
         .alt-line {
             fill: none;
-            stroke: #dc2626;
+            stroke: var(--gold);
             stroke-width: 2.5;
             stroke-linejoin: round;
             stroke-linecap: round;
         }
         .alt-dot {
-            fill: #dc2626;
+            fill: var(--gold);
             stroke: #fff;
             stroke-width: 1.5;
             transition: r 0.2s, fill 0.2s;
         }
         .alt-dot.peak {
-            fill: #b91c1c;
+            fill: var(--gold-dark);
             r: 6;
         }
         .alt-dot.hot {
-            fill: #f97316;
+            fill: #eab308;
             r: 7;
         }
         .alt-daylabel {
@@ -224,7 +235,7 @@
         .alt-peak .pv {
             font-size: 1.25rem;
             font-weight: 800;
-            color: #dc2626;
+            color: var(--gold);
             line-height: 1;
         }
         .alt-peak .pl {
@@ -244,19 +255,19 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #dc2626;
+            background: var(--gold);
             margin-right: 0.3rem;
             vertical-align: middle;
         }
         .alt-legend i.peak {
-            background: #b91c1c;
+            background: var(--gold-dark);
             width: 14px;
             height: 14px;
             border: 2px solid #fff;
-            box-shadow: 0 0 0 1px #dc2626;
+            box-shadow: 0 0 0 1px var(--gold);
         }
 
-        /* ---------- itinerary items (copied) ---------- */
+        /* ---------- itinerary items (gold/amber scheme) ---------- */
         .itin {
             display: flex;
             flex-direction: column;
@@ -278,7 +289,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: #dc2626;
+            background: var(--gold);
             color: #fff;
             font-weight: 700;
             font-size: 0.8rem;
@@ -292,7 +303,7 @@
             background: #f8fafc;
             border-radius: 0.75rem;
             padding: 0.75rem 1rem;
-            border-left: 4px solid #dc2626;
+            border-left: 4px solid var(--gold);
             transition: background 0.2s;
         }
         .itin-card:hover {
@@ -334,8 +345,8 @@
             color: #1e40af;
         }
         .itin-badge.alt {
-            background: #fce7f3;
-            color: #9d174d;
+            background: #fef3c7;
+            color: #92400e;
         }
         .itin-points {
             list-style: none;
@@ -354,17 +365,17 @@
             content: "▸";
             position: absolute;
             left: 0;
-            color: #dc2626;
+            color: var(--gold);
             font-weight: 700;
         }
 
-        /* ---------- booking card price (copied from lower code) ---------- */
+        /* ---------- booking card price (gold/amber scheme) ---------- */
         .quotation-price {
             margin: 0 0 22px;
             padding: 16px 18px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #fff7ed, #fef2f2);
-            border: 1px solid #fee2e2;
+            background: linear-gradient(135deg, #faf6ed, #f5efe6);
+            border: 1px solid #e8dcc8;
         }
         .quotation-price .qp-row {
             display: flex;
@@ -377,7 +388,7 @@
             font-weight: 800;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: #dc2626;
+            color: var(--gold-dark);
         }
         .quotation-price .qp-amount {
             font-family: "Playfair Display", serif;
@@ -405,12 +416,13 @@
             padding: 7px 12px;
             margin-bottom: 15px;
             border-radius: 30px;
-            background: #fef2f2;
-            color: #dc2626;
+            background: #faf6ed;
+            color: var(--gold-dark);
             font-size: 10px;
             font-weight: 800;
             letter-spacing: 1.2px;
             text-transform: uppercase;
+            border: 1px solid #e8dcc8;
         }
         .quotation-header h3 {
             margin: 0 0 10px;
@@ -450,7 +462,7 @@
             color: #475569;
         }
         .bk-trust .ti {
-            color: #16a34a;
+            color: var(--gold-dark);
             font-weight: 700;
             margin-right: 0.3rem;
         }
@@ -492,7 +504,7 @@
             }
         }
 
-        /* ---------- additional panel styling ---------- */
+        /* ---------- additional panel styling (gold/amber) ---------- */
         .td-panel .td-section-title {
             font-size: 1.35rem;
             font-weight: 700;
@@ -500,7 +512,7 @@
             color: #0f172a;
         }
         .td-panel .td-section-title .num {
-            color: #dc2626;
+            color: var(--gold);
             margin-right: 0.5rem;
             font-weight: 800;
         }
@@ -571,7 +583,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #dc2626;
+            background: var(--gold);
         }
 
         /* inclusions / exclusions */
@@ -609,8 +621,8 @@
             color: #16a34a;
         }
         .ie-col.exc .badge {
-            background: #fee2e2;
-            color: #dc2626;
+            background: #fef3c7;
+            color: #92400e;
         }
         .ie-list {
             list-style: none;
@@ -629,7 +641,7 @@
             content: "•";
             position: absolute;
             left: 0;
-            color: #dc2626;
+            color: var(--gold);
         }
         .docs-note {
             background: #fefce8;
@@ -793,7 +805,45 @@
             padding: 0 1rem 1rem;
         }
 
-        /* misc */
+        /* Tabs */
+        .td-tabs {
+            display: flex;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0;
+            margin-bottom: 1.5rem;
+        }
+        .td-t {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #64748b;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            border-radius: 0;
+        }
+        .td-t:hover {
+            color: #0f172a;
+        }
+        .td-t.active {
+            color: var(--gold-dark);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Booking card */
+        .td-booking-card {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f1f5f9;
+            position: sticky;
+            top: 2rem;
+        }
         .td-price-now {
             font-size: 1.5rem;
             font-weight: 800;
@@ -810,7 +860,7 @@
             text-decoration: line-through;
         }
         .td-book-btn {
-            background: #dc2626;
+            background: var(--gold);
             color: #fff;
             border: none;
             padding: 0.9rem 1.5rem;
@@ -822,7 +872,7 @@
             width: 100%;
         }
         .td-book-btn:hover {
-            background: #b91c1c;
+            background: var(--gold-dark);
         }
         .td-book-btn:active {
             transform: scale(0.98);
@@ -849,8 +899,8 @@
         }
         .td-select:focus {
             outline: none;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
         }
         .td-total-row {
             display: flex;
@@ -861,8 +911,138 @@
             margin-top: 0.5rem;
         }
         .td-total-val {
-            color: #dc2626;
+            color: var(--gold-dark);
             font-size: 1.1rem;
+        }
+
+        /* Info strip */
+        .td-info-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            background: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f1f5f9;
+        }
+        .td-qi {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .td-qi .qi-ico {
+            font-size: 1.2rem;
+        }
+        .td-qi .qi-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+        .td-qi .qi-val {
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.9rem;
+        }
+
+        /* Hero */
+        .trek-details-hero {
+            position: relative;
+            min-height: 320px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .td-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 60%);
+        }
+        .td-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem 2rem 1.5rem;
+            color: #fff;
+            width: 100%;
+        }
+        .td-breadcrumbs {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        .td-breadcrumbs a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .td-breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        .td-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .td-title-row h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        /* Main layout */
+        .td-main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            margin: 2rem 0 3rem;
+        }
+        .td-left-col {
+            min-width: 0;
+        }
+        .td-right-col {
+            min-width: 0;
+        }
+        @media (max-width: 1024px) {
+            .td-main-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .td-booking-card {
+                position: static;
+            }
+        }
+        @media (max-width: 640px) {
+            .td-title-row h1 {
+                font-size: 1.6rem;
+            }
+            .td-hero-content {
+                padding: 1.5rem 1rem 1rem;
+            }
+            .td-info-strip {
+                gap: 0.75rem 1.25rem;
+                padding: 0.75rem 1rem;
+            }
+            .td-highlights-grid {
+                grid-template-columns: 1fr;
+            }
+            .ie-grid {
+                grid-template-columns: 1fr;
+            }
+            .td-tabs {
+                gap: 0;
+            }
+            .td-t {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -939,7 +1119,7 @@
                     <h1 id="tdTitle">Trek Name</h1>
                     <div style="display:flex;gap:10px;align-items:center;">
                         <span style="background:var(--gold);color:var(--navy);padding:4px 12px;border-radius:4px;font-weight:700;font-size:12px;">BESTSELLER</span>
-                        <span style="color:var(--gold);font-size:14px;">★★★★★ (4.9/5)</span>
+                        <span style="color:#eab308;font-size:14px;">★★★★★ (4.9/5)</span>
                     </div>
                 </div>
             </div>
@@ -1079,7 +1259,7 @@
         const stars = n => "★".repeat(n) + "☆".repeat(5 - n);
 
         /* ------------------------------------------------------------
-           BUILD ALTITUDE PROFILE SVG (copied from lower code)
+           BUILD ALTITUDE PROFILE SVG (gold/amber scheme)
         ------------------------------------------------------------ */
         function buildAltitudeSVG(itin) {
             if (!itin || itin.length < 2) return '';
@@ -1122,8 +1302,8 @@
             });
             return `<svg class="alt-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Altitude profile of the trek by day">
                 <defs><linearGradient id="altGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#e3cd94" stop-opacity="0.42"/>
-                    <stop offset="100%" stop-color="#e3cd94" stop-opacity="0.02"/>
+                    <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.42"/>
+                    <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.02"/>
                 </linearGradient></defs>
                 ${grid}
                 <polygon class="alt-area" points="${areaPts}"/>
@@ -1188,7 +1368,7 @@
         }
 
         /* ------------------------------------------------------------
-           BUILD DETAILED ITINERARY (with day selector – copied from lower code)
+           BUILD DETAILED ITINERARY (with day selector – red only for active day)
         ------------------------------------------------------------ */
         function buildDetailedItinerary(t) {
             const detailData = t.detailedItinerary && t.detailedItinerary.length > 0 ? t.detailedItinerary : null;
@@ -1259,7 +1439,7 @@
         ------------------------------------------------------------ */
         function switchDetailedDay(day) {
             document.querySelectorAll('.det-day-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.day) ===
-            day));
+                day));
             document.querySelectorAll('.det-day-panel').forEach(p => p.classList.toggle('active', parseInt(p.dataset.day) ===
                 day));
         }
@@ -1375,7 +1555,7 @@
         }
 
         /* ------------------------------------------------------------
-           BUILD BOOKING CARD (copied from lower code)
+           BUILD BOOKING CARD (gold/amber scheme)
         ------------------------------------------------------------ */
         function buildBookingCard(t) {
             const datesOpts = (t.dates || []).map(d => `<option value="${d}">${d}</option>`).join('');
@@ -1528,7 +1708,6 @@
                 if (trekKey && typeof openTrek === 'function') {
                     openTrek(trekKey);
                 } else {
-                    // Default: Everest Base Camp (ebc)
                     if (typeof openTrek === 'function') openTrek('ebc');
                 }
             } catch (e) {
