@@ -385,7 +385,7 @@ const TREKS = {
     country: "Nepal",
     diff: "Moderate",
     season: "Year-Round",
-    dur: "10 Days",
+    dur: "9 Days",
     alt: "4,130 m",
     dist: "115 km",
     startEnd: "Pokhara",
