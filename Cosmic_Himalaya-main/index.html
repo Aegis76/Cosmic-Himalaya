@@ -161,46 +161,76 @@
       </div>
     </nav>
 
-    <div class="page active" id="page-home">
-      <!-- STATIC HERO SECTION WITH LOGO -->
-      <section class="hero">
-        <img
-          class="hero-media hero-img"
-          src="images/HeroImg.jpeg"
-          alt="Annapurna mountain range, Nepal"
-          fetchpriority="high"
-        />
-        <video
-          class="hero-media hero-video is-ready"
-          autoplay muted loop playsinline preload="auto"
-          poster="images/HeroImg.jpeg"
-        >
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-        </video>
-        <div class="hero-scrim"></div>
-        <div class="hero-content">
+    
+<div class="page active" id="page-home">
+ 
+  <!-- STATIC HERO SECTION WITH LOGO -->
+  <section class="hero">
+    <img
+      class="hero-media hero-img"
+      src="images/HeroImg.jpeg"
+      alt="Annapurna mountain range, Nepal"
+      fetchpriority="high"
+    />
+    <video
+      class="hero-media hero-video is-ready"
+      autoplay muted loop playsinline preload="auto"
+      poster="images/HeroImg.jpeg"
+    >
+      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
       <div class="eyebrow reveal-up d1">
-    Nepal • Trekking • Expeditions
+        Nepal • Trekking • Expeditions
+      </div>
+      <h1 class="hero-title reveal-up d2">
+        Explore Nepal with
+        <span class="accent">Cosmic Himalaya</span>
+      </h1>
+      <p class="hero-sub reveal-up d3">
+        Experience unforgettable Himalayan adventures with trusted local experts. Trek to Everest Base Camp, Annapurna Base Camp, Kailash Mansarovar, Langtang Valley, and Nepal's most iconic mountain destinations through carefully crafted journeys.
+      </p>
+ 
+      <button
+        class="hero-cta reveal-up d4"
+        onclick="document.getElementById('popular-treks') && document.getElementById('popular-treks').scrollIntoView({ behavior: 'smooth' })"
+      >
+        Explore the Journeys <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+ 
+  <!-- MOVING DISCOUNT LINE — sits right above the trek cards -->
+  <div class="promo-ticker" role="marquee" aria-label="Current offers">
+    <div class="promo-track">
+      <div class="promo-group">
+        <span class="promo-item">🏔️ Everest Base Camp Trek — <strong>15% OFF</strong> for August departures</span>
+        <span class="promo-sep">✦</span>
+        <span class="promo-item">🙏 Annapurna Base Camp Trek — <strong>Flat ₹8,000 OFF</strong> this month</span>
+        <span class="promo-sep">✦</span>
+        <span class="promo-item">🏔️ Everest Base Camp Trek — <strong>15% OFF</strong> for August departures</span>
+        <span class="promo-sep">✦</span>
+        <span class="promo-item">🙏 Annapurna Base Camp Trek — <strong>Flat ₹8,000 OFF</strong> this month</span>
+        <span class="promo-sep">✦</span>
+      </div>
+      <!-- duplicate group, exact copy, makes the loop seamless at -50% -->
+      <div class="promo-group" aria-hidden="true">
+        <span class="promo-item">🏔️ Everest Base Camp Trek — <strong>15% OFF</strong> for August departures</span>
+        <span class="promo-sep">✦</span>
+        <span class="promo-item">🙏 Annapurna Base Camp Trek — <strong>Flat ₹8,000 OFF</strong> this month</span>
+        <span class="promo-sep">✦</span>
+        <span class="promo-item">🏔️ Everest Base Camp Trek — <strong>15% OFF</strong> for August departures</span>
+        <span class="promo-sep">✦</span>
+        <span class="promo-item">🙏 Annapurna Base Camp Trek — <strong>Flat ₹8,000 OFF</strong> this month</span>
+        <span class="promo-sep">✦</span>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Your existing treks-section with id="popular-treks" goes here -->
+ 
 </div>
-
-<h1 class="hero-title reveal-up d2">
-    Explore Nepal with
-    <span class="accent">Cosmic Himalaya</span>
-</h1>
-
-<p class="hero-sub reveal-up d3">
-    Experience unforgettable Himalayan adventures with trusted local experts. Trek to Everest Base Camp, Annapurna Base Camp, Kailash Mansarovar, Langtang Valley, and Nepal's most iconic mountain destinations through carefully crafted journeys.
-</p>
-
-
-         
-          <button
-            class="hero-cta reveal-up d4"
-            onclick="document.getElementById('popular-treks') && document.getElementById('popular-treks').scrollIntoView({ behavior: 'smooth' })"
-          >
-            Explore the Journeys <span class="arrow">→</span>
-          </button>
-        </div>
       </section>
 
          <!-- TREK CARDS -->
