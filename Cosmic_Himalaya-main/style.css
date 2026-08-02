@@ -811,7 +811,6 @@ transform:none;
   font-weight: 800; color: var(--navy);
   text-align: center; margin: 10px auto 4px;
 }
-
 .treks-slider-wrap {
   position: relative;
   max-width: 100%;
@@ -823,7 +822,6 @@ transform:none;
   padding: 20px 0;
 }
 .treks-slider-wrap::-webkit-scrollbar { display: none; }
-
 .treks-slider {
   display: flex;
   gap: 20px;
@@ -832,56 +830,96 @@ transform:none;
 }
 
 .trek-card {
+  position: relative;
   flex: 0 0 auto;
-  width: clamp(260px, 80vw, 300px);
+  width: clamp(280px, 82vw, 340px);
+  height: clamp(440px, 62vw, 520px);
   min-width: 0;
   scroll-snap-align: start;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: none;
   border: 1px solid var(--border);
-  background: var(--white);
+  background: var(--navy);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   cursor: pointer;
 }
 .trek-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 32px rgba(11, 28, 61, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(11, 28, 61, 0.22);
   border-color: var(--accent);
 }
 
-.treks-slider .reveal { opacity: 1 !important; transform: none !important; }
+/* GSAP drives opacity/transform on load — this just prevents a flash
+   of a fully-visible card before the script runs. Remove this rule
+   if you are not using the scroll-reveal script. */
+.trek-card.reveal { opacity: 0; }
 
-.tk-img { height: clamp(160px, 45vw, 200px); overflow: hidden; position: relative; }
-.tk-img img {
+/* image now fills the entire card instead of a fixed-height strip on top */
+.tk-img { position: absolute; inset: 0; overflow: hidden; }
+
+/* Optional: only needed if using the GSAP parallax script — wrap your
+   <img> in <div class="tk-img-parallax">...</div> to enable it.
+   Not using parallax? Skip the wrapper div; .tk-img > img covers that case. */
+.tk-img-parallax {
+  position: absolute;
+  top: -14%; left: 0;
+  width: 100%; height: 128%;
+  will-change: transform;
+}
+.tk-img-parallax img,
+.tk-img > img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(0.55) saturate(0.8) brightness(0.9);
+  filter: grayscale(0.4) saturate(0.85) brightness(0.9);
   transition: transform 0.4s, filter 0.4s;
 }
-.trek-card:hover .tk-img img { transform: scale(1.06); filter: grayscale(0) saturate(1) brightness(1); }
+.trek-card:hover .tk-img-parallax img,
+.trek-card:hover .tk-img > img {
+  transform: scale(1.06);
+  filter: grayscale(0) saturate(1) brightness(1);
+}
+
+/* brand-navy gradient so title/meta stay legible over any photo */
+.tk-img::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 28, 61, 0.95) 0%,
+    rgba(11, 28, 61, 0.65) 30%,
+    rgba(11, 28, 61, 0.1) 62%,
+    rgba(11, 28, 61, 0) 78%
+  );
+}
+
 .tk-loc {
-  position: absolute; bottom: 10px; right: 10px;
+  position: absolute; top: 14px; left: 14px; z-index: 2;
   background: rgba(11, 28, 61, 0.88); color: #fff;
   font-size: 11px; padding: 4px 10px; border-radius: 20px;
 }
-.tk-body { padding: 16px; }
-.tk-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+
+.tk-body {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 20px 18px;
+}
+.tk-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
 .tk-meta span {
-  display: block; font-size: 11px; color: var(--muted);
+  display: block; font-size: 11px; color: rgba(255,255,255,0.72);
   font-weight: 600; text-transform: uppercase; margin-bottom: 2px;
 }
-.tk-meta strong { color: var(--navy); }
+.tk-meta strong { color: var(--white); }
+
 .tk-btn {
   width: 100%; margin-top: 14px; padding: 10px;
-  border: 1.5px solid var(--navy); color: var(--navy);
+  border: 1.5px solid rgba(255,255,255,0.55); color: var(--white);
   font-size: 13px; font-weight: 700; border-radius: 6px;
   transition: 0.2s; background: transparent; min-height: 44px; cursor: pointer;
 }
-.tk-btn:hover { background: var(--navy); color: var(--white); }
+.tk-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--navy); }
 
 @media (prefers-reduced-motion: reduce) {
   .treks-slider-wrap { scroll-behavior: auto; }
-  .trek-card, .tk-img img { transition: none; }
+  .trek-card, .tk-img-parallax img, .tk-img > img { transition: none; }
 }
 
 /* ══════════ STATS BAR ══════════ */
