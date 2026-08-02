@@ -116,7 +116,7 @@ body {
     height:100dvh;
     min-height:720px;
     overflow:hidden;
-    background:#07152d;
+    
 }
  
 /* ---------------- Media ---------------- */
@@ -142,9 +142,7 @@ body {
 }
  
 .hero-video{
-    z-index:2;
-    opacity:0;
-    transition:opacity 1.2s ease;
+    
 }
  
 .hero-video.is-ready{
