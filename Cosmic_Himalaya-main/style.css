@@ -56,6 +56,42 @@ body {
 .nav-brand-text { display: flex; flex-direction: column; line-height: 1.15; }
 @media (max-width: 600px) { .nav-logo { height: 84px; } }
 
+/* =========================================================
+   NAVBAR — transparent over the hero video, solid once scrolled
+========================================================= */
+
+.navbar {
+  position: absolute;   /* sits on top of the hero instead of pushing it down */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;           /* above .hero-scrim (3) and .hero-content (5) */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+/* Text/links need to be light while the navbar floats over the dark video */
+.navbar,
+.navbar a,
+.nav-brand-text {
+  color: var(--white);
+}
+
+/* Once the user scrolls past the hero, JS below adds this class
+   so the navbar becomes readable over normal page content */
+.navbar.scrolled {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(11, 28, 61, 0.08);
+}
+
+.navbar.scrolled,
+.navbar.scrolled a,
+.navbar.scrolled .nav-brand-text {
+  color: var(--text);
+}
+
 /* ─── REVEAL ANIMATION ─── */
 .reveal {
   opacity: 0;
