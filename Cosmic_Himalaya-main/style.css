@@ -850,11 +850,6 @@ transform:none;
   border-color: var(--accent);
 }
 
-/* GSAP drives opacity/transform on load — this just prevents a flash
-   of a fully-visible card before the script runs. Remove this rule
-   if you are not using the scroll-reveal script. */
-.trek-card.reveal { opacity: 0; }
-
 /* image now fills the entire card instead of a fixed-height strip on top */
 .tk-img { position: absolute; inset: 0; overflow: hidden; }
 
@@ -921,7 +916,6 @@ transform:none;
   .treks-slider-wrap { scroll-behavior: auto; }
   .trek-card, .tk-img-parallax img, .tk-img > img { transition: none; }
 }
-
 /* ══════════ STATS BAR ══════════ */
 .stat-container {
   padding: var(--section-y) var(--section-x);
