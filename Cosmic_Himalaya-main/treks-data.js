@@ -385,7 +385,7 @@ const TREKS = {
     country: "Nepal",
     diff: "Moderate",
     season: "Year-Round",
-    dur: "9 Days",
+    dur: "7 Days",
     alt: "4,130 m",
     dist: "115 km",
     startEnd: "Pokhara",
@@ -599,15 +599,13 @@ const TREKS = {
       }
     ],
     itinerary: [
-      { day: 1, title: "Arrival at Pokhara", alt: 820, sub: "820 m", rest: true, points: ["Hotel check-in by the lake", "Prepare and brief for the trek"] },
-      { day: 2, title: "Drive to Jhinu Danda · Trek to Chhomrong", alt: 1940, sub: "1,940 m", time: "4–5 hrs", points: ["Short drive to the trailhead", "Trek to the village of Chhomrong"] },
-      { day: 3, title: "Chhomrong to Dovan", alt: 2600, sub: "2,600 m", time: "5–6 hrs", points: ["Descend to Chhomrong Khola", "Experience the thrill of crossing Suspension Bridges"] },
-      { day: 4, title: "Dovan to Deurali", alt: 3700, sub: "3,700 m", time: "6 hrs", points: ["Trek to Deurali", "Ascend through bamboo forest"] },
-      { day: 5, title: "Deurali to Annapurna Base Camp", alt: 4130, sub: "4,130 m", time: "6 hrs", points: ["Experience the thrill of reaching the iconic destination", "360° views of the Annapurna massif"] },
-      { day: 6, title: "ABC to Bamboo", alt: 2310, sub: "2,310 m", time: "6 hrs", points: ["Sunrise at ABC then descend", "Long walk down to Bamboo"] },
-      { day: 7, title: "Bamboo to Jhinu Danda", alt: 1780, sub: "1,780 m", time: "5 hrs", points: ["Descend via Chhomrong", "Soak in the natural hot springs"] },
-      { day: 8, title: "Jhinu Danda to Pokhara", alt: 820, sub: "820 m", time: "3–4 hrs", points: ["Short trek to the roadhead", "Drive back to Pokhara"] },
-      { day: 9, title: "Pokhara to Kathmandu", alt: 1400, sub: "Departure", rest: true, points: ["Drive or fly to Kathmandu", "Trip concludes"] }
+      { day: 1, title: "Pokhara Arrival (Lakeside)", alt: 820, sub: "820 m", rest: true, points: ["Gear check and trek preparation", "Enjoy tranquil lakeside views before setting out"] },
+      { day: 2, title: "Drive Pokhara to Matkyu · Trek to Chhomrong", alt: 2170, sub: "2,170 m", time: "2.5 hr drive + 3–4 hr trek", points: ["Start the adventure directly from Matkyu", "Cross scenic suspension bridges", "Arrive at traditional Gurung stone lodges in Chhomrong"] },
+      { day: 3, title: "Chhomrong → Sinuwa → Bamboo", alt: 2310, sub: "2,310 m", time: "4–5 hrs", points: ["Cross the river into lush bamboo forests", "Stay in cozy woodland lodges", "Enjoy fresh, hearty local meals"] },
+      { day: 4, title: "Bamboo → Dovan → Deurali", alt: 3230, sub: "3,230 m", time: "5–6 hrs", points: ["Follow the roaring Modi Khola", "Trek through crisp mountain air", "Rest in a welcoming high-altitude teahouse"] },
+      { day: 5, title: "Deurali → MBC → Annapurna Base Camp (ABC)", alt: 4130, sub: "4,130 m", time: "5–6 hrs", points: ["Reach the Annapurna Sanctuary", "Experience breathtaking 360° mountain views", "Warm up in the cozy base-camp dining hall"] },
+      { day: 6, title: "ABC → Deurali → Bamboo", alt: 2310, sub: "2,310 m", time: "6–7 hrs", points: ["Watch a spectacular sunrise over the peaks", "Descend through the forest", "Rest in welcoming woodland lodges"] },
+      { day: 7, title: "Bamboo → Jhinu Hot Springs → Drive to Pokhara", alt: 820, sub: "820 m", time: "5 hr trek + 2.5 hr drive", points: ["Soak in Jhinu's natural hot springs", "Complete the final trail section", "Enjoy a smooth jeep ride back to Pokhara"] }
     ],
     includes: [
       "TIMS & ACAP permits",
