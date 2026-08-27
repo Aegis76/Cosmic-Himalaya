@@ -405,6 +405,39 @@ const TREKS = {
       "🏘 Gurung Village Culture",
       "📸 Machhapuchhre (Fishtail) Views"
     ],
+
+    itineraryIntro: {
+      title: "The mountains appeared slowly through the morning mist.",
+      paragraphs: [
+        "Drive straight to Matkyu. From here, your adventure begins on tranquil mountain trails, surrounded by lush forests, rivers, suspension bridges, and the breathtaking landscapes of the Annapurna Sanctuary.",
+        "For adventurers with limited time, the Matkyu approach offers a more rewarding way to experience Annapurna—getting hikers onto peaceful mountain trails sooner, surrounded by forests, rushing rivers and spectacular Himalayan scenery, while comfortable and hygienic teahouses provide a warm place to rest at the end of each day.",
+        "Authentic mountain hospitality is part of the adventure. After a rewarding day on the trail, trekkers can unwind in traditional wooden teahouses, gather around warm stoves in cozy dining halls, and enjoy fresh cooked local meals. Clean, hygienic rooms with comfortable bedding and warm showers offer the simple comforts you need to recharge before another day in the Himalayas."
+      ]
+    },
+
+    routeBrief: [
+      { day: 1, route: "Pokhara Arrival (Lakeside)", elevation: "820 m / 2,690 ft", distance: "—", duration: "Gear check, enjoying tranquil lakeside views, and getting everything ready before setting out.", highlights: "Pokhara lakeside stay and trek preparation." },
+      { day: 2, route: "Drive Pokhara to Matkyu; Trek to Chhomrong", elevation: "2,170 m / 7,120 ft", distance: "~9 km", duration: "2.5 hr drive + 3–4 hr trek", highlights: "Avoiding road sections, crossing scenic suspension bridges, and arriving at traditional Gurung stone lodges in Chhomrong." },
+      { day: 3, route: "Chhomrong → Sinuwa → Bamboo", elevation: "2,310 m / 7,580 ft", distance: "~8 km", duration: "4–5 hours", highlights: "Cross the river into lush bamboo forests, where cozy woodland lodges welcome you with fresh, hearty meals." },
+      { day: 4, route: "Bamboo → Dovan → Deurali", elevation: "3,230 m / 10,597 ft", distance: "~9 km", duration: "5–6 hours", highlights: "Follow the roaring Modi Khola through crisp mountain air, with high-altitude teahouses offering a warm place to rest." },
+      { day: 5, route: "Deurali → MBC → Annapurna Base Camp (ABC)", elevation: "4,130 m / 13,550 ft", distance: "~8 km", duration: "5–6 hours", highlights: "Stand within a breathtaking 360° mountain sanctuary, then unwind in cozy base-camp dining halls over steaming cups of tea." },
+      { day: 6, route: "ABC → Deurali → Bamboo", elevation: "2,310 m / 7,580 ft", distance: "~13 km", duration: "6–7 hours", highlights: "Catch a spectacular sunrise over the peaks before an easy downhill trek through the forest to welcoming woodland lodges." },
+      { day: 7, route: "Bamboo → Jhinu Hot Springs → Drive to Pokhara", elevation: "820 m / 2,690 ft", distance: "~10 km walk + drive", duration: "5 hr trek + 2.5 hr drive", highlights: "Soak your tired muscles in Jhinu’s natural hot springs beside the river, then enjoy a smooth jeep ride back to Pokhara." }
+    ],
+
+    weatherAtGlance: {
+      title: "Annapurna Base Camp Weather at a Glance",
+      intro: "The ABC experience changes with the seasons, from snow-covered trails to lush monsoon forests and crystal-clear post-monsoon skies.",
+      seasons: [
+        { period: "March", description: "Cold and snowy. ABC can be heavily covered in snow, with temperatures around 0–5°C during the day and -5 to -10°C at night. Best for trekkers seeking a true winter Himalayan experience." },
+        { period: "April–May", description: "Spring brings warmer, drier conditions, gradually receding snow and greener forests. ABC temperatures are roughly 5–14°C during the day, with nights still cold." },
+        { period: "June–September", description: "Monsoon transforms the lower trail into a lush green landscape. Temperatures are milder at altitude, but trekkers should expect rain, wet trails and cloud cover." },
+        { period: "October–November", description: "Post-monsoon brings clear blue skies, crisp air and excellent mountain visibility. Temperatures at ABC can range from around 0–10°C during the day, with freezing nights." }
+      ],
+      summary: "March for snow, April–May for spring, monsoon for lush greenery, and October–November for the clearest Himalayan views.",
+      note: "Temperatures are approximate and can change quickly with altitude and weather conditions."
+    },
+
     detailedItinerary: [
       {
         day: 1,
@@ -641,7 +674,6 @@ const TREKS = {
       }
     ]
   },
-
   // =========================================================
   // KAILASH MANSAROVAR
   // =========================================================
