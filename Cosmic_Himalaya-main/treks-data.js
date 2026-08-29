@@ -374,7 +374,7 @@ const TREKS = {
     ]
   },
 
-  // =========================================================
+ // =========================================================
   // ANNAPURNA BASE CAMP
   // =========================================================
 
@@ -653,6 +653,12 @@ const TREKS = {
         title: "Cultural Highlights of Gurung Villages",
         date: "18 Apr 2026",
         img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1470&auto=format&fit=crop"
+      },
+      {
+        title: "A Journey to the Soul of Annapurna",
+        date: "22 Apr 2026",
+        img: "https://ik.imagekit.io/6krfkcqxh/Nepal_Himalaya/Trek/Annapurna%20Camp%20Trek%204.webp",
+        url: "https://travel647.home.blog/a-journey-to-the-soul-of-annapurna/"
       }
     ],
     reviews: [
