@@ -316,7 +316,7 @@ function openTrek(key) {
   ).join("");
   setEl("tdRevList", reviewsHtml, true);
 
-  // ─── ARTICLES (updated to handle url property) ───
+  // ─── ARTICLES (UPDATED – supports blog url) ───
   const articles = t.articles || [
     { title: "Complete Guide to " + t.title, date: "11 Apr 2026", img: t.photos[0] },
     { title: "What to Pack for " + t.title, date: "15 Apr 2026", img: t.photos[1 % t.photos.length] },
