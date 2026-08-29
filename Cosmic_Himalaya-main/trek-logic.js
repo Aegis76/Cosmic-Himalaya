@@ -316,15 +316,34 @@ function openTrek(key) {
   ).join("");
   setEl("tdRevList", reviewsHtml, true);
 
-  // articles
+  // ─── ARTICLES (updated to handle url property) ───
   const articles = t.articles || [
     { title: "Complete Guide to " + t.title, date: "11 Apr 2026", img: t.photos[0] },
     { title: "What to Pack for " + t.title, date: "15 Apr 2026", img: t.photos[1 % t.photos.length] },
     { title: "Best Time to Visit " + t.title, date: "20 Apr 2026", img: t.photos[2 % t.photos.length] }
   ];
-  const articlesHtml = articles.map(a =>
-    `<div class="article-card"><div class="ac-img"><img src="${getImgUrl(a.img)}" alt="Article"></div><div class="ac-body"><div class="ac-date">${a.date}</div><div class="ac-title">${a.title}</div><div class="ac-line"></div></div></div>`
-  ).join("");
+
+  const articlesHtml = articles.map(a => {
+    const inner = `
+      <div class="ac-img"><img src="${getImgUrl(a.img)}" alt="Article"></div>
+      <div class="ac-body">
+        <div class="ac-date">${a.date}</div>
+        <div class="ac-title">${a.title}</div>
+        <div class="ac-line"></div>
+      </div>
+    `;
+
+    if (a.url) {
+      // Blog / external link
+      return `<a href="${a.url}" target="_blank" rel="noopener noreferrer" class="article-card article-card-link" style="text-decoration:none; color:inherit; display:block;">
+        ${inner}
+      </a>`;
+    } else {
+      // Regular article card (no link)
+      return `<div class="article-card">${inner}</div>`;
+    }
+  }).join("");
+
   setEl("tdArticles", articlesHtml, true);
 
   // faqs
